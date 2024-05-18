@@ -57,7 +57,7 @@ Vue前端项目
 ## 三、如何使用？
 ### 3.1、开发环境配置
 + MySQL数据库创建
-  + 运行MySQL脚本`docs\sql\qihang-erp.sql`导入数据到主库`qihang-erp`
+  + 运行MySQL脚本`docs\sql\qihangerp-scm.sql`导入数据到主库`qihangerp-scm`
 
   + 运行MySQL脚本`docs\sql\nacos.sql`导入数据到nacos库`nacos`
 
@@ -72,7 +72,7 @@ Vue前端项目
 
   + 启动Nacos
   + 添加Nacos配置
-    + 项目dataId`qihangerp-scm.yaml`（配置内容从docs\ecerp-dev.yaml复制即可）
+    + 项目dataId`qihangerp-scm.yaml`（配置内容从docs\qihangerp-scm.yaml复制即可）
 + 启动Redis
 
   

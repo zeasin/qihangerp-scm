@@ -1,7 +1,7 @@
 # Nacos Config 配置
 spring:
   application:
-    name: qihang-ecom-api
+    name: qihangerp-scm-supplier-api
   cloud:
     nacos:
       config:
