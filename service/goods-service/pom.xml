@@ -23,7 +23,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.qihang.interfaces</groupId>
+            <groupId>cn.qihangerp.interfaces</groupId>
             <artifactId>goods</artifactId>
             <version>0.4.20</version>
         </dependency>

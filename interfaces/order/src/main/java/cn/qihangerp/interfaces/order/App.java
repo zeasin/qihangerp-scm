@@ -1,4 +1,4 @@
-package cn.qihangerp.interface.order;
+package cn.qihangerp.interfaces.order;
 
 /**
  * Hello world!

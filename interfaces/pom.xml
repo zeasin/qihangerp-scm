@@ -3,8 +3,8 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>cn.qihangerp</groupId>
-        <artifactId>dubbo</artifactId>
-        <version>0.4.20</version>
+        <artifactId>scm</artifactId>
+        <version>0.5.18</version>
     </parent>
 
     <groupId>cn.qihangerp.interfaces</groupId>
@@ -46,7 +46,7 @@
         <dependency>
             <groupId>cn.qihangerp</groupId>
             <artifactId>common</artifactId>
-            <version>0.4.20</version>
+            <version>0.5.18</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>

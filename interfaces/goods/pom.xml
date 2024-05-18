@@ -6,8 +6,6 @@
         <artifactId>interfaces</artifactId>
         <version>0.4.20</version>
     </parent>
-
-    <groupId>com.qihang.interfaces</groupId>
     <artifactId>goods</artifactId>
     <packaging>jar</packaging>
 

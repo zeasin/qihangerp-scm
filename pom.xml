@@ -5,10 +5,10 @@
 	<modelVersion>4.0.0</modelVersion>
 	
     <groupId>cn.qihangerp</groupId>
-    <artifactId>dubbo</artifactId>
-    <version>0.4.20</version>
+    <artifactId>scm</artifactId>
+    <version>0.5.18</version>
 
-    <name>qihangerp-dubbo</name>
+    <name>qihangerp-scm</name>
     <url>http://qihangerp.cn</url>
     <description>启航电商ERP系统</description>
     
