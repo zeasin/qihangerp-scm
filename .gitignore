@@ -5,7 +5,7 @@
 /build/
 !gradle/wrapper/gradle-wrapper.jar
 
-ecerp-api/target/
+*/target/
 framework/**/target
 !.mvn/wrapper/maven-wrapper.jar
 
