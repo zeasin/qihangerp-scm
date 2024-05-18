@@ -33,10 +33,11 @@
         <spring-boot.version>2.7.3</spring-boot.version>
     </properties>
     <modules>
-        <module>api</module>
+        <module>api-scm</module>
         <module>interfaces</module>
         <module>service</module>
         <module>common</module>
+        <module>api-dcm</module>
     </modules>
     <packaging>pom</packaging>
 
