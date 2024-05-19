@@ -37,7 +37,7 @@
         <module>interfaces</module>
         <module>service</module>
         <module>common</module>
-        <module>api-dcm</module>
+        <module>api-oms</module>
     </modules>
     <packaging>pom</packaging>
 
