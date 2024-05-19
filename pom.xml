@@ -13,24 +13,24 @@
     <description>启航电商ERP系统</description>
     
     <properties>
-        <zhijian.version>0.1.0</zhijian.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>17</java.version>
-        <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
-        <druid.version>1.2.16</druid.version>
-        <bitwalker.version>1.21</bitwalker.version>
-        <swagger.version>3.0.0</swagger.version>
-        <kaptcha.version>2.3.3</kaptcha.version>
-        <pagehelper.boot.version>1.4.6</pagehelper.boot.version>
-        <fastjson.version>2.0.34</fastjson.version>
-        <oshi.version>6.4.3</oshi.version>
-        <commons.io.version>2.11.0</commons.io.version>
-        <commons.collections.version>3.2.2</commons.collections.version>
-        <poi.version>4.1.2</poi.version>
-        <velocity.version>2.3</velocity.version>
-        <jwt.version>0.9.1</jwt.version>
-        <spring-boot.version>2.7.3</spring-boot.version>
+<!--        <zhijian.version>0.1.0</zhijian.version>-->
+<!--        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>-->
+<!--        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>-->
+<!--        <java.version>17</java.version>-->
+<!--        <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>-->
+<!--        <druid.version>1.2.16</druid.version>-->
+<!--        <bitwalker.version>1.21</bitwalker.version>-->
+<!--        <swagger.version>3.0.0</swagger.version>-->
+<!--        <kaptcha.version>2.3.3</kaptcha.version>-->
+<!--        <pagehelper.boot.version>1.4.6</pagehelper.boot.version>-->
+<!--        <fastjson.version>2.0.34</fastjson.version>-->
+<!--        <oshi.version>6.4.3</oshi.version>-->
+<!--        <commons.io.version>2.11.0</commons.io.version>-->
+<!--        <commons.collections.version>3.2.2</commons.collections.version>-->
+<!--        <poi.version>4.1.2</poi.version>-->
+<!--        <velocity.version>2.3</velocity.version>-->
+<!--        <jwt.version>0.9.1</jwt.version>-->
+<!--        <dubbo.version>3.2.12</dubbo.version>-->
     </properties>
     <modules>
         <module>api-scm</module>
@@ -41,17 +41,9 @@
     </modules>
     <packaging>pom</packaging>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+    <dependencies>
+
+    </dependencies>
 
     <build>
         <plugins>

@@ -66,20 +66,14 @@ A[供应商发布商品] -->B(平台审核)
 + MySQL数据库创建
   + 运行MySQL脚本`docs\sql\qihangerp-scm.sql`导入数据到主库`qihangerp-scm`
 
-  + 运行MySQL脚本`docs\sql\nacos.sql`导入数据到nacos库`nacos`
-
-
 + 启动nacos
-  + 修改Nacos数据库配置 `nacos\conf\application.properties`
-  ```
-  db.url.0=jdbc:mysql://127.0.0.1:3306/nacos?characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true&useUnicode=true&useSSL=false&serverTimezone=Asia/Shanghai
-  db.user.0=root
-  db.password.0=Andy_123
-  ```
-
-  + 启动Nacos
+  + 启动
+    **一般情况下：下载nacos2.3.2解压之后直接运行：**
+    `startup.cmd -m standalone`
+ 
   + 添加Nacos配置
     + 项目dataId`qihangerp-scm.yaml`（配置内容从docs\qihangerp-scm.yaml复制即可）
+
 + 启动Redis
 
   
