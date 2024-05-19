@@ -1,7 +1,7 @@
 # Nacos Config 配置
 spring:
   application:
-    name: qihangerp-scm-api
+    name: qihangerp-oms-api
   cloud:
     nacos:
       config:
@@ -14,7 +14,7 @@ spring:
 
 dubbo:
   application:
-    name: qihang-scm-api
+    name: qihang-oms-api
   protocol:
     name: dubbo
     port: -1
@@ -26,10 +26,10 @@ dubbo:
   metadata-report:
     address: nacos://127.0.0.1:8848
 server:
-  port: 8080
+  port: 8081
 
 mybatis-plus:
-  mapper-locations: classpath*:mapper/**/*Mapper.xml
-  type-aliases-package: cn.qihangerp.api.domain;com.qihangerp.api.common.security;
+  mapper-locations: classpath*:mapper/*Mapper.xml
+  type-aliases-package: cn.qihangerp.oms.domain;
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 开启sql日志
