@@ -7,6 +7,7 @@ import cn.qihangerp.common.model.vo.RouterVo;
 import cn.qihangerp.oms.domain.OmsMenu;
 import cn.qihangerp.oms.domain.ScmDistributor;
 import cn.qihangerp.oms.security.SecurityUtils;
+import cn.qihangerp.oms.security.UserPasswordNotMatchException;
 import cn.qihangerp.oms.service.LoginService;
 import cn.qihangerp.oms.service.OmsMenuService;
 import lombok.AllArgsConstructor;
@@ -42,12 +43,16 @@ public class LoginController
     @PostMapping("/login")
     public AjaxResult login(@RequestBody LoginBody loginBody)
     {
+        try{
         AjaxResult ajax = AjaxResult.success();
         // 生成令牌
         String token = loginService.login(loginBody.getUsername(), loginBody.getPassword(), loginBody.getCode(),
                 loginBody.getUuid());
         ajax.put(Constants.TOKEN, token);
         return ajax;
+        }catch (UserPasswordNotMatchException ex){
+            return AjaxResult.error(ex.getMessage());
+        }
     }
 
     /**

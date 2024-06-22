@@ -9,7 +9,6 @@
 <!--    </parent>-->
     <modules>
         <module>sys-service</module>
-        <module>pur-service</module>
         <module>goods-service</module>
         <module>ship-service</module>
         <module>order-service</module>

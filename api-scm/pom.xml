@@ -133,11 +133,7 @@
             <artifactId>goods</artifactId>
             <version>0.4.20</version>
         </dependency>
-        <dependency>
-            <groupId>cn.qihangerp.interfaces</groupId>
-            <artifactId>purchase</artifactId>
-            <version>0.4.20</version>
-        </dependency>
+
         <dependency>
             <groupId>cn.qihangerp.interfaces</groupId>
             <artifactId>ship</artifactId>
