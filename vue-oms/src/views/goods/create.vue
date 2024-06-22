@@ -214,7 +214,7 @@
 import Treeselect from '@riophae/vue-treeselect'
 import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 import { listCategory } from "@/api/goods/category";
-import { listSupplier } from "@/api/scm/supplier";
+
 import { listCategoryAttributeValue } from "@/api/goods/categoryAttributeValue";
 import { addGoods } from "@/api/goods/goods";
 import { getToken } from "@/utils/auth";

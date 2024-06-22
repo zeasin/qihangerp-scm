@@ -5,7 +5,7 @@
       <div class="bgRight"></div>
       <h3 class="title">启航电商SCM供应链系统</h3>
       <div class="login-form">
-        <div class="zhuce"  v-if="n !==3">OMS登录</div>
+        <div class="zhuce"  v-if="n !==3">分销终端登录</div>
         <!--        <div class="tabs" v-if="n !==3">-->
         <!--          <div class="item" :class="n==1?'on':''" @click="n=1">密码登录</div>-->
         <!--          <div class="item" :class="n==2?'on':''" @click="n=2">验证码登录</div>-->
@@ -123,8 +123,8 @@ export default {
       n:1,
       codeUrl: "",
       loginForm: {
-        username: "",
-        password: "",
+        username: "15818590119",
+        password: "admin123",
         rememberMe: false,
         code: "",
         uuid: ""
