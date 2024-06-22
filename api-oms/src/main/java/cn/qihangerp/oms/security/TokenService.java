@@ -13,6 +13,7 @@ import io.micrometer.common.util.StringUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.RedisConnectionFailureException;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -158,7 +159,11 @@ public class TokenService
         loginDistributor.setExpireTime(loginDistributor.getLoginTime() + expireTime * MILLIS_MINUTE);
         // 根据uuid将loginUser缓存
         String userKey = getTokenKey(loginDistributor.getToken());
+        try{
         redisCache.setCacheObject(userKey, loginDistributor, expireTime, TimeUnit.MINUTES);
+        }catch (RedisConnectionFailureException ex){
+            throw ex;
+        }
     }
 
     /**

@@ -11,7 +11,7 @@
  Target Server Version : 80200
  File Encoding         : 65001
 
- Date: 22/06/2024 12:30:12
+ Date: 22/06/2024 14:14:30
 */
 
 SET NAMES utf8mb4;
@@ -3084,25 +3084,17 @@ CREATE TABLE `oms_menu`  (
 -- Records of oms_menu
 -- ----------------------------
 INSERT INTO `oms_menu` VALUES (1, '订单管理', 0, 1, '/order', 'Layout', '', 1, 0, 'M', '0', '0', '', 'shopping', 'admin', '2023-12-27 15:00:27', 'admin', '2024-03-30 17:44:37', '系统管理目录');
-INSERT INTO `oms_menu` VALUES (4, '代发管理', 0, 2, 'shipping', NULL, NULL, 1, 0, 'M', '0', '0', '', 'guide', 'admin', '2024-03-30 17:36:10', 'admin', '2024-03-31 09:57:41', '');
-INSERT INTO `oms_menu` VALUES (6, '售后管理', 0, 3, '/refund', 'Layout', '', 1, 0, 'M', '0', '0', '', 'monitor', 'admin', '2023-12-27 15:00:27', 'admin', '2024-04-06 14:49:33', '至简官网地址');
-INSERT INTO `oms_menu` VALUES (8, '店铺管理', 0, 5, 'shop', 'Layout', '', 1, 0, 'M', '0', '0', '', 'dict', 'admin', '2023-12-29 13:29:44', 'admin', '2024-03-30 17:43:35', '');
-INSERT INTO `oms_menu` VALUES (10, '商品库', 0, 4, '/goods', 'Layout', '', 1, 0, 'M', '0', '0', '', 'build', 'admin', '2023-12-29 16:53:03', 'admin', '2024-03-30 17:43:57', '');
-INSERT INTO `oms_menu` VALUES (100, '订单处理', 1, 1, 'order_list', 'order/index', '', 1, 0, 'C', '0', '0', '', 'shopping', 'admin', '2023-12-27 15:00:27', 'admin', '2024-04-06 17:25:10', '用户管理菜单');
-INSERT INTO `oms_menu` VALUES (101, '订单更新日志', 1, 4, 'pull_logs', 'order/shopOrder/pull_log', '', 1, 0, 'C', '0', '0', '', 'peoples', 'admin', '2023-12-27 15:00:27', 'admin', '2024-04-06 11:19:26', '角色管理菜单');
-INSERT INTO `oms_menu` VALUES (102, '店铺订单管理', 1, 3, 'shop_order_list', 'order/shopOrder/index', '', 1, 0, 'C', '0', '0', '', 'monitor', 'admin', '2023-12-27 15:00:27', 'admin', '2024-04-06 11:18:00', '菜单管理菜单');
-INSERT INTO `oms_menu` VALUES (104, '退款查询', 6, 1, 'refund_list', 'refund/index', '', 1, 0, 'C', '0', '0', '', 'tree', 'admin', '2023-12-27 15:00:27', 'admin', '2024-04-06 17:27:38', '岗位管理菜单');
-INSERT INTO `oms_menu` VALUES (105, '退款更新日志', 6, 6, 'pull_logs', 'refund/shopRefund/pull_log', '', 1, 0, 'C', '0', '0', '', 'dict', 'admin', '2023-12-27 15:00:27', 'admin', '2024-04-06 15:48:34', '字典管理菜单');
-INSERT INTO `oms_menu` VALUES (106, '店铺退款管理', 6, 2, 'shop_refund_list', 'refund/shopRefund/index', '', 1, 0, 'C', '0', '0', '', 'edit', 'admin', '2023-12-27 15:00:27', 'admin', '2024-04-06 15:48:21', '参数设置菜单');
-INSERT INTO `oms_menu` VALUES (108, '店铺列表', 8, 9, 'shop_list', 'shop/index', '', 1, 0, 'C', '0', '0', '', 'tree', 'admin', '2023-12-29 09:14:02', 'admin', '2024-03-21 17:01:52', '');
-INSERT INTO `oms_menu` VALUES (110, '店铺商品管理', 8, 88, 'platform_setting', 'shop/platform/index', '', 1, 0, 'C', '0', '0', '', 'shopping', 'admin', '2023-12-29 13:32:41', 'admin', '2024-03-21 13:46:05', '');
-INSERT INTO `oms_menu` VALUES (112, '商品库', 10, 1, 'sku_list', 'goods/spec/index', '', 1, 0, 'C', '0', '0', '', 'tree', 'admin', '2023-12-29 16:35:55', 'admin', '2024-03-21 11:40:29', '');
-INSERT INTO `oms_menu` VALUES (113, '商品上架管理', 10, 2, 'shop_goods', 'goods/shopGoods/index', NULL, 1, 0, 'C', '0', '0', '', 'shopping', 'admin', '2024-03-28 10:29:59', 'admin', '2024-03-28 10:30:59', '');
-INSERT INTO `oms_menu` VALUES (2084, '快递公司库', 3, 99, 'logistics_companies', 'shipping/logistics/company', NULL, 1, 0, 'C', '1', '0', '', 'code', 'admin', '2024-03-21 20:05:09', 'admin', '2024-03-31 10:09:38', '');
-INSERT INTO `oms_menu` VALUES (2088, '快递公司管理', 4, 9, 'logistics_company', 'shipping/logistics/company', NULL, 1, 0, 'C', '0', '0', '', 'checkbox', 'admin', '2024-03-30 17:37:01', 'admin', '2024-03-31 09:58:18', '');
-INSERT INTO `oms_menu` VALUES (2089, '发货管理', 4, 2, 'ship', 'shipping/index', NULL, 1, 0, 'C', '0', '0', '', 'edit', 'admin', '2024-03-30 17:37:42', 'admin', '2024-04-06 14:49:59', '');
-INSERT INTO `oms_menu` VALUES (2092, '售后处理', 6, 0, 'processing', 'afterSale/index', NULL, 1, 0, 'C', '0', '0', '', 'documentation', 'admin', '2024-04-06 17:27:03', 'admin', '2024-04-06 17:31:12', '');
-INSERT INTO `oms_menu` VALUES (2093, '订单明细', 1, 2, 'order_item_list', 'order/item_list', NULL, 1, 0, 'C', '0', '0', NULL, 'chart', 'admin', '2024-04-06 18:58:06', '', NULL, '');
+INSERT INTO `oms_menu` VALUES (2, '售后管理', 0, 3, '/refund', 'Layout', '', 1, 0, 'M', '0', '0', '', 'monitor', 'admin', '2023-12-27 15:00:27', 'admin', '2024-04-06 14:49:33', '至简官网地址');
+INSERT INTO `oms_menu` VALUES (3, '店铺管理', 0, 5, 'shop', 'Layout', '', 1, 0, 'M', '0', '0', '', 'dict', 'admin', '2023-12-29 13:29:44', 'admin', '2024-03-30 17:43:35', '');
+INSERT INTO `oms_menu` VALUES (4, '商品库', 0, 4, '/goods', 'Layout', '', 1, 0, 'M', '0', '0', '', 'build', 'admin', '2023-12-29 16:53:03', 'admin', '2024-03-30 17:43:57', '');
+INSERT INTO `oms_menu` VALUES (102, '店铺订单管理', 1, 0, 'shop_order_list', 'order/shopOrder/index', '', 1, 0, 'C', '0', '0', '', 'monitor', 'admin', '2023-12-27 15:00:27', 'admin', '2024-04-06 11:18:00', '菜单管理菜单');
+INSERT INTO `oms_menu` VALUES (105, '订单发货管理', 1, 2, 'ship', 'shipping/index', NULL, 1, 0, 'C', '0', '0', '', 'guide', 'admin', '2024-03-30 17:37:42', 'admin', '2024-04-06 14:49:59', '');
+INSERT INTO `oms_menu` VALUES (201, '店铺售后管理', 2, 2, 'shop_refund_list', 'refund/shopRefund/index', '', 1, 0, 'C', '0', '0', '', 'edit', 'admin', '2023-12-27 15:00:27', 'admin', '2024-04-06 15:48:21', '参数设置菜单');
+INSERT INTO `oms_menu` VALUES (204, '售后处理查询', 2, 0, 'processing', 'afterSale/index', NULL, 1, 0, 'C', '0', '0', '', 'documentation', 'admin', '2024-04-06 17:27:03', 'admin', '2024-04-06 17:31:12', '');
+INSERT INTO `oms_menu` VALUES (301, '店铺管理', 3, 9, 'shop_list', 'shop/index', '', 1, 0, 'C', '0', '0', '', 'tree', 'admin', '2023-12-29 09:14:02', 'admin', '2024-03-21 17:01:52', '');
+INSERT INTO `oms_menu` VALUES (305, '店铺商品管理', 3, 88, 'platform_setting', 'shop/platform/index', '', 1, 0, 'C', '0', '0', '', 'shopping', 'admin', '2023-12-29 13:32:41', 'admin', '2024-03-21 13:46:05', '');
+INSERT INTO `oms_menu` VALUES (401, '商品库', 4, 1, 'sku_list', 'goods/spec/index', '', 1, 0, 'C', '0', '0', '', 'tree', 'admin', '2023-12-29 16:35:55', 'admin', '2024-03-21 11:40:29', '');
+INSERT INTO `oms_menu` VALUES (405, '商品上架管理', 4, 2, 'shop_goods', 'goods/shopGoods/index', NULL, 1, 0, 'C', '0', '0', '', 'shopping', 'admin', '2024-03-28 10:29:59', 'admin', '2024-03-28 10:30:59', '');
 
 -- ----------------------------
 -- Table structure for oms_pdd_goods
@@ -6828,7 +6820,7 @@ CREATE TABLE `scm_distributor`  (
 -- ----------------------------
 -- Records of scm_distributor
 -- ----------------------------
-INSERT INTO `scm_distributor` VALUES (1, '15818590119', '启航', '280645618@qq.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2024-06-22 11:52:03', 'admin', '2023-08-07 19:31:37', '', '2024-05-18 18:50:24', '管理员');
+INSERT INTO `scm_distributor` VALUES (1, '15818590119', '启航', '280645618@qq.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2024-06-22 13:52:36', 'admin', '2023-08-07 19:31:37', '', '2024-05-18 18:50:24', '管理员');
 
 -- ----------------------------
 -- Table structure for scm_purchase_contract

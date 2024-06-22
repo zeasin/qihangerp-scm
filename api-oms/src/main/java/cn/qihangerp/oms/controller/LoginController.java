@@ -12,6 +12,7 @@ import cn.qihangerp.oms.service.LoginService;
 import cn.qihangerp.oms.service.OmsMenuService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.RedisConnectionFailureException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -52,6 +53,8 @@ public class LoginController
         return ajax;
         }catch (UserPasswordNotMatchException ex){
             return AjaxResult.error(ex.getMessage());
+        }catch (RedisConnectionFailureException exception){
+            return AjaxResult.error("Redis连接失败");
         }
     }
 
