@@ -19,15 +19,6 @@
         />
       </el-form-item>
 
-      <el-form-item label="条形码" prop="barCode">
-        <el-input
-          v-model="queryParams.barCode"
-          placeholder="请输入条形码"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-
 <!--      <el-form-item label="0启用   1禁用" prop="disable">-->
 <!--        <el-input-->
 <!--          v-model="queryParams.disable"-->

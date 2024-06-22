@@ -11,6 +11,7 @@ import cn.qihangerp.interfaces.goods.service.ErpGoodsService;
 import lombok.AllArgsConstructor;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 /**
 * @author TW
@@ -25,7 +26,13 @@ public class ErpGoodsServiceImpl extends ServiceImpl<ErpGoodsMapper, ErpGoods>
     private final ErpGoodsMapper mapper;
     @Override
     public PageResult<ErpGoods> queryPageList(ErpGoods goods, PageQuery pageQuery) {
-        LambdaQueryWrapper<ErpGoods> queryWrapper = new LambdaQueryWrapper<ErpGoods>();
+        LambdaQueryWrapper<ErpGoods> queryWrapper = new LambdaQueryWrapper<ErpGoods>()
+                .eq(goods.getStatus()!=null,ErpGoods::getStatus,goods.getStatus())
+                .eq(goods.getCategoryId()!=null,ErpGoods::getCategoryId,goods.getCategoryId())
+                .likeLeft(StringUtils.hasText(goods.getNumber()),ErpGoods::getNumber,goods.getNumber())
+                .like(StringUtils.hasText(goods.getName()),ErpGoods::getName,goods.getName())
+                ;
+
         Page<ErpGoods> pages = mapper.selectPage(pageQuery.build(), queryWrapper);
         return PageResult.build(pages);
     }

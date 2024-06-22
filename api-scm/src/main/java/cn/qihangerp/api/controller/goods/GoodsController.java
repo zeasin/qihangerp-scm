@@ -1,4 +1,4 @@
-package cn.qihangerp.api.controller;
+package cn.qihangerp.api.controller.goods;
 
 import cn.qihangerp.common.BaseController;
 import cn.qihangerp.common.TableDataInfo;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RequestMapping("/goods/goods")
 @RestController
-public class ErpGoodsController extends BaseController {
+public class GoodsController extends BaseController {
     @DubboReference
     private ErpGoodsService goodsService;
     @GetMapping("/list")
@@ -22,4 +22,6 @@ public class ErpGoodsController extends BaseController {
         PageResult<ErpGoods> pageResult = goodsService.queryPageList(goods, pageQuery);
         return getDataTable(pageResult);
     }
+
+
 }

@@ -1,4 +1,4 @@
-package cn.qihangerp.api.controller;
+package cn.qihangerp.api.controller.goods;
 
 import cn.qihangerp.common.BaseController;
 import cn.qihangerp.common.TableDataInfo;
@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/goods/category")
-public class ErpGoodsCategoryController extends BaseController {
+public class GoodsCategoryController extends BaseController {
     @DubboReference
     private ErpGoodsCategoryService categoryService;
 

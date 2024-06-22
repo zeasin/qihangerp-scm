@@ -19,42 +19,14 @@
       </el-form-item>
 
       <el-form-item label="商品分类" prop="categoryId">
-        <!-- <el-input
-          v-model="queryParams.categoryId"
-          placeholder="请输入商品分类ID"
-          clearable
-          @keyup.enter.native="handleQuery"
-        /> -->
-        <treeselect :options="categoryTree" placeholder="请选择上级菜单" v-model="queryParams.categoryId" style="width: 230px;"/>
+        <treeselect :options="categoryTree" placeholder="请选择商品分类" v-model="queryParams.categoryId" style="width: 230px;"/>
       </el-form-item>
-      <el-form-item label="供应商" prop="supplierId">
-        <el-select v-model="queryParams.supplierId" filterable  placeholder="请选择供应商名称">
-            <el-option v-for="item in supplierList" :key="item.id" :label="item.name" :value="item.id">
-          </el-option>
+      <el-form-item label="状态" prop="status">
+        <el-select v-model="queryParams.status" placeholder="状态" clearable>
+          <el-option label="上架中" value="1"></el-option>
+          <el-option label="已下架" value="2"></el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="条码" prop="barCode">
-        <el-input
-          v-model="queryParams.barCode"
-          placeholder="请输入条码"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-
-      <!-- <el-form-item label="状态" prop="disable">
-        <el-input
-          v-model="queryParams.disable"
-          placeholder="请输入0启用   1禁用"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item> -->
-
-
-
-
-
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
         <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
@@ -71,38 +43,6 @@
           @click="handleAdd"
           v-hasPermi="['goods:goods:add']"
         >添加商品</el-button>
-      </el-col>
- <!--      <el-col :span="1.5">
-        <el-button
-          type="success"
-          plain
-          icon="el-icon-edit"
-          size="mini"
-          :disabled="single"
-          @click="handleUpdate"
-          v-hasPermi="['goods:goods:edit']"
-        >修改</el-button>
-      </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="danger"
-          plain
-          icon="el-icon-delete"
-          size="mini"
-          :disabled="multiple"
-          @click="handleDelete"
-          v-hasPermi="['goods:goods:remove']"
-        >删除</el-button>
-      </el-col> -->
-      <el-col :span="1.5">
-        <el-button
-          type="warning"
-          plain
-          icon="el-icon-download"
-          size="mini"
-          @click="handleExport"
-          v-hasPermi="['goods:goods:export']"
-        >导出</el-button>
       </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
@@ -139,11 +79,7 @@
       <el-table-column label="建议批发价" align="center" prop="wholePrice" />
       <el-table-column label="建议零售价" align="center" prop="retailPrice" />
       <!-- <el-table-column label="单位成本" align="center" prop="unitCost" /> -->
-      <el-table-column label="供应商" align="center" prop="supplierId" >
-        <template slot-scope="scope">
-          <el-tag size="small">{{supplierList.find(x=>x.id === scope.row.supplierId).name}}</el-tag>
-        </template>
-      </el-table-column>
+
       <!-- <el-table-column label="品牌id" align="center" prop="brandId" />
       <el-table-column label="属性1：季节" align="center" prop="attr1" />
       <el-table-column label="属性2：分类" align="center" prop="attr2" />
@@ -336,7 +272,6 @@ export default {
       },
       // 表单参数
       form: {},
-      supplierList: [],
       categoryList: [],
       categoryTree: [],
       // 表单校验
@@ -373,10 +308,6 @@ export default {
         this.categoryList = response.rows
         this.categoryTree = this.buildTree(response.rows,0)
       });
-    listSupplier({}).then(response => {
-      this.supplierList = response.rows;
-      // this.supplierLoading = false;
-    });
     this.getList();
   },
   methods: {
@@ -485,12 +416,6 @@ export default {
         this.getList();
         this.$modal.msgSuccess("删除成功");
       }).catch(() => {});
-    },
-    /** 导出按钮操作 */
-    handleExport() {
-      this.download('goods/goods/export', {
-        ...this.queryParams
-      }, `goods_${new Date().getTime()}.xlsx`)
     }
   }
 };

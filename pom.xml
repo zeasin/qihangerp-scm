@@ -16,7 +16,9 @@
 <!--        <zhijian.version>0.1.0</zhijian.version>-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 <!--        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>-->
-<!--        <java.version>17</java.version>-->
+        <java.version>17</java.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
 <!--        <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>-->
 <!--        <druid.version>1.2.16</druid.version>-->
 <!--        <bitwalker.version>1.21</bitwalker.version>-->
