@@ -14,7 +14,7 @@
          <el-option
             v-for="item in shopList"
             :key="item.id"
-            :label="item.name"
+            :label="item.nickName"
             :value="item.id">
             <span style="float: left">{{ item.name }}</span>
               <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 4">淘宝天猫</span>
@@ -308,8 +308,8 @@
 </template>
 
 <script>
-// import { listOrder, getOrder, delOrder, addOrder, updateOrder } from "@/api/channel/order";
-import { listShop } from "@/api/channel/distributor";
+import { listOrder, getOrder, delOrder, addOrder, updateOrder } from "@/api/ship/order";
+import { listDistributor } from "@/api/channel/distributor";
 export default {
   name: "Order",
   data() {
@@ -364,7 +364,7 @@ export default {
     };
   },
   created() {
-     listShop({}).then(response => {
+    listDistributor({}).then(response => {
         this.shopList = response.rows;
       });
     this.getList();

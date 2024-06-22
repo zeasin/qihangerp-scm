@@ -29,7 +29,7 @@ public class LogisticsCompanyController extends BaseController
      * 查询物流公司列表
      */
     @PreAuthorize("@ss.hasPermi('api:logistics:list')")
-    @GetMapping("/company/list")
+    @GetMapping("/company_list")
     public TableDataInfo list(ErpShipLogistics bo, PageQuery pageQuery)
     {
         PageResult<ErpShipLogistics> pageResult = logisticsService.queryPageList(bo, pageQuery);

@@ -139,7 +139,7 @@ import {
   listLogistics,
   updateLogistics,
   updateStatus
-} from "@/api/shipping/logistics";
+} from "@/api/ship/logistics";
 
 export default {
   name: "Shop",
