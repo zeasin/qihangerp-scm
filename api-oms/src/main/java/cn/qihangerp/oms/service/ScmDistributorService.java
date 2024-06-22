@@ -10,5 +10,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface ScmDistributorService extends IService<ScmDistributor> {
     ScmDistributor selectUserByUserName(String userName);
-    void updateByUserId(ScmDistributor entity);
+    void updateByUserId(ScmDistributor entity,Long userId);
 }

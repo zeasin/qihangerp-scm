@@ -308,8 +308,8 @@
 </template>
 
 <script>
-import { listOrder, getOrder, delOrder, addOrder, updateOrder } from "@/api/shop/order";
-import { listShop } from "@/api/shop/shop";
+// import { listOrder, getOrder, delOrder, addOrder, updateOrder } from "@/api/channel/order";
+import { listShop } from "@/api/channel/distributor";
 export default {
   name: "Order",
   data() {

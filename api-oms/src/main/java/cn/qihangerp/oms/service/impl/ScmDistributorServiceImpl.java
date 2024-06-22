@@ -31,8 +31,8 @@ public class ScmDistributorServiceImpl extends ServiceImpl<ScmDistributorMapper,
     }
 
     @Override
-    public void updateByUserId(ScmDistributor entity) {
-        mapper.update(entity,new LambdaQueryWrapper<ScmDistributor>().eq(ScmDistributor::getUserId,entity.getUserId()));
+    public void updateByUserId(ScmDistributor entity,Long userId) {
+        mapper.update(entity,new LambdaQueryWrapper<ScmDistributor>().eq(ScmDistributor::getUserId,userId));
     }
 }
 

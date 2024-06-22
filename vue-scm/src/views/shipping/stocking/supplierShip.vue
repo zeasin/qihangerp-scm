@@ -276,11 +276,11 @@
 </template>
 
 <script>
-import { listAgentShipping, getAgentShipping, delAgentShipping, addAgentShipping, updateAgentShipping } from "@/api/scm/agentShipping";
-import { listSupplier} from "@/api/scm/supplier";
-import { listShop } from "@/api/shop/shop";
-import {listLogistics} from "@/api/shipping/logistics";
-import {listShippingSupplier} from "@/api/wms/shipping";
+// import { listAgentShipping, getAgentShipping, delAgentShipping, addAgentShipping, updateAgentShipping } from "@/api/scm/agentShipping";
+// import { listSupplier} from "@/api/scm/supplier";
+// import { listShop } from "@/api/channel/distributor";
+// import {listLogistics} from "@/api/shipping/logistics";
+// import {listShippingSupplier} from "@/api/wms/shipping";
 export default {
   name: "supplierShip",
   data() {

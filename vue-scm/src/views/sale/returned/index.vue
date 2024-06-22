@@ -17,7 +17,7 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-     
+
       <el-form-item label="商品id" prop="goodsId">
         <el-input
           v-model="queryParams.goodsId"
@@ -26,7 +26,7 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      
+
       <el-form-item label="商品编码" prop="goodsNum">
         <el-input
           v-model="queryParams.goodsNum"
@@ -43,7 +43,7 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      
+
       <el-form-item label="物流单号" prop="logisticsCode">
         <el-input
           v-model="queryParams.logisticsCode"
@@ -52,7 +52,7 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      
+
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
         <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
@@ -171,7 +171,7 @@
         </template>
       </el-table-column>
     </el-table>
-    
+
     <pagination
       v-show="total>0"
       :total="total"
@@ -258,7 +258,7 @@
 </template>
 
 <script>
-import { listReturned, getReturned, delReturned, addReturned, updateReturned } from "@/api/api/returned";
+// import { listReturned, getReturned, delReturned, addReturned, updateReturned } from "@/api/api/returned";
 
 export default {
   name: "Returned",

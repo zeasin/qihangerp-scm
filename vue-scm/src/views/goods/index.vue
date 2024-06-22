@@ -51,8 +51,8 @@
         />
       </el-form-item> -->
 
-      
-      
+
+
 
 
       <el-form-item>
@@ -125,7 +125,7 @@
       </el-table-column>
       <!-- <el-table-column label="条码" align="center" prop="barCode" /> -->
       <el-table-column label="备注" align="center" prop="remark" />
-      
+
       <!-- <el-table-column label="衣长/裙长/裤长" align="center" prop="length" />
       <el-table-column label="高度/袖长" align="center" prop="height" />
       <el-table-column label="宽度/胸阔(围)" align="center" prop="width" />
@@ -294,7 +294,7 @@ import { listGoods, getGoods, delGoods, addGoods, updateGoods } from "@/api/good
 import Treeselect from '@riophae/vue-treeselect'
 import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 import { listCategory } from "@/api/goods/category";
-import { listSupplier } from "@/api/scm/supplier";
+// import { listSupplier } from "@/api/scm/supplier";
 export default {
   name: "Goods",
   components: { Treeselect },
@@ -475,7 +475,7 @@ export default {
       this.single = selection.length!==1
       this.multiple = !selection.length
     },
-  
+
     /** 删除按钮操作 */
     handleDelete(row) {
       const ids = row.id || this.ids;

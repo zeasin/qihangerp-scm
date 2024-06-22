@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -29,6 +30,8 @@ public class UserDetailsServiceImpl implements UserDetailsService
 
     @Autowired
     private ScmDistributorService userService;
+    @Autowired
+    private UserPasswordService passwordService;
 
 
     @Override
@@ -51,7 +54,7 @@ public class UserDetailsServiceImpl implements UserDetailsService
             throw new ServiceException(MessageUtils.message("user.blocked"));
         }
 
-//        passwordService.validate(user);
+        passwordService.validate(user);
 
         return createLoginUser(user);
     }

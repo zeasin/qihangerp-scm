@@ -2,6 +2,7 @@ package cn.qihangerp.oms.controller;
 
 import cn.qihangerp.common.AjaxResult;
 import cn.qihangerp.common.constant.Constants;
+import cn.qihangerp.common.exception.ServiceException;
 import cn.qihangerp.common.model.LoginBody;
 import cn.qihangerp.common.model.vo.RouterVo;
 import cn.qihangerp.oms.domain.OmsMenu;
@@ -10,6 +11,7 @@ import cn.qihangerp.oms.security.SecurityUtils;
 import cn.qihangerp.oms.security.UserPasswordNotMatchException;
 import cn.qihangerp.oms.service.LoginService;
 import cn.qihangerp.oms.service.OmsMenuService;
+import cn.qihangerp.oms.service.ScmDistributorService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.RedisConnectionFailureException;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -31,6 +34,7 @@ public class LoginController
 {
     private final LoginService loginService;
     private final OmsMenuService menuService;
+    private final ScmDistributorService distributorService;
 
 //    @Autowired
 //    private SysPermissionService permissionService;
@@ -50,10 +54,14 @@ public class LoginController
         String token = loginService.login(loginBody.getUsername(), loginBody.getPassword(), loginBody.getCode(),
                 loginBody.getUuid());
         ajax.put(Constants.TOKEN, token);
+
         return ajax;
         }catch (UserPasswordNotMatchException ex){
             return AjaxResult.error(ex.getMessage());
-        }catch (RedisConnectionFailureException exception){
+        }catch (ServiceException e){
+            return AjaxResult.error(e.getMessage());
+        }
+        catch (RedisConnectionFailureException exception){
             return AjaxResult.error("Redis连接失败");
         }
     }

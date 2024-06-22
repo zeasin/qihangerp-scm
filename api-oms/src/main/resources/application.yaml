@@ -35,3 +35,8 @@ mybatis-plus:
   type-aliases-package: cn.qihangerp.oms.domain;
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 开启sql日志
+
+user:
+  password:
+    maxRetryCount: 5 #密码最大错误次数
+    lockTime: 10 #密码锁定时间（默认10分钟）

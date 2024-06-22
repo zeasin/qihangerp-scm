@@ -70,8 +70,9 @@ public class LoginService
             {
 //                AsyncManager.me().execute(AsyncFactory.recordLogininfor(username, Constants.LOGIN_FAIL, MessageUtils.message("user.password.not.match")));
                 throw new UserPasswordNotMatchException();
-            }
-            else
+            } else if (e instanceof UserPasswordNotMatchException) {
+                throw new UserPasswordNotMatchException();
+            } else
             {
 //                AsyncManager.me().execute(AsyncFactory.recordLogininfor(username, Constants.LOGIN_FAIL, e.getMessage()));
                 throw new ServiceException(e.getMessage());
@@ -134,9 +135,9 @@ public class LoginService
     public void recordLoginInfo(Long userId)
     {
         ScmDistributor update = new ScmDistributor();
-        update.setUserId(userId);
+//        update.setUserId(userId);
         update.setLoginIp(IpUtils.getIpAddr());
         update.setLoginDate(DateUtils.getNowDate());
-        distributorService.updateByUserId(update);
+        distributorService.updateByUserId(update,userId);
     }
 }

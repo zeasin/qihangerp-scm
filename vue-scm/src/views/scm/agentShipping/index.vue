@@ -318,9 +318,9 @@
 </template>
 
 <script>
-import { listAgentShipping, getAgentShipping, delAgentShipping, addAgentShipping, updateAgentShipping } from "@/api/scm/agentShipping";
-import { listSupplier} from "@/api/scm/supplier";
-import { listShop } from "@/api/shop/shop";
+// import { listAgentShipping, getAgentShipping, delAgentShipping, addAgentShipping, updateAgentShipping } from "@/api/scm/agentShipping";
+// import { listSupplier} from "@/api/scm/supplier";
+import { listShop } from "@/api/channel/distributor";
 import {listLogistics} from "@/api/shipping/logistics";
 export default {
   name: "AgentShipping",

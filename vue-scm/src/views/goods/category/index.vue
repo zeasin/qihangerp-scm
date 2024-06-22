@@ -17,9 +17,9 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      
+
       <el-form-item label="是否删除" prop="isDelete">
-        
+
         <el-select v-model="queryParams.isDelete" placeholder="是否删除" clearable @change="handleQuery">
          <el-option value="0" label="否"></el-option>
          <el-option value="1" label="是"></el-option>
@@ -82,27 +82,35 @@
       <!-- <el-table-column label="ID" align="center" prop="id" /> -->
       <el-table-column label="分类名称"  prop="name" />
       <el-table-column label="分类编码" align="center" prop="number" />
-      
+
       <el-table-column label="备注" align="center" prop="remark" />
-    
+
       <el-table-column label="排序值" align="center" prop="sort" />
-      <el-table-column label="图片" align="center" prop="image" width="100">
-        <template slot-scope="scope">
-          <image-preview :src="scope.row.image" :width="50" :height="50"/>
-        </template>
-      </el-table-column>
+<!--      <el-table-column label="图片" align="center" prop="image" width="100">-->
+<!--        <template slot-scope="scope">-->
+<!--          <image-preview :src="scope.row.image" :width="50" :height="50"/>-->
+<!--        </template>-->
+<!--      </el-table-column>-->
       <el-table-column label="是否删除" align="center" prop="isDelete" >
         <template slot-scope="scope">
-          <el-tag size="small" v-if="scope.row.isDelete === 0">正常</el-tag>
-          <el-tag size="small" v-if="scope.row.isDelete === 1">已删除</el-tag>
+          <el-tag size="small" v-if="scope.row.isDelete === 0">否</el-tag>
+          <el-tag size="small" v-if="scope.row.isDelete === 1">是</el-tag>
         </template>
       </el-table-column>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
+            type="text"
+            icon="el-icon-plus"
+            size="mini"
+            v-if="scope.row.parentId===0"
+            @click="handleCategory(scope.row)"
+          >规格属性</el-button>
+          <el-button
           type="text"
           icon="el-icon-plus"
           size="mini"
+          v-if="scope.row.parentId===0"
           @click="handleAdd(scope.row)"
           v-hasPermi="['goods:category:add']"
         >新增</el-button>
@@ -123,7 +131,7 @@
         </template>
       </el-table-column>
     </el-table>
-    
+
     <!-- <pagination
       v-show="total>0"
       :total="total"
@@ -161,7 +169,7 @@
         <el-form-item label="图片" prop="image">
           <image-upload v-model="form.image"/>
         </el-form-item>
-        
+
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button type="primary" @click="submitForm">确 定</el-button>
@@ -233,6 +241,7 @@ export default {
             image:list[i].image,
             sort:list[i].sort,
             remark:list[i].remark,
+            parentId:list[i].parentId,
             isDelete:list[i].isDelete,
             children: this.buildTree(list, list[i].id)
           };
@@ -286,7 +295,9 @@ export default {
       this.resetForm("queryForm");
       this.handleQuery();
     },
-    
+    handleCategory(row){
+      this.$router.push({path:'/goods/goods_category/attribute',query:{categoryId:row.id,categoryName:row.name}});
+    },
     /** 新增按钮操作 */
     handleAdd(row) {
       this.reset();
