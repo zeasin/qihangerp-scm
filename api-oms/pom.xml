@@ -114,13 +114,24 @@
             <artifactId>common</artifactId>
             <version>0.5.18</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-spring-boot-starter</artifactId>
+            <version>${dubbo.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.30</version>
             <scope>provided</scope>
+        </dependency>
+
+
+        <dependency>
+            <groupId>cn.qihangerp.interfaces</groupId>
+            <artifactId>order</artifactId>
+            <version>0.4.24</version>
         </dependency>
     </dependencies>
 </project>

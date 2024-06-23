@@ -1,6 +1,6 @@
 package cn.qihangerp.oms.security;
 
-import cn.qihangerp.oms.domain.ScmDistributor;
+import cn.qihangerp.oms.domain.OmsTenant;
 import com.alibaba.fastjson2.annotation.JSONField;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,7 +13,7 @@ import java.util.Set;
  * 
  * @author qihang
  */
-public class LoginDistributor implements UserDetails
+public class LoginTenant implements UserDetails
 {
     private static final long serialVersionUID = 1L;
 
@@ -66,22 +66,22 @@ public class LoginDistributor implements UserDetails
     /**
      * 用户信息
      */
-    private ScmDistributor distributor;
+    private OmsTenant tenant;
 
-    public LoginDistributor()
+    public LoginTenant()
     {
     }
 
-    public LoginDistributor(ScmDistributor user, Set<String> permissions)
+    public LoginTenant(OmsTenant tenant, Set<String> permissions)
     {
-        this.distributor = user;
+        this.tenant = tenant;
         this.permissions = permissions;
     }
 
-    public LoginDistributor(Long userId, ScmDistributor user, Set<String> permissions)
+    public LoginTenant(Long userId, OmsTenant tenant, Set<String> permissions)
     {
         this.userId = userId;
-        this.distributor = user;
+        this.tenant = tenant;
         this.permissions = permissions;
     }
 
@@ -109,13 +109,13 @@ public class LoginDistributor implements UserDetails
     @Override
     public String getPassword()
     {
-        return distributor.getPassword();
+        return tenant.getPassword();
     }
 
     @Override
     public String getUsername()
     {
-        return distributor.getUserName();
+        return tenant.getUserName();
     }
 
     /**
@@ -234,12 +234,12 @@ public class LoginDistributor implements UserDetails
         this.permissions = permissions;
     }
 
-    public ScmDistributor getDistributor() {
-        return distributor;
+    public OmsTenant getDistributor() {
+        return tenant;
     }
 
-    public void setDistributor(ScmDistributor distributor) {
-        this.distributor = distributor;
+    public void setDistributor(OmsTenant distributor) {
+        this.tenant = distributor;
     }
 
     @Override

@@ -69,7 +69,7 @@ public class TokenService
      *
      * @return 用户信息
      */
-    public LoginDistributor getLoginDistributor(HttpServletRequest request)
+    public LoginTenant getLoginDistributor(HttpServletRequest request)
     {
         // 获取请求携带的令牌
         String token = getToken(request);
@@ -81,7 +81,7 @@ public class TokenService
                 // 解析对应的权限以及用户信息
                 String uuid = (String) claims.get(LOGIN_CLIENT_KEY);
                 String userKey = getTokenKey(uuid);
-                LoginDistributor user = redisCache.getCacheObject(userKey);
+                LoginTenant user = redisCache.getCacheObject(userKey);
                 return user;
             }
             catch (Exception e)
@@ -94,11 +94,11 @@ public class TokenService
     /**
      * 设置用户身份信息
      */
-    public void setLoginDistributor(LoginDistributor loginDistributor)
+    public void setLoginDistributor(LoginTenant loginTenant)
     {
-        if (loginDistributor != null && StringUtils.isNotEmpty(loginDistributor.getToken()))
+        if (loginTenant != null && StringUtils.isNotEmpty(loginTenant.getToken()))
         {
-            refreshToken(loginDistributor);
+            refreshToken(loginTenant);
         }
     }
 
@@ -117,15 +117,15 @@ public class TokenService
     /**
      * 创建令牌
      *
-     * @param loginDistributor 用户信息
+     * @param loginTenant 用户信息
      * @return 令牌
      */
-    public String createToken(LoginDistributor loginDistributor)
+    public String createToken(LoginTenant loginTenant)
     {
         String token = IdUtils.fastUUID();
-        loginDistributor.setToken(token);
-        setUserAgent(loginDistributor);
-        refreshToken(loginDistributor);
+        loginTenant.setToken(token);
+        setUserAgent(loginTenant);
+        refreshToken(loginTenant);
 
         Map<String, Object> claims = new HashMap<>();
         claims.put(LOGIN_CLIENT_KEY, token);
@@ -135,32 +135,32 @@ public class TokenService
     /**
      * 验证令牌有效期，相差不足20分钟，自动刷新缓存
      *
-     * @param loginDistributor
+     * @param loginTenant
      * @return 令牌
      */
-    public void verifyToken(LoginDistributor loginDistributor)
+    public void verifyToken(LoginTenant loginTenant)
     {
-        long expireTime = loginDistributor.getExpireTime();
+        long expireTime = loginTenant.getExpireTime();
         long currentTime = System.currentTimeMillis();
         if (expireTime - currentTime <= MILLIS_MINUTE_TEN)
         {
-            refreshToken(loginDistributor);
+            refreshToken(loginTenant);
         }
     }
 
     /**
      * 刷新令牌有效期
      *
-     * @param loginDistributor 登录信息
+     * @param loginTenant 登录信息
      */
-    public void refreshToken(LoginDistributor loginDistributor)
+    public void refreshToken(LoginTenant loginTenant)
     {
-        loginDistributor.setLoginTime(System.currentTimeMillis());
-        loginDistributor.setExpireTime(loginDistributor.getLoginTime() + expireTime * MILLIS_MINUTE);
+        loginTenant.setLoginTime(System.currentTimeMillis());
+        loginTenant.setExpireTime(loginTenant.getLoginTime() + expireTime * MILLIS_MINUTE);
         // 根据uuid将loginUser缓存
-        String userKey = getTokenKey(loginDistributor.getToken());
+        String userKey = getTokenKey(loginTenant.getToken());
         try{
-        redisCache.setCacheObject(userKey, loginDistributor, expireTime, TimeUnit.MINUTES);
+        redisCache.setCacheObject(userKey, loginTenant, expireTime, TimeUnit.MINUTES);
         }catch (RedisConnectionFailureException ex){
             throw ex;
         }
@@ -169,16 +169,16 @@ public class TokenService
     /**
      * 设置用户代理信息
      *
-     * @param loginDistributor 登录信息
+     * @param loginTenant 登录信息
      */
-    public void setUserAgent(LoginDistributor loginDistributor)
+    public void setUserAgent(LoginTenant loginTenant)
     {
         UserAgent userAgent = UserAgent.parseUserAgentString(ServletUtils.getRequest().getHeader("User-Agent"));
         String ip = IpUtils.getIpAddr();
-        loginDistributor.setIpaddr(ip);
-        loginDistributor.setLoginLocation(AddressUtils.getRealAddressByIP(ip));
-        loginDistributor.setBrowser(userAgent.getBrowser().getName());
-        loginDistributor.setOs(userAgent.getOperatingSystem().getName());
+        loginTenant.setIpaddr(ip);
+        loginTenant.setLoginLocation(AddressUtils.getRealAddressByIP(ip));
+        loginTenant.setBrowser(userAgent.getBrowser().getName());
+        loginTenant.setOs(userAgent.getOperatingSystem().getName());
     }
 
     /**

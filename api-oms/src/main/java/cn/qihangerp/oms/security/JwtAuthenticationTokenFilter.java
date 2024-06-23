@@ -3,7 +3,6 @@ package cn.qihangerp.oms.security;
 
 import cn.qihangerp.common.AjaxResult;
 import cn.qihangerp.common.constant.HttpStatus;
-import cn.qihangerp.common.model.LoginUser;
 import com.alibaba.fastjson2.JSON;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -53,7 +52,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter
             chain.doFilter(request, response);
             return;
         }
-        LoginDistributor loginUser = tokenService.getLoginDistributor(request);
+        LoginTenant loginUser = tokenService.getLoginDistributor(request);
         if (loginUser !=null )
         {
             tokenService.verifyToken(loginUser);

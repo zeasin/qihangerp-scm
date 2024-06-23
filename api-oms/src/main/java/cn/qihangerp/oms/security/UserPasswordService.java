@@ -4,7 +4,7 @@ import cn.qihangerp.common.constant.CacheConstants;
 import cn.qihangerp.common.exception.UserPasswordRetryLimitExceedException;
 import cn.qihangerp.common.redis.RedisCache;
 import cn.qihangerp.common.utils.SecurityUtils;
-import cn.qihangerp.oms.domain.ScmDistributor;
+import cn.qihangerp.oms.domain.OmsTenant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
@@ -40,7 +40,7 @@ public class UserPasswordService
         return CacheConstants.PWD_ERR_CNT_KEY + username;
     }
 
-    public void validate(ScmDistributor user)
+    public void validate(OmsTenant tenant)
     {
         Authentication usernamePasswordAuthenticationToken = AuthenticationContextHolder.getContext();
         String username = usernamePasswordAuthenticationToken.getName();
@@ -60,7 +60,7 @@ public class UserPasswordService
             throw new UserPasswordRetryLimitExceedException(maxRetryCount, lockTime);
         }
 
-        if (!matches(user, password))
+        if (!matches(tenant, password))
         {
             retryCount = retryCount + 1;
 //            AsyncManager.me().execute(AsyncFactory.recordLogininfor(username, Constants.LOGIN_FAIL, MessageUtils.message("user.password.retry.limit.count", retryCount)));
@@ -74,9 +74,9 @@ public class UserPasswordService
         }
     }
 
-    public boolean matches(ScmDistributor user, String rawPassword)
+    public boolean matches(OmsTenant tenant, String rawPassword)
     {
-        return SecurityUtils.matchesPassword(rawPassword, user.getPassword());
+        return SecurityUtils.matchesPassword(rawPassword, tenant.getPassword());
     }
 
     public void clearLoginRecordCache(String loginName)

@@ -6,21 +6,19 @@ import cn.qihangerp.common.exception.ServiceException;
 import cn.qihangerp.common.model.LoginBody;
 import cn.qihangerp.common.model.vo.RouterVo;
 import cn.qihangerp.oms.domain.OmsMenu;
-import cn.qihangerp.oms.domain.ScmDistributor;
+import cn.qihangerp.oms.domain.OmsTenant;
 import cn.qihangerp.oms.security.SecurityUtils;
 import cn.qihangerp.oms.security.UserPasswordNotMatchException;
 import cn.qihangerp.oms.service.LoginService;
 import cn.qihangerp.oms.service.OmsMenuService;
-import cn.qihangerp.oms.service.ScmDistributorService;
+import cn.qihangerp.oms.service.OmsTenantService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.RedisConnectionFailureException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -34,7 +32,7 @@ public class LoginController
 {
     private final LoginService loginService;
     private final OmsMenuService menuService;
-    private final ScmDistributorService distributorService;
+//    private final OmsTenantService tenantService;
 
 //    @Autowired
 //    private SysPermissionService permissionService;
@@ -74,13 +72,13 @@ public class LoginController
     @GetMapping("getInfo")
     public AjaxResult getInfo()
     {
-        ScmDistributor user = SecurityUtils.getLoginDistributor().getDistributor();
+        OmsTenant tenant = SecurityUtils.getLoginDistributor().getDistributor();
 //        // 角色集合
 //        Set<String> roles = permissionService.getRolePermission(user);
 //        // 权限集合
 //        Set<String> permissions = permissionService.getMenuPermission(user);
         AjaxResult ajax = AjaxResult.success();
-        ajax.put("user", user);
+        ajax.put("user", tenant);
 //        ajax.put("roles", roles);
 //        ajax.put("permissions", permissions);
         return ajax;

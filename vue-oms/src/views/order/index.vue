@@ -9,67 +9,6 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="店铺" prop="shopId">
-        <el-select v-model="queryParams.shopId" placeholder="请选择店铺" clearable @change="handleQuery">
-         <el-option
-            v-for="item in shopList"
-            :key="item.id"
-            :label="item.name"
-            :value="item.id">
-            <span style="float: left">{{ item.name }}</span>
-              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 4">淘宝天猫</span>
-              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 5">拼多多</span>
-              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 6">抖店</span>
-              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 7">小红书</span>
-              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 13">快手小店</span>
-              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 99">其他</span>
-          </el-option>
-        </el-select>
-      </el-form-item>
-    <!--
-      <el-form-item label="标签" prop="tag">
-        <el-input
-          v-model="queryParams.tag"
-          placeholder="请输入标签"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      -->
-      <el-form-item label="收件人" prop="receiverName">
-        <el-input
-          v-model="queryParams.receiverName"
-          placeholder="请输入收件人"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="手机号" prop="receiverPhone">
-        <el-input
-          v-model="queryParams.receiverPhone"
-          placeholder="请输入手机号"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-
-     <!--  <el-form-item label="城市" prop="city">
-        <el-input
-          v-model="queryParams.city"
-          placeholder="请输入城市"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="省份" prop="province">
-        <el-input
-          v-model="queryParams.province"
-          placeholder="请输入省份"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item> -->
-
       <el-form-item label="快递单号" prop="shippingNumber">
         <el-input
           v-model="queryParams.shippingNumber"
@@ -78,6 +17,38 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
+      <el-form-item label="店铺" prop="shopId">
+        <el-select v-model="queryParams.shopId" placeholder="请选择店铺" clearable @change="handleQuery">
+         <el-option
+            v-for="item in shopList"
+            :key="item.id"
+            :label="item.name"
+            :value="item.id">
+            <span style="float: left">{{ item.name }}</span>
+              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 1">1688</span>
+              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 2">视频号小店</span>
+              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 3">京东</span>
+              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 4">淘宝天猫</span>
+              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 5">拼多多</span>
+              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 6">抖店</span>
+              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 7">小红书</span>
+              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 8">快手小店</span>
+              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 99">其他</span>
+          </el-option>
+        </el-select>
+      </el-form-item>
+
+      <el-form-item label="状态" prop="orderStatus">
+        <el-select v-model="queryParams.orderStatus" placeholder="请选择状态" clearable @change="handleQuery">
+          <el-option label="待发货" value="1" ></el-option>
+          <el-option label="已出库" value="2"></el-option>
+          <el-option label="已发货" value="3"> </el-option>
+          <el-option label="已完成" value="4"></el-option>
+          <el-option label="已取消" value="11"></el-option>
+        </el-select>
+      </el-form-item>
+
+
 
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
@@ -88,12 +59,20 @@
     <el-row :gutter="10" class="mb8">
       <el-col :span="1.5">
         <el-button
+          type="success"
+          plain
+          icon="el-icon-plus"
+          size="mini"
+          @click="handlePull"
+        >拉取店铺订单</el-button>
+      </el-col>
+      <el-col :span="1.5">
+        <el-button
           type="primary"
           plain
           icon="el-icon-plus"
           size="mini"
           @click="handleAdd"
-          v-hasPermi="['shop:order:add']"
         >手动创建订单</el-button>
       </el-col>
       <el-col :span="1.5">
@@ -110,14 +89,19 @@
     </el-row>
 
     <el-table v-loading="loading" :data="orderList" @selection-change="handleSelectionChange">
-      <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="订单ID" align="center" prop="id" />
-      <el-table-column label="订单编号" align="center" prop="orderNum" />
-      <el-table-column label="店铺ID" align="center" prop="shopId" >
+<!--      <el-table-column type="selection" width="55" align="center" />-->
+<!--      <el-table-column label="订单ID" align="center" prop="id" />-->
+      <el-table-column label="订单号" align="left" prop="orderNum" >
         <template slot-scope="scope">
-          <span>{{ shopList.find(x=>x.id === scope.row.shopId).name  }}</span>
+          <div>{{scope.row.orderNum}}</div>
+          <el-tag size="small">{{ shopList.find(x=>x.id === scope.row.shopId)?shopList.find(x=>x.id === scope.row.shopId).name :'' }}</el-tag>
         </template>
       </el-table-column>
+<!--      <el-table-column label="店铺" align="center" prop="shopId" >-->
+<!--        <template slot-scope="scope">-->
+<!--          <span>{{ shopList.find(x=>x.id === scope.row.shopId)?shopList.find(x=>x.id === scope.row.shopId).name :'' }}</span>-->
+<!--        </template>-->
+<!--      </el-table-column>-->
 
       <el-table-column label="商品" width="350">
           <template slot-scope="scope">
@@ -149,6 +133,7 @@
           <el-tag v-if="scope.row.orderStatus === 2" style="margin-bottom: 6px;">已出库</el-tag>
           <el-tag v-if="scope.row.orderStatus === 3" style="margin-bottom: 6px;">已发货</el-tag>
           <el-tag v-if="scope.row.orderStatus === 4" style="margin-bottom: 6px;">已完成</el-tag>
+          <el-tag v-if="scope.row.orderStatus === 11" style="margin-bottom: 6px;">已取消</el-tag>
           <br />
            <!-- 1：无售后或售后关闭，2：售后处理中，3：退款中，4： 退款成功 -->
            <el-tag v-if="scope.row.refundStatus === 1">无售后或售后关闭</el-tag>
@@ -162,12 +147,13 @@
       <!-- <el-table-column label="邮费，单位：元" align="center" prop="postage" /> -->
       <!-- <el-table-column label="折扣金额(元)" align="center" prop="discountAmount" /> -->
       <!-- <el-table-column label="商品金额(元)" align="center" prop="goodsAmount" /> -->
-      <el-table-column label="支付金额" align="center" prop="amount" />
+      <el-table-column label="支付金额" align="center" prop="payAmount"  :formatter="amountFormatter" />
       <!-- <el-table-column label="支付时间" align="center" prop="payTime" /> -->
       <el-table-column label="收件信息" align="center" prop="receiverName" >
         <template slot-scope="scope">
           {{scope.row.receiverName}}<br />
-          {{scope.row.province}} {{scope.row.city}} {{scope.row.town}}
+          {{scope.row.province}} {{scope.row.city}} {{scope.row.town}}<br/>
+          <el-tag v-if="scope.row.shippingNumber">{{scope.row.shippingNumber}}</el-tag>
         </template>
       </el-table-column>
       <!-- <el-table-column label="手机号" align="center" prop="receiverPhone" /> -->
@@ -175,8 +161,8 @@
       <!-- <el-table-column label="${comment}" align="center" prop="town" /> -->
       <!-- <el-table-column label="省" align="center" prop="province" /> -->
       <!-- <el-table-column label="市" align="center" prop="city" /> -->
-      <el-table-column label="发货时间" align="center" prop="shippingTime" />
-      <el-table-column label="快递单号" align="center" prop="shippingNumber" />
+<!--      <el-table-column label="发货时间" align="center" prop="shippingTime" />-->
+<!--      <el-table-column label="快递单号" align="center" prop="shippingNumber" />-->
       <!-- <el-table-column label="物流公司" align="center" prop="shippingCompany" /> -->
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
@@ -282,7 +268,7 @@
         </el-descriptions>
 
         <el-divider content-position="center">订单商品</el-divider>
-        <el-table :data="form.erpOrderItemList"  style="margin-bottom: 10px;">
+        <el-table :data="form.erpSaleOrderItemList"  style="margin-bottom: 10px;">
           <!-- <el-table-column type="selection" width="50" align="center" /> -->
           <el-table-column label="序号" align="center" type="index" width="50"/>
 
@@ -308,8 +294,8 @@
 </template>
 
 <script>
-import { listOrder, getOrder, delOrder, addOrder, updateOrder } from "@/api/shop/order";
-import { listShop } from "@/api/shop/shop";
+import { listOrder, getOrder, delOrder, addOrder, updateOrder } from "@/api/order/order";
+
 export default {
   name: "Order",
   data() {
@@ -364,12 +350,12 @@ export default {
     };
   },
   created() {
-     listShop({}).then(response => {
-        this.shopList = response.rows;
-      });
     this.getList();
   },
   methods: {
+    amountFormatter(row, column, cellValue, index) {
+      return '￥' + cellValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+    },
     /** 查询店铺订单列表 */
     getList() {
       this.loading = true;
@@ -397,7 +383,10 @@ export default {
     },
     /** 新增按钮操作 */
     handleAdd() {
-      this.$router.push('/sale/order/create');
+      this.$router.push('/order/create');
+    },
+    handlePull(){
+      this.$router.push('/order/shop_order_list');
     },
     /** 导出按钮操作 */
     handleExport() {

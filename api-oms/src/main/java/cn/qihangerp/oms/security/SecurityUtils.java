@@ -51,11 +51,11 @@ public class SecurityUtils implements Serializable
     /**
      * 获取用户
      **/
-    public static LoginDistributor getLoginDistributor()
+    public static LoginTenant getLoginDistributor()
     {
         try
         {
-            return (LoginDistributor) getAuthentication().getPrincipal();
+            return (LoginTenant) getAuthentication().getPrincipal();
         }
         catch (Exception e)
         {

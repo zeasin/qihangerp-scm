@@ -11,7 +11,7 @@
  Target Server Version : 80200
  File Encoding         : 65001
 
- Date: 22/06/2024 22:20:16
+ Date: 23/06/2024 14:30:06
 */
 
 SET NAMES utf8mb4;
@@ -61,7 +61,7 @@ CREATE TABLE `erp_goods`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `number`(`number`) USING BTREE,
   INDEX `id`(`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 75 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '商品库存管理' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 10010 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '商品库存管理' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of erp_goods
@@ -182,7 +182,7 @@ CREATE TABLE `erp_goods_category`  (
   `update_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '更新人',
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 34 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 10045 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of erp_goods_category
@@ -232,7 +232,7 @@ CREATE TABLE `erp_goods_category_attribute`  (
   `title` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '\'属性名\'',
   `code` char(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '固定值color颜色size尺码style款式',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 117 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 404676611 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of erp_goods_category_attribute
@@ -2339,194 +2339,6 @@ INSERT INTO `erp_goods_spec_attr` VALUES (601, 74, 'style', '款式', 116, 413, 
 INSERT INTO `erp_goods_spec_attr` VALUES (602, 74, 'style', '款式', 116, 412, NULL, NULL);
 
 -- ----------------------------
--- Table structure for erp_sale_after_info
--- ----------------------------
-DROP TABLE IF EXISTS `erp_sale_after_info`;
-CREATE TABLE `erp_sale_after_info`  (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `type` int NULL DEFAULT NULL COMMENT '类型（10退货；20换货；80补发；99订单拦截；）',
-  `shop_id` int NULL DEFAULT NULL COMMENT '店铺id',
-  `shop_type` int NULL DEFAULT NULL COMMENT '店铺类型',
-  `after_sale_order_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '售后单号',
-  `order_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '订单号',
-  `sub_order_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '子订单号',
-  `product_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '商品spuid',
-  `sku_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '商品skuid',
-  `count` int NULL DEFAULT NULL COMMENT '数量',
-  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '商品标题',
-  `img` varchar(555) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '商品图片',
-  `sku_info` varchar(2550) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'sku描述',
-  `sku_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'sku编码',
-  `erp_goods_id` int NULL DEFAULT NULL COMMENT 'ERP商品id',
-  `erp_sku_id` int NULL DEFAULT NULL COMMENT 'ERP商品skuId',
-  `return_info` varchar(2550) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '退回人信息json',
-  `return_waybill_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '退回快递单号',
-  `return_company` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '退回物流公司名称',
-  `receiver_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '收件人姓名',
-  `receiver_tel` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '收件人联系电话',
-  `receiver_province` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '省',
-  `receiver_city` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '市',
-  `receiver_town` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '区',
-  `receiver_address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '收件人详细地址',
-  `ship_waybill_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '发货快递单号（补发、换货发货、拦截订单发货）',
-  `ship_company` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '发货快递公司',
-  `status` int NULL DEFAULT NULL COMMENT '状态:1已发出；2已完成(已收货);3已入库',
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
-  `create_time` datetime NULL DEFAULT NULL,
-  `create_by` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `update_time` datetime NULL DEFAULT NULL,
-  `update_by` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '售后处理表' ROW_FORMAT = DYNAMIC;
-
--- ----------------------------
--- Records of erp_sale_after_info
--- ----------------------------
-
--- ----------------------------
--- Table structure for erp_sale_after_refund
--- ----------------------------
-DROP TABLE IF EXISTS `erp_sale_after_refund`;
-CREATE TABLE `erp_sale_after_refund`  (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `refund_num` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '退货单号',
-  `refund_type` int NULL DEFAULT NULL COMMENT '类型(10-退货 20-换货 30-维修 40-大家电安装 50-大家电移机 60-大家电增值服务 70-上门维修 90-优鲜赔 80-补发商品 100-试用收回 11-仅退款)',
-  `shop_id` int NULL DEFAULT NULL COMMENT '店铺id',
-  `shop_type` int NULL DEFAULT NULL COMMENT '店铺类型',
-  `refund_fee` float NOT NULL COMMENT '退款金额',
-  `refund_reason` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '退款原因',
-  `original_order_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '原始订单号（来自于第三方平台）',
-  `original_order_item_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '原始子订单号（来自于第三方平台）',
-  `original_sku_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '原始子订单skuId',
-  `erp_goods_id` bigint NULL DEFAULT NULL COMMENT 'erp商品id',
-  `erp_goods_sku_id` bigint NULL DEFAULT NULL COMMENT 'erp sku id',
-  `spec_num` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'sku编码',
-  `has_good_return` int NULL DEFAULT NULL COMMENT '买家是否需要退货。可选值:1(是),0(否)',
-  `goods_name` varchar(55) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '商品名称',
-  `goods_sku` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '商品sku',
-  `goods_image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '商品图片',
-  `quantity` bigint NULL DEFAULT NULL COMMENT '退货数量',
-  `return_logistics_company` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '退货物流公司',
-  `return_logistics_code` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '退货物流单号',
-  `receive_time` datetime NULL DEFAULT NULL COMMENT '收货时间',
-  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '备注',
-  `contact_person` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '发货人',
-  `mobile` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '发货人手机号',
-  `address` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '发货地址',
-  `status` int NOT NULL COMMENT '状态（10001待审核10002等待买家退货10005等待卖家收货14000拒绝退款10011退款关闭10010退款完成）',
-  `create_time` datetime NOT NULL COMMENT '订单创建时间',
-  `create_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '创建人',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
-  `update_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '更新人',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1788119148154740738 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '售后退款表' ROW_FORMAT = DYNAMIC;
-
--- ----------------------------
--- Records of erp_sale_after_refund
--- ----------------------------
-INSERT INTO `erp_sale_after_refund` VALUES (1786735505566502913, '154486920027549058', 11, 6, 4, 20, '与商家协商一致退款', '2088964452215545890', '2088964452216545890', '', 0, 0, 'ZH-SF-04-DS-F9-QM20A-NT3', 0, '曲美家居轻奢简约现代床头柜储物双抽床边柜皮质卧室置物储藏柜', '4902529397704|颜色分类:奶油白;安装方式:组装', NULL, 2, NULL, NULL, NULL, '', '', '', '', 10010, '2024-05-04 20:31:55', 'REFUND_MESSAGE', NULL, NULL);
-INSERT INTO `erp_sale_after_refund` VALUES (1788119148154740738, '2000000476685963', 10, 2, 2, 99.9, '质量问题', '3719496358260248576', '0', '2231619925', 0, 0, NULL, 1, NULL, NULL, NULL, 1, NULL, NULL, NULL, '', '', '', '', 10001, '2024-05-08 16:10:01', 'REFUND_MESSAGE', NULL, NULL);
-
--- ----------------------------
--- Table structure for erp_sale_order
--- ----------------------------
-DROP TABLE IF EXISTS `erp_sale_order`;
-CREATE TABLE `erp_sale_order`  (
-  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '订单id，自增',
-  `order_num` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '订单编号（来源订单）',
-  `shop_type` int NULL DEFAULT NULL COMMENT '店铺类型',
-  `shop_id` int NOT NULL COMMENT '店铺ID',
-  `remark` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '订单备注',
-  `buyer_memo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '买家留言信息',
-  `tag` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '标签',
-  `refund_status` int NOT NULL COMMENT '售后状态 1：无售后或售后关闭，2：售后处理中，3：退款中，4： 退款成功 5：全部',
-  `order_status` int NOT NULL COMMENT '订单状态1：待发货，2：已发货，3：已完成，11已取消；21待付款',
-  `goods_amount` double NULL DEFAULT NULL COMMENT '商品金额',
-  `discount_amount` double NOT NULL COMMENT '折扣金额',
-  `postage` double NULL DEFAULT NULL COMMENT '运费',
-  `amount` double NOT NULL COMMENT '支付金额，单位：元，支付金额=商品金额-折扣金额+邮费',
-  `receiver_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '收件人姓名',
-  `receiver_phone` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '收件人手机号',
-  `address` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '收件人地址',
-  `country` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '国家/地区',
-  `province` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '省',
-  `city` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '市',
-  `town` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '区',
-  `order_time` datetime NULL DEFAULT NULL COMMENT '订单创建时间',
-  `pay_time` datetime NULL DEFAULT NULL COMMENT '支付时间',
-  `confirm_time` datetime NULL DEFAULT NULL COMMENT '订单确认时间',
-  `ship_type` int NULL DEFAULT NULL COMMENT '发货类型（0仓库发货；1供应商代发）',
-  `ship_status` int NOT NULL COMMENT '发货状态（0待备货1备货中2已出库3已发货）',
-  `shipping_time` datetime NULL DEFAULT NULL COMMENT '发货时间',
-  `shipping_number` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '快递单号',
-  `shipping_company` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '物流公司',
-  `shipping_man` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '发货人',
-  `shipping_cost` decimal(10, 2) NULL DEFAULT NULL COMMENT '发货费用',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '订单创建时间',
-  `create_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '创建人',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
-  `update_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '更新人',
-  `length` float NULL DEFAULT 0 COMMENT '长',
-  `width` float NULL DEFAULT 0 COMMENT '宽',
-  `height` float NULL DEFAULT 0 COMMENT '高',
-  `weight` float NULL DEFAULT NULL COMMENT '重量',
-  PRIMARY KEY (`id`) USING BTREE,
-  UNIQUE INDEX `order_sn_index`(`order_num`) USING BTREE,
-  INDEX `shopid_index`(`shop_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 42 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '订单表' ROW_FORMAT = DYNAMIC;
-
--- ----------------------------
--- Records of erp_sale_order
--- ----------------------------
-INSERT INTO `erp_sale_order` VALUES (42, '1787451058756751361', 2, 2, NULL, NULL, NULL, 1, 2, 99.9, 0, 0, 99.9, '胡**', '188****9606', '****', '中国', '湖北省', '武汉市', '青山区', NULL, NULL, '2024-05-08 15:22:43', NULL, 0, NULL, NULL, NULL, NULL, NULL, '2024-05-08 15:22:43', '手动确认订单', NULL, NULL, 0, 0, 0, NULL);
-
--- ----------------------------
--- Table structure for erp_sale_order_item
--- ----------------------------
-DROP TABLE IF EXISTS `erp_sale_order_item`;
-CREATE TABLE `erp_sale_order_item`  (
-  `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'id，自增',
-  `order_id` bigint NOT NULL COMMENT '订单ID',
-  `shop_id` int NOT NULL COMMENT '店铺id',
-  `supplier_id` int NULL DEFAULT NULL COMMENT '供应商ID',
-  `goods_id` bigint NULL DEFAULT 0 COMMENT 'erp系统商品id',
-  `spec_id` bigint NULL DEFAULT 0 COMMENT 'erp系统商品规格id',
-  `goods_title` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '商品标题',
-  `goods_img` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '商品图片',
-  `goods_num` varchar(35) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '商品编码',
-  `goods_spec` varchar(800) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '商品规格',
-  `spec_num` varchar(35) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '商品规格编码',
-  `goods_price` double NULL DEFAULT NULL COMMENT '商品单价',
-  `item_amount` double NULL DEFAULT NULL COMMENT '子订单金额',
-  `quantity` int NOT NULL COMMENT '商品数量',
-  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
-  `order_item_num` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '子订单编号(来源订单)',
-  `order_num` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '订单编号（来源订单）',
-  `is_gift` tinyint NOT NULL DEFAULT 0 COMMENT '是否赠品0否1是',
-  `refund_count` int NULL DEFAULT 0 COMMENT '已退货数量',
-  `refund_status` int NULL DEFAULT NULL COMMENT '售后状态 1：无售后或售后关闭，2：售后处理中，3：退款中，4： 退款成功 ',
-  `order_status` int NULL DEFAULT NULL COMMENT '订单状态',
-  `ship_type` int NULL DEFAULT NULL COMMENT '发货类型（0仓库发货；1供应商代发）',
-  `ship_status` int NOT NULL COMMENT '发货状态（0待备货1备货中2已出库3已发货）',
-  `ship_time` datetime NULL DEFAULT NULL COMMENT '发货时间',
-  `logistics_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '快递单号',
-  `logistics_company` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '物流公司',
-  `ship_man` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '发货人',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `create_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '创建人',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
-  `update_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '更新人',
-  PRIMARY KEY (`id`) USING BTREE,
-  INDEX `goodId_index`(`goods_id`) USING BTREE,
-  INDEX `order_id`(`order_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1785584827112509448 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '订单明细表' ROW_FORMAT = DYNAMIC;
-
--- ----------------------------
--- Records of erp_sale_order_item
--- ----------------------------
-INSERT INTO `erp_sale_order_item` VALUES (1785584827112509447, 42, 2, NULL, 0, 0, '大山金黄苦荞 专用麦香形冲饮谷物 黄苦荞500g/罐', 'https://store.mp.video.tencent-cloud.com/161/20304/snscosdownload/SH/reserved/662de0600005f6c31d2d67512006bd1e000000a000004f50', '10000113792713', '[{\"attr_key\":\"净含量\",\"attr_value\":\"拍1发3=到手3罐\"},{\"attr_key\":\"主播承诺\",\"attr_value\":\"7天试喝及运费险\"}]', '', 99.9, 99.9, 1, NULL, '1787451058773528578', '3719517651511152896', 0, 0, 1, NULL, NULL, 0, NULL, NULL, NULL, NULL, '2024-05-08 15:22:43', '手动确认订单', NULL, NULL);
-
--- ----------------------------
 -- Table structure for erp_ship_logistics
 -- ----------------------------
 DROP TABLE IF EXISTS `erp_ship_logistics`;
@@ -3000,6 +2812,7 @@ INSERT INTO `oms_menu` VALUES (3, '店铺管理', 0, 5, '/shop', 'Layout', '', 1
 INSERT INTO `oms_menu` VALUES (4, '商品库', 0, 4, '/goods', 'Layout', '', 1, 0, 'M', '0', '0', '', 'build', 'admin', '2023-12-29 16:53:03', 'admin', '2024-03-30 17:43:57', '');
 INSERT INTO `oms_menu` VALUES (101, '订单管理', 1, 0, 'order_list', 'order/index', '', 1, 0, 'C', '0', '0', '', 'monitor', 'admin', '2023-12-27 15:00:27', 'admin', '2024-04-06 11:18:00', '菜单管理菜单');
 INSERT INTO `oms_menu` VALUES (102, '店铺订单管理', 1, 0, 'shop_order_list', 'shop/order/index', '', 1, 0, 'C', '0', '0', '', 'monitor', 'admin', '2023-12-27 15:00:27', 'admin', '2024-04-06 11:18:00', '菜单管理菜单');
+INSERT INTO `oms_menu` VALUES (103, '手动创建订单', 1, 0, 'create', 'order/create', '', 1, 0, 'C', '1', '0', '', 'monitor', 'admin', '2023-12-27 15:00:27', 'admin', '2024-04-06 11:18:00', '菜单管理菜单');
 INSERT INTO `oms_menu` VALUES (105, '订单发货管理', 1, 2, 'ship', 'ship/index', NULL, 1, 0, 'C', '0', '0', '', 'guide', 'admin', '2024-03-30 17:37:42', 'admin', '2024-04-06 14:49:59', '');
 INSERT INTO `oms_menu` VALUES (201, '店铺售后管理', 2, 2, 'shop_refund_list', 'shop/refund/index', '', 1, 0, 'C', '0', '0', '', 'edit', 'admin', '2023-12-27 15:00:27', 'admin', '2024-04-06 15:48:21', '参数设置菜单');
 INSERT INTO `oms_menu` VALUES (204, '售后处理查询', 2, 0, 'processing', 'afterSale/index', NULL, 1, 0, 'C', '0', '0', '', 'documentation', 'admin', '2024-04-06 17:27:03', 'admin', '2024-04-06 17:31:12', '');
@@ -3395,6 +3208,1735 @@ INSERT INTO `oms_tao_refund` VALUES (1786655103757828097, '272811564981003461', 
 INSERT INTO `oms_tao_refund` VALUES (1786655103757828098, '272807678894920119', 'REFUND_AND_RETURN', 6, 3851109505623921901, 3851109505624921901, 0, NULL, 2104.03, 2104.03, NULL, NULL, '2024-05-03 19:17:13', '2024-05-03 19:42:33', '曲美家具官方旗舰店', NULL, 'WAIT_SELLER_AGREE', 'TRADE_FINISHED', NULL, NULL, NULL, NULL, 'BUYER_RECEIVED', 1, 1298098439, 1, 'ZQB-2011C-WG1', '商品无法安装使用', 'aftersale', NULL, '', NULL, NULL, NULL, NULL, '【新风潮价】曲美家居现代简约实木衣柜卧室衣帽柜平开门衣橱环保板材储物柜', '4600898994639|颜色分类:木本色衣柜;门数量:2门;是否组装:组装', 'AAGyHVMUAAJ_dKyzaDUwia6Q', '无忌上', NULL, '2024-05-04 15:12:26', NULL, NULL, '2024-05-04 16:16:34', NULL, NULL);
 INSERT INTO `oms_tao_refund` VALUES (1786655103824936962, '154544811395929773', 'REFUND', 6, 2121326583552927397, 2121326583553927397, 0, NULL, 2135, 2135, NULL, NULL, '2024-05-03 17:49:22', '2024-05-03 17:49:23', '曲美家具官方旗舰店', NULL, 'SUCCESS', 'TRADE_CLOSED', NULL, NULL, NULL, NULL, 'BUYER_NOT_RECEIVED', 0, NULL, 1, NULL, '拍错/多拍/不喜欢', 'onsale', NULL, '', NULL, NULL, NULL, '2024-05-03 17:49:23', '【活动价】曲美lab墩墩沙发现代简约模块布艺真皮沙发别墅客厅沙发自由搭配', '5451881559814|适用人数:组合;颜色分类:灯芯绒坐包-燕麦白;尺寸:84x84x40cm', 'AAHCHVMUAAJ_dKyzaDUfiNYK', 'nono璐hly', NULL, '2024-05-04 15:12:26', NULL, NULL, '2024-05-04 15:13:53', NULL, NULL);
 INSERT INTO `oms_tao_refund` VALUES (1786655103824936963, '154486920027549058', 'REFUND', 6, 2088964452215545890, 2088964452216545890, 1236.4, NULL, 1256.4, 20, NULL, NULL, '2024-05-03 17:10:19', '2024-05-03 17:10:21', '曲美家具官方旗舰店', NULL, 'SUCCESS', 'TRADE_FINISHED', NULL, NULL, NULL, NULL, 'BUYER_RECEIVED', 0, 1684779514, 2, 'ZH-SF-04-DS-F9-QM20A-NT3', '与商家协商一致退款', 'aftersale', NULL, '', NULL, NULL, NULL, '2024-05-03 17:10:21', '曲美家居轻奢简约现代床头柜储物双抽床边柜皮质卧室置物储藏柜', '4902529397704|颜色分类:奶油白;安装方式:组装', 'AAHRHVMUAAJ_dKyzaDVwM06l', 'cfzxl365', NULL, '2024-05-04 15:12:26', NULL, NULL, '2024-05-04 20:31:50', 1, '2024-05-04 20:31:55');
+
+-- ----------------------------
+-- Table structure for oms_tenant
+-- ----------------------------
+DROP TABLE IF EXISTS `oms_tenant`;
+CREATE TABLE `oms_tenant`  (
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '用户ID(tenantId)',
+  `user_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '用户账号',
+  `nick_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '用户昵称',
+  `email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '用户邮箱',
+  `phonenumber` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '手机号码',
+  `sex` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '用户性别（0男 1女 2未知）',
+  `avatar` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '头像地址',
+  `password` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '密码',
+  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '帐号状态（0正常 1停用）',
+  `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '删除标志（0代表存在 2代表删除）',
+  `login_ip` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '最后登录IP',
+  `login_date` datetime NULL DEFAULT NULL COMMENT '最后登录时间',
+  `create_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '创建者',
+  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '更新者',
+  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
+  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 102 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '租户用户表' ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of oms_tenant
+-- ----------------------------
+INSERT INTO `oms_tenant` VALUES (1, '15818590119', '启航', '280645618@qq.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2024-06-23 13:16:38', 'admin', '2023-08-07 19:31:37', '', '2024-05-18 18:50:24', '');
+INSERT INTO `oms_tenant` VALUES (101, '15818590110', '上海人工集团aa', 'admin@qq.com', '15818590119', '0', '', '$2a$10$BXnTczO7JDkXtcWtLhAy4Ohi1y9FDLfGZm6pwGisi0JHr2wt/MlUK', '0', '0', '127.0.0.1', '2024-06-22 16:42:58', '', '2024-06-22 16:37:25', '', '2024-06-22 16:41:29', NULL);
+
+-- ----------------------------
+-- Table structure for oms_tenant_shop
+-- ----------------------------
+DROP TABLE IF EXISTS `oms_tenant_shop`;
+CREATE TABLE `oms_tenant_shop`  (
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '店铺名',
+  `nick_name` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '店铺别名',
+  `company` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '店铺主题',
+  `type` int NOT NULL COMMENT '对应第三方平台Id',
+  `url` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '店铺url',
+  `is_delete` int NOT NULL DEFAULT 0 COMMENT '是否删除0否1是',
+  `remark` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '描述',
+  `seller_user_id` bigint NOT NULL DEFAULT 0 COMMENT '第三方平台店铺id，淘宝天猫开放平台使用',
+  `seller_user_id_str` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '卖家userId',
+  `appkey` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'Appkey',
+  `app_sercet` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'Appsercet',
+  `access_token` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '第三方平台sessionKey（access_token）',
+  `access_expires_in` bigint NULL DEFAULT NULL COMMENT '到期',
+  `access_token_begin` bigint NULL DEFAULT NULL COMMENT 'access_token开始时间',
+  `refresh_token` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '刷新token',
+  `refresh_token_timeout` bigint NULL DEFAULT NULL COMMENT '刷新token过期时间',
+  `server_url` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '服务请求url',
+  `callback_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '服务回调URL',
+  `tenant_id` bigint NOT NULL COMMENT '租户ID（distributor）',
+  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `create_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '创建人',
+  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
+  `update_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '更新人',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 23 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '租户店铺表' ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of oms_tenant_shop
+-- ----------------------------
+INSERT INTO `oms_tenant_shop` VALUES (1, '其他渠道', NULL, NULL, 99, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop` VALUES (2, '视频号店铺-测试', '拼多多-梦小妮', '煜梦服饰', 2, NULL, 0, 'pdd10006159121', 100061591, '', 'd332', '332ss', '80_iOXcFHBFAb3NX2ieFAuXu5mKxvqar8aGhk9ea23Ivo7P5nhuFLYtYeZiJttJYANjCv_dY7yLO5Ft9-pcyxApcdnNbth0j2zhJZXR8t3a6VD8jOCDv2Xljvh2ujUNIDiADAHCX', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop` VALUES (3, '测试京东', '拼多多-梦小妮', '煜梦服饰', 3, NULL, 0, 'pdd10006159121', 100061591, '', NULL, NULL, '87f8044d2a5f45a489aa3a952785b0d35e61788a', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop` VALUES (5, '梦小妮潮流女装', '拼多多-梦小妮', '煜梦服饰', 5, NULL, 0, 'pdd10006159121', 100061591, '', NULL, NULL, '87f8044d2a5f45a489aa3a952785b0d35e61788a', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop` VALUES (6, '梦小妮牛仔裤', '淘宝-梦小妮', '煜梦服饰', 4, '', 0, '', 2200787809358, '0', '31014100', '7b0769269b0c0ca88949791c14eb3a5c', '610140071d1070a37cecea89f1c1f3d6e5d19bf4b58dd942200787809358', NULL, NULL, NULL, NULL, 'http://gw.api.taobao.com/router/rest', NULL, 0, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop` VALUES (13, '梦小妮牛仔裤-快手', '快手小店', '华衣云商', 8, NULL, 1, NULL, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop` VALUES (21, '珍姐姐de衣柜的店', '启航家常菜的店-小红书', '启航', 7, 'https://ark.xiaohongshu.com/ark/open_api/v3/common_controller', 0, NULL, 21, '6255224c3801e1000190d3d0', '621919dd99484598a69c', '1747d77da2ce58b97483932041c5503e', 'token-0f3f8a5fc5aa465aa29a66d27c6cf170-dad68769d83e4e1a9f52a950a680b9f2', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop` VALUES (22, '梦小妮牛仔裤', '抖音-梦小妮', '华衣云商', 6, 'http://openapi.jinritemai.com', 0, NULL, 4463798, '0', '7249607407477720636', '36a12497-fb9d-4b54-8cd1-fd1617346687', '', NULL, NULL, NULL, NULL, '2', NULL, 0, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop` VALUES (23, 'AAAbbb', 'add', NULL, 1, NULL, 0, NULL, 12, '12', 'aaaa', 'aaaaa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2024-06-23 11:55:35', NULL, '2024-06-23 13:54:37', NULL);
+INSERT INTO `oms_tenant_shop` VALUES (24, 'BBB', 'BB', NULL, 2, NULL, 0, NULL, 12580, '12580', 'AA22', '6555', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2024-06-23 13:52:46', NULL, NULL, NULL);
+
+-- ----------------------------
+-- Table structure for oms_tenant_shop_goods
+-- ----------------------------
+DROP TABLE IF EXISTS `oms_tenant_shop_goods`;
+CREATE TABLE `oms_tenant_shop_goods`  (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `shop_id` bigint NOT NULL COMMENT '店铺id',
+  `shop_type` int NOT NULL COMMENT '店铺类型',
+  `platform_goods_id` bigint NOT NULL COMMENT '平台商品id',
+  `erp_goods_id` bigint NULL DEFAULT NULL COMMENT '供应链商品ID',
+  `goods_num` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '商品货号，erp系统商品编码',
+  `price` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '参考价格，返回价格区间，可能为空',
+  `title` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '商品标题',
+  `goods_img` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '主图',
+  `total_sales` int NULL DEFAULT 0 COMMENT '累计销量',
+  `status` int NULL DEFAULT NULL COMMENT '状态（1上架2下架）',
+  `remark` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '备注',
+  `tenant_id` bigint NOT NULL COMMENT '租户ID（distributor）',
+  `create_time` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `create_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '创建人',
+  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
+  `update_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '更新人',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 85 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of oms_tenant_shop_goods
+-- ----------------------------
+INSERT INTO `oms_tenant_shop_goods` VALUES (1, 5, 5, 392657083276, 9, '2720218026', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-09-28/ed63f69d82e863972d1633cad97352a2.jpeg', 1024, 1, NULL, 0, '2022-10-08 20:36:12', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (2, 5, 5, 393216514010, 11, '2720220608', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-09-17/cafc8ca9dbc964862ee35c4429383f74.jpeg', 56, 1, NULL, 0, '2022-10-08 20:36:12', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (3, 5, 5, 393654097571, 0, 'HN270', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-07-23/58da809ecc22d16d8dc360d31e4cd064.jpeg', 30, 1, NULL, 0, '2022-10-08 20:36:12', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (4, 5, 5, 393659007414, 10, '2720220858', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-09-24/1c30e57d86fc72f3e5ba10ec860b24d2.jpeg', 486, 1, NULL, 0, '2022-10-08 20:36:12', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (5, 5, 5, 394814708558, 13, '2820220681', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-10-06/f671e813ff967e02f4421229be8f1c4a.jpeg', 45, 1, NULL, 0, '2022-10-08 20:36:13', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (6, 5, 5, 395429166799, 15, '2820210661', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-10-06/b1405a6b88893d52fd4197dcb652e7fa.jpeg', 141, 1, NULL, 0, '2022-10-08 20:36:13', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (7, 5, 5, 395930868595, 0, 'HN0708', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-08-24/424f2fe63587326c7c75973c42572176.jpeg', 69, 1, NULL, 0, '2022-10-08 20:36:13', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (8, 5, 5, 398085327353, 0, 'yfz-tb-650212367541', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-08-04/c18d2469f3eb07968f4dd36ab4a00486.jpeg', 0, 0, NULL, 0, '2022-10-08 20:36:13', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (9, 5, 5, 398667645632, 0, '', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-09-17/e4021e68d40d8919bb319b7fe89f1b31.jpeg', 41, 0, NULL, 0, '2022-10-08 20:36:14', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (10, 5, 5, 401654801488, 0, 'HN0025', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-08-22/b99ead8c07a6743735e7e586bdb3eca4.jpeg', 0, 0, NULL, 0, '2022-10-08 20:36:14', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (11, 5, 5, 401781697078, 16, '2820210678', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-09-29/ecef07b65c530ba38561516ecb5c343b.jpeg', 23, 1, NULL, 0, '2022-10-08 20:36:14', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (12, 5, 5, 401781826934, 18, 'HN0014', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-09-29/a98e7a25ec6651fcdadfacd09872b47b.jpeg', 68, 1, NULL, 0, '2022-10-08 20:36:14', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (13, 5, 5, 401993680807, 0, '', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-08-14/edfc54f4eebf2392c7d6675a21a5a7c7.jpeg', 0, 0, NULL, 0, '2022-10-08 20:36:14', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (14, 5, 5, 403434723538, 24, 'HN20220012', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-09-29/daee228c044d11aef6a59ba707284da8.jpeg', 42, 1, NULL, 0, '2022-10-08 20:36:15', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (15, 5, 5, 403438406420, 0, 'HN0010', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-08-18/3f2fbb00a6cd6ba918ab7fcb923fc24c.jpeg', 0, 0, NULL, 0, '2022-10-08 20:36:15', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (16, 5, 5, 403654853255, 0, 'HN015', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-10-01/0317d2b3193307c71ffa05fd80fb6860.jpeg', 0, 0, NULL, 0, '2022-10-08 20:36:15', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (17, 5, 5, 403877249755, 0, 'yfz-tb-670085078625', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-08-19/714ddb39d6867687ed2a3f9be6789889.jpeg', 0, 0, NULL, 0, '2022-10-08 20:36:15', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (18, 5, 5, 403877355587, 0, 'yfz-tb-638661096456', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-08-19/597fa2707d56eb0c91e3c94f88acdb0b.jpeg', 1, 0, NULL, 0, '2022-10-08 20:36:15', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (19, 5, 5, 403877444479, 0, 'yfz-tb-639346263403', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-09-14/c0889b9ba1dc4d1884b8cdfae91889a9.jpeg', 0, 0, NULL, 0, '2022-10-08 20:36:15', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (20, 5, 5, 403877488703, 27, 'HN023', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-09-24/9f69abd98877eb721a475af487bae74e.jpeg', 0, 0, NULL, 0, '2022-10-08 20:36:16', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (21, 5, 5, 403877607629, 23, 'HN20220024', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-08-19/c21e2ae2c578ce11e9abc6dece6d6c0e.jpeg', 10, 1, NULL, 0, '2022-10-08 20:36:16', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (22, 5, 5, 403877716388, 0, 'HN0029', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-08-19/c1405585b4a6135a5b54dfb93c14893f.jpeg', 0, 0, NULL, 0, '2022-10-08 20:36:16', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (23, 5, 5, 404300819650, 0, '', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-08-20/f90369c63c3cca6aa012e71fbeeb0d8d.jpeg', 0, 0, NULL, 0, '2022-10-08 20:36:16', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (24, 5, 5, 408225561862, 0, 'T610041890003', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-08-30/109763d466358b6845392d07323ae03c.jpeg', 0, 0, NULL, 0, '2022-10-08 20:36:16', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (25, 5, 5, 409855932902, 0, 'HN180', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-09-15/d2f7884f4ea03f5580843171d190c407.jpeg', 0, 1, NULL, 0, '2022-10-08 20:36:17', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (26, 5, 5, 409864423309, 37, 'HN106', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-09-28/3a3aa28f0de00054d4ebb3bec4190432.jpeg', 12, 1, NULL, 0, '2022-10-08 20:36:17', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (27, 5, 5, 409866847439, 42, 'HN222', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-09-03/316f35a521c20cc7aa5f3e5d6f48936a.jpeg', 3, 1, NULL, 0, '2022-10-08 20:36:17', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (28, 5, 5, 409879757750, 0, 'HN620', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-09-03/a9cfcd02574bc7babd42d1ac9c32bc7d.jpeg', 0, 0, NULL, 0, '2022-10-08 20:36:17', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (29, 5, 5, 409883128005, 34, 'HN621', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-09-03/03500eb346573bc8804e5a8f053b52ed.jpeg', 0, 0, NULL, 0, '2022-10-08 20:36:17', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (30, 5, 5, 409885859735, 0, 'HN630', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-09-03/d7cb2c2f269b9e70fae7cf08c16de704.jpeg', 1, 1, NULL, 0, '2022-10-08 20:36:18', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (31, 5, 5, 410305683990, 44, 'HN660', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-09-04/ef88fbd43b7d99b8916087a3843c0cdc.jpeg', 1, 1, NULL, 0, '2022-10-08 20:36:18', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (32, 5, 5, 410308626596, 35, 'HN662', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-09-04/b276eaa49fd18e61d0f181cf01dd8256.jpeg', 0, 1, NULL, 0, '2022-10-08 20:36:18', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (33, 5, 5, 410688391724, 38, 'HN663', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-09-05/a1c7708baeebd04294489303981bf1a4.jpeg', 2, 1, NULL, 0, '2022-10-08 20:36:18', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (34, 5, 5, 410692286065, 0, 'HN665', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-09-05/03d7e1fe2aac50ffea1f54332de9cc48.jpeg', 0, 1, NULL, 0, '2022-10-08 20:36:18', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (35, 5, 5, 410693529689, 0, 'HN666', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-09-28/d20f19284a3ec6e8d5dfaa22fb60c4da.jpeg', 0, 1, NULL, 0, '2022-10-08 20:36:19', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (36, 5, 5, 410694952121, 41, 'HN667', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-09-05/8bd4388f10a7c0fedef8d1513104b1ab.jpeg', 17, 1, NULL, 0, '2022-10-08 20:36:19', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (37, 5, 5, 410695996318, 40, 'HN668', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-09-05/17d871fc332e40f04caff43fa952fed0.jpeg', 1, 1, NULL, 0, '2022-10-08 20:36:19', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (38, 5, 5, 410697172304, 0, 'HN669', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-09-05/d611d19b8e7b76dc77287a4709cc3cfb.jpeg', 0, 0, NULL, 0, '2022-10-08 20:36:19', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (39, 5, 5, 411361540533, 28, 'HN670', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-10-01/895026ef7ecadcd6f9fda2cfe446ac90.jpeg', 7, 1, NULL, 0, '2022-10-08 20:36:19', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (40, 5, 5, 411366495987, 0, '665779472192', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-09-07/0194e1652ad7a11307157f30cb9e4f6f.jpeg', 0, 0, NULL, 0, '2022-10-08 20:36:20', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (41, 5, 5, 411370161999, 0, '670461866109', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-09-07/f5abdaf1b5b54114f50b08a45ed4a3e9.jpeg', 2, 1, NULL, 0, '2022-10-08 20:36:20', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (42, 5, 5, 411378921081, 0, '637993903547', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-09-07/cbebf578bbc128c9c701d6ca8bfd5f98.jpeg', 0, 1, NULL, 0, '2022-10-08 20:36:20', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (43, 5, 5, 411379965590, 0, '668784844135', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-09-07/b66cca1fa97d2f8abdad3af6b76717f8.jpeg', 0, 0, NULL, 0, '2022-10-08 20:36:20', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (44, 5, 5, 411726911306, 45, 'HN686', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-10-01/87f687ae1ad35b37f41184fc9751775a.jpeg', 0, 0, NULL, 0, '2022-10-08 20:36:20', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (45, 5, 5, 411728903206, 0, '', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-09-08/9c2159800f4698b5ba78f39bb18fedc8.jpeg', 0, 0, NULL, 0, '2022-10-08 20:36:20', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (46, 5, 5, 411729694401, 36, 'HN692', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-09-17/6e54ebddf5ae7f009c369c09b42deed2.jpeg', 7, 1, NULL, 0, '2022-10-08 20:36:21', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (47, 5, 5, 411731178725, 43, 'HN694', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-09-08/3d52f55f19e6062d22b9f92bbd625f60.jpeg', 1, 1, '供应商无货准备下架', 0, '2022-10-08 20:36:21', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (48, 5, 5, 411732581938, 32, 'HN697', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-09-27/01b7f53789a750c360e7e51850618299.jpeg', 8, 1, NULL, 0, '2022-10-08 20:36:21', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (49, 5, 5, 412120506598, 33, 'HN0801', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-09-09/9341ee50b7003832ccee394d68a340bf.jpeg', 63, 1, NULL, 0, '2022-10-08 20:36:21', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (50, 5, 5, 412133591017, 31, 'HN801', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-09-09/6e17994bb795bfa7f00c1d89c24afb16.jpeg', 4, 1, NULL, 0, '2022-10-08 20:36:21', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (51, 5, 5, 412137132774, 0, 'HN802', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-09-09/779f5bd008d0a9f2c7ec85c4524ee087.jpeg', 0, 0, NULL, 0, '2022-10-08 20:36:22', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (52, 5, 5, 412138772165, 0, 'HN805', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-09-09/0443f63986467ecc60b800b87f994ee0.jpeg', 0, 0, NULL, 0, '2022-10-08 20:36:22', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (53, 5, 5, 412139652425, 0, 'HN807', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-09-09/b46bd47c3fdd61fcf36bff584778562a.jpeg', 0, 0, NULL, 0, '2022-10-08 20:36:22', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (54, 5, 5, 414594889986, 0, '', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-09-16/238138bf7bc905fdd2b874e2f1e04059.jpeg', 3, 1, NULL, 0, '2022-10-08 20:36:22', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (55, 5, 5, 415222366821, 0, '', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-09-18/eb3104f22378716c41323375ebf61a71.jpeg', 0, 1, NULL, 0, '2022-10-08 20:36:22', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (56, 5, 5, 418757536479, 47, 'JKL805', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-09-28/a2937266502b0e40b13c5d297f65f69a.jpeg', 0, 1, NULL, 0, '2022-10-08 20:36:23', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (57, 5, 5, 420535061032, 0, '', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-10-06/64a7ae96630893e2986678cc0dbe85fa.jpeg', 0, 1, NULL, 0, '2022-10-08 20:36:23', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (58, 22, 6, 3572881699002051281, 44, 'HN660', NULL, NULL, 'https://cbu01.alicdn.com/img/ibank/O1CN01PyeFAc2FOyCUPpZr7_!!2208857268871-0-cib.jpg', 0, 1, NULL, 0, '2022-10-08 20:45:53', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (59, 14, 5, 398847598958, 0, '', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-08-06/1ddd0e51a7d17a4cbbb0b654d93bc03e.jpeg', 0, 1, NULL, 0, '2022-10-08 21:40:28', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (60, 14, 5, 399063348248, 0, '', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-08-07/a5377af55bc46da117fb838acefd4752.jpeg', 0, 1, NULL, 0, '2022-10-08 21:40:28', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (61, 14, 5, 399063851678, 0, 't651428823385', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-09-18/c245ce52dcf00faeb70fbeb70ff95759.jpeg', 0, 1, NULL, 0, '2022-10-08 21:40:28', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (62, 14, 5, 407249067559, 0, 't622135144835', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-08-28/2f00e9b96e58363c6163eee632053cb0.jpeg', 0, 1, NULL, 0, '2022-10-08 21:40:28', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (63, 14, 5, 407356168572, 0, 'T624078788603', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-08-28/9ec229b3320b6323a0af604193a48f94.jpeg', 0, 1, NULL, 0, '2022-10-08 21:40:29', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (64, 14, 5, 408246660557, 0, 'T610270951823', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-08-30/104e8f9c2637c2f40adc79cb4d632b0e.jpeg', 0, 1, NULL, 0, '2022-10-08 21:40:29', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (65, 14, 5, 408275614162, 0, 'T610041890003', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-08-30/bd786b8f2ea7621fa6b25b61936da0ed.jpeg', 0, 1, NULL, 0, '2022-10-08 21:40:29', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (66, 14, 5, 411405520617, 0, '675027903686', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-09-07/f44e84454b21878f86aa369afe25db9b.jpeg', 0, 1, NULL, 0, '2022-10-08 21:40:29', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (67, 14, 5, 415140360909, 0, 'HN014', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-09-18/7c541fde9014bf21b704b2f0c7222972.jpeg', 0, 1, NULL, 0, '2022-10-08 21:40:29', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (68, 14, 5, 415209134293, 0, '', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-09-18/d1310043dee0d103927764faff1472a8.jpeg', 0, 1, NULL, 0, '2022-10-08 21:40:29', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (69, 14, 5, 418749496896, 47, 'JKL805', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-10-08/de29e8e044c1dece30901ede5b2147bb.jpeg', 0, 1, '10.8全站推广出1单', 0, '2022-10-08 21:40:30', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (70, 14, 5, 421025454368, 0, 'JKL8990', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-10-08/ccaab6402c058b1785e734f427c0f454.jpeg', 0, 1, NULL, 0, '2022-10-08 21:40:30', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (71, 14, 5, 421031955741, 33, 'HN0801', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-10-08/bf6649625f7a93f810c190c4eb6836bc.jpeg', 0, 1, NULL, 0, '2022-10-08 21:40:30', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (72, 5, 5, 421771728900, 33, 'HN0801', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-10-11/74a3befbd651d6346d88a1dadb2f2038.jpeg', 0, 1, NULL, 0, '2022-10-11 19:26:16', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (73, 5, 5, 422383287651, 22, 'HN20220020', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-10-13/b33268c1cf711a642e875428cab25dca.jpeg', 0, 1, NULL, 0, '2022-10-20 00:07:48', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (74, 5, 5, 422437259657, 48, 'HN180', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-10-13/2c846bb7a2e6c721bf568b7c700ad5c6.jpeg', 0, 1, NULL, 0, '2022-10-20 00:07:48', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (75, 5, 5, 422742565233, 0, 'HN665', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-10-14/0a7922b5a51156df616b9c0f799f7d35.jpeg', 0, 1, NULL, 0, '2022-10-20 00:07:48', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (76, 5, 5, 422744325067, 0, '', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-10-14/a0e22024b4cfa11155cf757a9ff15b65.jpeg', 0, 1, NULL, 0, '2022-10-20 00:07:49', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (77, 5, 5, 423260246680, 0, '', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-10-16/1db23144091189ca733a4b65741460d4.jpeg', 0, 1, NULL, 0, '2022-10-20 00:07:49', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (78, 5, 5, 423441709778, 0, '', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-10-17/159c43ae0f01443810f4fb995e3661a6.jpeg', 0, 1, NULL, 0, '2022-10-20 00:07:49', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (79, 5, 5, 423486862283, 0, '', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-10-17/72d62fa205cb8dcc0bfea512950bde89.jpeg', 0, 1, NULL, 0, '2022-10-20 00:07:49', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (80, 5, 5, 423492956829, 0, 'HN683', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-10-17/7b0e9e0aa6ccc4db258f8f3272a352d0.jpeg', 0, 1, NULL, 0, '2022-10-20 00:07:49', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (81, 5, 5, 423502402446, 0, 'HN0802', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-10-17/5271991ad2674ff48d43edf9e7efed1e.jpeg', 0, 1, NULL, 0, '2022-10-20 00:07:49', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (82, 5, 5, 423703312591, 0, 'JKL333', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-10-18/d194906f1b1f52cd52d166a4866ff5ef.jpeg', 0, 1, NULL, 0, '2022-10-20 00:07:50', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (83, 5, 5, 423758757026, 0, 'JKL906', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-10-18/a63bcd8016f12c69daa29d0233fc9880.jpeg', 0, 1, NULL, 0, '2022-10-20 00:07:50', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods` VALUES (84, 5, 5, 423990076571, 49, 'JKL9098', NULL, NULL, 'https://img.pddpic.com/gaudit-image/2022-10-19/12cb7a79e5365c49be8c43dfc7f5e456.jpeg', 0, 1, NULL, 0, '2022-10-20 00:07:50', NULL, NULL, NULL);
+
+-- ----------------------------
+-- Table structure for oms_tenant_shop_goods_sku
+-- ----------------------------
+DROP TABLE IF EXISTS `oms_tenant_shop_goods_sku`;
+CREATE TABLE `oms_tenant_shop_goods_sku`  (
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `sku_id` bigint NOT NULL COMMENT '平台商品skuid',
+  `platform_goods_id` bigint NOT NULL COMMENT '平台商品id',
+  `erp_goods_spec_id` bigint NULL DEFAULT NULL COMMENT '供应链商品规格ID',
+  `erp_goods_id` bigint NULL DEFAULT NULL COMMENT '供应链商品ID',
+  `sku_code` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT '' COMMENT 'sku编码',
+  `goods_spec` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT 'sku描述',
+  `sku_quantity` bigint NULL DEFAULT NULL COMMENT 'sku数量',
+  `outer_id` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT 'sku编码',
+  `outer_goods_id` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT 'spu编码',
+  `consign_price` decimal(10, 2) NULL DEFAULT NULL COMMENT '分销基准价。代销场景均使用该价格。无SKU商品查看saleInfo中的consignPrice',
+  `retail_price` double NULL DEFAULT NULL COMMENT '建议零售价',
+  `price` double NULL DEFAULT NULL COMMENT '报价时该规格的单价，国际站注意要点：含有SKU属性的在线批发产品设定具体价格时使用此值，若设置阶梯价格则使用priceRange',
+  `amount_onsale` int NULL DEFAULT NULL COMMENT '可销售数量',
+  `status` int NULL DEFAULT NULL COMMENT '状态1上架2下架',
+  `shop_id` bigint NOT NULL COMMENT '店铺id',
+  `shop_type` int NOT NULL COMMENT '店铺类型',
+  `tenant_id` bigint NOT NULL COMMENT '租户ID（distributor）',
+  `create_time` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `create_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '创建人',
+  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
+  `update_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '更新人',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1484 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of oms_tenant_shop_goods_sku
+-- ----------------------------
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1, 1262178610550, 0, 400, 9, '复古蓝 S（80-95斤）', 'HN80264001', 105, 'HN80264001', '2720218026', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (2, 1262178610548, 0, 408, 9, '黑灰色 XL（115-125斤）', 'HN80267504', 20, 'HN80267504', '2720218026', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (3, 1262178610546, 0, 406, 9, '黑灰色 M（95-105斤）', 'HN80267502', 20, 'HN80267502', '2720218026', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (4, 1262178610552, 0, 402, 9, '复古蓝 L（105-115斤）', 'HN80264003', 105, 'HN80264003', '2720218026', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (5, 1262178610549, 0, 409, 9, '黑灰色 2XL（125-135斤）', 'HN80267505', 20, 'HN80267505', '2720218026', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (6, 1236824368730, 0, 30, 9, '黑色 L（105-115斤）', '2720210080260103', 20, '2720210080260103', '2720218026', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (7, 1262178610554, 0, 404, 9, '复古蓝 2XL（125-135斤）', 'HN80264005', 115, 'HN80264005', '2720218026', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (8, 1236824368731, 0, 31, 9, '黑色 XL（115-125斤）', '2720210080260104', 20, '2720210080260104', '2720218026', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (9, 1262178610553, 0, 403, 9, '复古蓝 XL（115-125斤）', 'HN80264004', 105, 'HN80264004', '2720218026', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (10, 1262178610551, 0, 401, 9, '复古蓝 M（95-105斤）', 'HN80264002', 105, 'HN80264002', '2720218026', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (11, 1236824368724, 0, 24, 9, '白色 M（95-105斤）', '2720210080260002', 212, '2720210080260002', '2720218026', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (12, 1236824368737, 0, 37, 9, '宝蓝色 2XL（125-135斤）', '2720210080260205', 65, '2720210080260205', '2720218026', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (13, 1262178610547, 0, 407, 9, '黑灰色 L（105-115斤）', 'HN80267503', 20, 'HN80267503', '2720218026', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (14, 1236824368723, 0, 23, 9, '白色 S（80-95斤）', '2720210080260001', 223, '2720210080260001', '2720218026', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (15, 1236824368742, 0, 42, 9, '浅蓝色 2XL（125-135斤）', '2720210080260305', 115, '2720210080260305', '2720218026', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (16, 1236824368738, 0, 38, 9, '浅蓝色 S（80-95斤）', '2720210080260301', 112, '2720210080260301', '2720218026', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (17, 1236824368740, 0, 40, 9, '浅蓝色 L（105-115斤）', '2720210080260303', 96, '2720210080260303', '2720218026', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (18, 1236824368741, 0, 41, 9, '浅蓝色 XL（115-125斤）', '2720210080260304', 122, '2720210080260304', '2720218026', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (19, 1236824368726, 0, 26, 9, '白色 XL（115-125斤）', '2720210080260004', 204, '2720210080260004', '2720218026', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (20, 1236824368725, 0, 25, 9, '白色 L（105-115斤）', '2720210080260003', 193, '2720210080260003', '2720218026', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (21, 1262178610545, 0, 405, 9, '黑灰色 S（80-95斤）', 'HN80267501', 20, 'HN80267501', '2720218026', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (22, 1236824368735, 0, 35, 9, '宝蓝色 L（105-115斤）', '2720210080260203', 70, '2720210080260203', '2720218026', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (23, 1236824368736, 0, 36, 9, '宝蓝色 XL（115-125斤）', '2720210080260204', 71, '2720210080260204', '2720218026', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (24, 1236824368734, 0, 34, 9, '宝蓝色 M（95-105斤）', '2720210080260202', 83, '2720210080260202', '2720218026', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (25, 1236824368732, 0, 32, 9, '黑色 2XL（125-135斤）', '2720210080260105', 20, '2720210080260105', '2720218026', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (26, 1236824368727, 0, 27, 9, '白色 2XL（125-135斤）', '2720210080260005', 218, '2720210080260005', '2720218026', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (27, 1236824368739, 0, 39, 9, '浅蓝色 M（95-105斤）', '2720210080260302', 93, '2720210080260302', '2720218026', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (28, 1236824368729, 0, 29, 9, '黑色 M（95-105斤）', '2720210080260102', 20, '2720210080260102', '2720218026', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (29, 1236824368728, 0, 28, 9, '黑色 S（80-95斤）', '2720210080260101', 20, '2720210080260101', '2720218026', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (30, 1236824368733, 0, 33, 9, '宝蓝色 S（80-95斤）', '2720210080260201', 98, '2720210080260201', '2720218026', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (31, 1249158140742, 0, 59, 11, '白色 M', '27202206080102', 69, '27202206080102', '2720220608', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (32, 1249158140748, 0, 70, 11, '黑灰色 L', '27202206080303', 10, '27202206080303', '2720220608', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (33, 1249158140744, 0, 61, 11, '白色 XL', '27202206080104', 70, '27202206080104', '2720220608', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (34, 1249158140749, 0, 71, 11, '黑灰色 XL', '27202206080304', 10, '27202206080304', '2720220608', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (35, 1249158140747, 0, 69, 11, '黑灰色 M', '27202206080302', 10, '27202206080302', '2720220608', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (36, 1238187231207, 0, 63, 11, '黑色 S', '27202206080201', 10, '27202206080201', '2720220608', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (37, 1238189648989, 0, 75, 11, '浅蓝色 L', '27202206080403', 175, '27202206080403', '2720220608', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (38, 1238187231209, 0, 65, 11, '黑色 L', '27202206080203', 9, '27202206080203', '2720220608', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (39, 1238189648988, 0, 74, 11, '浅蓝色 M', '27202206080402', 178, '27202206080402', '2720220608', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (40, 1249158140738, 0, 80, 11, '深蓝色 L', '27202206080503', 67, '27202206080503', '2720220608', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (41, 1238187231211, 0, 67, 11, '黑色 2XL', '27202206080205', 9, '27202206080205', '2720220608', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (42, 1238187231208, 0, 64, 11, '黑色 M', '27202206080202', 10, '27202206080202', '2720220608', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (43, 1249158140737, 0, 79, 11, '深蓝色 M', '27202206080502', 66, '27202206080502', '2720220608', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (44, 1238189648991, 0, 77, 11, '浅蓝色 2XL', '27202206080405', 178, '27202206080405', '2720220608', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (45, 1249158140739, 0, 81, 11, '深蓝色 XL', '27202206080504', 68, '27202206080504', '2720220608', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (46, 1249158140741, 0, 58, 11, '白色 S', '27202206080101', 70, '27202206080101', '2720220608', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (47, 1249158140745, 0, 62, 11, '白色 2XL', '27202206080105', 68, '27202206080105', '2720220608', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (48, 1238189648987, 0, 73, 11, '浅蓝色 S', '27202206080401', 175, '27202206080401', '2720220608', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (49, 1249158140746, 0, 68, 11, '黑灰色 S', '27202206080301', 10, '27202206080301', '2720220608', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (50, 1249158140750, 0, 72, 11, '黑灰色 2XL', '27202206080305', 10, '27202206080305', '2720220608', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (51, 1249158140736, 0, 78, 11, '深蓝色 S', '27202206080501', 66, '27202206080501', '2720220608', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (52, 1238187231210, 0, 66, 11, '黑色 XL', '27202206080204', 10, '27202206080204', '2720220608', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (53, 1238189648990, 0, 76, 11, '浅蓝色 XL', '27202206080404', 178, '27202206080404', '2720220608', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (54, 1249158140740, 0, 82, 11, '深蓝色 2XL', '27202206080505', 69, '27202206080505', '2720220608', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (55, 1249158140743, 0, 60, 11, '白色 L', '27202206080103', 69, '27202206080103', '2720220608', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (56, 1239269861271, 0, 85, 12, '黑色 L', '27202202700103', 39, '27202202700103', 'HN270', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (57, 1239269861273, 0, 87, 12, '黑色 2XL', '27202202700105', 49, '27202202700105', 'HN270', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (58, 1239269861269, 0, 83, 12, '黑色 S', '27202202700101', 44, '27202202700101', 'HN270', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (59, 1239269861270, 0, 84, 12, '黑色 M', '27202202700102', 35, '27202202700102', 'HN270', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (60, 1239269861272, 0, 86, 12, '黑色 XL', '27202202700104', 47, '27202202700104', 'HN270', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (61, 1239283006661, 0, 51, 10, '深灰色 XL', '27202208580204', 134, '27202208580204', '2720220858', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (62, 1239283006672, 0, 57, 10, '浅蓝色 2XL', '27202208580305', 135, '27202208580305', '2720220858', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (63, 1239283006666, 0, 46, 10, '黑色 XL', '27202208580104', 128, '27202208580104', '2720220858', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (64, 1239283006660, 0, 50, 10, '深灰色 L', '27202208580203', 123, '27202208580203', '2720220858', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (65, 1239283006662, 0, 52, 10, '深灰色 2XL', '27202208580205', 134, '27202208580205', '2720220858', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (66, 1239283006670, 0, 55, 10, '浅蓝色 L', '27202208580303', 120, '27202208580303', '2720220858', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (67, 1239283006659, 0, 49, 10, '深灰色 M', '27202208580202', 106, '27202208580202', '2720220858', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (68, 1239283006668, 0, 53, 10, '浅蓝色 S', '27202208580301', 102, '27202208580301', '2720220858', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (69, 1239283006669, 0, 54, 10, '浅蓝色 M', '27202208580302', 115, '27202208580302', '2720220858', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (70, 1239283006664, 0, 44, 10, '黑色 M', '27202208580102', 123, '27202208580102', '2720220858', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (71, 1239283006665, 0, 45, 10, '黑色 L', '27202208580103', 106, '27202208580103', '2720220858', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (72, 1239283006658, 0, 48, 10, '深灰色 S', '27202208580201', 112, '27202208580201', '2720220858', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (73, 1239283006667, 0, 47, 10, '黑色 2XL', '27202208580105', 138, '27202208580105', '2720220858', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (74, 1239283006671, 0, 56, 10, '浅蓝色 XL', '27202208580304', 126, '27202208580304', '2720220858', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (75, 1239283006663, 0, 43, 10, '黑色 S', '27202208580101', 110, '27202208580101', '2720220858', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (76, 1241979453566, 0, 102, 13, '黑灰色 2XL', '28202206810305', 1000, '28202206810305', 'HN0681', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (77, 1241979453562, 0, 98, 13, '黑灰色 S', '28202206810301', 1000, '28202206810301', 'HN0681', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (78, 1241979453565, 0, 101, 13, '黑灰色 XL', '28202206810304', 999, '28202206810304', 'HN0681', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (79, 1241979453552, 0, 88, 13, '复古蓝 S', '28202206810101', 987, '28202206810101', 'HN0681', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (80, 1241979453561, 0, 97, 13, '浅蓝色 2XL', '28202206810205', 1000, '28202206810205', 'HN0681', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (81, 1241979453557, 0, 93, 13, '浅蓝色 S', '28202206810201', 999, '28202206810201', 'HN0681', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (82, 1241979453564, 0, 100, 13, '黑灰色 L', '28202206810303', 999, '28202206810303', 'HN0681', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (83, 1241979453555, 0, 91, 13, '复古蓝 XL', '28202206810104', 989, '28202206810104', 'HN0681', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (84, 1241979453560, 0, 96, 13, '浅蓝色 XL', '28202206810204', 999, '28202206810204', 'HN0681', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (85, 1241979453559, 0, 95, 13, '浅蓝色 L', '28202206810203', 1000, '28202206810203', 'HN0681', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (86, 1241979453553, 0, 89, 13, '复古蓝 M', '28202206810102', 985, '28202206810102', 'HN0681', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (87, 1241979453556, 0, 92, 13, '复古蓝 2XL', '28202206810105', 994, '28202206810105', 'HN0681', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (88, 1241979453563, 0, 99, 13, '黑灰色 M', '28202206810302', 997, '28202206810302', 'HN0681', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (89, 1241979453554, 0, 90, 13, '复古蓝 L', '28202206810103', 997, '28202206810103', 'HN0681', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (90, 1241979453558, 0, 94, 13, '浅蓝色 M', '28202206810202', 999, '28202206810202', 'HN0681', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (91, 1243466497221, 0, 121, 15, '复古蓝 XL（30码115-125斤）', '28202106610104', 317, '28202106610104', 'HN0661', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (92, 1243466497220, 0, 120, 15, '复古蓝 L（29码105-115斤）', '28202106610103', 351, '28202106610103', 'HN0661', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (93, 1243466497222, 0, 122, 15, '复古蓝 2XL（31码125-135斤）', '28202106610105', 731, '28202106610105', 'HN0661', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (94, 1243466497229, 0, 129, 15, '黑灰色 M（27-28码95-105斤）', '28202106610302', 952, '28202106610302', 'HN0661', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (95, 1243466497228, 0, 128, 15, '黑灰色 S（25-26码95斤以内）', '28202106610301', 965, '28202106610301', 'HN0661', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (96, 1243466497226, 0, 126, 15, '浅蓝色 XL（30码115-125斤）', '28202106610204', 941, '28202106610204', 'HN0661', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (97, 1243466497218, 0, 118, 15, '复古蓝 S（25-26码95斤以内）', '28202106610101', 279, '28202106610101', 'HN0661', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (98, 1243466497224, 0, 124, 15, '浅蓝色 M（27-28码95-105斤）', '28202106610202', 920, '28202106610202', 'HN0661', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (99, 1243466497230, 0, 130, 15, '黑灰色 L（29码105-115斤）', '28202106610303', 951, '28202106610303', 'HN0661', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (100, 1243466497232, 0, 132, 15, '黑灰色 2XL（31码125-135斤）', '28202106610305', 961, '28202106610305', 'HN0661', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (101, 1243466497225, 0, 125, 15, '浅蓝色 L（29码105-115斤）', '28202106610203', 911, '28202106610203', 'HN0661', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (102, 1243466497231, 0, 131, 15, '黑灰色 XL（30码115-125斤）', '28202106610304', 973, '28202106610304', 'HN0661', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (103, 1243466497227, 0, 127, 15, '浅蓝色 2XL（31码125-135斤）', '28202106610205', 954, '28202106610205', 'HN0661', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (104, 1243466497219, 0, 119, 15, '复古蓝 M（27-28码95-105斤）', '28202106610102', 430, '28202106610102', 'HN0661', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (105, 1243466497223, 0, 123, 15, '浅蓝色 S（25-26码95斤以内）', '28202106610201', 941, '28202106610201', 'HN0661', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (106, 1262362978280, 0, 112, 14, '黑色 2XL', '27202207080205', 10, '27202207080205', 'HN0708', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (107, 1244694390444, 0, 103, 14, '灰色 S', '27202207080101', 104, '27202207080101', 'HN0708', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (108, 1262362978278, 0, 110, 14, '黑色 L', '27202207080203', 10, '27202207080203', 'HN0708', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (109, 1244694390446, 0, 105, 14, '灰色 L', '27202207080103', 84, '27202207080103', 'HN0708', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (110, 1262362978277, 0, 109, 14, '黑色 M', '27202207080202', 9, '27202207080202', 'HN0708', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (111, 1244694390445, 0, 104, 14, '灰色 M', '27202207080102', 90, '27202207080102', 'HN0708', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (112, 1244694390447, 0, 106, 14, '灰色 XL', '27202207080104', 99, '27202207080104', 'HN0708', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (113, 1244694390448, 0, 107, 14, '灰色 2XL', '27202207080105', 101, '27202207080105', 'HN0708', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (114, 1262362978276, 0, 108, 14, '黑色 S', '27202207080201', 10, '27202207080201', 'HN0708', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (115, 1262362978279, 0, 111, 14, '黑色 XL', '27202207080204', 10, '27202207080204', 'HN0708', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (116, 1262362978285, 0, 117, 14, '浅蓝色 2XL', '27202207080305', 8, '27202207080305', 'HN0708', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (117, 1262362978284, 0, 116, 14, '浅蓝色 XL', '27202207080304', 10, '27202207080304', 'HN0708', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (118, 1262362978282, 0, 114, 14, '浅蓝色 M', '27202207080302', 10, '27202207080302', 'HN0708', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (119, 1262362978281, 0, 113, 14, '浅蓝色 S', '27202207080301', 10, '27202207080301', 'HN0708', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (120, 1262362978283, 0, 115, 14, '浅蓝色 L', '27202207080303', 9, '27202207080303', 'HN0708', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (121, 1249444023929, 0, 0, 0, '浅蓝色 XS', '', 995, 'yfz-tb-650212367541', 'yfz-tb-650212367541', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (122, 1249444023917, 0, 0, 0, '黑色 XS', '', 994, 'yfz-tb-650212367541', 'yfz-tb-650212367541', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (123, 1249444023919, 0, 0, 0, '黑色 M', '', 976, 'yfz-tb-650212367541', 'yfz-tb-650212367541', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (124, 1249444023922, 0, 0, 0, '黑色 2XL', '', 981, 'yfz-tb-650212367541', 'yfz-tb-650212367541', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (125, 1249444023920, 0, 0, 0, '黑色 L', '', 979, 'yfz-tb-650212367541', 'yfz-tb-650212367541', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (126, 1249444023921, 0, 0, 0, '黑色 XL', '', 985, 'yfz-tb-650212367541', 'yfz-tb-650212367541', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (127, 1249444023931, 0, 0, 0, '浅蓝色 M', '', 882, 'yfz-tb-650212367541', 'yfz-tb-650212367541', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (128, 1249444023918, 0, 0, 0, '黑色 S', '', 987, 'yfz-tb-650212367541', 'yfz-tb-650212367541', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (129, 1249444023933, 0, 0, 0, '浅蓝色 XL', '', 910, 'yfz-tb-650212367541', 'yfz-tb-650212367541', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (130, 1249444023926, 0, 0, 0, '复古蓝 L', '', 881, 'yfz-tb-650212367541', 'yfz-tb-650212367541', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (131, 1249444023934, 0, 0, 0, '浅蓝色 2XL', '', 915, 'yfz-tb-650212367541', 'yfz-tb-650212367541', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (132, 1249444023925, 0, 0, 0, '复古蓝 M', '', 840, 'yfz-tb-650212367541', 'yfz-tb-650212367541', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (133, 1249444023930, 0, 0, 0, '浅蓝色 S', '', 885, 'yfz-tb-650212367541', 'yfz-tb-650212367541', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (134, 1249444023924, 0, 0, 0, '复古蓝 S', '', 915, 'yfz-tb-650212367541', 'yfz-tb-650212367541', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (135, 1249444023923, 0, 0, 0, '复古蓝 XS', '', 990, 'yfz-tb-650212367541', 'yfz-tb-650212367541', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (136, 1249444023927, 0, 0, 0, '复古蓝 XL', '', 907, 'yfz-tb-650212367541', 'yfz-tb-650212367541', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (137, 1249444023932, 0, 0, 0, '浅蓝色 L', '', 891, 'yfz-tb-650212367541', 'yfz-tb-650212367541', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (138, 1249444023928, 0, 0, 0, '复古蓝 2XL', '', 907, 'yfz-tb-650212367541', 'yfz-tb-650212367541', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (139, 1250808763993, 0, 0, 0, '黑色 XL', '', 94, '2720220270', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (140, 1250808225395, 0, 0, 0, '黑色 S', '', 187, '2720220270', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (141, 1250808225397, 0, 0, 0, '黑色 L', '', 190, '2720220270', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (142, 1250808763994, 0, 0, 0, '黑色 2XL', '', 98, '2720220270', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (143, 1250808225396, 0, 0, 0, '黑色 M', '', 177, '2720220270', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (144, 1264138569397, 0, 0, 0, '藏青色 26', '', 10, 'HN0025', 'HN0025', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (145, 1264138569387, 0, 0, 0, '灰色 32', '', 10, 'HN0025', 'HN0025', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (146, 1264138569394, 0, 0, 0, '浅蓝色 31', '', 10, 'HN0025', 'HN0025', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (147, 1264138569403, 0, 0, 0, '藏青色 32', '', 10, 'HN0025', 'HN0025', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (148, 1264138569399, 0, 0, 0, '藏青色 28', '', 10, 'HN0025', 'HN0025', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (149, 1264138569389, 0, 0, 0, '浅蓝色 26', '', 10, 'HN0025', 'HN0025', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (150, 1264138569391, 0, 0, 0, '浅蓝色 28', '', 10, 'HN0025', 'HN0025', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (151, 1264138569388, 0, 0, 0, '浅蓝色 25', '', 10, 'HN0025', 'HN0025', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (152, 1264138569374, 0, 0, 0, '黑色 27', '', 10, 'HN0025', 'HN0025', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (153, 1264138569375, 0, 0, 0, '黑色 28', '', 10, 'HN0025', 'HN0025', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (154, 1264138569393, 0, 0, 0, '浅蓝色 30', '', 10, 'HN0025', 'HN0025', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (155, 1264138569384, 0, 0, 0, '灰色 29', '', 10, 'HN0025', 'HN0025', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (156, 1264138569386, 0, 0, 0, '灰色 31', '', 10, 'HN0025', 'HN0025', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (157, 1264138569390, 0, 0, 0, '浅蓝色 27', '', 10, 'HN0025', 'HN0025', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (158, 1264138569401, 0, 0, 0, '藏青色 30', '', 10, 'HN0025', 'HN0025', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (159, 1264138569372, 0, 0, 0, '黑色 25', '', 10, 'HN0025', 'HN0025', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (160, 1264138569392, 0, 0, 0, '浅蓝色 29', '', 9, 'HN0025', 'HN0025', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (161, 1264138569377, 0, 0, 0, '黑色 30', '', 10, 'HN0025', 'HN0025', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (162, 1264138569382, 0, 0, 0, '灰色 27', '', 10, 'HN0025', 'HN0025', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (163, 1264138569378, 0, 0, 0, '黑色 31', '', 10, 'HN0025', 'HN0025', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (164, 1264138569381, 0, 0, 0, '灰色 26', '', 10, 'HN0025', 'HN0025', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (165, 1264138569373, 0, 0, 0, '黑色 26', '', 10, 'HN0025', 'HN0025', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (166, 1264138569385, 0, 0, 0, '灰色 30', '', 10, 'HN0025', 'HN0025', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (167, 1264138569402, 0, 0, 0, '藏青色 31', '', 10, 'HN0025', 'HN0025', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (168, 1264138569398, 0, 0, 0, '藏青色 27', '', 10, 'HN0025', 'HN0025', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (169, 1264138569379, 0, 0, 0, '黑色 32', '', 10, 'HN0025', 'HN0025', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (170, 1264138569395, 0, 0, 0, '浅蓝色 32', '', 10, 'HN0025', 'HN0025', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (171, 1264138569396, 0, 0, 0, '藏青色 25', '', 10, 'HN0025', 'HN0025', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (172, 1264138569380, 0, 0, 0, '灰色 25', '', 10, 'HN0025', 'HN0025', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (173, 1264138569383, 0, 0, 0, '灰色 28', '', 10, 'HN0025', 'HN0025', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (174, 1264138569400, 0, 0, 0, '藏青色 29', '', 10, 'HN0025', 'HN0025', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (175, 1264138569376, 0, 0, 0, '黑色 29', '', 10, 'HN0025', 'HN0025', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (176, 1257978437365, 0, 159, 16, '浅蓝 M', '28202106780002', 1802, '28202106780002', '2820210678', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (177, 1257978437367, 0, 161, 16, '浅蓝 XL', '28202106780004', 1855, '28202106780004', '2820210678', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (178, 1257978437366, 0, 160, 16, '浅蓝 L', '28202106780003', 1815, '28202106780003', '2820210678', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (179, 1257978437364, 0, 158, 16, '浅蓝 S', '28202106780001', 1826, '28202106780001', '2820210678', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (180, 1257978437368, 0, 162, 16, '浅蓝 2XL', '28202106780005', 1866, '28202106780005', '2820210678', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (181, 1257978913179, 0, 192, 18, '浅蓝色 XL', 'HN202200140304', 987, 'HN202200140304', 'HN0014', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (182, 1257978913180, 0, 193, 18, '浅蓝色 2XL', 'HN202200140305', 995, 'HN202200140305', 'HN0014', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (183, 1257978913169, 0, 182, 18, '黑色 XL', 'HN202200140104', 967, 'HN202200140104', 'HN0014', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (184, 1257978913176, 0, 189, 18, '浅蓝色 S', 'HN202200140301', 980, 'HN202200140301', 'HN0014', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (185, 1257978913167, 0, 180, 18, '黑色 M', 'HN202200140102', 903, 'HN202200140102', 'HN0014', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (186, 1257978913173, 0, 186, 18, '复古蓝 L', 'HN202200140203', 966, 'HN202200140203', 'HN0014', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (187, 1257978913168, 0, 181, 18, '黑色 L', 'HN202200140103', 952, 'HN202200140103', 'HN0014', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (188, 1257978913166, 0, 179, 18, '黑色 S', 'HN202200140101', 760, 'HN202200140101', 'HN0014', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (189, 1257978913174, 0, 187, 18, '复古蓝 XL', 'HN202200140204', 979, 'HN202200140204', 'HN0014', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (190, 1257978913170, 0, 183, 18, '黑色 2XL', 'HN202200140105', 979, 'HN202200140105', 'HN0014', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (191, 1257978913178, 0, 191, 18, '浅蓝色 L', 'HN202200140303', 987, 'HN202200140303', 'HN0014', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (192, 1257978913175, 0, 188, 18, '复古蓝 2XL', 'HN202200140205', 990, 'HN202200140205', 'HN0014', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (193, 1257978913172, 0, 185, 18, '复古蓝 M', 'HN202200140202', 958, 'HN202200140202', 'HN0014', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (194, 1257978913177, 0, 190, 18, '浅蓝色 M', 'HN202200140302', 978, 'HN202200140302', 'HN0014', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (195, 1257978913171, 0, 184, 18, '复古蓝 S', 'HN202200140201', 967, 'HN202200140201', 'HN0014', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (196, 1258473180987, 0, 0, 0, '背带裤+纯棉白T S', '', 100, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (197, 1258473180985, 0, 0, 0, '单件背带裤 L', '', 100, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (198, 1258473180989, 0, 0, 0, '背带裤+纯棉白T L', '', 100, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (199, 1258473180983, 0, 0, 0, '单件背带裤 S', '', 99, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (200, 1258473180986, 0, 0, 0, '单件背带裤 XL', '', 100, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (201, 1258473180984, 0, 0, 0, '单件背带裤 M', '', 100, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (202, 1258473180988, 0, 0, 0, '背带裤+纯棉白T M', '', 100, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (203, 1258473180990, 0, 0, 0, '背带裤+纯棉白T XL', '', 100, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (204, 1261841872282, 0, 336, 24, '深蓝色 2XL', 'HN202200120105', 45, 'HN202200120105', 'HN0012', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (205, 1261841872279, 0, 333, 24, '深蓝色 M', 'HN202200120102', 32, 'HN202200120102', 'HN0012', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (206, 1261841872278, 0, 332, 24, '深蓝色 S', 'HN202200120101', 37, 'HN202200120101', 'HN0012', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (207, 1261841872281, 0, 335, 24, '深蓝色 XL', 'HN202200120104', 45, 'HN202200120104', 'HN0012', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (208, 1261841872280, 0, 334, 24, '深蓝色 L', 'HN202200120103', 44, 'HN202200120103', 'HN0012', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (209, 1261849774936, 0, 0, 0, '蓝色 XL', '', 20, '', 'HN0010', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (210, 1261851471320, 0, 0, 0, '蓝色 2XL', '', 20, '', 'HN0010', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (211, 1261849774929, 0, 0, 0, '黑色 S', '', 20, '', 'HN0010', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (212, 1261849774933, 0, 0, 0, '蓝色 S', '', 20, '', 'HN0010', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (213, 1261849774935, 0, 0, 0, '蓝色 L', '', 20, '', 'HN0010', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (214, 1261849774932, 0, 0, 0, '黑色 XL', '', 20, '', 'HN0010', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (215, 1261849774934, 0, 0, 0, '蓝色 M', '', 20, '', 'HN0010', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (216, 1261849774930, 0, 0, 0, '黑色 M', '', 20, '', 'HN0010', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (217, 1261851471319, 0, 0, 0, '黑色 2XL', '', 20, '', 'HN0010', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (218, 1261849774931, 0, 0, 0, '黑色 L', '', 20, '', 'HN0010', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (219, 1262268996969, 0, 0, 0, '黑色 2XL', '', 1001, 'HN015', 'HN015', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (220, 1294385941600, 0, 0, 0, '复古蓝 2XL', '', 20, 'HN015', 'HN015', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (221, 1262268996965, 0, 0, 0, '黑色 S', '', 1006, 'HN015', 'HN015', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (222, 1262268996980, 0, 0, 0, '浅蓝色 XL', '', 930, 'HN015', 'HN015', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (223, 1262268996964, 0, 0, 0, '黑色 XS', '', 1014, 'HN015', 'HN015', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (224, 1262268996981, 0, 0, 0, '浅蓝色 2XL', '', 935, 'HN015', 'HN015', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (225, 1294385941597, 0, 0, 0, '复古蓝 M', '', 20, 'HN015', 'HN015', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (226, 1294385941595, 0, 0, 0, '复古蓝 XS', '', 20, 'HN015', 'HN015', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (227, 1294385941599, 0, 0, 0, '复古蓝 XL', '', 20, 'HN015', 'HN015', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (228, 1262268996979, 0, 0, 0, '浅蓝色 L', '', 869, 'HN015', 'HN015', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (229, 1262268996967, 0, 0, 0, '黑色 L', '', 996, 'HN015', 'HN015', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (230, 1262268996978, 0, 0, 0, '浅蓝色 M', '', 869, 'HN015', 'HN015', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (231, 1262268996977, 0, 0, 0, '浅蓝色 S', '', 872, 'HN015', 'HN015', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (232, 1262268996966, 0, 0, 0, '黑色 M', '', 993, 'HN015', 'HN015', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (233, 1262268996976, 0, 0, 0, '浅蓝色 XS', '', 1015, 'HN015', 'HN015', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (234, 1262268996968, 0, 0, 0, '黑色 XL', '', 1005, 'HN015', 'HN015', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (235, 1294385941596, 0, 0, 0, '复古蓝 S', '', 20, 'HN015', 'HN015', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (236, 1294385941598, 0, 0, 0, '复古蓝 L', '', 20, 'HN015', 'HN015', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (237, 1262776022851, 0, 0, 0, '浅蓝色 M', '', 20, 'HN0016', 'yfz-tb-670085078625', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (238, 1262776022853, 0, 0, 0, '浅蓝色 XL', '', 20, 'HN0016', 'yfz-tb-670085078625', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (239, 1262776022852, 0, 0, 0, '浅蓝色 L', '', 20, 'HN0016', 'yfz-tb-670085078625', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (240, 1262666161431, 0, 0, 0, '黑色 M', '', 1015, 'HN0016', 'yfz-tb-670085078625', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (241, 1262666161432, 0, 0, 0, '黑色 L', '', 1018, 'HN0016', 'yfz-tb-670085078625', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (242, 1262776022850, 0, 0, 0, '浅蓝色 S', '', 20, 'HN0016', 'yfz-tb-670085078625', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (243, 1262666161430, 0, 0, 0, '黑色 S', '', 1016, 'HN0016', 'yfz-tb-670085078625', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (244, 1262666161429, 0, 0, 0, '黑色 XS', '', 1017, 'HN0016', 'yfz-tb-670085078625', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (245, 1262776022849, 0, 0, 0, '浅蓝色 XS', '', 20, 'HN0016', 'yfz-tb-670085078625', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (246, 1262666161433, 0, 0, 0, '黑色 XL', '', 1017, 'HN0016', 'yfz-tb-670085078625', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (247, 1262852160966, 0, 0, 0, '石板灰 25', '', 20, 'HN0020', 'yfz-tb-638661096456', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (248, 1262666388065, 0, 0, 0, '浅蓝色 31', '', 508, 'HN0020', 'yfz-tb-638661096456', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (249, 1262666388053, 0, 0, 0, '黑色 27', '', 434, 'HN0020', 'yfz-tb-638661096456', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (250, 1262666388056, 0, 0, 0, '黑色 30', '', 462, 'HN0020', 'yfz-tb-638661096456', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (251, 1262852160973, 0, 0, 0, '石板灰 32', '', 20, 'HN0020', 'yfz-tb-638661096456', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (252, 1262666388059, 0, 0, 0, '浅蓝色 25', '', 507, 'HN0020', 'yfz-tb-638661096456', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (253, 1262852160960, 0, 0, 0, '深灰色 27', '', 20, 'HN0020', 'yfz-tb-638661096456', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (254, 1262852160972, 0, 0, 0, '石板灰 31', '', 20, 'HN0020', 'yfz-tb-638661096456', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (255, 1262666388052, 0, 0, 0, '黑色 26', '', 461, 'HN0020', 'yfz-tb-638661096456', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (256, 1262666388055, 0, 0, 0, '黑色 29', '', 444, 'HN0020', 'yfz-tb-638661096456', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (257, 1262666388060, 0, 0, 0, '浅蓝色 26', '', 461, 'HN0020', 'yfz-tb-638661096456', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (258, 1262852160959, 0, 0, 0, '深灰色 26', '', 20, 'HN0020', 'yfz-tb-638661096456', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (259, 1262852160964, 0, 0, 0, '深灰色 31', '', 20, 'HN0020', 'yfz-tb-638661096456', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (260, 1262666388066, 0, 0, 0, '浅蓝色 32', '', 507, 'HN0020', 'yfz-tb-638661096456', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (261, 1262666388054, 0, 0, 0, '黑色 28', '', 423, 'HN0020', 'yfz-tb-638661096456', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (262, 1262852160958, 0, 0, 0, '深灰色 25', '', 20, 'HN0020', 'yfz-tb-638661096456', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (263, 1262852160967, 0, 0, 0, '石板灰 26', '', 20, 'HN0020', 'yfz-tb-638661096456', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (264, 1262666388062, 0, 0, 0, '浅蓝色 28', '', 468, 'HN0020', 'yfz-tb-638661096456', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (265, 1262852160961, 0, 0, 0, '深灰色 28', '', 20, 'HN0020', 'yfz-tb-638661096456', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (266, 1262666388058, 0, 0, 0, '黑色 32', '', 480, 'HN0020', 'yfz-tb-638661096456', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (267, 1262852160963, 0, 0, 0, '深灰色 30', '', 20, 'HN0020', 'yfz-tb-638661096456', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (268, 1262852160965, 0, 0, 0, '深灰色 32', '', 20, 'HN0020', 'yfz-tb-638661096456', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (269, 1262852160970, 0, 0, 0, '石板灰 29', '', 20, 'HN0020', 'yfz-tb-638661096456', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (270, 1262852160969, 0, 0, 0, '石板灰 28', '', 20, 'HN0020', 'yfz-tb-638661096456', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (271, 1262666388061, 0, 0, 0, '浅蓝色 27', '', 453, 'HN0020', 'yfz-tb-638661096456', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (272, 1262666388057, 0, 0, 0, '黑色 31', '', 479, 'HN0020', 'yfz-tb-638661096456', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (273, 1262666388051, 0, 0, 0, '黑色 25', '', 415, 'HN0020', 'yfz-tb-638661096456', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (274, 1262852160962, 0, 0, 0, '深灰色 29', '', 18, 'HN0020', 'yfz-tb-638661096456', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (275, 1262852160968, 0, 0, 0, '石板灰 27', '', 20, 'HN0020', 'yfz-tb-638661096456', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (276, 1262666388063, 0, 0, 0, '浅蓝色 29', '', 493, 'HN0020', 'yfz-tb-638661096456', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (277, 1262666388064, 0, 0, 0, '浅蓝色 30', '', 493, 'HN0020', 'yfz-tb-638661096456', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (278, 1262852160971, 0, 0, 0, '石板灰 30', '', 20, 'HN0020', 'yfz-tb-638661096456', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (279, 1262855741579, 0, 0, 0, '黑色 25', '', 20, 'HN0022', 'yfz-tb-639346263403', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (280, 1262855741584, 0, 0, 0, '灰色 29', '', 20, 'HN0022', 'yfz-tb-639346263403', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (281, 1262666558181, 0, 0, 0, '黑色 31', '', 519, 'HN0022', 'yfz-tb-639346263403', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (282, 1262666558178, 0, 0, 0, '黑色 28', '', 518, 'HN0022', 'yfz-tb-639346263403', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (283, 1262855741580, 0, 0, 0, '灰色 25', '', 20, 'HN0022', 'yfz-tb-639346263403', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (284, 1262855741585, 0, 0, 0, '灰色 30', '', 20, 'HN0022', 'yfz-tb-639346263403', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (285, 1262666558176, 0, 0, 0, '黑色 26', '', 520, 'HN0022', 'yfz-tb-639346263403', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (286, 1262666558180, 0, 0, 0, '黑色 30', '', 520, 'HN0022', 'yfz-tb-639346263403', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (287, 1262855741586, 0, 0, 0, '灰色 31', '', 20, 'HN0022', 'yfz-tb-639346263403', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (288, 1262855741581, 0, 0, 0, '灰色 26', '', 20, 'HN0022', 'yfz-tb-639346263403', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (289, 1262666558179, 0, 0, 0, '黑色 29', '', 518, 'HN0022', 'yfz-tb-639346263403', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (290, 1262666558177, 0, 0, 0, '黑色 27', '', 520, 'HN0022', 'yfz-tb-639346263403', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (291, 1262855741587, 0, 0, 0, '灰色 32', '', 20, 'HN0022', 'yfz-tb-639346263403', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (292, 1262855741583, 0, 0, 0, '灰色 28', '', 20, 'HN0022', 'yfz-tb-639346263403', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (293, 1262666558182, 0, 0, 0, '黑色 32', '', 520, 'HN0022', 'yfz-tb-639346263403', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (294, 1262855741582, 0, 0, 0, '灰色 27', '', 20, 'HN0022', 'yfz-tb-639346263403', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (295, 1262666698661, 0, 0, 0, '黑色 31', '', 9987, 'HN0023', 'HN023', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (296, 1262742707196, 0, 0, 0, '海蓝色 29', '', 20, 'HN0023', 'HN023', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (297, 1262742707198, 0, 0, 0, '海蓝色 31', '', 20, 'HN0023', 'HN023', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (298, 1262666698659, 0, 0, 0, '黑色 29', '', 9912, 'HN0023', 'HN023', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (299, 1262666698662, 0, 0, 0, '黑色 32', '', 9981, 'HN0023', 'HN023', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (300, 1262742707205, 0, 0, 0, '深灰色 30', '', 20, 'HN0023', 'HN023', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (301, 1262742707199, 0, 0, 0, '海蓝色 32', '', 20, 'HN0023', 'HN023', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (302, 1262742707197, 0, 0, 0, '海蓝色 30', '', 20, 'HN0023', 'HN023', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (303, 1262742707208, 0, 0, 0, '亮钢蓝 25', '', 20, 'HN0023', 'HN023', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (304, 1262742707212, 0, 0, 0, '亮钢蓝 29', '', 20, 'HN0023', 'HN023', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (305, 1262666698655, 0, 0, 0, '黑色 25', '', 9978, 'HN0023', 'HN023', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (306, 1262742707209, 0, 0, 0, '亮钢蓝 26', '', 20, 'HN0023', 'HN023', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (307, 1262742707211, 0, 0, 0, '亮钢蓝 28', '', 20, 'HN0023', 'HN023', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (308, 1262742707210, 0, 0, 0, '亮钢蓝 27', '', 20, 'HN0023', 'HN023', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (309, 1262666698656, 0, 0, 0, '黑色 26', '', 9918, 'HN0023', 'HN023', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (310, 1262742707193, 0, 0, 0, '海蓝色 26', '', 20, 'HN0023', 'HN023', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (311, 1262742707214, 0, 0, 0, '亮钢蓝 31', '', 20, 'HN0023', 'HN023', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (312, 1262742707202, 0, 0, 0, '深灰色 27', '', 20, 'HN0023', 'HN023', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (313, 1262666698660, 0, 0, 0, '黑色 30', '', 9923, 'HN0023', 'HN023', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (314, 1262742707215, 0, 0, 0, '亮钢蓝 32', '', 20, 'HN0023', 'HN023', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (315, 1262742707194, 0, 0, 0, '海蓝色 27', '', 20, 'HN0023', 'HN023', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (316, 1262742707195, 0, 0, 0, '海蓝色 28', '', 20, 'HN0023', 'HN023', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (317, 1262742707203, 0, 0, 0, '深灰色 28', '', 20, 'HN0023', 'HN023', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (318, 1262666698658, 0, 0, 0, '黑色 28', '', 9876, 'HN0023', 'HN023', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (319, 1262742707201, 0, 0, 0, '深灰色 26', '', 20, 'HN0023', 'HN023', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (320, 1262742707192, 0, 0, 0, '海蓝色 25', '', 20, 'HN0023', 'HN023', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (321, 1262742707207, 0, 0, 0, '深灰色 32', '', 20, 'HN0023', 'HN023', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (322, 1262742707213, 0, 0, 0, '亮钢蓝 30', '', 20, 'HN0023', 'HN023', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (323, 1262666698657, 0, 0, 0, '黑色 27', '', 9889, 'HN0023', 'HN023', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (324, 1262742707204, 0, 0, 0, '深灰色 29', '', 20, 'HN0023', 'HN023', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (325, 1262742707200, 0, 0, 0, '深灰色 25', '', 20, 'HN0023', 'HN023', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (326, 1262742707206, 0, 0, 0, '深灰色 31', '', 20, 'HN0023', 'HN023', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (327, 1262666896377, 0, 311, 23, '黑灰色 28', 'HN202200240228', 1011, 'HN202200240228', 'HN20220024', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (328, 1262666896370, 0, 319, 23, '浅蓝色 28', 'HN202200240328', 1011, 'HN202200240328', 'HN20220024', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (329, 1262666896361, 0, 301, 23, '黑色 26', 'HN202200240126', 1018, 'HN202200240126', 'HN20220024', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (330, 1262666896386, 0, 329, 23, '蓝灰色 30', 'HN202200240430', 1013, 'HN202200240430', 'HN20220024', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (331, 1262666896374, 0, 323, 23, '浅蓝色 32', 'HN202200240332', 1015, 'HN202200240332', 'HN20220024', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (332, 1262666896378, 0, 312, 23, '黑灰色 29', 'HN202200240229', 1020, 'HN202200240229', 'HN20220024', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (333, 1262666896365, 0, 305, 23, '黑色 30', 'HN202200240130', 1019, 'HN202200240130', 'HN20220024', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (334, 1262666896385, 0, 328, 23, '蓝灰色 29', 'HN202200240429', 1018, 'HN202200240429', 'HN20220024', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (335, 1262666896381, 0, 315, 23, '黑灰色 32', 'HN202200240232', 1019, 'HN202200240232', 'HN20220024', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (336, 1262666896368, 0, 317, 23, '浅蓝色 26', 'HN202200240326', 1015, 'HN202200240326', 'HN20220024', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (337, 1262666896373, 0, 322, 23, '浅蓝色 31', 'HN202200240331', 1017, 'HN202200240331', 'HN20220024', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (338, 1262666896383, 0, 326, 23, '蓝灰色 27', 'HN202200240427', 1017, 'HN202200240427', 'HN20220024', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (339, 1262666896367, 0, 307, 23, '黑色 32', 'HN202200240132', 1019, 'HN202200240132', 'HN20220024', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (340, 1262666896387, 0, 330, 23, '蓝灰色 31', 'HN202200240431', 1018, 'HN202200240431', 'HN20220024', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (341, 1262666896388, 0, 331, 23, '蓝灰色 32', 'HN202200240432', 1015, 'HN202200240432', 'HN20220024', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (342, 1262666896380, 0, 314, 23, '黑灰色 31', 'HN202200240231', 1020, 'HN202200240231', 'HN20220024', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (343, 1262666896364, 0, 304, 23, '黑色 29', 'HN202200240129', 1018, 'HN202200240129', 'HN20220024', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (344, 1262666896372, 0, 321, 23, '浅蓝色 30', 'HN202200240330', 1010, 'HN202200240330', 'HN20220024', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (345, 1262666896363, 0, 303, 23, '黑色 28', 'HN202200240128', 1018, 'HN202200240128', 'HN20220024', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (346, 1262666896371, 0, 320, 23, '浅蓝色 29', 'HN202200240329', 1016, 'HN202200240329', 'HN20220024', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (347, 1262666896382, 0, 325, 23, '蓝灰色 26', 'HN202200240426', 1016, 'HN202200240426', 'HN20220024', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (348, 1262666896366, 0, 306, 23, '黑色 31', 'HN202200240131', 1019, 'HN202200240131', 'HN20220024', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (349, 1262666896362, 0, 302, 23, '黑色 27', 'HN202200240127', 1019, 'HN202200240127', 'HN20220024', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (350, 1262666896376, 0, 310, 23, '黑灰色 27', 'HN202200240227', 1015, 'HN202200240227', 'HN20220024', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (351, 1262666896369, 0, 318, 23, '浅蓝色 27', 'HN202200240327', 1012, 'HN202200240327', 'HN20220024', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (352, 1262666896375, 0, 309, 23, '黑灰色 26', 'HN202200240226', 1015, 'HN202200240226', 'HN20220024', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (353, 1262666896384, 0, 327, 23, '蓝灰色 28', 'HN202200240428', 1014, 'HN202200240428', 'HN20220024', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (354, 1262666896379, 0, 313, 23, '黑灰色 30', 'HN202200240230', 1020, 'HN202200240230', 'HN20220024', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (355, 1262667109644, 0, 0, 0, '黑色 28', '', 1020, 'HN0029', 'HN0029', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (356, 1262667109643, 0, 0, 0, '黑色 27', '', 1020, 'HN0029', 'HN0029', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (357, 1262783777281, 0, 0, 0, '蓝色 31', '', 20, 'HN0029', 'HN0029', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (358, 1262783777288, 0, 0, 0, '深灰色 30', '', 20, 'HN0029', 'HN0029', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (359, 1262667109647, 0, 0, 0, '黑色 31', '', 1019, 'HN0029', 'HN0029', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (360, 1262783777276, 0, 0, 0, '蓝色 26', '', 20, 'HN0029', 'HN0029', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (361, 1262783777289, 0, 0, 0, '深灰色 31', '', 20, 'HN0029', 'HN0029', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (362, 1262783777282, 0, 0, 0, '蓝色 32', '', 20, 'HN0029', 'HN0029', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (363, 1262783777290, 0, 0, 0, '深灰色 32', '', 20, 'HN0029', 'HN0029', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (364, 1262783777286, 0, 0, 0, '深灰色 28', '', 20, 'HN0029', 'HN0029', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (365, 1262783777279, 0, 0, 0, '蓝色 29', '', 20, 'HN0029', 'HN0029', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (366, 1262783777283, 0, 0, 0, '深灰色 25', '', 20, 'HN0029', 'HN0029', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (367, 1262667109648, 0, 0, 0, '黑色 32', '', 1020, 'HN0029', 'HN0029', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (368, 1262667109645, 0, 0, 0, '黑色 29', '', 1020, 'HN0029', 'HN0029', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (369, 1262783777277, 0, 0, 0, '蓝色 27', '', 20, 'HN0029', 'HN0029', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (370, 1262667109646, 0, 0, 0, '黑色 30', '', 1020, 'HN0029', 'HN0029', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (371, 1262783777285, 0, 0, 0, '深灰色 27', '', 20, 'HN0029', 'HN0029', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (372, 1262667109641, 0, 0, 0, '黑色 25', '', 1020, 'HN0029', 'HN0029', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (373, 1262667109642, 0, 0, 0, '黑色 26', '', 1020, 'HN0029', 'HN0029', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (374, 1262783777287, 0, 0, 0, '深灰色 29', '', 20, 'HN0029', 'HN0029', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (375, 1262783777275, 0, 0, 0, '蓝色 25', '', 20, 'HN0029', 'HN0029', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (376, 1262783777280, 0, 0, 0, '蓝色 30', '', 20, 'HN0029', 'HN0029', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (377, 1262783777278, 0, 0, 0, '蓝色 28', '', 19, 'HN0029', 'HN0029', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (378, 1262783777284, 0, 0, 0, '深灰色 26', '', 20, 'HN0029', 'HN0029', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (379, 1263497350054, 0, 0, 0, '32 145斤到155斤左右', '', 100, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (380, 1263497350052, 0, 0, 0, '30 125斤到135斤左右', '', 100, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (381, 1263497350051, 0, 0, 0, '29 115斤到125斤左右', '', 100, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (382, 1263497350055, 0, 0, 0, '33 155斤到175斤左右', '', 100, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (383, 1263497350050, 0, 0, 0, '28 100斤到115斤左右', '', 100, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (384, 1263497350053, 0, 0, 0, '31 135斤到145斤左右', '', 100, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (385, 1271533011330, 0, 0, 0, '黑灰 28', '', 220, 'KH9688', 'T610041890003', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (386, 1271533011332, 0, 0, 0, '黑灰 30', '', 220, 'KH9688', 'T610041890003', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (387, 1271533011327, 0, 0, 0, '蓝灰 32', '', 220, 'KH9688', 'T610041890003', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (388, 1271533011334, 0, 0, 0, '黑灰 32', '', 220, 'KH9688', 'T610041890003', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (389, 1271533011331, 0, 0, 0, '黑灰 29', '', 220, 'KH9688', 'T610041890003', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (390, 1271533011321, 0, 0, 0, '蓝灰 26', '', 220, 'KH9688', 'T610041890003', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (391, 1271533011323, 0, 0, 0, '蓝灰 28', '', 220, 'KH9688', 'T610041890003', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (392, 1271533011322, 0, 0, 0, '蓝灰 27', '', 220, 'KH9688', 'T610041890003', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (393, 1271533011326, 0, 0, 0, '蓝灰 31', '', 220, 'KH9688', 'T610041890003', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (394, 1271533011329, 0, 0, 0, '黑灰 27', '', 220, 'KH9688', 'T610041890003', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (395, 1271533011325, 0, 0, 0, '蓝灰 30', '', 220, 'KH9688', 'T610041890003', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (396, 1271533011333, 0, 0, 0, '黑灰 31', '', 220, 'KH9688', 'T610041890003', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (397, 1271533011324, 0, 0, 0, '蓝灰 29', '', 220, 'KH9688', 'T610041890003', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (398, 1271533011328, 0, 0, 0, '黑灰 26', '', 220, 'KH9688', 'T610041890003', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (399, 1274875964281, 0, 0, 0, '浅蓝色 XL', '', 20, 'HN0180', 'HN180', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (400, 1274875964278, 0, 0, 0, '浅蓝色 S', '', 20, 'HN0180', 'HN180', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (401, 1274875964279, 0, 0, 0, '浅蓝色 M', '', 20, 'HN0180', 'HN180', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (402, 1274875964282, 0, 0, 0, '浅蓝色 2XL', '', 20, 'HN0180', 'HN180', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (403, 1274875964280, 0, 0, 0, '浅蓝色 L', '', 20, 'HN0180', 'HN180', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (404, 1274883221799, 0, 553, 37, '蓝色 XL', 'HN1064004', 69, 'HN1064004', 'HN106', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (405, 1274883221793, 0, 547, 37, '黑色 L', 'HN1060103', 69, 'HN1060103', 'HN106', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (406, 1274883221792, 0, 546, 37, '黑色 M', 'HN1060102', 69, 'HN1060102', 'HN106', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (407, 1274883221800, 0, 554, 37, '蓝色 2XL', 'HN1064005', 70, 'HN1064005', 'HN106', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (408, 1274883221803, 0, 557, 37, '石板灰 L', 'HN1062903', 70, 'HN1062903', 'HN106', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (409, 1274883221795, 0, 549, 37, '黑色 2XL', 'HN1060105', 68, 'HN1060105', 'HN106', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (410, 1274883221797, 0, 551, 37, '蓝色 M', 'HN1064002', 67, 'HN1064002', 'HN106', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (411, 1274883221798, 0, 552, 37, '蓝色 L', 'HN1064003', 69, 'HN1064003', 'HN106', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (412, 1274883221804, 0, 558, 37, '石板灰 XL', 'HN1062904', 70, 'HN1062904', 'HN106', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (413, 1274883221791, 0, 545, 37, '黑色 S', 'HN1060101', 70, 'HN1060101', 'HN106', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (414, 1274883221805, 0, 559, 37, '石板灰 2XL', 'HN1062905', 70, 'HN1062905', 'HN106', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (415, 1274883221796, 0, 550, 37, '蓝色 S', 'HN1064001', 68, 'HN1064001', 'HN106', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (416, 1274883221794, 0, 548, 37, '黑色 XL', 'HN1060104', 70, 'HN1060104', 'HN106', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (417, 1274883221802, 0, 556, 37, '石板灰 M', 'HN1062902', 69, 'HN1062902', 'HN106', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (418, 1274883221801, 0, 555, 37, '石板灰 S', 'HN1062901', 69, 'HN1062901', 'HN106', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (419, 1274887667603, 0, 0, 0, '浅蓝色 29', '', 20, 'HN0222', 'HN222', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (420, 1274887667608, 0, 0, 0, '深蓝色 27', '', 18, 'HN0222', 'HN222', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (421, 1274887667601, 0, 0, 0, '浅蓝色 27', '', 20, 'HN0222', 'HN222', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (422, 1274887667610, 0, 0, 0, '深蓝色 29', '', 19, 'HN0222', 'HN222', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (423, 1274887667602, 0, 0, 0, '浅蓝色 28', '', 20, 'HN0222', 'HN222', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (424, 1274887667604, 0, 0, 0, '浅蓝色 30', '', 20, 'HN0222', 'HN222', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (425, 1274887667600, 0, 0, 0, '浅蓝色 26', '', 20, 'HN0222', 'HN222', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (426, 1274887667612, 0, 0, 0, '深蓝色 31', '', 20, 'HN0222', 'HN222', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (427, 1274887667611, 0, 0, 0, '深蓝色 30', '', 20, 'HN0222', 'HN222', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (428, 1274887667606, 0, 0, 0, '浅蓝色 32', '', 20, 'HN0222', 'HN222', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (429, 1274887667605, 0, 0, 0, '浅蓝色 31', '', 20, 'HN0222', 'HN222', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (430, 1274887667607, 0, 0, 0, '深蓝色 26', '', 18, 'HN0222', 'HN222', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (431, 1274887667609, 0, 0, 0, '深蓝色 28', '', 20, 'HN0222', 'HN222', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (432, 1274887667613, 0, 0, 0, '深蓝色 32', '', 19, 'HN0222', 'HN222', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (433, 1274915162081, 0, 0, 0, '深灰色 M', '', 20, 'HN0620', 'HN620', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (434, 1274915162088, 0, 0, 0, '浅蓝色 XL', '', 20, 'HN0620', 'HN620', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (435, 1274915162094, 0, 0, 0, '湖蓝色 2XL', '', 20, 'HN0620', 'HN620', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (436, 1274915162085, 0, 0, 0, '浅蓝色 S', '', 20, 'HN0620', 'HN620', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (437, 1274915162090, 0, 0, 0, '湖蓝色 S', '', 20, 'HN0620', 'HN620', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (438, 1274915162082, 0, 0, 0, '深灰色 L', '', 20, 'HN0620', 'HN620', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (439, 1274915162080, 0, 0, 0, '深灰色 S', '', 20, 'HN0620', 'HN620', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (440, 1274915162086, 0, 0, 0, '浅蓝色 M', '', 20, 'HN0620', 'HN620', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (441, 1274915162091, 0, 0, 0, '湖蓝色 M', '', 20, 'HN0620', 'HN620', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (442, 1274915162092, 0, 0, 0, '湖蓝色 L', '', 20, 'HN0620', 'HN620', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (443, 1274915162083, 0, 0, 0, '深灰色 XL', '', 20, 'HN0620', 'HN620', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (444, 1274915162084, 0, 0, 0, '深灰色 2XL', '', 20, 'HN0620', 'HN620', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (445, 1274915162087, 0, 0, 0, '浅蓝色 L', '', 20, 'HN0620', 'HN620', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (446, 1274915162089, 0, 0, 0, '浅蓝色 2XL', '', 20, 'HN0620', 'HN620', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (447, 1274915162093, 0, 0, 0, '湖蓝色 XL', '', 20, 'HN0620', 'HN620', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (448, 1274920833073, 0, 0, 0, '黑色 L', '', 20, 'HN0621', 'HN621', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (449, 1274920833090, 0, 0, 0, '浅蓝色 2XL', '', 20, 'HN0621', 'HN621', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (450, 1274920833087, 0, 0, 0, '浅蓝色 M', '', 20, 'HN0621', 'HN621', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (451, 1274920833079, 0, 0, 0, '深灰色 XL', '', 20, 'HN0621', 'HN621', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (452, 1274920833074, 0, 0, 0, '黑色 XL', '', 20, 'HN0621', 'HN621', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (453, 1274920833080, 0, 0, 0, '深灰色 2XL', '', 20, 'HN0621', 'HN621', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (454, 1274920833076, 0, 0, 0, '深灰色 S', '', 20, 'HN0621', 'HN621', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (455, 1274920833077, 0, 0, 0, '深灰色 M', '', 20, 'HN0621', 'HN621', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (456, 1274920833084, 0, 0, 0, '藏青色 XL', '', 20, 'HN0621', 'HN621', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (457, 1274920833072, 0, 0, 0, '黑色 M', '', 20, 'HN0621', 'HN621', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (458, 1274920833075, 0, 0, 0, '黑色 2XL', '', 20, 'HN0621', 'HN621', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (459, 1274920833083, 0, 0, 0, '藏青色 L', '', 20, 'HN0621', 'HN621', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (460, 1274920833078, 0, 0, 0, '深灰色 L', '', 20, 'HN0621', 'HN621', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (461, 1274920833086, 0, 0, 0, '浅蓝色 S', '', 20, 'HN0621', 'HN621', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (462, 1274920833082, 0, 0, 0, '藏青色 M', '', 20, 'HN0621', 'HN621', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (463, 1274920833089, 0, 0, 0, '浅蓝色 XL', '', 20, 'HN0621', 'HN621', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (464, 1274920833088, 0, 0, 0, '浅蓝色 L', '', 20, 'HN0621', 'HN621', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (465, 1274920833081, 0, 0, 0, '藏青色 S', '', 20, 'HN0621', 'HN621', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (466, 1274920833071, 0, 0, 0, '黑色 S', '', 20, 'HN0621', 'HN621', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (467, 1274920833085, 0, 0, 0, '藏青色 2XL', '', 20, 'HN0621', 'HN621', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (468, 1274926586717, 0, 0, 0, '宝蓝色 L', '', 20, 'HN0630', 'HN630', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (469, 1274926586713, 0, 0, 0, '深灰色 XL', '', 20, 'HN0630', 'HN630', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (470, 1274926586712, 0, 0, 0, '深灰色 L', '', 19, 'HN0630', 'HN630', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (471, 1274926586710, 0, 0, 0, '深灰色 S', '', 20, 'HN0630', 'HN630', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (472, 1274926586715, 0, 0, 0, '宝蓝色 S', '', 20, 'HN0630', 'HN630', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (473, 1274926586722, 0, 0, 0, '浅蓝色 L', '', 20, 'HN0630', 'HN630', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (474, 1274926586714, 0, 0, 0, '深灰色 2XL', '', 20, 'HN0630', 'HN630', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (475, 1274926586716, 0, 0, 0, '宝蓝色 M', '', 20, 'HN0630', 'HN630', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (476, 1274926586719, 0, 0, 0, '宝蓝色 2XL', '', 20, 'HN0630', 'HN630', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (477, 1274926586723, 0, 0, 0, '浅蓝色 XL', '', 20, 'HN0630', 'HN630', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (478, 1274926586724, 0, 0, 0, '浅蓝色 2XL', '', 20, 'HN0630', 'HN630', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (479, 1274926586711, 0, 0, 0, '深灰色 M', '', 20, 'HN0630', 'HN630', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (480, 1274926586721, 0, 0, 0, '浅蓝色 M', '', 20, 'HN0630', 'HN630', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (481, 1274926586720, 0, 0, 0, '浅蓝色 S', '', 20, 'HN0630', 'HN630', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (482, 1274926586718, 0, 0, 0, '宝蓝色 XL', '', 20, 'HN0630', 'HN630', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (483, 1275780297875, 0, 0, 0, '宝蓝色 M', '', 20, 'HN0660', 'HN660', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (484, 1275780297878, 0, 0, 0, '宝蓝色 2XL', '', 20, 'HN0660', 'HN660', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (485, 1275780297882, 0, 0, 0, '浅蓝色 XL', '', 20, 'HN0660', 'HN660', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (486, 1275780297874, 0, 0, 0, '宝蓝色 S', '', 20, 'HN0660', 'HN660', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (487, 1275780297880, 0, 0, 0, '浅蓝色 M', '', 20, 'HN0660', 'HN660', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (488, 1275780297873, 0, 0, 0, '深灰色 2XL', '', 20, 'HN0660', 'HN660', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (489, 1275780297879, 0, 0, 0, '浅蓝色 S', '', 20, 'HN0660', 'HN660', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (490, 1275780297872, 0, 0, 0, '深灰色 XL', '', 20, 'HN0660', 'HN660', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (491, 1275780297869, 0, 0, 0, '深灰色 S', '', 20, 'HN0660', 'HN660', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (492, 1275780297864, 0, 0, 0, '黑色 S', '', 20, 'HN0660', 'HN660', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (493, 1275780297883, 0, 0, 0, '浅蓝色 2XL', '', 20, 'HN0660', 'HN660', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (494, 1275780297881, 0, 0, 0, '浅蓝色 L', '', 20, 'HN0660', 'HN660', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (495, 1275780297865, 0, 0, 0, '黑色 M', '', 20, 'HN0660', 'HN660', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (496, 1275780297867, 0, 0, 0, '黑色 XL', '', 20, 'HN0660', 'HN660', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (497, 1275780297876, 0, 0, 0, '宝蓝色 L', '', 19, 'HN0660', 'HN660', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (498, 1275780297868, 0, 0, 0, '黑色 2XL', '', 20, 'HN0660', 'HN660', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (499, 1275780297870, 0, 0, 0, '深灰色 M', '', 20, 'HN0660', 'HN660', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (500, 1275780297866, 0, 0, 0, '黑色 L', '', 20, 'HN0660', 'HN660', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (501, 1275780297877, 0, 0, 0, '宝蓝色 XL', '', 20, 'HN0660', 'HN660', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (502, 1275780297871, 0, 0, 0, '深灰色 L', '', 20, 'HN0660', 'HN660', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (503, 1275783538406, 0, 0, 0, '浅蓝色 S', '', 20, 'HN0662', 'HN662', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (504, 1275783538409, 0, 0, 0, '浅蓝色 XL', '', 20, 'HN0662', 'HN662', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (505, 1275783538410, 0, 0, 0, '浅蓝色 2XL', '', 20, 'HN0662', 'HN662', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (506, 1275783538407, 0, 0, 0, '浅蓝色 M', '', 20, 'HN0662', 'HN662', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (507, 1275783538408, 0, 0, 0, '浅蓝色 L', '', 20, 'HN0662', 'HN662', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (508, 1276549759303, 0, 0, 0, '浅蓝色 2XL', '', 20, 'HN0663', 'HN663', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (509, 1276549759304, 0, 0, 0, '黑灰色 S', '', 20, 'HN0663', 'HN663', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (510, 1276549759300, 0, 0, 0, '浅蓝色 M', '', 19, 'HN0663', 'HN663', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (511, 1276549759308, 0, 0, 0, '黑灰色 2XL', '', 20, 'HN0663', 'HN663', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (512, 1276549759307, 0, 0, 0, '黑灰色 XL', '', 20, 'HN0663', 'HN663', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (513, 1276549759299, 0, 0, 0, '浅蓝色 S', '', 20, 'HN0663', 'HN663', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (514, 1276549759305, 0, 0, 0, '黑灰色 M', '', 19, 'HN0663', 'HN663', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (515, 1276549759306, 0, 0, 0, '黑灰色 L', '', 20, 'HN0663', 'HN663', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (516, 1276549759302, 0, 0, 0, '浅蓝色 XL', '', 20, 'HN0663', 'HN663', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (517, 1276549759301, 0, 0, 0, '浅蓝色 L', '', 20, 'HN0663', 'HN663', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (518, 1276552341638, 0, 0, 0, '黑色 L', '', 20, 'HN0665', 'HN665', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (519, 1276552341639, 0, 0, 0, '黑色 XL', '', 20, 'HN0665', 'HN665', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (520, 1276552341637, 0, 0, 0, '黑色 M', '', 20, 'HN0665', 'HN665', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (521, 1276552341640, 0, 0, 0, '黑色 2XL', '', 20, 'HN0665', 'HN665', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (522, 1276552341636, 0, 0, 0, '黑色 S', '', 20, 'HN0665', 'HN665', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (523, 1276555714237, 0, 0, 0, '深天蓝 L', '', 20, 'HN0666', 'HN666', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (524, 1276555714229, 0, 0, 0, '黑色 2XL', '', 20, 'HN0666', 'HN666', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (525, 1276555714242, 0, 0, 0, '浅蓝色 L', '', 20, 'HN0666', 'HN666', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (526, 1276555714239, 0, 0, 0, '深天蓝 2XL', '', 20, 'HN0666', 'HN666', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (527, 1276555714225, 0, 0, 0, '黑色 S', '', 20, 'HN0666', 'HN666', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (528, 1276555714228, 0, 0, 0, '黑色 XL', '', 20, 'HN0666', 'HN666', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (529, 1276555714243, 0, 0, 0, '浅蓝色 XL', '', 20, 'HN0666', 'HN666', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (530, 1276555714241, 0, 0, 0, '浅蓝色 M', '', 20, 'HN0666', 'HN666', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (531, 1276555714232, 0, 0, 0, '深灰色 L', '', 20, 'HN0666', 'HN666', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (532, 1276555714226, 0, 0, 0, '黑色 M', '', 20, 'HN0666', 'HN666', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (533, 1276555714227, 0, 0, 0, '黑色 L', '', 20, 'HN0666', 'HN666', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (534, 1276555714234, 0, 0, 0, '深灰色 2XL', '', 20, 'HN0666', 'HN666', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (535, 1276555714233, 0, 0, 0, '深灰色 XL', '', 20, 'HN0666', 'HN666', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (536, 1276555714235, 0, 0, 0, '深天蓝 S', '', 20, 'HN0666', 'HN666', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (537, 1276555714231, 0, 0, 0, '深灰色 M', '', 20, 'HN0666', 'HN666', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (538, 1276555714244, 0, 0, 0, '浅蓝色 2XL', '', 20, 'HN0666', 'HN666', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (539, 1276555714236, 0, 0, 0, '深天蓝 M', '', 20, 'HN0666', 'HN666', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (540, 1276555714240, 0, 0, 0, '浅蓝色 S', '', 20, 'HN0666', 'HN666', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (541, 1276555714230, 0, 0, 0, '深灰色 S', '', 20, 'HN0666', 'HN666', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (542, 1276555714238, 0, 0, 0, '深天蓝 XL', '', 20, 'HN0666', 'HN666', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (543, 1276557736043, 0, 0, 0, '宝蓝色 S', '', 18, 'HN0667', 'HN667', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (544, 1276557736045, 0, 0, 0, '宝蓝色 L', '', 16, 'HN0667', 'HN667', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (545, 1276557736047, 0, 0, 0, '宝蓝色 2XL', '', 19, 'HN0667', 'HN667', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (546, 1276557736039, 0, 0, 0, '浅蓝色 M', '', 19, 'HN0667', 'HN667', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (547, 1276557736041, 0, 0, 0, '浅蓝色 XL', '', 20, 'HN0667', 'HN667', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (548, 1276557736046, 0, 0, 0, '宝蓝色 XL', '', 17, 'HN0667', 'HN667', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (549, 1276557736038, 0, 0, 0, '浅蓝色 S', '', 18, 'HN0667', 'HN667', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (550, 1276557736044, 0, 0, 0, '宝蓝色 M', '', 15, 'HN0667', 'HN667', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (551, 1276557736040, 0, 0, 0, '浅蓝色 L', '', 20, 'HN0667', 'HN667', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (552, 1276557736042, 0, 0, 0, '浅蓝色 2XL', '', 19, 'HN0667', 'HN667', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (553, 1276560236799, 0, 592, 40, '宝蓝色 XL', 'HN6681204', 20, 'HN6681204', 'HN668', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (554, 1276560236801, 0, 594, 40, '深灰色 S', 'HN6687501', 20, 'HN6687501', 'HN668', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (555, 1276560236804, 0, 597, 40, '深灰色 XL', 'HN6687504', 20, 'HN6687504', 'HN668', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (556, 1276560236793, 0, 586, 40, '浅蓝色 L', 'HN6685003', 20, 'HN6685003', 'HN668', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (557, 1276560236798, 0, 591, 40, '宝蓝色 L', 'HN6681203', 20, 'HN6681203', 'HN668', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (558, 1276560236797, 0, 590, 40, '宝蓝色 M', 'HN6681202', 20, 'HN6681202', 'HN668', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (559, 1276560236794, 0, 587, 40, '浅蓝色 XL', 'HN6685004', 20, 'HN6685004', 'HN668', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (560, 1276560236792, 0, 585, 40, '浅蓝色 M', 'HN6685002', 20, 'HN6685002', 'HN668', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (561, 1276560236791, 0, 584, 40, '浅蓝色 S', 'HN6685001', 19, 'HN6685001', 'HN668', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (562, 1276560236796, 0, 589, 40, '宝蓝色 S', 'HN6681201', 20, 'HN6681201', 'HN668', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (563, 1276560236805, 0, 598, 40, '深灰色 2XL', 'HN6687505', 20, 'HN6687505', 'HN668', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (564, 1276560236795, 0, 588, 40, '浅蓝色 2XL', 'HN6685005', 20, 'HN6685005', 'HN668', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (565, 1276560236803, 0, 596, 40, '深灰色 L', 'HN6687503', 20, 'HN6687503', 'HN668', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (566, 1276560236800, 0, 593, 40, '宝蓝色 2XL', 'HN6681205', 20, 'HN6681205', 'HN668', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (567, 1276560236802, 0, 595, 40, '深灰色 M', 'HN6687502', 20, 'HN6687502', 'HN668', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (568, 1276562723239, 0, 0, 0, '宝蓝色 XL', '', 20, 'HN0669', 'HN669', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (569, 1276562723232, 0, 0, 0, '浅蓝色 M', '', 20, 'HN0669', 'HN669', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (570, 1276562723241, 0, 0, 0, '黑色 S', '', 20, 'HN0669', 'HN669', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (571, 1276562723233, 0, 0, 0, '浅蓝色 L', '', 20, 'HN0669', 'HN669', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (572, 1276562723231, 0, 0, 0, '浅蓝色 S', '', 20, 'HN0669', 'HN669', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (573, 1276562723242, 0, 0, 0, '黑色 M', '', 20, 'HN0669', 'HN669', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (574, 1276562723243, 0, 0, 0, '黑色 L', '', 20, 'HN0669', 'HN669', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (575, 1276562723237, 0, 0, 0, '宝蓝色 M', '', 20, 'HN0669', 'HN669', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (576, 1276562723238, 0, 0, 0, '宝蓝色 L', '', 20, 'HN0669', 'HN669', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (577, 1276562723235, 0, 0, 0, '浅蓝色 2XL', '', 20, 'HN0669', 'HN669', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (578, 1276562723240, 0, 0, 0, '宝蓝色 2XL', '', 20, 'HN0669', 'HN669', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (579, 1276562723245, 0, 0, 0, '黑色 2XL', '', 20, 'HN0669', 'HN669', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (580, 1276562723234, 0, 0, 0, '浅蓝色 XL', '', 20, 'HN0669', 'HN669', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (581, 1276562723236, 0, 0, 0, '宝蓝色 S', '', 20, 'HN0669', 'HN669', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (582, 1276562723244, 0, 0, 0, '黑色 XL', '', 20, 'HN0669', 'HN669', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (583, 1277927242201, 0, 424, 28, '宝蓝色 2XL', 'HN6704005', 20, 'HN6704005', 'HN670', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (584, 1277927242203, 0, 417, 28, '深灰色 L', 'HN6707503', 19, 'HN6707503', 'HN670', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (585, 1277926678779, 0, 415, 28, '深灰色 S', 'HN6707501', 20, 'HN6707501', 'HN670', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (586, 1277926678778, 0, 420, 28, '宝蓝色 S', 'HN6704001', 19, 'HN6704001', 'HN670', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (587, 1277927242196, 0, 413, 28, '浅蓝色 XL', 'HN6705004', 20, 'HN6705004', 'HN670', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (588, 1277927242197, 0, 414, 28, '浅蓝色 2XL', 'HN6705005', 20, 'HN6705005', 'HN670', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (589, 1277927242200, 0, 423, 28, '宝蓝色 XL', 'HN6704004', 20, 'HN6704004', 'HN670', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (590, 1277927242204, 0, 418, 28, '深灰色 XL', 'HN6707504', 19, 'HN6707504', 'HN670', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (591, 1277926678777, 0, 410, 28, '浅蓝色 S', 'HN6705001', 20, 'HN6705001', 'HN670', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (592, 1277927242194, 0, 411, 28, '浅蓝色 M', 'HN6705002', 20, 'HN6705002', 'HN670', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (593, 1277927242205, 0, 419, 28, '深灰色 2XL', 'HN6707505', 19, 'HN6707505', 'HN670', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (594, 1277927242195, 0, 412, 28, '浅蓝色 L', 'HN6705003', 20, 'HN6705003', 'HN670', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (595, 1277927242202, 0, 416, 28, '深灰色 M', 'HN6707502', 18, 'HN6707502', 'HN670', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (596, 1277927242198, 0, 421, 28, '宝蓝色 M', 'HN6704002', 19, 'HN6704002', 'HN670', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (597, 1277927242199, 0, 422, 28, '宝蓝色 L', 'HN6704003', 19, 'HN6704003', 'HN670', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (598, 1277929165137, 0, 0, 0, '黑色 L', '', 20, 'HN0671', '665779472192', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (599, 1277929165138, 0, 0, 0, '黑色 XL', '', 20, 'HN0671', '665779472192', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (600, 1277929165139, 0, 0, 0, '黑色 2XL', '', 20, 'HN0671', '665779472192', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (601, 1277929165135, 0, 0, 0, '黑色 S', '', 20, 'HN0671', '665779472192', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (602, 1277929165136, 0, 0, 0, '黑色 M', '', 20, 'HN0671', '665779472192', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (603, 1277936821459, 0, 0, 0, '宝蓝色 L', '', 19, 'HN0672', '670461866109', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (604, 1277936821460, 0, 0, 0, '宝蓝色 XL', '', 20, 'HN0672', '670461866109', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (605, 1277936821457, 0, 0, 0, '宝蓝色 S', '', 20, 'HN0672', '670461866109', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (606, 1277936821458, 0, 0, 0, '宝蓝色 M', '', 19, 'HN0672', '670461866109', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (607, 1277936821461, 0, 0, 0, '宝蓝色 2XL', '', 20, 'HN0672', '670461866109', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (608, 1277953926674, 0, 0, 0, '浅蓝色 XL', '', 20, 'HN0673', '637993903547', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (609, 1277953926679, 0, 0, 0, '深灰色 XL', '', 20, 'HN0673', '637993903547', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (610, 1277953926675, 0, 0, 0, '浅蓝色 2XL', '', 20, 'HN0673', '637993903547', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (611, 1277953926677, 0, 0, 0, '深灰色 M', '', 20, 'HN0673', '637993903547', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (612, 1277953926671, 0, 0, 0, '浅蓝色 S', '', 20, 'HN0673', '637993903547', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (613, 1277953926678, 0, 0, 0, '深灰色 L', '', 20, 'HN0673', '637993903547', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (614, 1277953926680, 0, 0, 0, '深灰色 2XL', '', 20, 'HN0673', '637993903547', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (615, 1277953926672, 0, 0, 0, '浅蓝色 M', '', 20, 'HN0673', '637993903547', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (616, 1277953926676, 0, 0, 0, '深灰色 S', '', 20, 'HN0673', '637993903547', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (617, 1277953926673, 0, 0, 0, '浅蓝色 L', '', 20, 'HN0673', '637993903547', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (618, 1277957033281, 0, 0, 0, '黑色 M', '', 20, 'HN0675', '668784844135', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (619, 1277957033284, 0, 0, 0, '黑色 2XL', '', 20, 'HN0675', '668784844135', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (620, 1277957033280, 0, 0, 0, '黑色 S', '', 20, 'HN0675', '668784844135', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (621, 1277957033283, 0, 0, 0, '黑色 XL', '', 20, 'HN0675', '668784844135', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (622, 1277957033282, 0, 0, 0, '黑色 L', '', 20, 'HN0675', '668784844135', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (623, 1278685364127, 0, 0, 0, '黑灰色 M', '', 20, 'HN0686', 'HN686', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (624, 1278685364117, 0, 0, 0, '白色 M', '', 20, 'HN0686', 'HN686', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (625, 1278685364119, 0, 0, 0, '白色 XL', '', 20, 'HN0686', 'HN686', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (626, 1278685364129, 0, 0, 0, '黑灰色 XL', '', 20, 'HN0686', 'HN686', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (627, 1278685364121, 0, 0, 0, '黑色 S', '', 20, 'HN0686', 'HN686', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (628, 1278685364128, 0, 0, 0, '黑灰色 L', '', 20, 'HN0686', 'HN686', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (629, 1278685364118, 0, 0, 0, '白色 L', '', 20, 'HN0686', 'HN686', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (630, 1278685364130, 0, 0, 0, '黑灰色 2XL', '', 20, 'HN0686', 'HN686', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (631, 1278685364134, 0, 0, 0, '浅蓝色 XL', '', 20, 'HN0686', 'HN686', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (632, 1278685364122, 0, 0, 0, '黑色 M', '', 20, 'HN0686', 'HN686', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (633, 1278685364132, 0, 0, 0, '浅蓝色 M', '', 20, 'HN0686', 'HN686', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (634, 1278685364133, 0, 0, 0, '浅蓝色 L', '', 20, 'HN0686', 'HN686', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (635, 1278685364124, 0, 0, 0, '黑色 XL', '', 20, 'HN0686', 'HN686', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (636, 1278685364125, 0, 0, 0, '黑色 2XL', '', 20, 'HN0686', 'HN686', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (637, 1278685364135, 0, 0, 0, '浅蓝色 2XL', '', 20, 'HN0686', 'HN686', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (638, 1278685364120, 0, 0, 0, '白色 2XL', '', 20, 'HN0686', 'HN686', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (639, 1278685364131, 0, 0, 0, '浅蓝色 S', '', 20, 'HN0686', 'HN686', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (640, 1278685364126, 0, 0, 0, '黑灰色 S', '', 20, 'HN0686', 'HN686', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (641, 1278685364123, 0, 0, 0, '黑色 L', '', 20, 'HN0686', 'HN686', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (642, 1278685364116, 0, 0, 0, '白色 S', '', 20, 'HN0686', 'HN686', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (643, 1278687408574, 0, 0, 0, '彩色 S', '', 20, 'HN0687', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (644, 1278687408576, 0, 0, 0, '彩色 L', '', 20, 'HN0687', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (645, 1278687408575, 0, 0, 0, '彩色 M', '', 20, 'HN0687', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (646, 1278687408577, 0, 0, 0, '彩色 XL', '', 20, 'HN0687', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (647, 1278687408578, 0, 0, 0, '彩色 2XL', '', 20, 'HN0687', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (648, 1278690383970, 0, 539, 36, '黑灰色 2XL', 'HN6927505', 20, 'HN6927505', 'HN692', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (649, 1278690383962, 0, 541, 36, '浅蓝色 M', 'HN6925002', 20, 'HN6925002', 'HN692', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (650, 1278690383964, 0, 543, 36, '浅蓝色 XL', 'HN6925004', 19, 'HN6925004', 'HN692', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (651, 1278690383966, 0, 535, 36, '黑灰色 S', 'HN6927501', 18, 'HN6927501', 'HN692', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (652, 1278690383961, 0, 540, 36, '浅蓝色 S', 'HN6925001', 19, 'HN6925001', 'HN692', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (653, 1278690383963, 0, 542, 36, '浅蓝色 L', 'HN6925003', 20, 'HN6925003', 'HN692', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (654, 1278690383969, 0, 538, 36, '黑灰色 XL', 'HN6927504', 20, 'HN6927504', 'HN692', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (655, 1278690383968, 0, 537, 36, '黑灰色 L', 'HN6927503', 17, 'HN6927503', 'HN692', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (656, 1278690383965, 0, 544, 36, '浅蓝色 2XL', 'HN6925005', 20, 'HN6925005', 'HN692', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (657, 1278690383967, 0, 536, 36, '黑灰色 M', 'HN6927502', 20, 'HN6927502', 'HN692', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (658, 1278693303512, 0, 624, 43, '蓝色 M', 'HN6945002', 20, 'HN0694', 'HN0694', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (659, 1278693303514, 0, 0, 0, '蓝色 XL', '', 20, 'HN0694', 'HN0694', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (660, 1278693303516, 0, 0, 0, '黑灰色 S', '', 20, 'HN0694', 'HN0694', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (661, 1278693303520, 0, 0, 0, '黑灰色 2XL', '', 19, 'HN0694', 'HN0694', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (662, 1278693303517, 0, 0, 0, '黑灰色 M', '', 20, 'HN0694', 'HN0694', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (663, 1278693303515, 0, 0, 0, '蓝色 2XL', '', 20, 'HN0694', 'HN0694', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (664, 1278693303511, 0, 0, 0, '蓝色 S', '', 20, 'HN0694', 'HN0694', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (665, 1278693303519, 0, 0, 0, '黑灰色 XL', '', 20, 'HN0694', 'HN0694', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (666, 1278693303518, 0, 0, 0, '黑灰色 L', '', 20, 'HN0694', 'HN0694', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (667, 1278693303513, 0, 0, 0, '蓝色 L', '', 20, 'HN0694', 'HN0694', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (668, 1278695025347, 0, 0, 0, '黑灰色 L', '', 19, 'HN0697', 'HN697', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (669, 1278695025352, 0, 0, 0, '浅蓝色 L', '', 17, 'HN0697', 'HN697', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (670, 1278695025353, 0, 0, 0, '浅蓝色 XL', '', 20, 'HN0697', 'HN697', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (671, 1278695025345, 0, 0, 0, '黑灰色 S', '', 20, 'HN0697', 'HN697', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (672, 1278695025349, 0, 0, 0, '黑灰色 2XL', '', 20, 'HN0697', 'HN697', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (673, 1278695025357, 0, 0, 0, '杏色 L', '', 20, 'HN0697', 'HN697', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (674, 1278695025346, 0, 0, 0, '黑灰色 M', '', 19, 'HN0697', 'HN697', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (675, 1278695025354, 0, 0, 0, '浅蓝色 2XL', '', 20, 'HN0697', 'HN697', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (676, 1278695025359, 0, 0, 0, '杏色 2XL', '', 20, 'HN0697', 'HN697', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (677, 1278695025355, 0, 0, 0, '杏色 S', '', 20, 'HN0697', 'HN697', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (678, 1278695025348, 0, 0, 0, '黑灰色 XL', '', 19, 'HN0697', 'HN697', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (679, 1278695025358, 0, 0, 0, '杏色 XL', '', 20, 'HN0697', 'HN697', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (680, 1278695025356, 0, 0, 0, '杏色 M', '', 20, 'HN0697', 'HN697', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (681, 1278695025350, 0, 0, 0, '浅蓝色 S', '', 19, 'HN0697', 'HN697', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (682, 1278695025351, 0, 0, 0, '浅蓝色 M', '', 16, 'HN0697', 'HN697', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (683, 1279515712395, 0, 498, 33, '黑灰色 XL', 'HN08017504', 15, 'HN08017504', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (684, 1279515712388, 0, 491, 33, '黑色 M', 'HN08010102', 16, 'HN08010102', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (685, 1279515712390, 0, 493, 33, '黑色 XL', 'HN08010104', 19, 'HN08010104', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (686, 1279515712397, 0, 505, 33, '复古蓝 S', 'HN08014001', 19, 'HN08014001', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (687, 1279515712405, 0, 498, 33, '蓝灰色 XL', 'HN08017504', 17, 'HN08017504', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (688, 1279515712402, 0, 495, 33, '蓝灰色 S', 'HN08017501', 18, 'HN08017501', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (689, 1279515712398, 0, 506, 33, '复古蓝 M', 'HN08014002', 17, 'HN08014002', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (690, 1279515712400, 0, 508, 33, '复古蓝 XL', 'HN08014004', 19, 'HN08014004', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (691, 1279515712389, 0, 492, 33, '黑色 L', 'HN08010103', 14, 'HN08010103', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (692, 1279515712387, 0, 490, 33, '黑色 S', 'HN08010101', 18, 'HN08010101', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (693, 1279515712401, 0, 509, 33, '复古蓝 2XL', 'HN08014005', 20, 'HN08014005', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (694, 1279515712396, 0, 499, 33, '黑灰色 2XL', 'HN08017505', 17, 'HN08017505', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (695, 1279515712406, 0, 499, 33, '蓝灰色 2XL', 'HN08017505', 19, 'HN08017505', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (696, 1279515712393, 0, 496, 33, '黑灰色 M', 'HN08017502', 14, 'HN08017502', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (697, 1279515712394, 0, 497, 33, '黑灰色 L', 'HN08017503', 11, 'HN08017503', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (698, 1279515712391, 0, 494, 33, '黑色 2XL', 'HN08010105', 18, 'HN08010105', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (699, 1279515712403, 0, 496, 33, '蓝灰色 M', 'HN08017502', 14, 'HN08017502', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (700, 1279515712399, 0, 507, 33, '复古蓝 L', 'HN08014003', 19, 'HN08014003', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (701, 1279515712392, 0, 495, 33, '黑灰色 S', 'HN08017501', 15, 'HN08017501', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (702, 1279515712404, 0, 497, 33, '蓝灰色 L', 'HN08017503', 10, 'HN08017503', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (703, 1279544038796, 0, 0, 0, '浅蓝色 S', '', 20, 'HN801', 'HN801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (704, 1279544038800, 0, 0, 0, '浅蓝色 2XL', '', 20, 'HN801', 'HN801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (705, 1279544038791, 0, 0, 0, '蓝灰色 S', '', 20, 'HN801', 'HN801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (706, 1279544038779, 0, 0, 0, '黑色 XL', '', 20, 'HN801', 'HN801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (707, 1279544038794, 0, 0, 0, '蓝灰色 XL', '', 20, 'HN801', 'HN801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (708, 1279544038793, 0, 0, 0, '蓝灰色 L', '', 19, 'HN801', 'HN801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (709, 1279544038803, 0, 0, 0, '杏色 L', '', 20, 'HN801', 'HN801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (710, 1279544038780, 0, 0, 0, '黑色 2XL', '', 20, 'HN801', 'HN801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (711, 1279544038790, 0, 0, 0, '复古蓝 2XL', '', 20, 'HN801', 'HN801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (712, 1279544038778, 0, 0, 0, '黑色 L', '', 20, 'HN801', 'HN801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (713, 1279544038805, 0, 0, 0, '杏色 2XL', '', 20, 'HN801', 'HN801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (714, 1279544038784, 0, 0, 0, '黑灰色 XL', '', 20, 'HN801', 'HN801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (715, 1279544038786, 0, 0, 0, '复古蓝 S', '', 20, 'HN801', 'HN801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (716, 1279544038797, 0, 0, 0, '浅蓝色 M', '', 20, 'HN801', 'HN801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (717, 1279544038776, 0, 0, 0, '黑色 S', '', 20, 'HN801', 'HN801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (718, 1279544038799, 0, 0, 0, '浅蓝色 XL', '', 20, 'HN801', 'HN801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (719, 1279544038782, 0, 0, 0, '黑灰色 M', '', 19, 'HN801', 'HN801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (720, 1279544038787, 0, 0, 0, '复古蓝 M', '', 18, 'HN801', 'HN801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (721, 1279544038795, 0, 0, 0, '蓝灰色 2XL', '', 20, 'HN801', 'HN801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (722, 1279544038777, 0, 0, 0, '黑色 M', '', 20, 'HN801', 'HN801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (723, 1279544038802, 0, 0, 0, '杏色 M', '', 20, 'HN801', 'HN801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (724, 1279544038785, 0, 0, 0, '黑灰色 2XL', '', 20, 'HN801', 'HN801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (725, 1279544038788, 0, 0, 0, '复古蓝 L', '', 19, 'HN801', 'HN801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (726, 1279544038783, 0, 0, 0, '黑灰色 L', '', 19, 'HN801', 'HN801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (727, 1279544038798, 0, 0, 0, '浅蓝色 L', '', 20, 'HN801', 'HN801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (728, 1279544038792, 0, 0, 0, '蓝灰色 M', '', 20, 'HN801', 'HN801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (729, 1279544038789, 0, 0, 0, '复古蓝 XL', '', 19, 'HN801', 'HN801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (730, 1279544038781, 0, 0, 0, '黑灰色 S', '', 20, 'HN801', 'HN801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (731, 1279544038804, 0, 0, 0, '杏色 XL', '', 20, 'HN801', 'HN801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (732, 1279544038801, 0, 0, 0, '杏色 S', '', 20, 'HN801', 'HN801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (733, 1279549091913, 0, 0, 0, '黑灰色 S', '', 20, 'HN802', 'HN802', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (734, 1279549091917, 0, 0, 0, '黑灰色 2XL', '', 20, 'HN802', 'HN802', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (735, 1279549091915, 0, 0, 0, '黑灰色 L', '', 20, 'HN802', 'HN802', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (736, 1279549091914, 0, 0, 0, '黑灰色 M', '', 20, 'HN802', 'HN802', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (737, 1279549091916, 0, 0, 0, '黑灰色 XL', '', 20, 'HN802', 'HN802', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (738, 1279551031198, 0, 0, 0, '浅蓝色 M', '', 20, 'HN805', 'HN805', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (739, 1279551031201, 0, 0, 0, '浅蓝色 2XL', '', 20, 'HN805', 'HN805', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (740, 1279551031197, 0, 0, 0, '浅蓝色 S', '', 20, 'HN805', 'HN805', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (741, 1279551031199, 0, 0, 0, '浅蓝色 L', '', 20, 'HN805', 'HN805', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (742, 1279551031200, 0, 0, 0, '浅蓝色 XL', '', 20, 'HN805', 'HN805', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (743, 1279553631566, 0, 0, 0, '浅蓝色 M', '', 20, 'HN807', 'HN807', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (744, 1279553631572, 0, 0, 0, '复古蓝 L', '', 20, 'HN807', 'HN807', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (745, 1279553631577, 0, 0, 0, '蓝灰色 L', '', 20, 'HN807', 'HN807', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (746, 1279553631578, 0, 0, 0, '蓝灰色 XL', '', 20, 'HN807', 'HN807', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (747, 1279553631575, 0, 0, 0, '蓝灰色 S', '', 20, 'HN807', 'HN807', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (748, 1279553631581, 0, 0, 0, '黑灰色 M', '', 20, 'HN807', 'HN807', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (749, 1279553631565, 0, 0, 0, '浅蓝色 S', '', 20, 'HN807', 'HN807', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (750, 1279553631576, 0, 0, 0, '蓝灰色 M', '', 20, 'HN807', 'HN807', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (751, 1279553631571, 0, 0, 0, '复古蓝 M', '', 20, 'HN807', 'HN807', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (752, 1279553631567, 0, 0, 0, '浅蓝色 L', '', 20, 'HN807', 'HN807', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (753, 1279553631574, 0, 0, 0, '复古蓝 2XL', '', 20, 'HN807', 'HN807', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (754, 1279553631583, 0, 0, 0, '黑灰色 XL', '', 20, 'HN807', 'HN807', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (755, 1279553631573, 0, 0, 0, '复古蓝 XL', '', 20, 'HN807', 'HN807', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (756, 1279553631568, 0, 0, 0, '浅蓝色 XL', '', 20, 'HN807', 'HN807', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (757, 1279553631579, 0, 0, 0, '蓝灰色 2XL', '', 20, 'HN807', 'HN807', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (758, 1279553631580, 0, 0, 0, '黑灰色 S', '', 20, 'HN807', 'HN807', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (759, 1279553631584, 0, 0, 0, '黑灰色 2XL', '', 20, 'HN807', 'HN807', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (760, 1279553631570, 0, 0, 0, '复古蓝 S', '', 20, 'HN807', 'HN807', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (761, 1279553631582, 0, 0, 0, '黑灰色 L', '', 20, 'HN807', 'HN807', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (762, 1279553631569, 0, 0, 0, '浅蓝色 2XL', '', 20, 'HN807', 'HN807', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (763, 1284642162278, 0, 0, 0, '白色 M', '', 20, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (764, 1284642162280, 0, 0, 0, '白色 XL', '', 19, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (765, 1284642162287, 0, 0, 0, '浅蓝色 S', '', 20, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (766, 1284642162286, 0, 0, 0, '黑色 2XL', '', 19, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (767, 1284642162283, 0, 0, 0, '黑色 M', '', 20, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (768, 1284642162281, 0, 0, 0, '白色 2XL', '', 20, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (769, 1284642162291, 0, 0, 0, '浅蓝色 2XL', '', 19, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (770, 1284642162277, 0, 0, 0, '白色 S', '', 20, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (771, 1284642162284, 0, 0, 0, '黑色 L', '', 19, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (772, 1284642162285, 0, 0, 0, '黑色 XL', '', 19, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (773, 1284642162279, 0, 0, 0, '白色 L', '', 20, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (774, 1284642162282, 0, 0, 0, '黑色 S', '', 19, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (775, 1284642162288, 0, 0, 0, '浅蓝色 M', '', 20, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (776, 1284642162289, 0, 0, 0, '浅蓝色 L', '', 20, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (777, 1284642162290, 0, 0, 0, '浅蓝色 XL', '', 20, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (778, 1285881278694, 0, 0, 0, '黑色 均码', '', 20, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (779, 1285881278693, 0, 0, 0, '白色 均码', '', 20, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (780, 1285881278697, 0, 0, 0, '浅蓝色 均码', '', 20, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (781, 1285881278695, 0, 0, 0, '粉红色 均码', '', 19, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (782, 1285881278696, 0, 0, 0, '杏色 均码', '', 20, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (783, 1292691249711, 0, 0, 0, '深蓝色加长款 XS', '', 50, 'JKL805', 'JKL805', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (784, 1292691249707, 0, 0, 0, '蓝色 M', '', 49, 'JKL805', 'JKL805', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (785, 1292691249708, 0, 0, 0, '蓝色 L', '', 50, 'JKL805', 'JKL805', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (786, 1292691249706, 0, 729, 47, '蓝色 S', 'JKL8051209', 50, 'JKL805', 'JKL805', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (787, 1292691249713, 0, 0, 0, '深蓝色加长款 M', '', 50, 'JKL805', 'JKL805', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (788, 1292691249705, 0, 729, 47, '蓝色 XS', 'JKL8051209', 50, 'JKL805', 'JKL805', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (789, 1292691249714, 0, 0, 0, '深蓝色加长款 L', '', 50, 'JKL805', 'JKL805', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (790, 1292691249712, 0, 0, 0, '深蓝色加长款 S', '', 50, 'JKL805', 'JKL805', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (791, 1292691249715, 0, 0, 0, '深蓝色加长款 XL', '', 50, 'JKL805', 'JKL805', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (792, 1292691249710, 0, 0, 0, '蓝色 2XL', '', 50, 'JKL805', 'JKL805', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (793, 1292691249716, 0, 0, 0, '深蓝色加长款 2XL', '', 50, 'JKL805', 'JKL805', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (794, 1292691249709, 0, 0, 0, '蓝色 XL', '', 50, 'JKL805', 'JKL805', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (795, 1295810387557, 0, 0, 0, '浅蓝九分 S', '', 50, 'JKL9938', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (796, 1295810387581, 0, 0, 0, '深蓝长款 S', '', 50, 'JKL9938', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (797, 1295810387555, 0, 0, 0, '黑色九分 2XL', '', 50, 'JKL9938', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (798, 1295810387566, 0, 0, 0, '深蓝九分 XL', '', 50, 'JKL9938', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (799, 1295810387564, 0, 0, 0, '深蓝九分 M', '', 50, 'JKL9938', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (800, 1295810387585, 0, 0, 0, '深蓝长款 2XL', '', 50, 'JKL9938', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (801, 1295810387551, 0, 0, 0, '黑色九分 S', '', 50, 'JKL9938', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (802, 1295810387567, 0, 0, 0, '深蓝九分 2XL', '', 50, 'JKL9938', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (803, 1295810387569, 0, 0, 0, '黑色长款 S', '', 50, 'JKL9938', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (804, 1295810387578, 0, 0, 0, '浅蓝长款 XL', '', 50, 'JKL9938', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (805, 1295810387583, 0, 0, 0, '深蓝长款 L', '', 50, 'JKL9938', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (806, 1295810387582, 0, 0, 0, '深蓝长款 M', '', 50, 'JKL9938', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (807, 1295810387559, 0, 0, 0, '浅蓝九分 L', '', 50, 'JKL9938', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (808, 1295810387561, 0, 0, 0, '浅蓝九分 2XL', '', 50, 'JKL9938', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (809, 1295810387562, 0, 0, 0, '深蓝九分 XS', '', 50, 'JKL9938', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (810, 1295810387577, 0, 0, 0, '浅蓝长款 L', '', 50, 'JKL9938', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (811, 1295810387558, 0, 0, 0, '浅蓝九分 M', '', 50, 'JKL9938', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (812, 1295810387571, 0, 0, 0, '黑色长款 L', '', 50, 'JKL9938', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (813, 1295810387576, 0, 0, 0, '浅蓝长款 M', '', 50, 'JKL9938', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (814, 1295810387553, 0, 0, 0, '黑色九分 L', '', 50, 'JKL9938', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (815, 1295810387552, 0, 0, 0, '黑色九分 M', '', 50, 'JKL9938', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (816, 1295810387568, 0, 0, 0, '黑色长款 XS', '', 50, 'JKL9938', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (817, 1295810387570, 0, 0, 0, '黑色长款 M', '', 50, 'JKL9938', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (818, 1295810387563, 0, 0, 0, '深蓝九分 S', '', 50, 'JKL9938', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (819, 1295810387580, 0, 0, 0, '深蓝长款 XS', '', 50, 'JKL9938', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (820, 1295810387565, 0, 0, 0, '深蓝九分 L', '', 50, 'JKL9938', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (821, 1295810387560, 0, 0, 0, '浅蓝九分 XL', '', 50, 'JKL9938', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (822, 1295810387554, 0, 0, 0, '黑色九分 XL', '', 50, 'JKL9938', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (823, 1295810387573, 0, 0, 0, '黑色长款 2XL', '', 50, 'JKL9938', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (824, 1295810387556, 0, 0, 0, '浅蓝九分 XS', '', 50, 'JKL9938', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (825, 1295810387574, 0, 0, 0, '浅蓝长款 XS', '', 50, 'JKL9938', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (826, 1295810387584, 0, 0, 0, '深蓝长款 XL', '', 50, 'JKL9938', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (827, 1295810387575, 0, 0, 0, '浅蓝长款 S', '', 50, 'JKL9938', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (828, 1295810387579, 0, 0, 0, '浅蓝长款 2XL', '', 50, 'JKL9938', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (829, 1295810387572, 0, 0, 0, '黑色长款 XL', '', 50, 'JKL9938', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (830, 1295810387550, 0, 0, 0, '黑色九分 XS', '', 50, 'JKL9938', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (831, 1251236772886, 0, 0, 0, '深灰色 L', '', 15, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (832, 1251236772894, 0, 0, 0, '浅蓝色 S', '', 17, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (833, 1251236772887, 0, 0, 0, '深灰色 XL', '', 20, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (834, 1251236772892, 0, 0, 0, '黑色 XL', '', 20, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (835, 1251236772897, 0, 0, 0, '浅蓝色 XL', '', 19, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (836, 1251236772898, 0, 0, 0, '浅蓝色 2XL', '', 20, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (837, 1251236772896, 0, 0, 0, '浅蓝色 L', '', 14, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (838, 1251236772885, 0, 0, 0, '深灰色 M', '', 20, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (839, 1251236772891, 0, 0, 0, '黑色 L', '', 17, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (840, 1251236772889, 0, 0, 0, '黑色 S', '', 20, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (841, 1251236772890, 0, 0, 0, '黑色 M', '', 17, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (842, 1251236772893, 0, 0, 0, '黑色 2XL', '', 19, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (843, 1251236772884, 0, 0, 0, '深灰色 S', '', 19, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (844, 1251236772895, 0, 0, 0, '浅蓝色 M', '', 18, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (845, 1251236772888, 0, 0, 0, '深灰色 2XL', '', 20, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (846, 1251749918980, 0, 0, 0, '浅蓝色加长', '', 100, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (847, 1251749918984, 0, 0, 0, '黑色长裤', '', 100, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (848, 1251749918978, 0, 0, 0, '浅蓝色长裤', '', 100, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (849, 1251749918981, 0, 0, 0, '复古蓝加长', '', 100, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (850, 1251749918976, 0, 0, 0, '复古蓝长裤', '', 99, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (851, 1251749918983, 0, 0, 0, '黑色加长', '', 100, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (852, 1251749918979, 0, 0, 0, '复古蓝九分', '', 100, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (853, 1251749918982, 0, 0, 0, '黑色九分', '', 100, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (854, 1251749918977, 0, 0, 0, '浅蓝色九分', '', 100, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (855, 1276572950561, 0, 0, 0, '浅蓝色 XL', '', 20, 'HN0678', 't651428823385', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (856, 1276572950560, 0, 0, 0, '浅蓝色 L', '', 20, 'HN0678', 't651428823385', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (857, 1276572950559, 0, 0, 0, '浅蓝色 M', '', 20, 'HN0678', 't651428823385', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (858, 1276572950562, 0, 0, 0, '浅蓝色 2XL', '', 20, 'HN0678', 't651428823385', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (859, 1276572950558, 0, 0, 0, '浅蓝色 S', '', 20, 'HN0678', 't651428823385', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (860, 1269479069148, 0, 0, 0, '黑色 30', '', 20, 'KH9695', 't622135144835', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (861, 1269479069152, 0, 0, 0, '黑色 34', '', 20, 'KH9695', 't622135144835', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (862, 1269479069146, 0, 0, 0, '黑色 28', '', 20, 'KH9695', 't622135144835', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (863, 1269479069140, 0, 0, 0, '蓝色 30', '', 20, 'KH9695', 't622135144835', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (864, 1269479069151, 0, 0, 0, '黑色 33', '', 20, 'KH9695', 't622135144835', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (865, 1269477690312, 0, 0, 0, '黑色 26', '', 20, 'KH9695', 't622135144835', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (866, 1269479069142, 0, 0, 0, '蓝色 32', '', 20, 'KH9695', 't622135144835', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (867, 1269479069143, 0, 0, 0, '蓝色 33', '', 20, 'KH9695', 't622135144835', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (868, 1269479069150, 0, 0, 0, '黑色 32', '', 20, 'KH9695', 't622135144835', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (869, 1269479069145, 0, 0, 0, '黑色 27', '', 20, 'KH9695', 't622135144835', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (870, 1269479069137, 0, 0, 0, '蓝色 27', '', 20, 'KH9695', 't622135144835', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (871, 1269479069149, 0, 0, 0, '黑色 31', '', 20, 'KH9695', 't622135144835', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (872, 1269479069138, 0, 0, 0, '蓝色 28', '', 20, 'KH9695', 't622135144835', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (873, 1269477690311, 0, 0, 0, '蓝色 26', '', 20, 'KH9695', 't622135144835', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (874, 1269479069141, 0, 0, 0, '蓝色 31', '', 20, 'KH9695', 't622135144835', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (875, 1269479069139, 0, 0, 0, '蓝色 29', '', 20, 'KH9695', 't622135144835', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (876, 1269479069147, 0, 0, 0, '黑色 29', '', 20, 'KH9695', 't622135144835', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (877, 1269479069144, 0, 0, 0, '蓝色 34', '', 20, 'KH9695', 't622135144835', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (878, 1269724202582, 0, 0, 0, '灰色 28', '', 20, 'KH9709', 'T624078788603', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (879, 1269724202590, 0, 0, 0, '黑色 29', '', 20, 'KH9709', 'T624078788603', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (880, 1269724202581, 0, 0, 0, '灰色 27', '', 20, 'KH9709', 'T624078788603', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (881, 1269724202585, 0, 0, 0, '灰色 31', '', 20, 'KH9709', 'T624078788603', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (882, 1269724202583, 0, 0, 0, '灰色 29', '', 20, 'KH9709', 'T624078788603', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (883, 1269724202591, 0, 0, 0, '黑色 30', '', 20, 'KH9709', 'T624078788603', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (884, 1269724202586, 0, 0, 0, '灰色 32', '', 20, 'KH9709', 'T624078788603', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (885, 1269724202588, 0, 0, 0, '黑色 27', '', 20, 'KH9709', 'T624078788603', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (886, 1269724202593, 0, 0, 0, '黑色 32', '', 20, 'KH9709', 'T624078788603', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (887, 1269724202587, 0, 0, 0, '黑色 26', '', 20, 'KH9709', 'T624078788603', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (888, 1269724202592, 0, 0, 0, '黑色 31', '', 20, 'KH9709', 'T624078788603', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (889, 1269724202584, 0, 0, 0, '灰色 30', '', 20, 'KH9709', 'T624078788603', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (890, 1269724202580, 0, 0, 0, '灰色 26', '', 20, 'KH9709', 'T624078788603', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (891, 1269724202589, 0, 0, 0, '黑色 28', '', 20, 'KH9709', 'T624078788603', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (892, 1271567855666, 0, 0, 0, '浅蓝色 30', '', 20, 'KH9685', 'T610270951823', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (893, 1271567855664, 0, 0, 0, '浅蓝色 28', '', 20, 'KH9685', 'T610270951823', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (894, 1271567855671, 0, 0, 0, '深蓝色 28', '', 20, 'KH9685', 'T610270951823', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (895, 1271567855661, 0, 0, 0, '灰色 32', '', 20, 'KH9685', 'T610270951823', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (896, 1271567855660, 0, 0, 0, '灰色 31', '', 20, 'KH9685', 'T610270951823', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (897, 1271567855669, 0, 0, 0, '深蓝色 26', '', 20, 'KH9685', 'T610270951823', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (898, 1271567855673, 0, 0, 0, '深蓝色 30', '', 20, 'KH9685', 'T610270951823', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (899, 1271567855672, 0, 0, 0, '深蓝色 29', '', 20, 'KH9685', 'T610270951823', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (900, 1271567855663, 0, 0, 0, '浅蓝色 27', '', 20, 'KH9685', 'T610270951823', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (901, 1271567855655, 0, 0, 0, '灰色 26', '', 20, 'KH9685', 'T610270951823', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (902, 1271567855667, 0, 0, 0, '浅蓝色 31', '', 20, 'KH9685', 'T610270951823', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (903, 1271567855656, 0, 0, 0, '灰色 27', '', 20, 'KH9685', 'T610270951823', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (904, 1271567855659, 0, 0, 0, '灰色 30', '', 20, 'KH9685', 'T610270951823', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (905, 1271567855658, 0, 0, 0, '灰色 29', '', 20, 'KH9685', 'T610270951823', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (906, 1271567855657, 0, 0, 0, '灰色 28', '', 20, 'KH9685', 'T610270951823', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (907, 1271567855674, 0, 0, 0, '深蓝色 31', '', 20, 'KH9685', 'T610270951823', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (908, 1271567855668, 0, 0, 0, '浅蓝色 32', '', 20, 'KH9685', 'T610270951823', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (909, 1271567855675, 0, 0, 0, '深蓝色 32', '', 20, 'KH9685', 'T610270951823', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (910, 1271567855662, 0, 0, 0, '浅蓝色 26', '', 20, 'KH9685', 'T610270951823', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (911, 1271567855670, 0, 0, 0, '深蓝色 27', '', 20, 'KH9685', 'T610270951823', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (912, 1271567855665, 0, 0, 0, '浅蓝色 29', '', 20, 'KH9685', 'T610270951823', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (913, 1271623290129, 0, 0, 0, '黑灰 32', '', 20, 'KH9688', 'T610041890003', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (914, 1271623290119, 0, 0, 0, '蓝灰 29', '', 20, 'KH9688', 'T610041890003', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (915, 1271623290118, 0, 0, 0, '蓝灰 28', '', 20, 'KH9688', 'T610041890003', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (916, 1271623290116, 0, 0, 0, '蓝灰 26', '', 20, 'KH9688', 'T610041890003', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (917, 1271623290126, 0, 0, 0, '黑灰 29', '', 20, 'KH9688', 'T610041890003', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (918, 1271623290121, 0, 0, 0, '蓝灰 31', '', 20, 'KH9688', 'T610041890003', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (919, 1271623290127, 0, 0, 0, '黑灰 30', '', 20, 'KH9688', 'T610041890003', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (920, 1271623290125, 0, 0, 0, '黑灰 28', '', 20, 'KH9688', 'T610041890003', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (921, 1271623290122, 0, 0, 0, '蓝灰 32', '', 20, 'KH9688', 'T610041890003', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (922, 1271623290120, 0, 0, 0, '蓝灰 30', '', 20, 'KH9688', 'T610041890003', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (923, 1271623290117, 0, 0, 0, '蓝灰 27', '', 20, 'KH9688', 'T610041890003', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (924, 1271623290124, 0, 0, 0, '黑灰 27', '', 20, 'KH9688', 'T610041890003', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (925, 1271623290123, 0, 0, 0, '黑灰 26', '', 20, 'KH9688', 'T610041890003', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (926, 1271623290128, 0, 0, 0, '黑灰 31', '', 20, 'KH9688', 'T610041890003', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (927, 1278013335025, 0, 0, 0, '宝蓝色 2XL', '', 20, 'KH22318', '675027903686', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (928, 1278013335019, 0, 0, 0, '浅蓝色 XL', '', 20, 'KH22318', '675027903686', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (929, 1278013335018, 0, 0, 0, '浅蓝色 L', '', 20, 'KH22318', '675027903686', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (930, 1278013335020, 0, 0, 0, '浅蓝色 2XL', '', 20, 'KH22318', '675027903686', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (931, 1278013335023, 0, 0, 0, '宝蓝色 L', '', 20, 'KH22318', '675027903686', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (932, 1278013335024, 0, 0, 0, '宝蓝色 XL', '', 20, 'KH22318', '675027903686', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (933, 1278013335017, 0, 0, 0, '浅蓝色 M', '', 20, 'KH22318', '675027903686', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (934, 1278013335016, 0, 0, 0, '浅蓝色 S', '', 20, 'KH22318', '675027903686', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (935, 1278013335021, 0, 0, 0, '宝蓝色 S', '', 20, 'KH22318', '675027903686', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (936, 1278013335022, 0, 0, 0, '宝蓝色 M', '', 20, 'KH22318', '675027903686', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (937, 1285730382209, 0, 0, 0, '黑色 S', '', 50, 'HN014', 'HN014', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (938, 1285730382215, 0, 0, 0, '浅蓝色 M', '', 49, 'HN014', 'HN014', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (939, 1285730382219, 0, 0, 0, '宝蓝色 S', '', 50, 'HN014', 'HN014', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (940, 1285730382211, 0, 0, 0, '黑色 L', '', 50, 'HN014', 'HN014', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (941, 1285730382212, 0, 0, 0, '黑色 XL', '', 50, 'HN014', 'HN014', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (942, 1285730382223, 0, 0, 0, '宝蓝色 2XL', '', 50, 'HN014', 'HN014', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (943, 1285730382213, 0, 0, 0, '黑色 2XL', '', 50, 'HN014', 'HN014', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (944, 1285730382216, 0, 0, 0, '浅蓝色 L', '', 50, 'HN014', 'HN014', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (945, 1285730382214, 0, 0, 0, '浅蓝色 S', '', 50, 'HN014', 'HN014', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (946, 1285730382221, 0, 0, 0, '宝蓝色 L', '', 49, 'HN014', 'HN014', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (947, 1285730382217, 0, 0, 0, '浅蓝色 XL', '', 50, 'HN014', 'HN014', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (948, 1285730382210, 0, 0, 0, '黑色 M', '', 50, 'HN014', 'HN014', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (949, 1285730382222, 0, 0, 0, '宝蓝色 XL', '', 50, 'HN014', 'HN014', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (950, 1285730382220, 0, 0, 0, '宝蓝色 M', '', 50, 'HN014', 'HN014', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (951, 1285730382218, 0, 0, 0, '浅蓝色 2XL', '', 50, 'HN014', 'HN014', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (952, 1285863953219, 0, 0, 0, '白色 均码', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (953, 1285863953220, 0, 0, 0, '黑色 均码', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (954, 1285863953221, 0, 0, 0, '粉红色 均码', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (955, 1285863953222, 0, 0, 0, '杏色 均码', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (956, 1285863953223, 0, 0, 0, '浅蓝色 均码', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (957, 1292679844924, 0, 0, 0, '深蓝色长款 2XL', '', 49, 'JKL805', 'JKL805', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (958, 1292679844920, 0, 0, 0, '深蓝色长款 S', '', 50, 'JKL805', 'JKL805', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (959, 1292679844926, 0, 729, 47, '蓝色 S', 'JKL8051209', 50, 'JKL805', 'JKL805', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (960, 1292679844929, 0, 0, 0, '蓝色 XL', '', 50, 'JKL805', 'JKL805', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (961, 1292679844927, 0, 0, 0, '蓝色 M', '', 50, 'JKL805', 'JKL805', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (962, 1292679844919, 0, 0, 0, '深蓝色长款 XS', '', 50, 'JKL805', 'JKL805', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (963, 1292679844921, 0, 0, 0, '深蓝色长款 M', '', 49, 'JKL805', 'JKL805', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (964, 1292679844922, 0, 0, 0, '深蓝色长款 L', '', 50, 'JKL805', 'JKL805', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (965, 1292679844923, 0, 0, 0, '深蓝色长款 XL', '', 50, 'JKL805', 'JKL805', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (966, 1292679844930, 0, 0, 0, '蓝色 2XL', '', 50, 'JKL805', 'JKL805', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (967, 1292679844928, 0, 0, 0, '蓝色 L', '', 50, 'JKL805', 'JKL805', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (968, 1292679844925, 0, 729, 47, '蓝色 XS', 'JKL8051209', 50, 'JKL805', 'JKL805', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (969, 1296578397962, 0, 0, 0, '蓝色 M', '', 50, 'JKL8990', 'JKL8990', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (970, 1296578397963, 0, 0, 0, '蓝色 L', '', 50, 'JKL8990', 'JKL8990', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (971, 1296578397967, 0, 0, 0, '黑色 S', '', 50, 'JKL8990', 'JKL8990', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (972, 1296578397965, 0, 0, 0, '蓝色 2XL', '', 50, 'JKL8990', 'JKL8990', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (973, 1296578397964, 0, 0, 0, '蓝色 XL', '', 50, 'JKL8990', 'JKL8990', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (974, 1296578397968, 0, 0, 0, '黑色 M', '', 50, 'JKL8990', 'JKL8990', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (975, 1296578397960, 0, 0, 0, '蓝色 XS', '', 50, 'JKL8990', 'JKL8990', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (976, 1296578397961, 0, 0, 0, '蓝色 S', '', 50, 'JKL8990', 'JKL8990', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (977, 1296578397970, 0, 0, 0, '黑色 XL', '', 50, 'JKL8990', 'JKL8990', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (978, 1296578397969, 0, 0, 0, '黑色 L', '', 50, 'JKL8990', 'JKL8990', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (979, 1296578397966, 0, 0, 0, '黑色 XS', '', 50, 'JKL8990', 'JKL8990', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (980, 1296578397971, 0, 0, 0, '黑色 2XL', '', 50, 'JKL8990', 'JKL8990', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (981, 1296587850812, 0, 0, 0, '蓝灰色加绒 M', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (982, 1296587850789, 0, 0, 0, '复古蓝 XL', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (983, 1296587850799, 0, 0, 0, '杏色 XL', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (984, 1296587850814, 0, 0, 0, '蓝灰色加绒 XL', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (985, 1296587850813, 0, 0, 0, '蓝灰色加绒 L', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (986, 1296587850816, 0, 0, 0, '复古蓝加绒 S', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (987, 1296587850800, 0, 0, 0, '杏色 2XL', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (988, 1296587850809, 0, 0, 0, '黑灰色加绒 XL', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (989, 1296587850771, 0, 0, 0, '黑色 S', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (990, 1296587850773, 0, 0, 0, '黑色 L', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (991, 1296587850804, 0, 0, 0, '黑色加绒 XL', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (992, 1296587850803, 0, 0, 0, '黑色加绒 L', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (993, 1296587850784, 0, 0, 0, '蓝灰色 XL', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (994, 1296587850787, 0, 0, 0, '复古蓝 M', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (995, 1296587850815, 0, 0, 0, '蓝灰色加绒 2XL', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (996, 1296587850808, 0, 0, 0, '黑灰色加绒 L', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (997, 1296587850791, 0, 0, 0, '浅蓝色 S', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (998, 1296587850802, 0, 0, 0, '黑色加绒 M', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (999, 1296587850774, 0, 0, 0, '黑色 XL', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1000, 1296587850817, 0, 0, 0, '复古蓝加绒 M', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1001, 1296587850776, 0, 0, 0, '黑灰色 S', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1002, 1296587850823, 0, 0, 0, '浅蓝色加绒 L', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1003, 1296587850775, 0, 0, 0, '黑色 2XL', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1004, 1296587850782, 0, 0, 0, '蓝灰色 M', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1005, 1296587850801, 0, 0, 0, '黑色加绒 S', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1006, 1296587850811, 0, 0, 0, '蓝灰色加绒 S', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1007, 1296587850795, 0, 0, 0, '浅蓝色 2XL', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1008, 1296587850820, 0, 0, 0, '复古蓝加绒 2XL', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1009, 1296587850792, 0, 0, 0, '浅蓝色 M', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1010, 1296587850779, 0, 0, 0, '黑灰色 XL', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1011, 1296587850783, 0, 0, 0, '蓝灰色 L', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1012, 1296587850793, 0, 0, 0, '浅蓝色 L', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1013, 1296587850794, 0, 0, 0, '浅蓝色 XL', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1014, 1296587850818, 0, 0, 0, '复古蓝加绒 L', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1015, 1296587850781, 0, 0, 0, '蓝灰色 S', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1016, 1296587850798, 0, 0, 0, '杏色 L', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1017, 1296587850785, 0, 0, 0, '蓝灰色 2XL', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1018, 1296587850772, 0, 0, 0, '黑色 M', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1019, 1296587850788, 0, 0, 0, '复古蓝 L', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1020, 1296587850790, 0, 0, 0, '复古蓝 2XL', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1021, 1296587850822, 0, 0, 0, '浅蓝色加绒 M', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1022, 1296587850825, 0, 0, 0, '浅蓝色加绒 2XL', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1023, 1296587850810, 0, 0, 0, '黑灰色加绒 2XL', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1024, 1296587850780, 0, 0, 0, '黑灰色 2XL', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1025, 1296587850786, 0, 0, 0, '复古蓝 S', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1026, 1296587850777, 0, 0, 0, '黑灰色 M', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1027, 1296587850796, 0, 0, 0, '杏色 S', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1028, 1296587850797, 0, 0, 0, '杏色 M', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1029, 1296587850807, 0, 0, 0, '黑灰色加绒 M', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1030, 1296587850778, 0, 0, 0, '黑灰色 L', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1031, 1296587850824, 0, 0, 0, '浅蓝色加绒 XL', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1032, 1296587850806, 0, 0, 0, '黑灰色加绒 S', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1033, 1296587850821, 0, 0, 0, '浅蓝色加绒 S', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1034, 1296587850819, 0, 0, 0, '复古蓝加绒 XL', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1035, 1296587850805, 0, 0, 0, '黑色加绒 2XL', '', 50, 'HN0801', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1036, 1297861756228, 0, 0, 0, '复古蓝 L', '', 19, 'HN0660', 'HN660', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1037, 1297861756227, 0, 0, 0, '复古蓝 M', '', 20, 'HN0660', 'HN660', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1038, 1297861756229, 0, 0, 0, '复古蓝 XL', '', 20, 'HN0660', 'HN660', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1039, 1297861756226, 0, 0, 0, '复古蓝 S', '', 20, 'HN0660', 'HN660', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1040, 1297861756230, 0, 0, 0, '复古蓝 2XL', '', 20, 'HN0660', 'HN660', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1041, 1297847604596, 0, 0, 0, '蓝灰色加绒 M', '', 1050, 'HN0801J', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1042, 1297847604597, 0, 0, 0, '蓝灰色加绒 L', '', 1050, 'HN0801J', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1043, 1297847604601, 0, 0, 0, '复古蓝加绒 M', '', 1050, 'HN0801J', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1044, 1297847604587, 0, 0, 0, '黑色加绒 L', '', 1050, 'HN0801J', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1045, 1297848305476, 0, 0, 0, '杏色 L', '', 1050, 'HN0801X', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1046, 1297847604603, 0, 0, 0, '复古蓝加绒 XL', '', 1050, 'HN0801J', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1047, 1297847604586, 0, 0, 0, '黑色加绒 M', '', 1050, 'HN0801J', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1048, 1297848305469, 0, 0, 0, '浅蓝色 S', '', 1050, 'HN0801Q', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1049, 1297847604595, 0, 0, 0, '蓝灰色加绒 S', '', 1050, 'HN0801J', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1050, 1297848305474, 0, 0, 0, '杏色 S', '', 1050, 'HN0801X', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1051, 1297847604591, 0, 0, 0, '黑灰色加绒 M', '', 1050, 'HN0801J', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1052, 1297847604604, 0, 0, 0, '复古蓝加绒 2XL', '', 1050, 'HN0801J', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1053, 1297847604608, 0, 0, 0, '浅蓝色加绒 XL', '', 1050, 'HN0801J', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1054, 1297848305475, 0, 0, 0, '杏色 M', '', 1050, 'HN0801X', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1055, 1297847604606, 0, 0, 0, '浅蓝色加绒 M', '', 1050, 'HN0801J', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1056, 1297848305478, 0, 0, 0, '杏色 2XL', '', 1050, 'HN0801X', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1057, 1297847604609, 0, 0, 0, '浅蓝色加绒 2XL', '', 1050, 'HN0801J', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1058, 1297847604599, 0, 0, 0, '蓝灰色加绒 2XL', '', 1050, 'HN0801J', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1059, 1297847604607, 0, 0, 0, '浅蓝色加绒 L', '', 1050, 'HN0801J', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1060, 1297847604593, 0, 0, 0, '黑灰色加绒 XL', '', 1050, 'HN0801J', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1061, 1297848305471, 0, 0, 0, '浅蓝色 L', '', 1050, 'HN0801Q', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1062, 1297847604590, 0, 0, 0, '黑灰色加绒 S', '', 1050, 'HN0801J', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1063, 1297847604600, 0, 0, 0, '复古蓝加绒 S', '', 1050, 'HN0801J', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1064, 1297847604585, 0, 0, 0, '黑色加绒 S', '', 1050, 'HN0801J', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1065, 1297847604592, 0, 0, 0, '黑灰色加绒 L', '', 1050, 'HN0801J', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1066, 1297848305472, 0, 0, 0, '浅蓝色 XL', '', 1050, 'HN0801Q', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1067, 1297847604605, 0, 0, 0, '浅蓝色加绒 S', '', 1050, 'HN0801J', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1068, 1297847604589, 0, 0, 0, '黑色加绒 2XL', '', 1050, 'HN0801J', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1069, 1297847604602, 0, 0, 0, '复古蓝加绒 L', '', 1050, 'HN0801J', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1070, 1297847604598, 0, 0, 0, '蓝灰色加绒 XL', '', 1050, 'HN0801J', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1071, 1297848305470, 0, 0, 0, '浅蓝色 M', '', 1050, 'HN0801Q', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1072, 1297847604588, 0, 0, 0, '黑色加绒 XL', '', 1050, 'HN0801J', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1073, 1297847604594, 0, 0, 0, '黑灰色加绒 2XL', '', 1050, 'HN0801J', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1074, 1297848305473, 0, 0, 0, '浅蓝色 2XL', '', 1050, 'HN0801Q', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1075, 1297848305477, 0, 0, 0, '杏色 XL', '', 1050, 'HN0801X', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1076, 1297849667188, 0, 495, 33, '蓝灰色 S', 'HN08017501', 50, 'HN08017501', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1077, 1297849667191, 0, 498, 33, '蓝灰色 XL', 'HN08017504', 50, 'HN08017504', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1078, 1297849667222, 0, 0, 0, '复古蓝加绒 2XL', '', 50, 'HN0801J', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1079, 1297849667178, 0, 495, 33, '黑灰色 S', 'HN08017501', 50, 'HN08017501', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1080, 1297849667206, 0, 0, 0, '黑色加绒 XL', '', 49, 'HN0801J', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1081, 1297849667189, 0, 496, 33, '蓝灰色 M', 'HN08017502', 50, 'HN08017502', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1082, 1297849667180, 0, 497, 33, '黑灰色 L', 'HN08017503', 50, 'HN08017503', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1083, 1297849667214, 0, 0, 0, '蓝灰色加绒 M', '', 50, 'HN0801J', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1084, 1297849667216, 0, 0, 0, '蓝灰色加绒 XL', '', 50, 'HN0801J', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1085, 1297849667207, 0, 0, 0, '黑色加绒 2XL', '', 50, 'HN0801J', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1086, 1297849667187, 0, 509, 33, '复古蓝 2XL', 'HN08014005', 50, 'HN08014005', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1087, 1297849667210, 0, 0, 0, '黑灰色加绒 L', '', 50, 'HN0801J', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1088, 1297849667209, 0, 0, 0, '黑灰色加绒 M', '', 50, 'HN0801J', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1089, 1297849667205, 0, 0, 0, '黑色加绒 L', '', 50, 'HN0801J', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1090, 1297849667215, 0, 0, 0, '蓝灰色加绒 L', '', 50, 'HN0801J', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1091, 1297849667220, 0, 0, 0, '复古蓝加绒 L', '', 50, 'HN0801J', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1092, 1297849667225, 0, 0, 0, '浅蓝色加绒 L', '', 50, 'HN0801J', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1093, 1297849667182, 0, 499, 33, '黑灰色 2XL', 'HN08017505', 50, 'HN08017505', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1094, 1297849667196, 0, 0, 0, '浅蓝色 XL', '', 50, 'HN0801Q', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1095, 1297849667193, 0, 0, 0, '浅蓝色 S', '', 50, 'HN0801Q', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1096, 1297849667226, 0, 0, 0, '浅蓝色加绒 XL', '', 50, 'HN0801J', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1097, 1297849667190, 0, 497, 33, '蓝灰色 L', 'HN08017503', 50, 'HN08017503', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1098, 1297849667203, 0, 0, 0, '黑色加绒 S', '', 50, 'HN0801J', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1099, 1297849667212, 0, 0, 0, '黑灰色加绒 2XL', '', 50, 'HN0801J', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1100, 1297849667221, 0, 0, 0, '复古蓝加绒 XL', '', 50, 'HN0801J', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1101, 1297849667174, 0, 491, 33, '黑色 M', 'HN08010102', 50, 'HN08010102', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1102, 1297849667183, 0, 505, 33, '复古蓝 S', 'HN08014001', 50, 'HN08014001', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1103, 1297849667204, 0, 0, 0, '黑色加绒 M', '', 50, 'HN0801J', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1104, 1297849667198, 0, 0, 0, '杏色 S', '', 50, 'HN0801X', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1105, 1297849667227, 0, 0, 0, '浅蓝色加绒 2XL', '', 50, 'HN0801J', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1106, 1297849667179, 0, 496, 33, '黑灰色 M', 'HN08017502', 50, 'HN08017502', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1107, 1297849667181, 0, 498, 33, '黑灰色 XL', 'HN08017504', 50, 'HN08017504', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1108, 1297849667217, 0, 0, 0, '蓝灰色加绒 2XL', '', 50, 'HN0801J', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1109, 1297849667219, 0, 0, 0, '复古蓝加绒 M', '', 50, 'HN0801J', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1110, 1297849667224, 0, 0, 0, '浅蓝色加绒 M', '', 50, 'HN0801J', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1111, 1297849667199, 0, 0, 0, '杏色 M', '', 50, 'HN0801X', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1112, 1297849667176, 0, 493, 33, '黑色 XL', 'HN08010104', 50, 'HN08010104', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1113, 1297849667200, 0, 0, 0, '杏色 L', '', 50, 'HN0801X', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1114, 1297849667186, 0, 508, 33, '复古蓝 XL', 'HN08014004', 50, 'HN08014004', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1115, 1297849667218, 0, 0, 0, '复古蓝加绒 S', '', 50, 'HN0801J', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1116, 1297849667208, 0, 0, 0, '黑灰色加绒 S', '', 50, 'HN0801J', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1117, 1297849667213, 0, 0, 0, '蓝灰色加绒 S', '', 50, 'HN0801J', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1118, 1297849667184, 0, 506, 33, '复古蓝 M', 'HN08014002', 50, 'HN08014002', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1119, 1297849667194, 0, 0, 0, '浅蓝色 M', '', 50, 'HN0801Q', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1120, 1297849667223, 0, 0, 0, '浅蓝色加绒 S', '', 50, 'HN0801J', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1121, 1297849667173, 0, 490, 33, '黑色 S', 'HN08010101', 50, 'HN08010101', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1122, 1297849667175, 0, 492, 33, '黑色 L', 'HN08010103', 50, 'HN08010103', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1123, 1297849667177, 0, 494, 33, '黑色 2XL', 'HN08010105', 50, 'HN08010105', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1124, 1297849667201, 0, 0, 0, '杏色 XL', '', 50, 'HN0801X', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1125, 1297849667195, 0, 0, 0, '浅蓝色 L', '', 50, 'HN0801Q', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1126, 1297849667197, 0, 0, 0, '浅蓝色 2XL', '', 50, 'HN0801Q', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1127, 1297849667202, 0, 0, 0, '杏色 2XL', '', 50, 'HN0801X', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1128, 1297849667185, 0, 507, 33, '复古蓝 L', 'HN08014003', 50, 'HN08014003', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1129, 1297849667211, 0, 0, 0, '黑灰色加绒 XL', '', 50, 'HN0801J', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1130, 1297849667192, 0, 499, 33, '蓝灰色 2XL', 'HN08017505', 50, 'HN08017505', 'HN0801', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1131, 1300815075470, 0, 0, 0, '蓝灰色 2XL', '', 100, '', 'HN0681', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1132, 1300815075468, 0, 0, 0, '蓝灰色 L', '', 100, '', 'HN0681', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1133, 1300815075466, 0, 0, 0, '蓝灰色 S', '', 100, '', 'HN0681', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1134, 1300815075467, 0, 0, 0, '蓝灰色 M', '', 100, '', 'HN0681', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1135, 1300815075469, 0, 0, 0, '蓝灰色 XL', '', 100, '', 'HN0681', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1136, 1300789840464, 0, 0, 0, '黑色 M（27-28码95-105斤）', '', 100, '', 'HN661', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1137, 1300789840465, 0, 0, 0, '黑色 L（29码105-115斤）', '', 100, '', 'HN661', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1138, 1300789840467, 0, 0, 0, '黑色 2XL（31码125-135斤）', '', 100, '', 'HN661', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1139, 1300789840466, 0, 0, 0, '黑色 XL（30码115-125斤）', '', 100, '', 'HN661', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1140, 1300789840463, 0, 0, 0, '黑色 S（25-26码95斤以内）', '', 100, '', 'HN661', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1141, 1298984457787, 0, 286, 22, '浅蓝色 27', 'HN202200200327', 500, 'HN202200200327', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1142, 1298984457817, 0, 800, 22, '浅蓝色加绒 25', 'HN2022002015025', 500, 'HN2022002015025', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1143, 1298984457815, 0, 798, 22, '蓝灰色加绒 31', 'HN2022002012931', 500, 'HN2022002012931', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1144, 1298984457822, 0, 805, 22, '浅蓝色加绒 30', 'HN2022002015030', 500, 'HN2022002015030', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1145, 1298984457792, 0, 291, 22, '浅蓝色 32', 'HN202200200332', 500, 'HN202200200332', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1146, 1298984457813, 0, 796, 22, '蓝灰色加绒 29', 'HN2022002012929', 500, 'HN2022002012929', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1147, 1298984457764, 0, 271, 22, '黑色 28', 'HN202200200128', 500, 'HN202200200128', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1148, 1298984457801, 0, 784, 22, '黑灰色加绒 25', 'HN2022002017525', 500, 'HN2022002017525', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1149, 1298984457790, 0, 289, 22, '浅蓝色 30', 'HN202200200330', 500, 'HN202200200330', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1150, 1298984457802, 0, 785, 22, '黑灰色加绒 26', 'HN2022002017526', 500, 'HN2022002017526', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1151, 1298984457782, 0, 297, 22, '蓝灰色 30', 'HN202200200430', 500, 'HN202200200430', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1152, 1298984457781, 0, 296, 22, '蓝灰色 29', 'HN202200200429', 500, 'HN202200200429', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1153, 1298984457803, 0, 786, 22, '黑灰色加绒 27', 'HN2022002017527', 500, 'HN2022002017527', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1154, 1298984457768, 0, 275, 22, '黑色 32', 'HN202200200132', 500, 'HN202200200132', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1155, 1298984457779, 0, 294, 22, '蓝灰色 27', 'HN202200200427', 500, 'HN202200200427', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1156, 1298984457769, 0, 276, 22, '黑灰色 25', 'HN202200200225', 500, 'HN202200200225', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1157, 1298984457809, 0, 792, 22, '蓝灰色加绒 25', 'HN2022002012925', 500, 'HN2022002012925', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1158, 1298984457772, 0, 279, 22, '黑灰色 28', 'HN202200200228', 500, 'HN202200200228', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1159, 1298984457814, 0, 797, 22, '蓝灰色加绒 30', 'HN2022002012930', 500, 'HN2022002012930', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1160, 1298984457771, 0, 278, 22, '黑灰色 27', 'HN202200200227', 500, 'HN202200200227', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1161, 1298984457773, 0, 280, 22, '黑灰色 29', 'HN202200200229', 500, 'HN202200200229', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1162, 1298984457793, 0, 776, 22, '黑色加绒 25', 'HN2022002010125', 500, 'HN2022002010125', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1163, 1298984457798, 0, 781, 22, '黑色加绒 30', 'HN2022002010130', 500, 'HN2022002010130', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1164, 1298984457794, 0, 777, 22, '黑色加绒 26', 'HN2022002010126', 500, 'HN2022002010126', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1165, 1298984457811, 0, 794, 22, '蓝灰色加绒 27', 'HN2022002012927', 500, 'HN2022002012927', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1166, 1298984457786, 0, 285, 22, '浅蓝色 26', 'HN202200200326', 500, 'HN202200200326', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1167, 1298984457800, 0, 783, 22, '黑色加绒 32', 'HN2022002010132', 500, 'HN2022002010132', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1168, 1298984457788, 0, 287, 22, '浅蓝色 28', 'HN202200200328', 500, 'HN202200200328', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1169, 1298984457761, 0, 268, 22, '黑色 25', 'HN202200200125', 500, 'HN202200200125', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1170, 1298984457805, 0, 788, 22, '黑灰色加绒 29', 'HN2022002017529', 500, 'HN2022002017529', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1171, 1298984457780, 0, 295, 22, '蓝灰色 28', 'HN202200200428', 500, 'HN202200200428', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1172, 1298984457778, 0, 293, 22, '蓝灰色 26', 'HN202200200426', 500, 'HN202200200426', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1173, 1298984457765, 0, 272, 22, '黑色 29', 'HN202200200129', 500, 'HN202200200129', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1174, 1298984457791, 0, 290, 22, '浅蓝色 31', 'HN202200200331', 500, 'HN202200200331', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1175, 1298984457789, 0, 288, 22, '浅蓝色 29', 'HN202200200329', 500, 'HN202200200329', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1176, 1298984457795, 0, 778, 22, '黑色加绒 27', 'HN2022002010127', 500, 'HN2022002010127', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1177, 1298984457796, 0, 779, 22, '黑色加绒 28', 'HN2022002010128', 500, 'HN2022002010128', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1178, 1298984457804, 0, 787, 22, '黑灰色加绒 28', 'HN2022002017528', 500, 'HN2022002017528', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1179, 1298984457820, 0, 803, 22, '浅蓝色加绒 28', 'HN2022002015028', 500, 'HN2022002015028', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1180, 1298984457816, 0, 799, 22, '蓝灰色加绒 32', 'HN2022002012932', 500, 'HN2022002012932', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1181, 1298984457824, 0, 807, 22, '浅蓝色加绒 32', 'HN2022002015032', 500, 'HN2022002015032', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1182, 1298984457808, 0, 791, 22, '黑灰色加绒 32', 'HN2022002017532', 500, 'HN2022002017532', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1183, 1298984457766, 0, 273, 22, '黑色 30', 'HN202200200130', 500, 'HN202200200130', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1184, 1298984457774, 0, 281, 22, '黑灰色 30', 'HN202200200230', 500, 'HN202200200230', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1185, 1298984457783, 0, 298, 22, '蓝灰色 31', 'HN202200200431', 500, 'HN202200200431', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1186, 1298984457819, 0, 802, 22, '浅蓝色加绒 27', 'HN2022002015027', 500, 'HN2022002015027', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1187, 1298984457823, 0, 806, 22, '浅蓝色加绒 31', 'HN2022002015031', 500, 'HN2022002015031', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1188, 1298984457806, 0, 789, 22, '黑灰色加绒 30', 'HN2022002017530', 500, 'HN2022002017530', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1189, 1298984457775, 0, 282, 22, '黑灰色 31', 'HN202200200231', 500, 'HN202200200231', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1190, 1298984457797, 0, 780, 22, '黑色加绒 29', 'HN2022002010129', 499, 'HN2022002010129', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1191, 1298984457777, 0, 292, 22, '蓝灰色 25', 'HN202200200425', 500, 'HN202200200425', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1192, 1298984457810, 0, 793, 22, '蓝灰色加绒 26', 'HN2022002012926', 500, 'HN2022002012926', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1193, 1298984457767, 0, 274, 22, '黑色 31', 'HN202200200131', 500, 'HN202200200131', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1194, 1298984457812, 0, 795, 22, '蓝灰色加绒 28', 'HN2022002012928', 500, 'HN2022002012928', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1195, 1298984457763, 0, 270, 22, '黑色 27', 'HN202200200127', 500, 'HN202200200127', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1196, 1298984457762, 0, 269, 22, '黑色 26', 'HN202200200126', 500, 'HN202200200126', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1197, 1298984457776, 0, 283, 22, '黑灰色 32', 'HN202200200232', 500, 'HN202200200232', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1198, 1298984457785, 0, 284, 22, '浅蓝色 25', 'HN202200200325', 500, 'HN202200200325', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1199, 1298984457799, 0, 782, 22, '黑色加绒 31', 'HN2022002010131', 500, 'HN2022002010131', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1200, 1298984457770, 0, 277, 22, '黑灰色 26', 'HN202200200226', 500, 'HN202200200226', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1201, 1298984457807, 0, 790, 22, '黑灰色加绒 31', 'HN2022002017531', 500, 'HN2022002017531', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1202, 1298984457821, 0, 804, 22, '浅蓝色加绒 29', 'HN2022002015029', 500, 'HN2022002015029', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1203, 1298984457818, 0, 801, 22, '浅蓝色加绒 26', 'HN2022002015026', 500, 'HN2022002015026', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1204, 1298984457784, 0, 299, 22, '蓝灰色 32', 'HN202200200435', 500, 'HN202200200435', 'HN20220020', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1205, 1299097648611, 0, 809, 48, '浅蓝色 M', 'HN1805002', 100, 'HN1805002', 'HN180', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1206, 1299097648610, 0, 808, 48, '浅蓝色 S', 'HN1805001', 100, 'HN1805001', 'HN180', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1207, 1299097648614, 0, 812, 48, '浅蓝色 2XL', 'HN1805005', 100, 'HN1805005', 'HN180', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1208, 1299097648613, 0, 811, 48, '浅蓝色 XL', 'HN1805004', 100, 'HN1805004', 'HN180', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1209, 1299097648612, 0, 810, 48, '浅蓝色 L', 'HN1805003', 100, 'HN1805003', 'HN180', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1210, 1299618145899, 0, 0, 0, '黑色 M', '', 50, 'HN665', 'HN665', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1211, 1299618145902, 0, 0, 0, '黑色 S', '', 50, 'HN665', 'HN665', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1212, 1299618145898, 0, 0, 0, '黑色 2XL', '', 50, 'HN665', 'HN665', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1213, 1299618145900, 0, 0, 0, '黑色 XL', '', 50, 'HN665', 'HN665', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1214, 1299618145901, 0, 0, 0, '黑色 L', '', 50, 'HN665', 'HN665', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1215, 1299618998188, 0, 0, 0, '黑色 M', '', 100, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1216, 1299618998187, 0, 0, 0, '黑色 S', '', 100, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1217, 1299618998189, 0, 0, 0, '黑色 L', '', 100, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1218, 1299618998185, 0, 0, 0, '蓝色 M', '', 100, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1219, 1299618998186, 0, 0, 0, '蓝色 L', '', 100, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1220, 1299618998184, 0, 0, 0, '蓝色 S', '', 100, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1221, 1300536155526, 0, 0, 0, '烟灰色 27', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1222, 1300536155554, 0, 0, 0, '烟灰色加绒 27', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1223, 1300536155519, 0, 0, 0, '黑色 27', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1224, 1300536155537, 0, 0, 0, '蓝灰色 31', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1225, 1300536155525, 0, 0, 0, '烟灰色 26', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1226, 1300536155518, 0, 0, 0, '黑色 26', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1227, 1300536155563, 0, 0, 0, '蓝灰色加绒 29', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1228, 1300536155528, 0, 0, 0, '烟灰色 29', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1229, 1300536155552, 0, 0, 0, '黑色加绒 32', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1230, 1300536155549, 0, 0, 0, '黑色加绒 29', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1231, 1300536155541, 0, 0, 0, '浅蓝色 28', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1232, 1300536155543, 0, 0, 0, '浅蓝色 30', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1233, 1300536155567, 0, 0, 0, '浅蓝色加绒 26', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1234, 1300536155550, 0, 0, 0, '黑色加绒 30', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1235, 1300536155559, 0, 0, 0, '烟灰色加绒 32', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1236, 1300536155530, 0, 0, 0, '烟灰色 31', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1237, 1300536155531, 0, 0, 0, '烟灰色 32', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1238, 1300536155547, 0, 0, 0, '黑色加绒 27', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1239, 1300536155522, 0, 0, 0, '黑色 30', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1240, 1300536155556, 0, 0, 0, '烟灰色加绒 29', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1241, 1300536155527, 0, 0, 0, '烟灰色 28', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1242, 1300536155571, 0, 0, 0, '浅蓝色加绒 30', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1243, 1300536155538, 0, 0, 0, '蓝灰色 32', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1244, 1300536155566, 0, 0, 0, '蓝灰色加绒 32', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1245, 1300536155570, 0, 0, 0, '浅蓝色加绒 29', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1246, 1300536155521, 0, 0, 0, '黑色 29', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1247, 1300536155564, 0, 0, 0, '蓝灰色加绒 30', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1248, 1300536155539, 0, 0, 0, '浅蓝色 26', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1249, 1300536155544, 0, 0, 0, '浅蓝色 31', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1250, 1300536155562, 0, 0, 0, '蓝灰色加绒 28', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1251, 1300536155524, 0, 0, 0, '黑色 32', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1252, 1300536155557, 0, 0, 0, '烟灰色加绒 30', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1253, 1300536155529, 0, 0, 0, '烟灰色 30', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1254, 1300536155573, 0, 0, 0, '浅蓝色加绒 32', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1255, 1300536155523, 0, 0, 0, '黑色 31', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1256, 1300536155535, 0, 0, 0, '蓝灰色 29', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1257, 1300536155520, 0, 0, 0, '黑色 28', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1258, 1300536155555, 0, 0, 0, '烟灰色加绒 28', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1259, 1300536155540, 0, 0, 0, '浅蓝色 27', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1260, 1300536155551, 0, 0, 0, '黑色加绒 31', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1261, 1300536155572, 0, 0, 0, '浅蓝色加绒 31', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1262, 1300536155561, 0, 0, 0, '蓝灰色加绒 27', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1263, 1300536155560, 0, 0, 0, '蓝灰色加绒 26', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1264, 1300536155545, 0, 0, 0, '浅蓝色 32', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1265, 1300536155569, 0, 0, 0, '浅蓝色加绒 28', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1266, 1300536155533, 0, 0, 0, '蓝灰色 27', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1267, 1300536155558, 0, 0, 0, '烟灰色加绒 31', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1268, 1300536155534, 0, 0, 0, '蓝灰色 28', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1269, 1300536155546, 0, 0, 0, '黑色加绒 26', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1270, 1300536155565, 0, 0, 0, '蓝灰色加绒 31', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1271, 1300536155568, 0, 0, 0, '浅蓝色加绒 27', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1272, 1300536155542, 0, 0, 0, '浅蓝色 29', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1273, 1300536155553, 0, 0, 0, '烟灰色加绒 26', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1274, 1300536155532, 0, 0, 0, '蓝灰色 26', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1275, 1300536155536, 0, 0, 0, '蓝灰色 30', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1276, 1300536155548, 0, 0, 0, '黑色加绒 28', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1277, 1300835762157, 0, 0, 0, '米黄 XL', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1278, 1300835762149, 0, 0, 0, '黑色 XL', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1279, 1300835762148, 0, 0, 0, '黑色 L', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1280, 1300835762164, 0, 0, 0, '青草色 L', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1281, 1300835762167, 0, 0, 0, '天空蓝 M', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1282, 1300835762165, 0, 0, 0, '青草色 XL', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1283, 1300835762154, 0, 0, 0, '米黄 S', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1284, 1300835762151, 0, 0, 0, '粉红色 M', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1285, 1300835762147, 0, 0, 0, '黑色 M', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1286, 1300835762150, 0, 0, 0, '粉红色 S', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1287, 1300835762152, 0, 0, 0, '粉红色 L', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1288, 1300835762169, 0, 0, 0, '天空蓝 XL', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1289, 1300835762162, 0, 0, 0, '青草色 S', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1290, 1300835762158, 0, 0, 0, '紫色 S', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1291, 1300835762160, 0, 0, 0, '紫色 L', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1292, 1300835762146, 0, 0, 0, '黑色 S', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1293, 1300835762166, 0, 0, 0, '天空蓝 S', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1294, 1300835762163, 0, 0, 0, '青草色 M', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1295, 1300835762155, 0, 0, 0, '米黄 M', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1296, 1300835762159, 0, 0, 0, '紫色 M', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1297, 1300835762156, 0, 0, 0, '米黄 L', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1298, 1300835762161, 0, 0, 0, '紫色 XL', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1299, 1300835762153, 0, 0, 0, '粉红色 XL', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1300, 1300835762168, 0, 0, 0, '天空蓝 L', '', 50, '', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1301, 1300918958614, 0, 0, 0, '蓝色 M', '', 50, 'HN0804', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1302, 1300918958616, 0, 0, 0, '蓝色 XL', '', 50, 'HN0804', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1303, 1300918958617, 0, 0, 0, '蓝色 2XL', '', 50, 'HN0804', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1304, 1300918958615, 0, 0, 0, '蓝色 L', '', 50, 'HN0804', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1305, 1300918958613, 0, 0, 0, '蓝色 S', '', 50, 'HN0804', '', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1306, 1300930893642, 0, 0, 0, '复古蓝 XL', '', 50, 'HN683', 'HN683', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1307, 1300930893639, 0, 0, 0, '复古蓝 S', '', 50, 'HN683', 'HN683', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1308, 1300930893640, 0, 0, 0, '复古蓝 M', '', 50, 'HN683', 'HN683', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1309, 1300930893641, 0, 0, 0, '复古蓝 L', '', 50, 'HN683', 'HN683', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1310, 1300930893643, 0, 0, 0, '复古蓝 2XL', '', 50, 'HN683', 'HN683', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1311, 1300950070710, 0, 0, 0, '黑色 L', '', 100, 'HN0802', 'HN0802', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1312, 1300950070713, 0, 0, 0, '黑灰色 S', '', 100, 'HN0802', 'HN0802', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1313, 1300950070721, 0, 0, 0, '复古蓝 XL', '', 100, 'HN0802', 'HN0802', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1314, 1300950070727, 0, 0, 0, '蓝灰色 2XL', '', 100, 'HN0802', 'HN0802', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1315, 1300950070708, 0, 0, 0, '黑色 S', '', 100, 'HN0802', 'HN0802', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1316, 1300950070723, 0, 0, 0, '蓝灰色 S', '', 100, 'HN0802', 'HN0802', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1317, 1300950070709, 0, 0, 0, '黑色 M', '', 100, 'HN0802', 'HN0802', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1318, 1300950070726, 0, 0, 0, '蓝灰色 XL', '', 100, 'HN0802', 'HN0802', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1319, 1300950070724, 0, 0, 0, '蓝灰色 M', '', 100, 'HN0802', 'HN0802', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1320, 1300950070712, 0, 0, 0, '黑色 2XL', '', 100, 'HN0802', 'HN0802', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1321, 1300950070718, 0, 0, 0, '复古蓝 S', '', 100, 'HN0802', 'HN0802', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1322, 1300950070719, 0, 0, 0, '复古蓝 M', '', 100, 'HN0802', 'HN0802', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1323, 1300950070717, 0, 0, 0, '黑灰色 2XL', '', 100, 'HN0802', 'HN0802', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1324, 1300950070725, 0, 0, 0, '蓝灰色 L', '', 100, 'HN0802', 'HN0802', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1325, 1300950070711, 0, 0, 0, '黑色 XL', '', 100, 'HN0802', 'HN0802', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1326, 1300950070720, 0, 0, 0, '复古蓝 L', '', 100, 'HN0802', 'HN0802', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1327, 1300950070722, 0, 0, 0, '复古蓝 2XL', '', 100, 'HN0802', 'HN0802', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1328, 1300950070714, 0, 0, 0, '黑灰色 M', '', 100, 'HN0802', 'HN0802', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1329, 1300950070715, 0, 0, 0, '黑灰色 L', '', 100, 'HN0802', 'HN0802', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1330, 1300950070716, 0, 0, 0, '黑灰色 XL', '', 100, 'HN0802', 'HN0802', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1331, 1301302432802, 0, 0, 0, '卡其色 28', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1332, 1301302432705, 0, 0, 0, '酒红色 31', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1333, 1301302432748, 0, 0, 0, '咖啡色 34', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1334, 1301302432781, 0, 0, 0, '宝蓝色 27', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1335, 1301302432779, 0, 0, 0, '宝蓝色 25', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1336, 1301302432699, 0, 0, 0, '酒红色 25', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1337, 1301302432769, 0, 0, 0, '灰色 25', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1338, 1301302432727, 0, 0, 0, '白色 33', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1339, 1301302432741, 0, 0, 0, '咖啡色 27', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1340, 1301302432776, 0, 0, 0, '灰色 32', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1341, 1301302432719, 0, 0, 0, '白色 25', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1342, 1301302432744, 0, 0, 0, '咖啡色 30', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1343, 1301302432754, 0, 0, 0, '深紫色 30', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1344, 1301302432760, 0, 0, 0, '墨绿色 26', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1345, 1301302432691, 0, 0, 0, '红色 27', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1346, 1301302432756, 0, 0, 0, '深紫色 32', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1347, 1301302432713, 0, 0, 0, '黑色 29', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1348, 1301302432740, 0, 0, 0, '咖啡色 26', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1349, 1301302432764, 0, 0, 0, '墨绿色 30', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1350, 1301302432689, 0, 0, 0, '红色 25', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1351, 1301302432692, 0, 0, 0, '红色 28', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1352, 1301302432758, 0, 0, 0, '深紫色 34', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1353, 1301302432762, 0, 0, 0, '墨绿色 28', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1354, 1301302432721, 0, 0, 0, '白色 27', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1355, 1301302432724, 0, 0, 0, '白色 30', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1356, 1301302432706, 0, 0, 0, '酒红色 32', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1357, 1301302432767, 0, 0, 0, '墨绿色 33', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1358, 1301302432801, 0, 0, 0, '卡其色 27', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1359, 1301302432785, 0, 0, 0, '宝蓝色 31', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1360, 1301302432772, 0, 0, 0, '灰色 28', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1361, 1301302432703, 0, 0, 0, '酒红色 29', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1362, 1301302432759, 0, 0, 0, '墨绿色 25', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1363, 1301302432730, 0, 0, 0, '藏蓝 26', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1364, 1301302432787, 0, 0, 0, '宝蓝色 33', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1365, 1301302432729, 0, 0, 0, '藏蓝 25', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1366, 1301302432737, 0, 0, 0, '藏蓝 33', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1367, 1301302432765, 0, 0, 0, '墨绿色 31', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1368, 1301302432788, 0, 0, 0, '宝蓝色 34', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1369, 1301302432693, 0, 0, 0, '红色 29', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1370, 1301302432804, 0, 0, 0, '卡其色 30', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1371, 1301302432786, 0, 0, 0, '宝蓝色 32', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1372, 1301302432797, 0, 0, 0, '海军兰 33', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1373, 1301302432690, 0, 0, 0, '红色 26', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1374, 1301302432770, 0, 0, 0, '灰色 26', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1375, 1301302432778, 0, 0, 0, '灰色 34', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1376, 1301302432757, 0, 0, 0, '深紫色 33', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1377, 1301302432807, 0, 0, 0, '卡其色 33', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1378, 1301302432704, 0, 0, 0, '酒红色 30', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1379, 1301302432714, 0, 0, 0, '黑色 30', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1380, 1301302432716, 0, 0, 0, '黑色 32', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1381, 1301302432782, 0, 0, 0, '宝蓝色 28', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1382, 1301302432723, 0, 0, 0, '白色 29', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1383, 1301302432796, 0, 0, 0, '海军兰 32', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1384, 1301302432789, 0, 0, 0, '海军兰 25', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1385, 1301302432700, 0, 0, 0, '酒红色 26', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1386, 1301302432694, 0, 0, 0, '红色 30', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1387, 1301302432742, 0, 0, 0, '咖啡色 28', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1388, 1301302432777, 0, 0, 0, '灰色 33', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1389, 1301302432738, 0, 0, 0, '藏蓝 34', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1390, 1301302432728, 0, 0, 0, '白色 34', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1391, 1301302432753, 0, 0, 0, '深紫色 29', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1392, 1301302432734, 0, 0, 0, '藏蓝 30', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1393, 1301302432749, 0, 0, 0, '深紫色 25', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1394, 1301302432803, 0, 0, 0, '卡其色 29', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1395, 1301302432743, 0, 0, 0, '咖啡色 29', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1396, 1301302432768, 0, 0, 0, '墨绿色 34', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1397, 1301302432726, 0, 0, 0, '白色 32', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1398, 1301302432695, 0, 0, 0, '红色 31', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1399, 1301302432775, 0, 0, 0, '灰色 31', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1400, 1301302432793, 0, 0, 0, '海军兰 29', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1401, 1301302432798, 0, 0, 0, '海军兰 34', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1402, 1301302432794, 0, 0, 0, '海军兰 30', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1403, 1301302432799, 0, 0, 0, '卡其色 25', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1404, 1301302432751, 0, 0, 0, '深紫色 27', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1405, 1301302432697, 0, 0, 0, '红色 33', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1406, 1301302432739, 0, 0, 0, '咖啡色 25', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1407, 1301302432806, 0, 0, 0, '卡其色 32', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1408, 1301302432792, 0, 0, 0, '海军兰 28', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1409, 1301302432736, 0, 0, 0, '藏蓝 32', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1410, 1301302432784, 0, 0, 0, '宝蓝色 30', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1411, 1301302432712, 0, 0, 0, '黑色 28', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1412, 1301302432763, 0, 0, 0, '墨绿色 29', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1413, 1301302432701, 0, 0, 0, '酒红色 27', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1414, 1301302432710, 0, 0, 0, '黑色 26', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1415, 1301302432783, 0, 0, 0, '宝蓝色 29', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1416, 1301302432718, 0, 0, 0, '黑色 34', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1417, 1301302432707, 0, 0, 0, '酒红色 33', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1418, 1301302432702, 0, 0, 0, '酒红色 28', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1419, 1301302432722, 0, 0, 0, '白色 28', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1420, 1301302432774, 0, 0, 0, '灰色 30', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1421, 1301302432790, 0, 0, 0, '海军兰 26', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1422, 1301302432750, 0, 0, 0, '深紫色 26', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1423, 1301302432720, 0, 0, 0, '白色 26', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1424, 1301302432711, 0, 0, 0, '黑色 27', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1425, 1301302432745, 0, 0, 0, '咖啡色 31', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1426, 1301302432735, 0, 0, 0, '藏蓝 31', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1427, 1301302432747, 0, 0, 0, '咖啡色 33', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1428, 1301302432795, 0, 0, 0, '海军兰 31', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1429, 1301302432773, 0, 0, 0, '灰色 29', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1430, 1301302432708, 0, 0, 0, '酒红色 34', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1431, 1301302432800, 0, 0, 0, '卡其色 26', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1432, 1301302432791, 0, 0, 0, '海军兰 27', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1433, 1301302432725, 0, 0, 0, '白色 31', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1434, 1301302432771, 0, 0, 0, '灰色 27', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1435, 1301302432733, 0, 0, 0, '藏蓝 29', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1436, 1301302432715, 0, 0, 0, '黑色 31', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1437, 1301302432698, 0, 0, 0, '红色 34', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1438, 1301302432696, 0, 0, 0, '红色 32', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1439, 1301302432731, 0, 0, 0, '藏蓝 27', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1440, 1301302432717, 0, 0, 0, '黑色 33', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1441, 1301302432761, 0, 0, 0, '墨绿色 27', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1442, 1301302432755, 0, 0, 0, '深紫色 31', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1443, 1301302432808, 0, 0, 0, '卡其色 34', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1444, 1301302432732, 0, 0, 0, '藏蓝 28', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1445, 1301302432780, 0, 0, 0, '宝蓝色 26', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1446, 1301302432766, 0, 0, 0, '墨绿色 32', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1447, 1301302432709, 0, 0, 0, '黑色 25', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1448, 1301302432746, 0, 0, 0, '咖啡色 32', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1449, 1301302432805, 0, 0, 0, '卡其色 31', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1450, 1301302432752, 0, 0, 0, '深紫色 28', '', 100, 'JKL333', 'JKL333', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1451, 1301404846098, 0, 0, 0, '复古蓝 S', '', 100, 'JKL906', 'JKL906', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1452, 1301404846101, 0, 0, 0, '复古蓝 XL', '', 100, 'JKL906', 'JKL906', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1453, 1301404846099, 0, 0, 0, '复古蓝 M', '', 100, 'JKL906', 'JKL906', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1454, 1301404846103, 0, 0, 0, '浅蓝色 XS', '', 100, 'JKL906', 'JKL906', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1455, 1301404846097, 0, 0, 0, '复古蓝 XS', '', 100, 'JKL906', 'JKL906', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1456, 1301404846104, 0, 0, 0, '浅蓝色 S', '', 100, 'JKL906', 'JKL906', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1457, 1301404846107, 0, 0, 0, '浅蓝色 XL', '', 100, 'JKL906', 'JKL906', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1458, 1301404846106, 0, 0, 0, '浅蓝色 L', '', 100, 'JKL906', 'JKL906', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1459, 1301404846100, 0, 0, 0, '复古蓝 L', '', 100, 'JKL906', 'JKL906', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1460, 1301404846105, 0, 0, 0, '浅蓝色 M', '', 100, 'JKL906', 'JKL906', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1461, 1301404846102, 0, 0, 0, '复古蓝 2XL', '', 100, 'JKL906', 'JKL906', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1462, 1301404846108, 0, 0, 0, '浅蓝色 2XL', '', 100, 'JKL906', 'JKL906', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1463, 1301814344129, 0, 0, 0, '蓝灰色 29', '', 100, 'JKL9098', 'JKL9098', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1464, 1301814344122, 0, 0, 0, '复古蓝 29', '', 100, 'JKL9098', 'JKL9098', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1465, 1301814344119, 0, 813, 49, '复古蓝 26', 'JKL90984026', 100, 'JKL9098', 'JKL9098', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1466, 1301814344132, 0, 0, 0, '蓝灰色 32', '', 100, 'JKL9098', 'JKL9098', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1467, 1301814344126, 0, 0, 0, '蓝灰色 26', '', 100, 'JKL9098', 'JKL9098', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1468, 1301814344133, 0, 0, 0, '黑色 26', '', 100, 'JKL9098', 'JKL9098', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1469, 1301814344120, 0, 0, 0, '复古蓝 27', '', 100, 'JKL9098', 'JKL9098', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1470, 1301814344128, 0, 0, 0, '蓝灰色 28', '', 100, 'JKL9098', 'JKL9098', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1471, 1301814344127, 0, 0, 0, '蓝灰色 27', '', 100, 'JKL9098', 'JKL9098', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1472, 1301814344138, 0, 0, 0, '黑色 31', '', 100, 'JKL9098', 'JKL9098', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1473, 1301814344124, 0, 0, 0, '复古蓝 31', '', 100, 'JKL9098', 'JKL9098', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1474, 1301814344136, 0, 0, 0, '黑色 29', '', 100, 'JKL9098', 'JKL9098', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1475, 1301814344135, 0, 0, 0, '黑色 28', '', 100, 'JKL9098', 'JKL9098', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1476, 1301814344131, 0, 0, 0, '蓝灰色 31', '', 100, 'JKL9098', 'JKL9098', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1477, 1301814344137, 0, 0, 0, '黑色 30', '', 100, 'JKL9098', 'JKL9098', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1478, 1301814344139, 0, 0, 0, '黑色 32', '', 100, 'JKL9098', 'JKL9098', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1479, 1301814344130, 0, 0, 0, '蓝灰色 30', '', 100, 'JKL9098', 'JKL9098', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1480, 1301814344134, 0, 0, 0, '黑色 27', '', 100, 'JKL9098', 'JKL9098', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1481, 1301814344123, 0, 0, 0, '复古蓝 30', '', 100, 'JKL9098', 'JKL9098', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1482, 1301814344121, 0, 0, 0, '复古蓝 28', '', 100, 'JKL9098', 'JKL9098', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1483, 1301814344125, 0, 0, 0, '复古蓝 32', '', 100, 'JKL9098', 'JKL9098', NULL, NULL, NULL, NULL, 1, 0, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
+
+-- ----------------------------
+-- Table structure for oms_tenant_shop_pull_lasttime
+-- ----------------------------
+DROP TABLE IF EXISTS `oms_tenant_shop_pull_lasttime`;
+CREATE TABLE `oms_tenant_shop_pull_lasttime`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `shop_id` int NULL DEFAULT NULL COMMENT '店铺id',
+  `pull_type` enum('ORDER','REFUND') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '类型（ORDER:订单，REFUND:退款）',
+  `lasttime` datetime NULL DEFAULT NULL COMMENT '最后更新时间',
+  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '租户店铺更新最后时间记录' ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of oms_tenant_shop_pull_lasttime
+-- ----------------------------
+INSERT INTO `oms_tenant_shop_pull_lasttime` VALUES (1, 1, 'ORDER', '2024-04-09 16:23:00', '2024-03-23 15:56:13', '2024-04-09 16:23:00');
+INSERT INTO `oms_tenant_shop_pull_lasttime` VALUES (2, 1, 'REFUND', '2024-04-09 17:43:00', '2024-03-24 13:03:54', '2024-04-09 17:43:00');
+INSERT INTO `oms_tenant_shop_pull_lasttime` VALUES (3, 2, 'ORDER', '2024-04-09 19:44:00', '2024-03-10 13:00:07', '2024-04-09 19:44:00');
+INSERT INTO `oms_tenant_shop_pull_lasttime` VALUES (4, 2, 'REFUND', '2024-04-10 23:35:56', '2024-03-24 13:50:24', '2024-04-11 11:35:58');
 
 -- ----------------------------
 -- Table structure for oms_wei_goods
@@ -5121,398 +6663,6 @@ CREATE TABLE `s_pdd_order_refund`  (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for s_shop
--- ----------------------------
-DROP TABLE IF EXISTS `s_shop`;
-CREATE TABLE `s_shop`  (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '店铺名',
-  `nickName` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '店铺别名',
-  `ename` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '标识',
-  `company` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '店铺主题',
-  `type` int NOT NULL COMMENT '对应第三方平台Id',
-  `url` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '店铺url',
-  `orderNum` int NOT NULL DEFAULT 9 COMMENT '排序',
-  `isDelete` int NOT NULL DEFAULT 0 COMMENT '是否删除0否1是',
-  `isShow` int NULL DEFAULT 0 COMMENT '是否显示(0：是1否）',
-  `modify_on` bigint NOT NULL COMMENT '更新时间',
-  `remark` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '描述',
-  `sellerUserId` bigint NOT NULL DEFAULT 0 COMMENT '第三方平台店铺id，淘宝天猫开放平台使用',
-  `sellerUserIdStr` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '卖家userId',
-  `sessionKey` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '第三方平台sessionKey（access_token）',
-  `appkey` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'Appkey',
-  `appSercet` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'Appsercet',
-  `expires_in` bigint NULL DEFAULT NULL COMMENT '到期',
-  `access_token_begin` bigint NULL DEFAULT NULL COMMENT 'access_token开始时间',
-  `refresh_token` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '刷新token',
-  `refresh_token_timeout` bigint NULL DEFAULT NULL COMMENT '刷新token过期时间',
-  `api_request_url` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '请求url',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 23 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '数据中心-店铺' ROW_FORMAT = DYNAMIC;
-
--- ----------------------------
--- Records of s_shop
--- ----------------------------
-INSERT INTO `s_shop` VALUES (1, '其他渠道', NULL, NULL, NULL, 99, NULL, 9, 0, 0, 1704416716, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `s_shop` VALUES (2, '视频号店铺-测试', '拼多多-梦小妮', 'wei', '煜梦服饰', 2, NULL, 99, 0, 1, 1680698886, 'pdd10006159121', 100061591, '', '80_iOXcFHBFAb3NX2ieFAuXu5mKxvqar8aGhk9ea23Ivo7P5nhuFLYtYeZiJttJYANjCv_dY7yLO5Ft9-pcyxApcdnNbth0j2zhJZXR8t3a6VD8jOCDv2Xljvh2ujUNIDiADAHCX', 'd332', '332ss', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `s_shop` VALUES (3, '测试京东', '拼多多-梦小妮', 'jd', '煜梦服饰', 3, NULL, 99, 0, 1, 1680698886, 'pdd10006159121', 100061591, '', '87f8044d2a5f45a489aa3a952785b0d35e61788a', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `s_shop` VALUES (5, '梦小妮潮流女装', '拼多多-梦小妮', 'pdd', '煜梦服饰', 5, NULL, 99, 0, 1, 1680698886, 'pdd10006159121', 100061591, '', '87f8044d2a5f45a489aa3a952785b0d35e61788a', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `s_shop` VALUES (6, '梦小妮牛仔裤', '淘宝-梦小妮', 'taobao', '煜梦服饰', 4, '', 98, 0, 1, 0, '', 2200787809358, '0', '610140071d1070a37cecea89f1c1f3d6e5d19bf4b58dd942200787809358', '31014100', '7b0769269b0c0ca88949791c14eb3a5c', NULL, NULL, NULL, NULL, 'http://gw.api.taobao.com/router/rest');
-INSERT INTO `s_shop` VALUES (13, '梦小妮牛仔裤-快手', '快手小店', 'kuaishou', '华衣云商', 8, NULL, 9, 1, 0, 0, NULL, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `s_shop` VALUES (21, '珍姐姐de衣柜的店', '启航家常菜的店-小红书', 'xhs', '启航', 7, 'https://ark.xiaohongshu.com/ark/open_api/v3/common_controller', 2, 0, 0, 1658303081, NULL, 21, '6255224c3801e1000190d3d0', 'token-0f3f8a5fc5aa465aa29a66d27c6cf170-dad68769d83e4e1a9f52a950a680b9f2', '621919dd99484598a69c', '1747d77da2ce58b97483932041c5503e', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `s_shop` VALUES (22, '梦小妮牛仔裤', '抖音-梦小妮', 'douyin', '华衣云商', 6, 'http://openapi.jinritemai.com', 87, 0, 1, 1653672695, NULL, 4463798, '0', '', '7249607407477720636', '36a12497-fb9d-4b54-8cd1-fd1617346687', NULL, NULL, NULL, NULL, '2');
-
--- ----------------------------
--- Table structure for s_shop_pull_lasttime
--- ----------------------------
-DROP TABLE IF EXISTS `s_shop_pull_lasttime`;
-CREATE TABLE `s_shop_pull_lasttime`  (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `shop_id` int NULL DEFAULT NULL COMMENT '店铺id',
-  `pull_type` enum('ORDER','REFUND') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '类型（ORDER:订单，REFUND:退款）',
-  `lasttime` datetime NULL DEFAULT NULL COMMENT '最后更新时间',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '店铺更新最后时间记录' ROW_FORMAT = DYNAMIC;
-
--- ----------------------------
--- Records of s_shop_pull_lasttime
--- ----------------------------
-INSERT INTO `s_shop_pull_lasttime` VALUES (1, 1, 'ORDER', '2024-04-09 16:23:00', '2024-03-23 15:56:13', '2024-04-09 16:23:00');
-INSERT INTO `s_shop_pull_lasttime` VALUES (2, 1, 'REFUND', '2024-04-09 17:43:00', '2024-03-24 13:03:54', '2024-04-09 17:43:00');
-INSERT INTO `s_shop_pull_lasttime` VALUES (3, 2, 'ORDER', '2024-04-09 19:44:00', '2024-03-10 13:00:07', '2024-04-09 19:44:00');
-INSERT INTO `s_shop_pull_lasttime` VALUES (4, 2, 'REFUND', '2024-04-10 23:35:56', '2024-03-24 13:50:24', '2024-04-11 11:35:58');
-
--- ----------------------------
--- Table structure for s_shop_pull_logs
--- ----------------------------
-DROP TABLE IF EXISTS `s_shop_pull_logs`;
-CREATE TABLE `s_shop_pull_logs`  (
-  `id` bigint NOT NULL COMMENT '主键Id',
-  `shop_id` int NULL DEFAULT NULL COMMENT '店铺id',
-  `shop_type` int NOT NULL COMMENT '平台id',
-  `pull_type` enum('ORDER','REFUND','GOODS') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '类型（ORDER订单，GOODS商品，REFUND退款）',
-  `pull_way` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '拉取方式（主动拉取、定时任务）',
-  `pull_params` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '拉取参数',
-  `pull_result` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '拉取结果',
-  `pull_time` datetime NULL DEFAULT NULL COMMENT '拉取时间',
-  `duration` bigint NULL DEFAULT NULL COMMENT '耗时（毫秒）',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '店铺更新日志表' ROW_FORMAT = DYNAMIC;
-
--- ----------------------------
--- Records of s_shop_pull_logs
--- ----------------------------
-INSERT INTO `s_shop_pull_logs` VALUES (1777586240679788546, 1, 1, 'ORDER', '定时任务', '{startTime:2023-12-31T23:00:01,endTime:2024-01-01T23:00:01}', '{insert:0,update:0,fail:0}', '2024-04-09 14:36:00', 282);
-INSERT INTO `s_shop_pull_logs` VALUES (1777586491285258241, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-01T22:00:01,endTime:2024-01-02T22:00:01}', '{insert:0,update:0,fail:0}', '2024-04-09 14:37:00', 129);
-INSERT INTO `s_shop_pull_logs` VALUES (1777586860845383681, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-02T21:00:01,endTime:2024-01-03T21:00:01}', '{insert:0,update:0,fail:0}', '2024-04-09 14:38:00', 28237);
-INSERT INTO `s_shop_pull_logs` VALUES (1777587002038239233, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-03T20:00:01,endTime:2024-01-04T20:00:01}', '{insert:3,update:0,fail:0}', '2024-04-09 14:39:00', 1900);
-INSERT INTO `s_shop_pull_logs` VALUES (1777587249367957506, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-04T19:00:01,endTime:2024-01-05T19:00:01}', '{insert:2,update:0,fail:0}', '2024-04-09 14:40:00', 873);
-INSERT INTO `s_shop_pull_logs` VALUES (1777587499025514498, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-05T18:00:01,endTime:2024-01-06T18:00:01}', '{insert:1,update:0,fail:0}', '2024-04-09 14:41:00', 392);
-INSERT INTO `s_shop_pull_logs` VALUES (1777587757637910529, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-06T17:00:01,endTime:2024-01-07T17:00:01}', '{insert:5,update:0,fail:0}', '2024-04-09 14:42:00', 2052);
-INSERT INTO `s_shop_pull_logs` VALUES (1777588010009182210, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-07T16:00:01,endTime:2024-01-08T16:00:01}', '{insert:5,update:0,fail:0}', '2024-04-09 14:43:00', 2222);
-INSERT INTO `s_shop_pull_logs` VALUES (1777588258647523330, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-08T15:00:01,endTime:2024-01-09T15:00:01}', '{insert:3,update:0,fail:0}', '2024-04-09 14:44:00', 1503);
-INSERT INTO `s_shop_pull_logs` VALUES (1777588511668912129, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-09T14:00:01,endTime:2024-01-10T14:00:01}', '{insert:5,update:0,fail:0}', '2024-04-09 14:45:00', 1828);
-INSERT INTO `s_shop_pull_logs` VALUES (1777588757492875266, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-10T13:00:01,endTime:2024-01-11T13:00:01}', '{insert:1,update:0,fail:0}', '2024-04-09 14:46:00', 441);
-INSERT INTO `s_shop_pull_logs` VALUES (1777589009692180481, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-11T12:00:01,endTime:2024-01-12T12:00:01}', '{insert:1,update:0,fail:0}', '2024-04-09 14:47:00', 568);
-INSERT INTO `s_shop_pull_logs` VALUES (1777589265779605505, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-12T11:00:01,endTime:2024-01-13T11:00:01}', '{insert:6,update:0,fail:0}', '2024-04-09 14:48:00', 1624);
-INSERT INTO `s_shop_pull_logs` VALUES (1777589519312699394, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-13T10:00:01,endTime:2024-01-14T10:00:01}', '{insert:5,update:0,fail:0}', '2024-04-09 14:49:00', 2072);
-INSERT INTO `s_shop_pull_logs` VALUES (1777589773634322433, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-14T09:00:01,endTime:2024-01-15T09:00:01}', '{insert:8,update:0,fail:0}', '2024-04-09 14:50:00', 2705);
-INSERT INTO `s_shop_pull_logs` VALUES (1777590021437997057, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-15T08:00:01,endTime:2024-01-16T08:00:01}', '{insert:4,update:1,fail:0}', '2024-04-09 14:51:00', 1785);
-INSERT INTO `s_shop_pull_logs` VALUES (1777590268570583042, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-16T07:00:01,endTime:2024-01-17T07:00:01}', '{insert:2,update:0,fail:0}', '2024-04-09 14:52:00', 706);
-INSERT INTO `s_shop_pull_logs` VALUES (1777590528609042434, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-17T06:00:01,endTime:2024-01-18T06:00:01}', '{insert:6,update:0,fail:0}', '2024-04-09 14:53:00', 2705);
-INSERT INTO `s_shop_pull_logs` VALUES (1777590781307469825, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-18T05:00:01,endTime:2024-01-19T05:00:01}', '{insert:7,update:1,fail:0}', '2024-04-09 14:54:00', 2955);
-INSERT INTO `s_shop_pull_logs` VALUES (1777591026842025986, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-19T04:00:01,endTime:2024-01-20T04:00:01}', '{insert:3,update:0,fail:0}', '2024-04-09 14:55:00', 1496);
-INSERT INTO `s_shop_pull_logs` VALUES (1777591290638581761, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-20T03:00:01,endTime:2024-01-21T03:00:01}', '{insert:10,update:1,fail:0}', '2024-04-09 14:56:00', 4387);
-INSERT INTO `s_shop_pull_logs` VALUES (1777591537548869634, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-21T02:00:01,endTime:2024-01-22T02:00:01}', '{insert:7,update:1,fail:0}', '2024-04-09 14:57:00', 3258);
-INSERT INTO `s_shop_pull_logs` VALUES (1777591783586742274, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-22T01:00:01,endTime:2024-01-23T01:00:01}', '{insert:4,update:1,fail:0}', '2024-04-09 14:58:00', 1917);
-INSERT INTO `s_shop_pull_logs` VALUES (1777592039418314753, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-23T00:00:01,endTime:2024-01-24T00:00:01}', '{insert:7,update:0,fail:0}', '2024-04-09 14:59:00', 2913);
-INSERT INTO `s_shop_pull_logs` VALUES (1777592292762664962, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-23T23:00:01,endTime:2024-01-24T23:00:01}', '{insert:10,update:0,fail:0}', '2024-04-09 15:00:00', 3314);
-INSERT INTO `s_shop_pull_logs` VALUES (1777592555082825729, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-24T22:00:01,endTime:2024-01-25T22:00:01}', '{insert:14,update:0,fail:0}', '2024-04-09 15:01:00', 5853);
-INSERT INTO `s_shop_pull_logs` VALUES (1777592792086167554, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-25T21:00:01,endTime:2024-01-26T21:00:01}', '{insert:6,update:0,fail:0}', '2024-04-09 15:02:00', 2361);
-INSERT INTO `s_shop_pull_logs` VALUES (1777593040221192193, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-26T20:00:01,endTime:2024-01-27T20:00:01}', '{insert:4,update:0,fail:0}', '2024-04-09 15:03:00', 1522);
-INSERT INTO `s_shop_pull_logs` VALUES (1777593297298472962, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-27T19:00:01,endTime:2024-01-28T19:00:01}', '{insert:8,update:0,fail:0}', '2024-04-09 15:04:00', 2813);
-INSERT INTO `s_shop_pull_logs` VALUES (1777593547971051521, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-28T18:00:01,endTime:2024-01-29T18:00:01}', '{insert:7,update:0,fail:0}', '2024-04-09 15:05:00', 2563);
-INSERT INTO `s_shop_pull_logs` VALUES (1777593798945619969, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-29T17:00:01,endTime:2024-01-30T17:00:01}', '{insert:6,update:0,fail:0}', '2024-04-09 15:06:00', 2412);
-INSERT INTO `s_shop_pull_logs` VALUES (1777594055985152002, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-30T16:00:01,endTime:2024-01-31T16:00:01}', '{insert:9,update:0,fail:0}', '2024-04-09 15:07:00', 3699);
-INSERT INTO `s_shop_pull_logs` VALUES (1777594301108666369, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-31T15:00:01,endTime:2024-02-01T15:00:01}', '{insert:6,update:0,fail:0}', '2024-04-09 15:08:00', 2140);
-INSERT INTO `s_shop_pull_logs` VALUES (1777594551651221506, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-01T14:00:01,endTime:2024-02-02T14:00:01}', '{insert:5,update:0,fail:0}', '2024-04-09 15:09:00', 1874);
-INSERT INTO `s_shop_pull_logs` VALUES (1777594810695630850, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-02T13:00:01,endTime:2024-02-03T13:00:01}', '{insert:9,update:0,fail:0}', '2024-04-09 15:10:00', 3637);
-INSERT INTO `s_shop_pull_logs` VALUES (1777595055131279361, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-03T12:00:01,endTime:2024-02-04T12:00:01}', '{insert:6,update:0,fail:0}', '2024-04-09 15:11:00', 1913);
-INSERT INTO `s_shop_pull_logs` VALUES (1777595300552589314, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-04T11:00:01,endTime:2024-02-05T11:00:01}', '{insert:1,update:0,fail:0}', '2024-04-09 15:12:00', 428);
-INSERT INTO `s_shop_pull_logs` VALUES (1777595552827392002, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-05T10:00:01,endTime:2024-02-06T10:00:01}', '{insert:2,update:0,fail:0}', '2024-04-09 15:13:00', 573);
-INSERT INTO `s_shop_pull_logs` VALUES (1777595805299326978, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-06T09:00:01,endTime:2024-02-07T09:00:01}', '{insert:2,update:0,fail:0}', '2024-04-09 15:14:00', 768);
-INSERT INTO `s_shop_pull_logs` VALUES (1777596056483610626, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-07T08:00:01,endTime:2024-02-08T08:00:01}', '{insert:2,update:0,fail:0}', '2024-04-09 15:15:00', 655);
-INSERT INTO `s_shop_pull_logs` VALUES (1777596305935646722, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-08T07:00:01,endTime:2024-02-09T07:00:01}', '{insert:0,update:0,fail:0}', '2024-04-09 15:16:00', 127);
-INSERT INTO `s_shop_pull_logs` VALUES (1777596559728787458, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-09T06:00:01,endTime:2024-02-10T06:00:01}', '{insert:2,update:0,fail:0}', '2024-04-09 15:17:00', 638);
-INSERT INTO `s_shop_pull_logs` VALUES (1777596809243738114, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-10T05:00:01,endTime:2024-02-11T05:00:01}', '{insert:0,update:0,fail:0}', '2024-04-09 15:18:00', 127);
-INSERT INTO `s_shop_pull_logs` VALUES (1777597060881006593, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-11T04:00:01,endTime:2024-02-12T04:00:01}', '{insert:0,update:0,fail:0}', '2024-04-09 15:19:00', 120);
-INSERT INTO `s_shop_pull_logs` VALUES (1777597312581189633, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-12T03:00:01,endTime:2024-02-13T03:00:01}', '{insert:0,update:0,fail:0}', '2024-04-09 15:20:00', 132);
-INSERT INTO `s_shop_pull_logs` VALUES (1777597567175442433, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-13T02:00:01,endTime:2024-02-14T02:00:01}', '{insert:3,update:0,fail:0}', '2024-04-09 15:21:00', 834);
-INSERT INTO `s_shop_pull_logs` VALUES (1777597818829488129, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-14T01:00:01,endTime:2024-02-15T01:00:01}', '{insert:3,update:0,fail:0}', '2024-04-09 15:22:00', 832);
-INSERT INTO `s_shop_pull_logs` VALUES (1777598068415741953, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-15T00:00:01,endTime:2024-02-16T00:00:01}', '{insert:1,update:0,fail:0}', '2024-04-09 15:23:00', 338);
-INSERT INTO `s_shop_pull_logs` VALUES (1777598321651040257, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-15T23:00:01,endTime:2024-02-16T23:00:01}', '{insert:2,update:0,fail:0}', '2024-04-09 15:24:00', 711);
-INSERT INTO `s_shop_pull_logs` VALUES (1777598574487879681, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-16T22:00:01,endTime:2024-02-17T22:00:01}', '{insert:4,update:0,fail:0}', '2024-04-09 15:25:00', 996);
-INSERT INTO `s_shop_pull_logs` VALUES (1777598827865784322, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-17T21:00:01,endTime:2024-02-18T21:00:01}', '{insert:5,update:0,fail:0}', '2024-04-09 15:26:00', 1405);
-INSERT INTO `s_shop_pull_logs` VALUES (1777599076495736833, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-18T20:00:01,endTime:2024-02-19T20:00:01}', '{insert:2,update:0,fail:0}', '2024-04-09 15:27:00', 681);
-INSERT INTO `s_shop_pull_logs` VALUES (1777599332927094785, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-19T19:00:01,endTime:2024-02-20T19:00:01}', '{insert:7,update:0,fail:0}', '2024-04-09 15:28:00', 1823);
-INSERT INTO `s_shop_pull_logs` VALUES (1777599581552852994, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-20T18:00:01,endTime:2024-02-21T18:00:01}', '{insert:4,update:0,fail:0}', '2024-04-09 15:29:00', 1100);
-INSERT INTO `s_shop_pull_logs` VALUES (1777599830216359937, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-21T17:00:01,endTime:2024-02-22T17:00:01}', '{insert:1,update:0,fail:0}', '2024-04-09 15:30:00', 384);
-INSERT INTO `s_shop_pull_logs` VALUES (1777600087750819841, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-22T16:00:01,endTime:2024-02-23T16:00:01}', '{insert:6,update:0,fail:0}', '2024-04-09 15:31:00', 1783);
-INSERT INTO `s_shop_pull_logs` VALUES (1777600334933737474, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-23T15:00:01,endTime:2024-02-24T15:00:01}', '{insert:3,update:0,fail:0}', '2024-04-09 15:32:00', 716);
-INSERT INTO `s_shop_pull_logs` VALUES (1777600585769893890, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-24T14:00:01,endTime:2024-02-25T14:00:01}', '{insert:2,update:0,fail:0}', '2024-04-09 15:33:00', 521);
-INSERT INTO `s_shop_pull_logs` VALUES (1777600839923744769, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-25T13:00:01,endTime:2024-02-26T13:00:01}', '{insert:3,update:0,fail:0}', '2024-04-09 15:34:00', 1118);
-INSERT INTO `s_shop_pull_logs` VALUES (1777601091477127170, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-26T12:00:01,endTime:2024-02-27T12:00:01}', '{insert:3,update:0,fail:0}', '2024-04-09 15:35:00', 1075);
-INSERT INTO `s_shop_pull_logs` VALUES (1777601341558308866, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-27T11:00:01,endTime:2024-02-28T11:00:01}', '{insert:3,update:0,fail:0}', '2024-04-09 15:36:00', 707);
-INSERT INTO `s_shop_pull_logs` VALUES (1777601593006833665, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-28T10:00:01,endTime:2024-02-29T10:00:01}', '{insert:3,update:0,fail:0}', '2024-04-09 15:37:00', 666);
-INSERT INTO `s_shop_pull_logs` VALUES (1777601845168390145, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-29T09:00:01,endTime:2024-03-01T09:00:01}', '{insert:3,update:0,fail:0}', '2024-04-09 15:38:00', 786);
-INSERT INTO `s_shop_pull_logs` VALUES (1777602097795514369, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-01T08:00:01,endTime:2024-03-02T08:00:01}', '{insert:3,update:1,fail:0}', '2024-04-09 15:39:00', 1018);
-INSERT INTO `s_shop_pull_logs` VALUES (1777602358119186433, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-02T07:00:01,endTime:2024-03-03T07:00:01}', '{insert:14,update:0,fail:0}', '2024-04-09 15:40:00', 3084);
-INSERT INTO `s_shop_pull_logs` VALUES (1777602604207390722, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-03T06:00:01,endTime:2024-03-04T06:00:01}', '{insert:7,update:1,fail:0}', '2024-04-09 15:41:00', 1755);
-INSERT INTO `s_shop_pull_logs` VALUES (1777602862979170305, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-04T05:00:01,endTime:2024-03-05T05:00:01}', '{insert:13,update:1,fail:0}', '2024-04-09 15:42:00', 3451);
-INSERT INTO `s_shop_pull_logs` VALUES (1777603113601417218, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-05T04:00:01,endTime:2024-03-06T04:00:01}', '{insert:12,update:1,fail:0}', '2024-04-09 15:43:00', 3205);
-INSERT INTO `s_shop_pull_logs` VALUES (1777603363120562178, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-06T03:00:01,endTime:2024-03-07T03:00:01}', '{insert:9,update:2,fail:0}', '2024-04-09 15:44:00', 2692);
-INSERT INTO `s_shop_pull_logs` VALUES (1777603619413508098, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-07T02:00:01,endTime:2024-03-08T02:00:01}', '{insert:17,update:0,fail:0}', '2024-04-09 15:45:00', 3800);
-INSERT INTO `s_shop_pull_logs` VALUES (1777603862129491969, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-08T01:00:01,endTime:2024-03-09T01:00:01}', '{insert:6,update:1,fail:0}', '2024-04-09 15:46:00', 1666);
-INSERT INTO `s_shop_pull_logs` VALUES (1777604121186484226, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-09T00:00:01,endTime:2024-03-10T00:00:01}', '{insert:15,update:0,fail:0}', '2024-04-09 15:47:00', 3431);
-INSERT INTO `s_shop_pull_logs` VALUES (1777604370726600706, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-09T23:00:01,endTime:2024-03-10T23:00:01}', '{insert:12,update:0,fail:0}', '2024-04-09 15:48:00', 2923);
-INSERT INTO `s_shop_pull_logs` VALUES (1777604616785444865, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-10T22:00:01,endTime:2024-03-11T22:00:01}', '{insert:7,update:0,fail:0}', '2024-04-09 15:49:00', 1591);
-INSERT INTO `s_shop_pull_logs` VALUES (1777604871333560321, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-11T21:00:01,endTime:2024-03-12T21:00:01}', '{insert:10,update:0,fail:0}', '2024-04-09 15:50:00', 2281);
-INSERT INTO `s_shop_pull_logs` VALUES (1777605121922252802, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-12T20:00:01,endTime:2024-03-13T20:00:01}', '{insert:8,update:0,fail:0}', '2024-04-09 15:51:00', 2026);
-INSERT INTO `s_shop_pull_logs` VALUES (1777605376088686593, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-13T19:00:01,endTime:2024-03-14T19:00:01}', '{insert:10,update:0,fail:0}', '2024-04-09 15:52:00', 2622);
-INSERT INTO `s_shop_pull_logs` VALUES (1777605624643141633, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-14T18:00:01,endTime:2024-03-15T18:00:01}', '{insert:7,update:0,fail:0}', '2024-04-09 15:53:00', 1882);
-INSERT INTO `s_shop_pull_logs` VALUES (1777605883242954754, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-15T17:00:01,endTime:2024-03-16T17:00:01}', '{insert:13,update:1,fail:0}', '2024-04-09 15:54:00', 3539);
-INSERT INTO `s_shop_pull_logs` VALUES (1777606137052872706, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-16T16:00:01,endTime:2024-03-17T16:00:01}', '{insert:16,update:0,fail:0}', '2024-04-09 15:55:00', 4051);
-INSERT INTO `s_shop_pull_logs` VALUES (1777606390535634945, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-17T15:00:01,endTime:2024-03-18T15:00:01}', '{insert:18,update:1,fail:0}', '2024-04-09 15:56:00', 4488);
-INSERT INTO `s_shop_pull_logs` VALUES (1777606637810827265, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-18T14:00:01,endTime:2024-03-19T14:00:01}', '{insert:12,update:2,fail:0}', '2024-04-09 15:57:00', 3442);
-INSERT INTO `s_shop_pull_logs` VALUES (1777606885090213889, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-19T13:00:01,endTime:2024-03-20T13:00:01}', '{insert:9,update:1,fail:0}', '2024-04-09 15:58:00', 2397);
-INSERT INTO `s_shop_pull_logs` VALUES (1777607137369210882, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-20T12:00:01,endTime:2024-03-21T12:00:01}', '{insert:11,update:1,fail:0}', '2024-04-09 15:59:00', 2545);
-INSERT INTO `s_shop_pull_logs` VALUES (1777607390508040193, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-21T11:00:01,endTime:2024-03-22T11:00:01}', '{insert:12,update:0,fail:0}', '2024-04-09 16:00:00', 2897);
-INSERT INTO `s_shop_pull_logs` VALUES (1777607643214856194, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-22T10:00:01,endTime:2024-03-23T10:00:01}', '{insert:13,update:0,fail:0}', '2024-04-09 16:01:00', 3148);
-INSERT INTO `s_shop_pull_logs` VALUES (1777607898702495745, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-23T09:00:01,endTime:2024-03-24T09:00:01}', '{insert:18,update:2,fail:0}', '2024-04-09 16:02:00', 4062);
-INSERT INTO `s_shop_pull_logs` VALUES (1777608144589373442, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-24T08:00:01,endTime:2024-03-25T08:00:01}', '{insert:10,update:1,fail:0}', '2024-04-09 16:03:00', 2684);
-INSERT INTO `s_shop_pull_logs` VALUES (1777608402996248577, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-25T07:00:01,endTime:2024-03-26T07:00:01}', '{insert:18,update:0,fail:0}', '2024-04-09 16:04:00', 4287);
-INSERT INTO `s_shop_pull_logs` VALUES (1777608646861471746, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-26T06:00:01,endTime:2024-03-27T06:00:01}', '{insert:10,update:0,fail:0}', '2024-04-09 16:05:00', 2430);
-INSERT INTO `s_shop_pull_logs` VALUES (1777608897299169282, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-27T05:00:01,endTime:2024-03-28T05:00:01}', '{insert:9,update:0,fail:0}', '2024-04-09 16:06:00', 2145);
-INSERT INTO `s_shop_pull_logs` VALUES (1777609166342799362, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-28T04:00:01,endTime:2024-03-29T04:00:01}', '{insert:20,update:1,fail:0}', '2024-04-09 16:07:00', 6292);
-INSERT INTO `s_shop_pull_logs` VALUES (1777609406252793857, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-29T03:00:01,endTime:2024-03-30T03:00:01}', '{insert:15,update:0,fail:0}', '2024-04-09 16:08:00', 3489);
-INSERT INTO `s_shop_pull_logs` VALUES (1777609664223461377, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-30T02:00:01,endTime:2024-03-31T02:00:01}', '{insert:16,update:1,fail:0}', '2024-04-09 16:09:00', 4993);
-INSERT INTO `s_shop_pull_logs` VALUES (1777609914384334850, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-31T01:00:01,endTime:2024-04-01T01:00:01}', '{insert:20,update:0,fail:0}', '2024-04-09 16:10:00', 4636);
-INSERT INTO `s_shop_pull_logs` VALUES (1777610160883580930, 1, 1, 'ORDER', '定时任务', '{startTime:2024-04-01T00:00:01,endTime:2024-04-02T00:00:01}', '{insert:13,update:3,fail:0}', '2024-04-09 16:11:00', 3406);
-INSERT INTO `s_shop_pull_logs` VALUES (1777610415154872321, 1, 1, 'ORDER', '定时任务', '{startTime:2024-04-01T23:00:01,endTime:2024-04-02T23:00:01}', '{insert:18,update:0,fail:0}', '2024-04-09 16:12:00', 4030);
-INSERT INTO `s_shop_pull_logs` VALUES (1777610661872222209, 1, 1, 'ORDER', '定时任务', '{startTime:2024-04-02T22:00:01,endTime:2024-04-03T22:00:01}', '{insert:10,update:0,fail:0}', '2024-04-09 16:13:00', 2854);
-INSERT INTO `s_shop_pull_logs` VALUES (1777610924058165250, 1, 1, 'ORDER', '定时任务', '{startTime:2024-04-03T21:00:01,endTime:2024-04-04T21:00:01}', '{insert:22,update:0,fail:0}', '2024-04-09 16:14:00', 5363);
-INSERT INTO `s_shop_pull_logs` VALUES (1777611168904855554, 1, 1, 'ORDER', '定时任务', '{startTime:2024-04-04T20:00:01,endTime:2024-04-05T20:00:01}', '{insert:16,update:0,fail:0}', '2024-04-09 16:15:00', 3743);
-INSERT INTO `s_shop_pull_logs` VALUES (1777611412694581249, 1, 1, 'ORDER', '定时任务', '{startTime:2024-04-05T19:00:01,endTime:2024-04-06T19:00:01}', '{insert:8,update:0,fail:0}', '2024-04-09 16:16:00', 1865);
-INSERT INTO `s_shop_pull_logs` VALUES (1777611683193634817, 1, 1, 'ORDER', '定时任务', '{startTime:2024-04-06T18:00:01,endTime:2024-04-07T18:00:01}', '{insert:27,update:0,fail:0}', '2024-04-09 16:17:00', 6353);
-INSERT INTO `s_shop_pull_logs` VALUES (1777611953587830786, 1, 1, 'ORDER', '定时任务', '{startTime:2024-04-07T17:00:01,endTime:2024-04-08T17:00:01}', '{insert:49,update:0,fail:0}', '2024-04-09 16:18:00', 10821);
-INSERT INTO `s_shop_pull_logs` VALUES (1777612194982608897, 1, 1, 'ORDER', '定时任务', '{startTime:2024-04-08T16:00:01,endTime:2024-04-09T16:00:01}', '{insert:38,update:0,fail:0}', '2024-04-09 16:19:00', 8375);
-INSERT INTO `s_shop_pull_logs` VALUES (1777612412012675074, 1, 1, 'ORDER', '定时任务', '{startTime:2024-04-09T15:00:01,endTime:2024-04-09T16:20:00.005931700}', '{insert:0,update:0,fail:0}', '2024-04-09 16:20:00', 118);
-INSERT INTO `s_shop_pull_logs` VALUES (1777612663712858114, 1, 1, 'ORDER', '定时任务', '{startTime:2024-04-09T15:20,endTime:2024-04-09T16:21:00.005693100}', '{insert:0,update:0,fail:0}', '2024-04-09 16:21:00', 128);
-INSERT INTO `s_shop_pull_logs` VALUES (1777612915358515201, 1, 1, 'ORDER', '定时任务', '{startTime:2024-04-09T15:21,endTime:2024-04-09T16:22:00.005968900}', '{insert:0,update:0,fail:0}', '2024-04-09 16:22:00', 124);
-INSERT INTO `s_shop_pull_logs` VALUES (1777613166974812161, 1, 1, 'ORDER', '定时任务', '{startTime:2024-04-09T15:22,endTime:2024-04-09T16:23:00.006756800}', '{insert:0,update:0,fail:0}', '2024-04-09 16:23:00', 115);
-INSERT INTO `s_shop_pull_logs` VALUES (1777621234764738561, 1, 1, 'REFUND', '定时任务', '{startTime:2024-02-29T23:00:02,endTime:2024-03-01T23:00:02}', '{insert:5,update:0,fail:0}', '2024-04-09 16:55:00', 3540);
-INSERT INTO `s_shop_pull_logs` VALUES (1777622236003758082, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-01T23:00:02,endTime:2024-03-02T23:00:02}', '{insert:0,update:1,fail:0}', '2024-04-09 16:59:00', 2270);
-INSERT INTO `s_shop_pull_logs` VALUES (1777622481156632577, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-02T22:00:02,endTime:2024-03-03T22:00:02}', '{insert:3,update:0,fail:0}', '2024-04-09 17:00:00', 780);
-INSERT INTO `s_shop_pull_logs` VALUES (1777622738347159555, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-03T21:00:02,endTime:2024-03-04T21:00:02}', '{insert:9,update:0,fail:0}', '2024-04-09 17:01:00', 2121);
-INSERT INTO `s_shop_pull_logs` VALUES (1777622988935852033, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-04T20:00:02,endTime:2024-03-05T20:00:02}', '{insert:10,update:0,fail:0}', '2024-04-09 17:02:00', 1853);
-INSERT INTO `s_shop_pull_logs` VALUES (1777623238090092546, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-05T19:00:02,endTime:2024-03-06T19:00:02}', '{insert:6,update:0,fail:0}', '2024-04-09 17:03:00', 1243);
-INSERT INTO `s_shop_pull_logs` VALUES (1777623488796225537, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-06T18:00:02,endTime:2024-03-07T18:00:02}', '{insert:5,update:0,fail:0}', '2024-04-09 17:04:00', 1019);
-INSERT INTO `s_shop_pull_logs` VALUES (1777623743218511874, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-07T17:00:02,endTime:2024-03-08T17:00:02}', '{insert:7,update:0,fail:0}', '2024-04-09 17:05:00', 1682);
-INSERT INTO `s_shop_pull_logs` VALUES (1777623989159915521, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-08T16:00:02,endTime:2024-03-09T16:00:02}', '{insert:1,update:0,fail:0}', '2024-04-09 17:06:00', 310);
-INSERT INTO `s_shop_pull_logs` VALUES (1777624494070231042, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-09T15:00:02,endTime:2024-03-10T15:00:02}', '{insert:4,update:0,fail:0}', '2024-04-09 17:08:00', 703);
-INSERT INTO `s_shop_pull_logs` VALUES (1777624744575037442, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-10T14:00:02,endTime:2024-03-11T14:00:02}', '{insert:1,update:1,fail:0}', '2024-04-09 17:09:00', 430);
-INSERT INTO `s_shop_pull_logs` VALUES (1777624996086476802, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-11T13:00:02,endTime:2024-03-12T13:00:02}', '{insert:1,update:0,fail:0}', '2024-04-09 17:10:00', 392);
-INSERT INTO `s_shop_pull_logs` VALUES (1777625250890444801, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-12T12:00:02,endTime:2024-03-13T12:00:02}', '{insert:5,update:0,fail:0}', '2024-04-09 17:11:00', 1143);
-INSERT INTO `s_shop_pull_logs` VALUES (1777625502112477186, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-13T11:00:02,endTime:2024-03-14T11:00:02}', '{insert:2,update:1,fail:0}', '2024-04-09 17:12:00', 1037);
-INSERT INTO `s_shop_pull_logs` VALUES (1777625753007353857, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-14T10:00:02,endTime:2024-03-15T10:00:02}', '{insert:3,update:0,fail:0}', '2024-04-09 17:13:00', 857);
-INSERT INTO `s_shop_pull_logs` VALUES (1777626007299616769, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-15T09:00:02,endTime:2024-03-16T09:00:02}', '{insert:11,update:0,fail:0}', '2024-04-09 17:14:00', 1449);
-INSERT INTO `s_shop_pull_logs` VALUES (1777626508212760578, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-16T08:00:02,endTime:2024-03-17T08:00:02}', '{insert:5,update:0,fail:0}', '2024-04-09 17:16:00', 912);
-INSERT INTO `s_shop_pull_logs` VALUES (1777626760529506306, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-17T07:00:02,endTime:2024-03-18T07:00:02}', '{insert:6,update:0,fail:0}', '2024-04-09 17:17:00', 1070);
-INSERT INTO `s_shop_pull_logs` VALUES (1777627009549529090, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-18T06:00:02,endTime:2024-03-19T06:00:02}', '{insert:2,update:0,fail:0}', '2024-04-09 17:18:00', 441);
-INSERT INTO `s_shop_pull_logs` VALUES (1777627517337137154, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-19T05:00:02,endTime:2024-03-20T05:00:02}', '{insert:7,update:0,fail:0}', '2024-04-09 17:20:00', 1506);
-INSERT INTO `s_shop_pull_logs` VALUES (1777627766436851714, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-20T04:00:02,endTime:2024-03-21T04:00:02}', '{insert:4,update:1,fail:0}', '2024-04-09 17:21:00', 894);
-INSERT INTO `s_shop_pull_logs` VALUES (1777628016954241026, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-21T03:00:02,endTime:2024-03-22T03:00:02}', '{insert:4,update:1,fail:0}', '2024-04-09 17:22:00', 625);
-INSERT INTO `s_shop_pull_logs` VALUES (1777628268570537986, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-22T02:00:02,endTime:2024-03-23T02:00:02}', '{insert:3,update:0,fail:0}', '2024-04-09 17:23:00', 614);
-INSERT INTO `s_shop_pull_logs` VALUES (1777628523059933185, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-23T01:00:02,endTime:2024-03-24T01:00:02}', '{insert:7,update:0,fail:0}', '2024-04-09 17:24:00', 1290);
-INSERT INTO `s_shop_pull_logs` VALUES (1777628774382628866, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-24T00:00:02,endTime:2024-03-25T00:00:02}', '{insert:7,update:0,fail:0}', '2024-04-09 17:25:00', 1208);
-INSERT INTO `s_shop_pull_logs` VALUES (1777629028779749377, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-24T23:00:02,endTime:2024-03-25T23:00:02}', '{insert:11,update:0,fail:0}', '2024-04-09 17:26:00', 1862);
-INSERT INTO `s_shop_pull_logs` VALUES (1777629279506853889, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-25T22:00:02,endTime:2024-03-26T22:00:02}', '{insert:9,update:0,fail:0}', '2024-04-09 17:27:00', 1639);
-INSERT INTO `s_shop_pull_logs` VALUES (1777629526740103170, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-26T21:00:02,endTime:2024-03-27T21:00:02}', '{insert:3,update:0,fail:0}', '2024-04-09 17:28:00', 580);
-INSERT INTO `s_shop_pull_logs` VALUES (1777629787353182210, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-27T20:00:02,endTime:2024-03-28T20:00:02}', '{insert:14,update:0,fail:0}', '2024-04-09 17:29:00', 2715);
-INSERT INTO `s_shop_pull_logs` VALUES (1777630030589259778, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-28T19:00:02,endTime:2024-03-29T19:00:02}', '{insert:3,update:0,fail:0}', '2024-04-09 17:30:00', 710);
-INSERT INTO `s_shop_pull_logs` VALUES (1777630286429220866, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-29T18:00:02,endTime:2024-03-30T18:00:02}', '{insert:12,update:0,fail:0}', '2024-04-09 17:31:00', 1710);
-INSERT INTO `s_shop_pull_logs` VALUES (1777630532890718210, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-30T17:00:02,endTime:2024-03-31T17:00:02}', '{insert:2,update:0,fail:0}', '2024-04-09 17:32:00', 472);
-INSERT INTO `s_shop_pull_logs` VALUES (1777630785484288002, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-31T16:00:02,endTime:2024-04-01T16:00:02}', '{insert:4,update:0,fail:0}', '2024-04-09 17:33:00', 696);
-INSERT INTO `s_shop_pull_logs` VALUES (1777631041965977602, 1, 1, 'REFUND', '定时任务', '{startTime:2024-04-01T15:00:02,endTime:2024-04-02T15:00:02}', '{insert:11,update:0,fail:0}', '2024-04-09 17:34:00', 1844);
-INSERT INTO `s_shop_pull_logs` VALUES (1777631291522871297, 1, 1, 'REFUND', '定时任务', '{startTime:2024-04-02T14:00:02,endTime:2024-04-03T14:00:02}', '{insert:6,update:0,fail:0}', '2024-04-09 17:35:00', 1343);
-INSERT INTO `s_shop_pull_logs` VALUES (1777631541838934017, 1, 1, 'REFUND', '定时任务', '{startTime:2024-04-03T13:00:02,endTime:2024-04-04T13:00:02}', '{insert:4,update:1,fail:0}', '2024-04-09 17:36:00', 1024);
-INSERT INTO `s_shop_pull_logs` VALUES (1777631790733127681, 1, 1, 'REFUND', '定时任务', '{startTime:2024-04-04T12:00:02,endTime:2024-04-05T12:00:02}', '{insert:2,update:0,fail:0}', '2024-04-09 17:37:00', 365);
-INSERT INTO `s_shop_pull_logs` VALUES (1777632293701480450, 1, 1, 'REFUND', '定时任务', '{startTime:2024-04-05T11:00:02,endTime:2024-04-06T11:00:02}', '{insert:1,update:0,fail:0}', '2024-04-09 17:39:00', 282);
-INSERT INTO `s_shop_pull_logs` VALUES (1777632552846553090, 1, 1, 'REFUND', '定时任务', '{startTime:2024-04-06T10:00:02,endTime:2024-04-07T10:00:02}', '{insert:12,update:0,fail:0}', '2024-04-09 17:40:00', 2066);
-INSERT INTO `s_shop_pull_logs` VALUES (1777632807252062209, 1, 1, 'REFUND', '定时任务', '{startTime:2024-04-07T09:00:02,endTime:2024-04-08T09:00:02}', '{insert:15,update:2,fail:0}', '2024-04-09 17:41:00', 2721);
-INSERT INTO `s_shop_pull_logs` VALUES (1777633054653083650, 1, 1, 'REFUND', '定时任务', '{startTime:2024-04-08T08:00:02,endTime:2024-04-09T08:00:02}', '{insert:9,update:0,fail:0}', '2024-04-09 17:42:00', 1706);
-INSERT INTO `s_shop_pull_logs` VALUES (1777633299646574594, 1, 1, 'REFUND', '定时任务', '{startTime:2024-04-09T07:00:02,endTime:2024-04-09T17:43:00.006712200}', '{insert:0,update:0,fail:0}', '2024-04-09 17:43:00', 118);
-INSERT INTO `s_shop_pull_logs` VALUES (1777636327288164354, 2, 2, 'ORDER', '定时任务', '{startTime:2023-12-31T23:00:01,endTime:2024-01-01T23:00:01}', '{insert:18,update:0,fail:0}', '2024-04-09 17:55:00', 1888);
-INSERT INTO `s_shop_pull_logs` VALUES (1777636573669969922, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-01T22:00:01,endTime:2024-01-02T22:00:01}', '{insert:29,update:0,fail:0}', '2024-04-09 17:56:00', 703);
-INSERT INTO `s_shop_pull_logs` VALUES (1777636824401268738, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-02T21:00:01,endTime:2024-01-03T21:00:01}', '{insert:15,update:2,fail:0}', '2024-04-09 17:57:00', 483);
-INSERT INTO `s_shop_pull_logs` VALUES (1777637076311166978, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-03T20:00:01,endTime:2024-01-04T20:00:01}', '{insert:16,update:1,fail:0}', '2024-04-09 17:58:00', 541);
-INSERT INTO `s_shop_pull_logs` VALUES (1777637327264763906, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-04T19:00:01,endTime:2024-01-05T19:00:01}', '{insert:12,update:0,fail:0}', '2024-04-09 17:59:00', 375);
-INSERT INTO `s_shop_pull_logs` VALUES (1777637579757670402, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-05T18:00:01,endTime:2024-01-06T18:00:01}', '{insert:19,update:1,fail:0}', '2024-04-09 18:00:00', 573);
-INSERT INTO `s_shop_pull_logs` VALUES (1777637831365578754, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-06T17:00:01,endTime:2024-01-07T17:00:01}', '{insert:18,update:1,fail:0}', '2024-04-09 18:01:00', 564);
-INSERT INTO `s_shop_pull_logs` VALUES (1777638084324052993, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-07T16:00:01,endTime:2024-01-08T16:00:01}', '{insert:29,update:2,fail:0}', '2024-04-09 18:02:00', 870);
-INSERT INTO `s_shop_pull_logs` VALUES (1777638335109877761, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-08T15:00:01,endTime:2024-01-09T15:00:01}', '{insert:25,update:1,fail:0}', '2024-04-09 18:03:00', 664);
-INSERT INTO `s_shop_pull_logs` VALUES (1777638586097029122, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-09T14:00:01,endTime:2024-01-10T14:00:01}', '{insert:14,update:2,fail:0}', '2024-04-09 18:04:00', 507);
-INSERT INTO `s_shop_pull_logs` VALUES (1777638837268729858, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-10T13:00:01,endTime:2024-01-11T13:00:01}', '{insert:10,update:3,fail:0}', '2024-04-09 18:05:00', 389);
-INSERT INTO `s_shop_pull_logs` VALUES (1777639089136685057, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-11T12:00:01,endTime:2024-01-12T12:00:01}', '{insert:14,update:0,fail:0}', '2024-04-09 18:06:00', 439);
-INSERT INTO `s_shop_pull_logs` VALUES (1777639341168218114, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-12T11:00:01,endTime:2024-01-13T11:00:01}', '{insert:15,update:1,fail:0}', '2024-04-09 18:07:00', 527);
-INSERT INTO `s_shop_pull_logs` VALUES (1777639592952287233, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-13T10:00:01,endTime:2024-01-14T10:00:01}', '{insert:20,update:1,fail:0}', '2024-04-09 18:08:00', 556);
-INSERT INTO `s_shop_pull_logs` VALUES (1777639846271471617, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-14T09:00:01,endTime:2024-01-15T09:00:01}', '{insert:24,update:7,fail:1}', '2024-04-09 18:09:00', 955);
-INSERT INTO `s_shop_pull_logs` VALUES (1777640095929028609, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-15T08:00:01,endTime:2024-01-16T08:00:01}', '{insert:15,update:2,fail:0}', '2024-04-09 18:10:00', 477);
-INSERT INTO `s_shop_pull_logs` VALUES (1777640348283523074, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-16T07:00:01,endTime:2024-01-17T07:00:01}', '{insert:20,update:0,fail:0}', '2024-04-09 18:11:00', 643);
-INSERT INTO `s_shop_pull_logs` VALUES (1777640598826078210, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-17T06:00:01,endTime:2024-01-18T06:00:01}', '{insert:11,update:0,fail:0}', '2024-04-09 18:12:00', 378);
-INSERT INTO `s_shop_pull_logs` VALUES (1777640850794696705, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-18T05:00:01,endTime:2024-01-19T05:00:01}', '{insert:12,update:0,fail:0}', '2024-04-09 18:13:00', 451);
-INSERT INTO `s_shop_pull_logs` VALUES (1777641103266631681, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-19T04:00:01,endTime:2024-01-20T04:00:01}', '{insert:22,update:0,fail:0}', '2024-04-09 18:14:00', 644);
-INSERT INTO `s_shop_pull_logs` VALUES (1777641353976958977, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-20T03:00:01,endTime:2024-01-21T03:00:01}', '{insert:14,update:0,fail:0}', '2024-04-09 18:15:00', 420);
-INSERT INTO `s_shop_pull_logs` VALUES (1777641605974937601, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-21T02:00:01,endTime:2024-01-22T02:00:01}', '{insert:18,update:0,fail:0}', '2024-04-09 18:16:00', 501);
-INSERT INTO `s_shop_pull_logs` VALUES (1777641857561874434, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-22T01:00:01,endTime:2024-01-23T01:00:01}', '{insert:14,update:0,fail:0}', '2024-04-09 18:17:00', 485);
-INSERT INTO `s_shop_pull_logs` VALUES (1777642109371109378, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-23T00:00:01,endTime:2024-01-24T00:00:01}', '{insert:19,update:0,fail:0}', '2024-04-09 18:18:00', 519);
-INSERT INTO `s_shop_pull_logs` VALUES (1777642360526032897, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-23T23:00:01,endTime:2024-01-24T23:00:01}', '{insert:15,update:0,fail:0}', '2024-04-09 18:19:00', 402);
-INSERT INTO `s_shop_pull_logs` VALUES (1777642612314296321, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-24T22:00:01,endTime:2024-01-25T22:00:01}', '{insert:13,update:0,fail:0}', '2024-04-09 18:20:00', 432);
-INSERT INTO `s_shop_pull_logs` VALUES (1777642863657963522, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-25T21:00:01,endTime:2024-01-26T21:00:01}', '{insert:11,update:0,fail:0}', '2024-04-09 18:21:00', 358);
-INSERT INTO `s_shop_pull_logs` VALUES (1777643115840491521, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-26T20:00:01,endTime:2024-01-27T20:00:01}', '{insert:19,update:0,fail:0}', '2024-04-09 18:22:00', 481);
-INSERT INTO `s_shop_pull_logs` VALUES (1777643367259656193, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-27T19:00:01,endTime:2024-01-28T19:00:01}', '{insert:11,update:1,fail:0}', '2024-04-09 18:23:00', 424);
-INSERT INTO `s_shop_pull_logs` VALUES (1777643620281044994, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-28T18:00:01,endTime:2024-01-29T18:00:01}', '{insert:33,update:3,fail:0}', '2024-04-09 18:24:00', 750);
-INSERT INTO `s_shop_pull_logs` VALUES (1777643871620517890, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-29T17:00:01,endTime:2024-01-30T17:00:01}', '{insert:24,update:6,fail:0}', '2024-04-09 18:25:00', 669);
-INSERT INTO `s_shop_pull_logs` VALUES (1777644122012078082, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-30T16:00:01,endTime:2024-01-31T16:00:01}', '{insert:12,update:2,fail:0}', '2024-04-09 18:26:00', 372);
-INSERT INTO `s_shop_pull_logs` VALUES (1777644373779369985, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-31T15:00:01,endTime:2024-02-01T15:00:01}', '{insert:11,update:1,fail:0}', '2024-04-09 18:27:00', 398);
-INSERT INTO `s_shop_pull_logs` VALUES (1777644625789931522, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-01T14:00:01,endTime:2024-02-02T14:00:01}', '{insert:14,update:0,fail:0}', '2024-04-09 18:28:00', 481);
-INSERT INTO `s_shop_pull_logs` VALUES (1777644876630282242, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-02T13:00:01,endTime:2024-02-03T13:00:01}', '{insert:8,update:0,fail:0}', '2024-04-09 18:29:00', 286);
-INSERT INTO `s_shop_pull_logs` VALUES (1777645128963805186, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-03T12:00:01,endTime:2024-02-04T12:00:01}', '{insert:15,update:0,fail:0}', '2024-04-09 18:30:00', 448);
-INSERT INTO `s_shop_pull_logs` VALUES (1777645379632189441, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-04T11:00:01,endTime:2024-02-05T11:00:01}', '{insert:2,update:0,fail:0}', '2024-04-09 18:31:00', 210);
-INSERT INTO `s_shop_pull_logs` VALUES (1777645631479173121, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-05T10:00:01,endTime:2024-02-06T10:00:01}', '{insert:6,update:0,fail:0}', '2024-04-09 18:32:00', 257);
-INSERT INTO `s_shop_pull_logs` VALUES (1777645882877366273, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-06T09:00:01,endTime:2024-02-07T09:00:01}', '{insert:1,update:0,fail:0}', '2024-04-09 18:33:00', 196);
-INSERT INTO `s_shop_pull_logs` VALUES (1777646135294775297, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-07T08:00:01,endTime:2024-02-08T08:00:01}', '{insert:13,update:0,fail:0}', '2024-04-09 18:34:00', 375);
-INSERT INTO `s_shop_pull_logs` VALUES (1777646386382589954, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-08T07:00:01,endTime:2024-02-09T07:00:01}', '{insert:1,update:0,fail:0}', '2024-04-09 18:35:00', 238);
-INSERT INTO `s_shop_pull_logs` VALUES (1777646638028247041, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-09T06:00:01,endTime:2024-02-10T06:00:01}', '{insert:5,update:0,fail:0}', '2024-04-09 18:36:00', 237);
-INSERT INTO `s_shop_pull_logs` VALUES (1777646889699069954, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-10T05:00:01,endTime:2024-02-11T05:00:01}', '{insert:5,update:0,fail:0}', '2024-04-09 18:37:00', 240);
-INSERT INTO `s_shop_pull_logs` VALUES (1777647141306978305, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-11T04:00:01,endTime:2024-02-12T04:00:01}', '{insert:4,update:0,fail:0}', '2024-04-09 18:38:00', 227);
-INSERT INTO `s_shop_pull_logs` VALUES (1777647392696782849, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-12T03:00:01,endTime:2024-02-13T03:00:01}', '{insert:0,update:0,fail:0}', '2024-04-09 18:39:00', 161);
-INSERT INTO `s_shop_pull_logs` VALUES (1777647644795424770, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-13T02:00:01,endTime:2024-02-14T02:00:01}', '{insert:8,update:0,fail:0}', '2024-04-09 18:40:00', 267);
-INSERT INTO `s_shop_pull_logs` VALUES (1777647896365584386, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-14T01:00:01,endTime:2024-02-15T01:00:01}', '{insert:5,update:0,fail:0}', '2024-04-09 18:41:00', 247);
-INSERT INTO `s_shop_pull_logs` VALUES (1777648147956715521, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-15T00:00:01,endTime:2024-02-16T00:00:01}', '{insert:5,update:0,fail:0}', '2024-04-09 18:42:00', 231);
-INSERT INTO `s_shop_pull_logs` VALUES (1777648399661092865, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-15T23:00:01,endTime:2024-02-16T23:00:01}', '{insert:6,update:0,fail:0}', '2024-04-09 18:43:00', 244);
-INSERT INTO `s_shop_pull_logs` VALUES (1777648651373858817, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-16T22:00:01,endTime:2024-02-17T22:00:01}', '{insert:7,update:0,fail:0}', '2024-04-09 18:44:00', 255);
-INSERT INTO `s_shop_pull_logs` VALUES (1777648903170510850, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-17T21:00:01,endTime:2024-02-18T21:00:01}', '{insert:5,update:0,fail:0}', '2024-04-09 18:45:00', 290);
-INSERT INTO `s_shop_pull_logs` VALUES (1777649154568704002, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-18T20:00:01,endTime:2024-02-19T20:00:01}', '{insert:4,update:0,fail:0}', '2024-04-09 18:46:00', 228);
-INSERT INTO `s_shop_pull_logs` VALUES (1777649406294052866, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-19T19:00:01,endTime:2024-02-20T19:00:01}', '{insert:2,update:0,fail:0}', '2024-04-09 18:47:00', 243);
-INSERT INTO `s_shop_pull_logs` VALUES (1777649657872601089, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-20T18:00:01,endTime:2024-02-21T18:00:01}', '{insert:4,update:0,fail:0}', '2024-04-09 18:48:00', 221);
-INSERT INTO `s_shop_pull_logs` VALUES (1777649909560201217, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-21T17:00:01,endTime:2024-02-22T17:00:01}', '{insert:5,update:0,fail:0}', '2024-04-09 18:49:00', 230);
-INSERT INTO `s_shop_pull_logs` VALUES (1777650161356853250, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-22T16:00:01,endTime:2024-02-23T16:00:01}', '{insert:5,update:0,fail:0}', '2024-04-09 18:50:00', 263);
-INSERT INTO `s_shop_pull_logs` VALUES (1777650413069619201, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-23T15:00:01,endTime:2024-02-24T15:00:01}', '{insert:8,update:0,fail:0}', '2024-04-09 18:51:00', 276);
-INSERT INTO `s_shop_pull_logs` VALUES (1777650664719470594, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-24T14:00:01,endTime:2024-02-25T14:00:01}', '{insert:6,update:0,fail:0}', '2024-04-09 18:52:00', 274);
-INSERT INTO `s_shop_pull_logs` VALUES (1777650916579037185, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-25T13:00:01,endTime:2024-02-26T13:00:01}', '{insert:9,update:0,fail:0}', '2024-04-09 18:53:00', 322);
-INSERT INTO `s_shop_pull_logs` VALUES (1777651168887394306, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-26T12:00:01,endTime:2024-02-27T12:00:01}', '{insert:12,update:0,fail:0}', '2024-04-09 18:54:00', 471);
-INSERT INTO `s_shop_pull_logs` VALUES (1777651420155564034, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-27T11:00:01,endTime:2024-02-28T11:00:01}', '{insert:10,update:3,fail:0}', '2024-04-09 18:55:00', 384);
-INSERT INTO `s_shop_pull_logs` VALUES (1777651671474065409, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-28T10:00:01,endTime:2024-02-29T10:00:01}', '{insert:8,update:0,fail:0}', '2024-04-09 18:56:00', 305);
-INSERT INTO `s_shop_pull_logs` VALUES (1777651922926784513, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-29T09:00:01,endTime:2024-03-01T09:00:01}', '{insert:6,update:0,fail:0}', '2024-04-09 18:57:00', 254);
-INSERT INTO `s_shop_pull_logs` VALUES (1777652174475972610, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-01T08:00:01,endTime:2024-03-02T08:00:01}', '{insert:6,update:0,fail:0}', '2024-04-09 18:58:00', 228);
-INSERT INTO `s_shop_pull_logs` VALUES (1777652426692055042, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-02T07:00:01,endTime:2024-03-03T07:00:01}', '{insert:11,update:0,fail:0}', '2024-04-09 18:59:00', 361);
-INSERT INTO `s_shop_pull_logs` VALUES (1777652678354489345, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-03T06:00:01,endTime:2024-03-04T06:00:01}', '{insert:11,update:0,fail:0}', '2024-04-09 19:00:00', 363);
-INSERT INTO `s_shop_pull_logs` VALUES (1777652930079838210, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-04T05:00:01,endTime:2024-03-05T05:00:01}', '{insert:13,update:0,fail:0}', '2024-04-09 19:01:00', 379);
-INSERT INTO `s_shop_pull_logs` VALUES (1777653181364785154, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-05T04:00:01,endTime:2024-03-06T04:00:01}', '{insert:8,update:0,fail:0}', '2024-04-09 19:02:00', 289);
-INSERT INTO `s_shop_pull_logs` VALUES (1777653433631199234, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-06T03:00:01,endTime:2024-03-07T03:00:01}', '{insert:15,update:0,fail:0}', '2024-04-09 19:03:00', 435);
-INSERT INTO `s_shop_pull_logs` VALUES (1777653685696286721, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-07T02:00:01,endTime:2024-03-08T02:00:01}', '{insert:23,update:0,fail:0}', '2024-04-09 19:04:00', 530);
-INSERT INTO `s_shop_pull_logs` VALUES (1777653936683438082, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-08T01:00:01,endTime:2024-03-09T01:00:01}', '{insert:11,update:0,fail:0}', '2024-04-09 19:05:00', 370);
-INSERT INTO `s_shop_pull_logs` VALUES (1777654188689805314, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-09T00:00:01,endTime:2024-03-10T00:00:01}', '{insert:15,update:0,fail:0}', '2024-04-09 19:06:00', 456);
-INSERT INTO `s_shop_pull_logs` VALUES (1777654439500795906, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-09T23:00:01,endTime:2024-03-10T23:00:01}', '{insert:6,update:1,fail:0}', '2024-04-09 19:07:00', 253);
-INSERT INTO `s_shop_pull_logs` VALUES (1777654691842707457, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-10T22:00:01,endTime:2024-03-11T22:00:01}', '{insert:14,update:1,fail:0}', '2024-04-09 19:08:00', 417);
-INSERT INTO `s_shop_pull_logs` VALUES (1777654943719051266, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-11T21:00:01,endTime:2024-03-12T21:00:01}', '{insert:17,update:0,fail:0}', '2024-04-09 19:09:00', 467);
-INSERT INTO `s_shop_pull_logs` VALUES (1777655195243073537, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-12T20:00:01,endTime:2024-03-13T20:00:01}', '{insert:17,update:0,fail:0}', '2024-04-09 19:10:00', 436);
-INSERT INTO `s_shop_pull_logs` VALUES (1777655446448328705, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-13T19:00:01,endTime:2024-03-14T19:00:01}', '{insert:7,update:3,fail:0}', '2024-04-09 19:11:00', 327);
-INSERT INTO `s_shop_pull_logs` VALUES (1777655698727325698, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-14T18:00:01,endTime:2024-03-15T18:00:01}', '{insert:17,update:1,fail:0}', '2024-04-09 19:12:00', 476);
-INSERT INTO `s_shop_pull_logs` VALUES (1777655950331039745, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-15T17:00:01,endTime:2024-03-16T17:00:01}', '{insert:14,update:2,fail:0}', '2024-04-09 19:13:00', 462);
-INSERT INTO `s_shop_pull_logs` VALUES (1777656202144468994, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-16T16:00:01,endTime:2024-03-17T16:00:01}', '{insert:20,update:0,fail:0}', '2024-04-09 19:14:00', 501);
-INSERT INTO `s_shop_pull_logs` VALUES (1777656453781737474, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-17T15:00:01,endTime:2024-03-18T15:00:01}', '{insert:19,update:2,fail:0}', '2024-04-09 19:15:00', 495);
-INSERT INTO `s_shop_pull_logs` VALUES (1777656706245283841, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-18T14:00:01,endTime:2024-03-19T14:00:01}', '{insert:28,update:3,fail:0}', '2024-04-09 19:16:00', 687);
-INSERT INTO `s_shop_pull_logs` VALUES (1777656957811249153, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-19T13:00:01,endTime:2024-03-20T13:00:01}', '{insert:24,update:5,fail:0}', '2024-04-09 19:17:00', 666);
-INSERT INTO `s_shop_pull_logs` VALUES (1777657208848732162, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-20T12:00:01,endTime:2024-03-21T12:00:01}', '{insert:24,update:0,fail:0}', '2024-04-09 19:18:00', 518);
-INSERT INTO `s_shop_pull_logs` VALUES (1777657460536332290, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-21T11:00:01,endTime:2024-03-22T11:00:01}', '{insert:22,update:0,fail:0}', '2024-04-09 19:19:00', 526);
-INSERT INTO `s_shop_pull_logs` VALUES (1777657711808696322, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-22T10:00:01,endTime:2024-03-23T10:00:01}', '{insert:14,update:2,fail:0}', '2024-04-09 19:20:00', 432);
-INSERT INTO `s_shop_pull_logs` VALUES (1777657963450159105, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-23T09:00:01,endTime:2024-03-24T09:00:01}', '{insert:11,update:5,fail:1}', '2024-04-09 19:21:00', 428);
-INSERT INTO `s_shop_pull_logs` VALUES (1777658214445699074, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-24T08:00:01,endTime:2024-03-25T08:00:01}', '{insert:8,update:0,fail:0}', '2024-04-09 19:22:00', 270);
-INSERT INTO `s_shop_pull_logs` VALUES (1777658468335308801, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-25T07:00:01,endTime:2024-03-26T07:00:01}', '{insert:26,update:0,fail:0}', '2024-04-09 19:23:00', 802);
-INSERT INTO `s_shop_pull_logs` VALUES (1777658975355379714, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-22T23:00:01,endTime:2024-03-23T23:00:01}', '{insert:1,update:17,fail:0}', '2024-04-09 19:25:00', 1615);
-INSERT INTO `s_shop_pull_logs` VALUES (1777659221607161857, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-23T22:00:01,endTime:2024-03-24T22:00:01}', '{insert:0,update:10,fail:0}', '2024-04-09 19:26:00', 390);
-INSERT INTO `s_shop_pull_logs` VALUES (1777659474158788609, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-24T21:00:01,endTime:2024-03-25T21:00:01}', '{insert:0,update:25,fail:0}', '2024-04-09 19:27:00', 605);
-INSERT INTO `s_shop_pull_logs` VALUES (1777659726114824193, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-25T20:00:01,endTime:2024-03-26T20:00:01}', '{insert:16,update:8,fail:0}', '2024-04-09 19:28:00', 678);
-INSERT INTO `s_shop_pull_logs` VALUES (1777659977240387586, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-26T19:00:01,endTime:2024-03-27T19:00:01}', '{insert:18,update:0,fail:0}', '2024-04-09 19:29:00', 551);
-INSERT INTO `s_shop_pull_logs` VALUES (1777660229167063042, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-27T18:00:01,endTime:2024-03-28T18:00:01}', '{insert:15,update:1,fail:0}', '2024-04-09 19:30:00', 609);
-INSERT INTO `s_shop_pull_logs` VALUES (1777660480040968194, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-28T17:00:01,endTime:2024-03-29T17:00:01}', '{insert:12,update:0,fail:0}', '2024-04-09 19:31:00', 427);
-INSERT INTO `s_shop_pull_logs` VALUES (1777660731812454401, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-29T16:00:01,endTime:2024-03-30T16:00:01}', '{insert:13,update:0,fail:0}', '2024-04-09 19:32:00', 454);
-INSERT INTO `s_shop_pull_logs` VALUES (1777660983592329217, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-30T15:00:01,endTime:2024-03-31T15:00:01}', '{insert:15,update:0,fail:0}', '2024-04-09 19:33:00', 481);
-INSERT INTO `s_shop_pull_logs` VALUES (1777661235489644545, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-31T14:00:01,endTime:2024-04-01T14:00:01}', '{insert:18,update:1,fail:0}', '2024-04-09 19:34:00', 541);
-INSERT INTO `s_shop_pull_logs` VALUES (1777661487475040257, 2, 2, 'ORDER', '定时任务', '{startTime:2024-04-01T13:00:01,endTime:2024-04-02T13:00:01}', '{insert:15,update:0,fail:0}', '2024-04-09 19:35:00', 620);
-INSERT INTO `s_shop_pull_logs` VALUES (1777661738910982146, 2, 2, 'ORDER', '定时任务', '{startTime:2024-04-02T12:00:01,endTime:2024-04-03T12:00:01}', '{insert:20,update:1,fail:0}', '2024-04-09 19:36:00', 567);
-INSERT INTO `s_shop_pull_logs` VALUES (1777661989659058177, 2, 2, 'ORDER', '定时任务', '{startTime:2024-04-03T11:00:01,endTime:2024-04-04T11:00:01}', '{insert:10,update:0,fail:0}', '2024-04-09 19:37:00', 352);
-INSERT INTO `s_shop_pull_logs` VALUES (1777662241317298178, 2, 2, 'ORDER', '定时任务', '{startTime:2024-04-04T10:00:01,endTime:2024-04-05T10:00:01}', '{insert:8,update:2,fail:0}', '2024-04-09 19:38:00', 352);
-INSERT INTO `s_shop_pull_logs` VALUES (1777662493256556546, 2, 2, 'ORDER', '定时任务', '{startTime:2024-04-05T09:00:01,endTime:2024-04-06T09:00:01}', '{insert:12,update:0,fail:0}', '2024-04-09 19:39:00', 418);
-INSERT INTO `s_shop_pull_logs` VALUES (1777662744759607298, 2, 2, 'ORDER', '定时任务', '{startTime:2024-04-06T08:00:01,endTime:2024-04-07T08:00:01}', '{insert:9,update:1,fail:0}', '2024-04-09 19:40:00', 375);
-INSERT INTO `s_shop_pull_logs` VALUES (1777662998556942338, 2, 2, 'ORDER', '定时任务', '{startTime:2024-04-07T07:00:01,endTime:2024-04-08T07:00:01}', '{insert:38,update:0,fail:0}', '2024-04-09 19:41:00', 890);
-INSERT INTO `s_shop_pull_logs` VALUES (1777663249372127233, 2, 2, 'ORDER', '定时任务', '{startTime:2024-04-08T06:00:01,endTime:2024-04-09T06:00:01}', '{insert:28,update:0,fail:0}', '2024-04-09 19:42:00', 688);
-INSERT INTO `s_shop_pull_logs` VALUES (1777663500548022273, 2, 2, 'ORDER', '定时任务', '{startTime:2024-04-09T05:00:01,endTime:2024-04-09T19:43:00.003414200}', '{insert:22,update:1,fail:0}', '2024-04-09 19:43:00', 577);
-INSERT INTO `s_shop_pull_logs` VALUES (1777663750599843841, 2, 2, 'ORDER', '定时任务', '{startTime:2024-04-09T18:43,endTime:2024-04-09T19:44:00.006601200}', '{insert:0,update:1,fail:0}', '2024-04-09 19:44:00', 190);
-INSERT INTO `s_shop_pull_logs` VALUES (1777948211799371778, 2, 2, 'REFUND', '主动拉取', '{ApplyTimeBegin:2024-04-09 02:10:21,ApplyTimeEnd:2024-04-10 02:10:21,PageIndex:1,PageSize:100}', '{total:2,hasExist:0,totalError:0}', '2024-04-10 14:10:21', 1439547);
-INSERT INTO `s_shop_pull_logs` VALUES (1777978967368101890, 2, 2, 'REFUND', '主动拉取', '{ApplyTimeBegin:2024-04-09 04:34:53,ApplyTimeEnd:2024-04-10 04:34:53,PageIndex:1,PageSize:100}', '{total:3,hasExist:49,totalError:0}', '2024-04-10 16:34:53', 100488);
-INSERT INTO `s_shop_pull_logs` VALUES (1777981723495587841, 2, 2, 'REFUND', '主动拉取', '{ApplyTimeBegin:2024-04-09 04:45:17,ApplyTimeEnd:2024-04-10 04:45:17,PageIndex:1,PageSize:100}', '{total:49,hasExist:3,totalError:0}', '2024-04-10 16:45:18', 133162);
-INSERT INTO `s_shop_pull_logs` VALUES (1777993274201870337, 2, 2, 'REFUND', '主动拉取', '{ApplyTimeBegin:2024-04-09 05:33:10,ApplyTimeEnd:2024-04-10 05:33:10,PageIndex:1,PageSize:100}', '{total:0,hasExist:52,totalError:0}', '2024-04-10 17:33:10', 14276);
-INSERT INTO `s_shop_pull_logs` VALUES (1777995616620052481, 2, 2, 'REFUND', '主动拉取', '{ApplyTimeBegin:2024-04-09 05:42:41,ApplyTimeEnd:2024-04-10 05:42:41,PageIndex:1,PageSize:100}', '{total:52,hasExist:0,totalError:0}', '2024-04-10 17:42:41', 2019);
-INSERT INTO `s_shop_pull_logs` VALUES (1777999870848110593, 2, 2, 'REFUND', '主动拉取', '{ApplyTimeBegin:2024-04-09 05:59:29,ApplyTimeEnd:2024-04-10 05:59:29,PageIndex:1,PageSize:100}', '{total:52,hasExist:0,totalError:0}', '2024-04-10 17:59:29', 8617);
-INSERT INTO `s_shop_pull_logs` VALUES (1778260078669299713, 2, 2, 'REFUND', '主动拉取', '{ApplyTimeBegin:2024-04-09 23:13:33,ApplyTimeEnd:2024-04-10 23:13:33,PageIndex:1,PageSize:100}', '{total:2,hasExist:50,totalError:0}', '2024-04-11 11:13:33', 2942);
-INSERT INTO `s_shop_pull_logs` VALUES (1778262189968695298, 2, 2, 'REFUND', '主动拉取', '{ApplyTimeBegin:2024-04-09 23:21:56,ApplyTimeEnd:2024-04-10 23:21:56,PageIndex:1,PageSize:100}', '{total:0,hasExist:52,totalError:0}', '2024-04-11 11:21:56', 3329);
-INSERT INTO `s_shop_pull_logs` VALUES (1778264117200945153, 2, 2, 'REFUND', '主动拉取', '{ApplyTimeBegin:2024-04-09 23:29:05,ApplyTimeEnd:2024-04-10 23:29:05,PageIndex:1,PageSize:100}', '{total:0,hasExist:52,totalError:0}', '2024-04-11 11:29:05', 33489);
-INSERT INTO `s_shop_pull_logs` VALUES (1778264356444045313, 2, 2, 'REFUND', '主动拉取', '{ApplyTimeBegin:2024-04-09 23:30:32,ApplyTimeEnd:2024-04-10 23:30:32,PageIndex:1,PageSize:100}', '{total:0,hasExist:52,totalError:0}', '2024-04-11 11:30:32', 3520);
-INSERT INTO `s_shop_pull_logs` VALUES (1778265231816261634, 2, 2, 'REFUND', '主动拉取', '{ApplyTimeBegin:2024-04-09 23:34:02,ApplyTimeEnd:2024-04-10 23:34:02,PageIndex:1,PageSize:100}', '{total:0,hasExist:52,totalError:0}', '2024-04-11 11:34:03', 1604);
-INSERT INTO `s_shop_pull_logs` VALUES (1778265709430046722, 2, 2, 'REFUND', '主动拉取', '{ApplyTimeBegin:2024-04-09 23:35:56,ApplyTimeEnd:2024-04-10 23:35:56,PageIndex:1,PageSize:100}', '{total:0,hasExist:52,totalError:0}', '2024-04-11 11:35:56', 2283);
-INSERT INTO `s_shop_pull_logs` VALUES (1782655076842622978, 2, 2, 'GOODS', '主动拉取', '{WareStatusValue:8,PageNo:1,PageSize:100}', '{successTotal:57}', '2024-04-23 14:17:20', 24615);
-INSERT INTO `s_shop_pull_logs` VALUES (1782655845054566401, 2, 2, 'GOODS', '主动拉取', '{WareStatusValue:8,PageNo:1,PageSize:100}', '{successTotal:57}', '2024-04-23 14:20:29', 19615);
-
--- ----------------------------
--- Table structure for s_shop_setting
--- ----------------------------
-DROP TABLE IF EXISTS `s_shop_setting`;
-CREATE TABLE `s_shop_setting`  (
-  `id` int NOT NULL COMMENT '主键',
-  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '配置名',
-  `app_key` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT 'appKey',
-  `app_secret` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT 'appSecret',
-  `access_token` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '阿里access token',
-  `expires_in` bigint NULL DEFAULT NULL COMMENT '到期',
-  `access_token_begin` bigint NULL DEFAULT NULL COMMENT 'access_token开始时间',
-  `refresh_token` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '刷新token',
-  `refresh_token_timeout` bigint NULL DEFAULT NULL COMMENT '刷新token过期时间',
-  `modify_on` bigint NOT NULL COMMENT '更新时间',
-  `remark` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '描述',
-  `request_url` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '请求url',
-  `third_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '第三方店铺id',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '第三方平台设置' ROW_FORMAT = DYNAMIC;
-
--- ----------------------------
--- Records of s_shop_setting
--- ----------------------------
-INSERT INTO `s_shop_setting` VALUES (1, '1688', '9380846', 'MJC3doohMxCG', '1dc697c1955f4b75a96fe309b8d7bba8e6c98843', 86392, 1620181504, '445767c1a15e469c922d81734e132caa10af7626', 0, 1620181504, '1688开放平台', NULL, NULL);
-INSERT INTO `s_shop_setting` VALUES (2, '视频号', ' ', ' ', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL);
-INSERT INTO `s_shop_setting` VALUES (3, '京东', 'a22', '332', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL);
-INSERT INTO `s_shop_setting` VALUES (4, '淘宝天猫', '31014100', '7b0769269b0c0ca88949791c14eb3a5c', '6100b26a3d196c826e10f06b9e1eb74dcf1256fd4618dc82206529834322', NULL, NULL, NULL, NULL, 1573610045, '淘宝开放平台', 'http://gw.api.taobao.com/router/rest', NULL);
-INSERT INTO `s_shop_setting` VALUES (5, '拼多多', 'dc953bcf16d24b27abf3e64a59e1ecd1', 'de296599e194a08cbfbb2b3b340e11fec7a1bacc', '58647a23b96640e3b29596fb621e57ecbe4d80cc', 86394, 1625123356, '97f019f9be134bb49d3a8e53b9ac496ff18f4bcd', 0, 1625123356, '拼多多开放平台', NULL, '593374804');
-INSERT INTO `s_shop_setting` VALUES (6, '抖音', '', '', '2ea26e2f-97c6-4b74-965f-fbbae31796c5', NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL);
-INSERT INTO `s_shop_setting` VALUES (7, '小红书', '', '', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL);
-INSERT INTO `s_shop_setting` VALUES (8, '快手', '', '', 'ChFvYXV0aC5hY2Nlc3NUb2tlbhJg8dGIYbcw7BG59wR280oy4-skCVU4yMI284Skj7t4Bb5aA9F6xf8CeII793MWj4FsKxYtoGMm0L9f1Xy4dp55XVlZku34dVeXgEkGas86rEVdgN6afECyCIx0biFptyIQGhLmzpljLPVHbK1DJTZ-cNTpKfIiIORSNvnBg-JisR3A3fyJMg6C1iOMNmrVhGyML8L80tAwKAUwAQ', 172800, 1593392516, 'ChJvYXV0aC5yZWZyZXNoVG9rZW4SoAHKJkgO01CrIeyVVv4eRK7ieOKi4Lgh-6M-qn0_73XsotF5kgF0rTpivZy--qKdFJfp-5qx5iuyShB4Fyi4ds7XNLRN1b8OjX2v773v1KgfLQseaDGJPnDnzChRoIWZOpyo82lLRX_2YGjsC4bRkVU9fVyH6Wt2nsJEd1hHyuPhAbbsx3Nq481TYxvW1eJTT2EuvvMYCEMO79s_eva5Z3IaGhLFjPzG3QMu6L4V2LLNSvQ9zkEiIAVAXZnyBIRKWm_kn7xeI4L93T-jVkriYJAxPhfASQscKAUwAQ', 0, 1593392516, NULL, NULL, NULL);
-INSERT INTO `s_shop_setting` VALUES (99, 'ERP系统', '', '', NULL, NULL, NULL, NULL, NULL, 1573610045, NULL, NULL, NULL);
-
--- ----------------------------
 -- Table structure for s_tao_order
 -- ----------------------------
 DROP TABLE IF EXISTS `s_tao_order`;
@@ -6706,339 +7856,223 @@ CREATE TABLE `s_xhs_refund_item`  (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for scm_distributor
+-- Table structure for scm_after_sale
 -- ----------------------------
-DROP TABLE IF EXISTS `scm_distributor`;
-CREATE TABLE `scm_distributor`  (
-  `user_id` bigint NOT NULL AUTO_INCREMENT COMMENT '用户ID',
-  `user_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '用户账号',
-  `nick_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '用户昵称',
-  `email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '用户邮箱',
-  `phonenumber` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '手机号码',
-  `sex` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '用户性别（0男 1女 2未知）',
-  `avatar` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '头像地址',
-  `password` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '密码',
-  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '帐号状态（0正常 1停用）',
-  `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '删除标志（0代表存在 2代表删除）',
-  `login_ip` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '最后登录IP',
-  `login_date` datetime NULL DEFAULT NULL COMMENT '最后登录时间',
-  `create_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '创建者',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '更新者',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
-  PRIMARY KEY (`user_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 101 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '分销用户信息表' ROW_FORMAT = DYNAMIC;
-
--- ----------------------------
--- Records of scm_distributor
--- ----------------------------
-INSERT INTO `scm_distributor` VALUES (1, '15818590119', '启航', '280645618@qq.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2024-06-22 21:52:02', 'admin', '2023-08-07 19:31:37', '', '2024-05-18 18:50:24', '');
-INSERT INTO `scm_distributor` VALUES (101, '15818590110', '上海人工集团aa', 'admin@qq.com', '15818590119', '0', '', '$2a$10$BXnTczO7JDkXtcWtLhAy4Ohi1y9FDLfGZm6pwGisi0JHr2wt/MlUK', '0', '0', '127.0.0.1', '2024-06-22 16:42:58', '', '2024-06-22 16:37:25', '', '2024-06-22 16:41:29', NULL);
-
--- ----------------------------
--- Table structure for scm_purchase_contract
--- ----------------------------
-DROP TABLE IF EXISTS `scm_purchase_contract`;
-CREATE TABLE `scm_purchase_contract`  (
+DROP TABLE IF EXISTS `scm_after_sale`;
+CREATE TABLE `scm_after_sale`  (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `contact_id` bigint NULL DEFAULT NULL COMMENT '供应商id',
-  `bill_no` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '单据编号',
-  `contractNo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `billDate` date NULL DEFAULT NULL COMMENT '单据日期',
-  `userId` smallint NULL DEFAULT 0 COMMENT '制单人id',
-  `userName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '制单人',
-  `transType` char(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '交易类型:BUY购货 BUYR退货 SALE销售 SALER退销 OTHER其他入库',
-  `transTypeName` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '交易类型名称',
-  `totalAmount` decimal(10, 2) NULL DEFAULT NULL COMMENT '购货总金额',
-  `disRate` double NULL DEFAULT 0 COMMENT '整单折扣率',
-  `disAmount` double NULL DEFAULT 0 COMMENT '整单折扣金额',
-  `amount` double NULL DEFAULT 0 COMMENT '折扣后金额',
-  `totalDiscount` double NULL DEFAULT 0 COMMENT '总折扣（计算商品折扣和整单折扣之和）',
-  `totalQuantity` bigint NULL DEFAULT 0 COMMENT '总数量',
-  `qualifiedQuantity` bigint NULL DEFAULT 0 COMMENT '合格数量',
-  `inQuantity` bigint NULL DEFAULT 0 COMMENT '已入库数量(已出库数量)',
-  `rpAmount` double NULL DEFAULT 0 COMMENT '本次付款',
-  `arrears` double NULL DEFAULT 0 COMMENT '本次欠款',
-  `freight` double NULL DEFAULT 0 COMMENT '运费',
-  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
-  `billType` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'PO采购订单 OI其他入库 PUR采购入库 BAL初期余额',
-  `billStatus` tinyint(1) NULL DEFAULT 0 COMMENT '订单状态 0待审核1正常2已作废3已入库 11已验货',
-  `isDelete` tinyint(1) NULL DEFAULT 0 COMMENT '1删除  0正常',
-  `checkName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '采购单审核人',
-  `checked` tinyint(1) NULL DEFAULT 0 COMMENT '采购单审核状态0待审核1已审核',
-  `createTime` bigint NULL DEFAULT NULL COMMENT '创建时间',
-  `modifyTime` bigint NULL DEFAULT NULL COMMENT '更新时间',
-  `salesId` smallint NULL DEFAULT NULL,
-  `customerFree` double NULL DEFAULT 0 COMMENT '客户承担费用',
-  `hxStateCode` tinyint NULL DEFAULT 0 COMMENT '核销状态 0未付款  1部分付款  2全部付款',
-  `hxAmount` double NULL DEFAULT 0 COMMENT '本次核销金额',
-  `payment` double NULL DEFAULT 0 COMMENT '本次预收款',
-  `srcOrderNo` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '订单编号',
-  `srcOrderId` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '订单id',
-  `logisticsNo` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '快递物流单号（）',
-  `logisticsCompany` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '物流公司',
-  `logisticsCompanyCode` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '物流公司代码',
-  `logisticsNumber` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '物流单号',
-  `locationId` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '仓库id多个,分割',
-  `inLocationId` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '调入仓库ID多个,分割',
-  `outLocationId` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '调出仓库ID多个,分割',
-  `serialno` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '序列号',
-  `checkoutName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '检验人',
-  `checkoutTime` bigint NULL DEFAULT 0 COMMENT '检验时间',
-  `checkoutStatus` int NULL DEFAULT 0 COMMENT '0 未检验  1已检验',
-  `qualifiedStatus` int NULL DEFAULT 0 COMMENT '0为合格数量为0,1为合格数量不为0',
-  `stockInName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '入库人',
-  `stockInTime` bigint NULL DEFAULT 0 COMMENT '入库时间',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '采购单' ROW_FORMAT = DYNAMIC;
-
--- ----------------------------
--- Records of scm_purchase_contract
--- ----------------------------
-
--- ----------------------------
--- Table structure for scm_purchase_order
--- ----------------------------
-DROP TABLE IF EXISTS `scm_purchase_order`;
-CREATE TABLE `scm_purchase_order`  (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `contact_id` bigint NOT NULL COMMENT '供应商id',
-  `order_no` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '订单编号',
-  `order_date` date NOT NULL COMMENT '订单日期',
-  `order_time` bigint NOT NULL COMMENT '订单创建时间',
-  `order_amount` decimal(10, 2) NOT NULL COMMENT '订单总金额',
-  `ship_amount` decimal(6, 2) NOT NULL COMMENT '物流费用',
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
-  `status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '订单状态 0待审核1已审核101供应商已确认102供应商已发货2已收货3已入库',
-  `audit_user` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '采购单审核人',
-  `audit_time` bigint NULL DEFAULT 0 COMMENT '审核时间',
-  `supplier_confirm_time` datetime NULL DEFAULT NULL COMMENT '供应商确认时间',
-  `supplier_delivery_time` datetime NULL DEFAULT NULL COMMENT '供应商发货时间',
-  `received_time` datetime NULL DEFAULT NULL COMMENT '收货时间',
-  `stock_in_time` datetime NULL DEFAULT NULL COMMENT '入库时间',
+  `refund_num` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '退货单号',
+  `refund_type` int NULL DEFAULT NULL COMMENT '类型(10-退货 20-换货 30-维修 40-大家电安装 50-大家电移机 60-大家电增值服务 70-上门维修 90-优鲜赔 80-补发商品 100-试用收回 11-仅退款)',
+  `shop_id` int NULL DEFAULT NULL COMMENT '店铺id',
+  `shop_type` int NULL DEFAULT NULL COMMENT '店铺类型',
+  `refund_fee` float NOT NULL COMMENT '退款金额',
+  `refund_reason` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '退款原因',
+  `original_order_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '原始订单号（来自于第三方平台）',
+  `original_order_item_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '原始子订单号（来自于第三方平台）',
+  `original_sku_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '原始子订单skuId',
+  `erp_goods_id` bigint NULL DEFAULT NULL COMMENT 'erp商品id',
+  `erp_goods_sku_id` bigint NULL DEFAULT NULL COMMENT 'erp sku id',
+  `spec_num` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'sku编码',
+  `has_good_return` int NULL DEFAULT NULL COMMENT '买家是否需要退货。可选值:1(是),0(否)',
+  `goods_name` varchar(55) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '商品名称',
+  `goods_sku` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '商品sku',
+  `goods_image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '商品图片',
+  `quantity` bigint NULL DEFAULT NULL COMMENT '退货数量',
+  `return_logistics_company` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '退货物流公司',
+  `return_logistics_code` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '退货物流单号',
+  `receive_time` datetime NULL DEFAULT NULL COMMENT '收货时间',
+  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '备注',
+  `contact_person` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '发货人',
+  `mobile` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '发货人手机号',
+  `address` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '发货地址',
+  `status` int NOT NULL COMMENT '状态（10001待审核10002等待买家退货10005等待卖家收货14000拒绝退款10011退款关闭10010退款完成）',
+  `create_time` datetime NOT NULL COMMENT '订单创建时间',
   `create_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '创建人',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   `update_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '更新人',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
+  `tenant_id` bigint NOT NULL COMMENT '租户ID（distributor）',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 469 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '采购订单' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1788119148154740739 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '售后表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
--- Records of scm_purchase_order
+-- Records of scm_after_sale
 -- ----------------------------
-INSERT INTO `scm_purchase_order` VALUES (466, 33, 'PUR20240116144408', '2024-01-16', 1705387448, 190.00, 0.00, NULL, 3, '启航', 1705387461, '2024-01-16 14:44:30', '2024-01-16 14:49:49', '2024-01-16 00:00:00', '2024-01-16 14:50:58', 'admin', '2024-01-16 14:44:09', 'admin', '2024-01-16 14:50:58');
-INSERT INTO `scm_purchase_order` VALUES (467, 33, 'PUR20240128113656', '2024-01-28', 1706413016, 42.00, 10.00, NULL, 102, '启航', 1706413030, '2024-01-28 11:42:19', '2024-01-28 12:07:32', NULL, NULL, 'admin', '2024-01-28 11:36:56', 'admin', '2024-01-28 12:07:32');
-INSERT INTO `scm_purchase_order` VALUES (468, 31, 'PUR20240424162152', '2024-04-24', 1713946912, 420.00, 12.00, NULL, 102, 'qh', 1713946921, '2024-04-24 16:22:14', '2024-04-24 16:22:40', NULL, NULL, 'admin', '2024-04-24 16:21:52', 'admin', '2024-04-24 16:22:40');
+INSERT INTO `scm_after_sale` VALUES (1786735505566502913, '154486920027549058', 11, 6, 4, 20, '与商家协商一致退款', '2088964452215545890', '2088964452216545890', '', 0, 0, 'ZH-SF-04-DS-F9-QM20A-NT3', 0, '曲美家居轻奢简约现代床头柜储物双抽床边柜皮质卧室置物储藏柜', '4902529397704|颜色分类:奶油白;安装方式:组装', NULL, 2, NULL, NULL, NULL, '', '', '', '', 10010, '2024-05-04 20:31:55', 'REFUND_MESSAGE', NULL, NULL, 0);
+INSERT INTO `scm_after_sale` VALUES (1788119148154740738, '2000000476685963', 10, 2, 2, 99.9, '质量问题', '3719496358260248576', '0', '2231619925', 0, 0, NULL, 1, NULL, NULL, NULL, 1, NULL, NULL, NULL, '', '', '', '', 10001, '2024-05-08 16:10:01', 'REFUND_MESSAGE', NULL, NULL, 0);
 
 -- ----------------------------
--- Table structure for scm_purchase_order_cost
+-- Table structure for scm_after_sale_process
 -- ----------------------------
-DROP TABLE IF EXISTS `scm_purchase_order_cost`;
-CREATE TABLE `scm_purchase_order_cost`  (
-  `id` bigint NOT NULL COMMENT '采购单ID（主键）',
-  `order_amount` decimal(10, 2) NULL DEFAULT NULL COMMENT '采购单金额',
-  `order_date` date NULL DEFAULT NULL COMMENT '采购订单日期',
-  `order_no` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '采购订单编号',
-  `order_spec_unit` int NULL DEFAULT NULL COMMENT '采购订单商品规格数',
-  `order_goods_unit` int NULL DEFAULT NULL COMMENT '采购订单商品数',
-  `order_spec_unit_total` int NULL DEFAULT NULL COMMENT '采购订单总件数',
-  `actual_amount` decimal(10, 2) NULL DEFAULT NULL COMMENT '实际金额',
-  `freight` decimal(6, 2) NULL DEFAULT NULL COMMENT '运费',
-  `confirm_user` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '确认人',
-  `confirm_time` datetime NULL DEFAULT NULL COMMENT '确认时间',
-  `create_by` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '创建人',
-  `pay_amount` decimal(10, 2) NULL DEFAULT NULL COMMENT '已支付金额',
-  `pay_time` datetime NULL DEFAULT NULL COMMENT '支付时间',
-  `pay_count` int NULL DEFAULT NULL COMMENT '支付次数',
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '说明',
-  `status` int NULL DEFAULT NULL COMMENT '状态（0未支付1已支付）',
-  `update_by` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '更新人',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '采购订单费用确认表' ROW_FORMAT = DYNAMIC;
-
--- ----------------------------
--- Records of scm_purchase_order_cost
--- ----------------------------
-INSERT INTO `scm_purchase_order_cost` VALUES (466, 190.00, '2024-01-16', 'PUR20240116144408', 1, 1, 10, 190.00, 0.00, '启航', '2024-01-16 00:00:00', 'admin', 190.00, NULL, 0, NULL, 0, 'admin', '2024-04-17 14:02:43');
-INSERT INTO `scm_purchase_order_cost` VALUES (468, 420.00, '2024-04-24', 'PUR20240424162152', 1, 1, 10, 420.00, 0.00, 'q', '2024-04-24 00:00:00', 'admin', 12.00, '2024-04-24 00:00:00', 0, '12', 0, 'admin', '2024-04-24 16:23:47');
-
--- ----------------------------
--- Table structure for scm_purchase_order_item
--- ----------------------------
-DROP TABLE IF EXISTS `scm_purchase_order_item`;
-CREATE TABLE `scm_purchase_order_item`  (
+DROP TABLE IF EXISTS `scm_after_sale_process`;
+CREATE TABLE `scm_after_sale_process`  (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `order_id` bigint NULL DEFAULT 0 COMMENT '订单id',
-  `order_no` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '订单编号',
-  `transType` char(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '150501采购 150502退货',
-  `amount` double NULL DEFAULT 0 COMMENT '购货金额',
-  `order_date` date NULL DEFAULT NULL COMMENT '订单日期',
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '备注',
-  `goods_id` bigint NULL DEFAULT 0 COMMENT '商品ID',
-  `goods_num` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '商品编码',
-  `goods_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '商品名称',
-  `spec_id` bigint NULL DEFAULT 0 COMMENT '商品规格id',
-  `spec_num` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '商品规格编码',
-  `color_value` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '颜色',
-  `color_image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '图片',
-  `size_value` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '尺码',
-  `style_value` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '款式',
-  `price` decimal(8, 2) NULL DEFAULT 0.00 COMMENT '单价',
-  `dis_amount` decimal(8, 2) NULL DEFAULT 0.00 COMMENT '折扣额',
-  `dis_rate` decimal(8, 2) NULL DEFAULT 0.00 COMMENT '折扣率',
-  `quantity` bigint NOT NULL DEFAULT 0 COMMENT '数量(采购单据)',
-  `inQty` bigint NOT NULL DEFAULT 0 COMMENT '已入库数量',
-  `locationId` int NULL DEFAULT NULL COMMENT '入库的仓库id',
-  `is_delete` tinyint(1) NULL DEFAULT 0 COMMENT '1删除 0正常',
-  `status` int NULL DEFAULT 0 COMMENT '状态（同billStatus）0待审核1正常2已作废3已入库',
-  PRIMARY KEY (`id`) USING BTREE,
-  INDEX `type`(`transType`) USING BTREE,
-  INDEX `billdate`(`order_date`) USING BTREE,
-  INDEX `invId`(`goods_id`) USING BTREE,
-  INDEX `transType`(`transType`) USING BTREE,
-  INDEX `iid`(`order_id`) USING BTREE,
-  INDEX `id`(`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1965 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '采购订单明细' ROW_FORMAT = DYNAMIC;
-
--- ----------------------------
--- Records of scm_purchase_order_item
--- ----------------------------
-INSERT INTO `scm_purchase_order_item` VALUES (1962, 466, 'PUR20240116144408', 'Purchase', 190, '2024-01-16', '', 9, 'HN8026', 'HN8026牛仔短裤', 32, '2720210080260105', '黑色', 'https://cbu01.alicdn.com/img/ibank/O1CN01AfNgvA2FOyAvwXZxv_!!2208857268871-0-cib.jpg', '2XL', '', 19.00, 0.00, 0.00, 10, 0, NULL, 0, 0);
-INSERT INTO `scm_purchase_order_item` VALUES (1963, 467, 'PUR20240128113656', 'Purchase', 42, '2024-01-28', '', 29, 'HNP182', 'HNP182弹力紧身贴标牛仔短裤女ins', 438, 'HNP1825004', '浅蓝色', 'https://cbu01.alicdn.com/img/ibank/O1CN01yp4pfJ2FOyGRQhOVF_!!2208857268871-0-cib.jpg', 'XL', '', 21.00, 0.00, 0.00, 2, 0, NULL, 0, 0);
-INSERT INTO `scm_purchase_order_item` VALUES (1964, 468, 'PUR20240424162152', 'Purchase', 420, '2024-04-24', '', 68, 'JKL3112', 'JKL3112松紧腰束脚哈伦裤', 1327, 'JKL31120705', '烟灰色', 'https://cbu01.alicdn.com/img/ibank/O1CN01vLP3RW2Arl35fOv3d_!!2513908257-0-cib.jpg', '2XL', '', 42.00, 0.00, 0.00, 10, 0, NULL, 0, 0);
-
--- ----------------------------
--- Table structure for scm_purchase_order_payable
--- ----------------------------
-DROP TABLE IF EXISTS `scm_purchase_order_payable`;
-CREATE TABLE `scm_purchase_order_payable`  (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `supplier_id` int NOT NULL COMMENT '供应商id',
-  `supplier_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '供应商名称',
-  `amount` decimal(10, 2) NOT NULL COMMENT '应付金额',
-  `date` date NOT NULL COMMENT '应付日期',
-  `invoice_no` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '发票号码',
-  `purchase_order_no` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '采购单号',
-  `purchase_desc` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '采购说明',
+  `type` int NULL DEFAULT NULL COMMENT '类型（10退货；20换货；80补发；99订单拦截；）',
+  `shop_id` int NULL DEFAULT NULL COMMENT '店铺id',
+  `shop_type` int NULL DEFAULT NULL COMMENT '店铺类型',
+  `after_sale_order_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '售后单号',
+  `order_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '订单号',
+  `sub_order_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '子订单号',
+  `product_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '商品spuid',
+  `sku_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '商品skuid',
+  `count` int NULL DEFAULT NULL COMMENT '数量',
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '商品标题',
+  `img` varchar(555) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '商品图片',
+  `sku_info` varchar(2550) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'sku描述',
+  `sku_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'sku编码',
+  `erp_goods_id` int NULL DEFAULT NULL COMMENT 'ERP商品id',
+  `erp_sku_id` int NULL DEFAULT NULL COMMENT 'ERP商品skuId',
+  `return_info` varchar(2550) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '退回人信息json',
+  `return_waybill_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '退回快递单号',
+  `return_company` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '退回物流公司名称',
+  `receiver_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '收件人姓名',
+  `receiver_tel` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '收件人联系电话',
+  `receiver_province` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '省',
+  `receiver_city` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '市',
+  `receiver_town` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '区',
+  `receiver_address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '收件人详细地址',
+  `ship_waybill_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '发货快递单号（补发、换货发货、拦截订单发货）',
+  `ship_company` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '发货快递公司',
+  `status` int NULL DEFAULT NULL COMMENT '状态:1已发出；2已完成(已收货);3已入库',
   `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
-  `status` int NOT NULL COMMENT '状态（0已生成1已结算)',
+  `create_time` datetime NULL DEFAULT NULL,
+  `create_by` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `update_time` datetime NULL DEFAULT NULL,
+  `update_by` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `tenant_id` bigint NOT NULL COMMENT '租户ID（distributor）',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '售后处理表' ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of scm_after_sale_process
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for scm_order
+-- ----------------------------
+DROP TABLE IF EXISTS `scm_order`;
+CREATE TABLE `scm_order`  (
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '订单id，自增',
+  `order_num` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '订单编号（来源订单）',
+  `shop_type` int NULL DEFAULT NULL COMMENT '店铺类型',
+  `shop_id` bigint NOT NULL COMMENT '店铺ID',
+  `tenant_id` bigint NOT NULL COMMENT '租户ID（distributor）',
+  `remark` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '订单备注',
+  `buyer_memo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '买家留言信息',
+  `tag` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '标签',
+  `refund_status` int NOT NULL COMMENT '售后状态 1：无售后或售后关闭，2：售后处理中，3：退款中，4： 退款成功 5：全部',
+  `order_status` int NOT NULL COMMENT '订单状态1：待发货，2：已发货，3：已完成，11已取消；21待付款',
+  `goods_amount` double NULL DEFAULT NULL COMMENT '商品金额',
+  `discount_amount` double NOT NULL COMMENT '折扣金额',
+  `postage` double NULL DEFAULT NULL COMMENT '运费',
+  `amount` double NOT NULL COMMENT '支付金额，单位：元，支付金额=商品金额-折扣金额+邮费',
+  `receiver_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '收件人姓名',
+  `receiver_phone` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '收件人手机号',
+  `address` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '收件人地址',
+  `country` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '国家/地区',
+  `province` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '省',
+  `city` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '市',
+  `town` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '区',
+  `order_time` datetime NULL DEFAULT NULL COMMENT '订单创建时间',
+  `pay_time` datetime NULL DEFAULT NULL COMMENT '支付时间',
+  `confirm_time` datetime NULL DEFAULT NULL COMMENT '订单确认时间',
+  `ship_type` int NULL DEFAULT NULL COMMENT '发货类型（0仓库发货；1供应商代发）',
+  `ship_status` int NOT NULL COMMENT '发货状态（0待备货1备货中2已出库3已发货）',
+  `shipping_time` datetime NULL DEFAULT NULL COMMENT '发货时间',
+  `shipping_number` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '快递单号',
+  `shipping_company` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '物流公司',
+  `shipping_man` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '发货人',
+  `shipping_cost` decimal(10, 2) NULL DEFAULT NULL COMMENT '发货费用',
   `create_time` datetime NULL DEFAULT NULL COMMENT '订单创建时间',
   `create_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '创建人',
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   `update_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '更新人',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '采购单应付款' ROW_FORMAT = DYNAMIC;
-
--- ----------------------------
--- Records of scm_purchase_order_payable
--- ----------------------------
-INSERT INTO `scm_purchase_order_payable` VALUES (1, 33, '中山裤豪', 52.00, '2024-01-28', NULL, 'PUR20240128113656', '{采购商品总数量:2,不同款式:1,不同SKU:1,商品总价:42.00,运费:10}', NULL, 0, '2024-01-28 12:07:32', 'admin', NULL, NULL);
-INSERT INTO `scm_purchase_order_payable` VALUES (2, 31, '中山市金客隆服饰有限公司', 432.00, '2024-04-24', NULL, 'PUR20240424162152', '{采购商品总数量:10,不同款式:1,不同SKU:1,商品总价:420.00,运费:12}', '1', 0, '2024-04-24 16:22:40', 'admin', '2024-04-24 17:20:49', NULL);
-
--- ----------------------------
--- Table structure for scm_purchase_order_ship
--- ----------------------------
-DROP TABLE IF EXISTS `scm_purchase_order_ship`;
-CREATE TABLE `scm_purchase_order_ship`  (
-  `id` bigint NOT NULL COMMENT '采购单ID（主键）',
-  `ship_company` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '物流公司',
-  `ship_no` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '物流单号',
-  `freight` decimal(6, 0) NULL DEFAULT NULL COMMENT '运费',
-  `ship_time` datetime NULL DEFAULT NULL COMMENT '发货时间',
-  `receipt_time` datetime NULL DEFAULT NULL COMMENT '收货时间',
-  `create_by` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '创建人',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `status` int NULL DEFAULT NULL COMMENT '状态（0未收货1已收货2已入库）',
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '说明',
-  `back_count` int NULL DEFAULT NULL COMMENT '退回数量',
-  `stock_in_time` datetime NULL DEFAULT NULL COMMENT '入库时间',
-  `stock_in_count` int NULL DEFAULT NULL COMMENT '入库数量',
-  `update_by` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '更新人',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
-  `order_date` date NULL DEFAULT NULL COMMENT '采购订单日期',
-  `order_no` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '采购订单编号',
-  `order_spec_unit` int NULL DEFAULT NULL COMMENT '采购订单商品规格数',
-  `order_goods_unit` int NULL DEFAULT NULL COMMENT '采购订单商品数',
-  `order_spec_unit_total` int NULL DEFAULT NULL COMMENT '采购订单总件数',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '采购订单物流表' ROW_FORMAT = DYNAMIC;
-
--- ----------------------------
--- Records of scm_purchase_order_ship
--- ----------------------------
-INSERT INTO `scm_purchase_order_ship` VALUES (466, '菜鸟速递', 'CN223533300022', 0, '2024-01-16 00:00:00', '2024-01-16 00:00:00', 'admin', '2024-01-16 14:49:49', 2, NULL, 0, '2024-01-16 14:50:58', 0, 'admin', '2024-01-16 14:50:58', '2024-01-16', 'PUR20240116144408', 1, 1, 10);
-INSERT INTO `scm_purchase_order_ship` VALUES (467, '菜鸟速递', 'CN345565767', 10, '2024-01-28 00:00:00', NULL, 'admin', '2024-01-28 12:07:32', 0, NULL, 0, NULL, 0, NULL, NULL, '2024-01-28', 'PUR20240128113656', 1, 1, 2);
-INSERT INTO `scm_purchase_order_ship` VALUES (468, '菜鸟速递', 'SF232323', 12, '2024-04-24 00:00:00', NULL, 'admin', '2024-04-24 16:22:40', 0, NULL, 0, NULL, 0, NULL, NULL, '2024-04-24', 'PUR20240424162152', 1, 1, 10);
-
--- ----------------------------
--- Table structure for scm_supplier
--- ----------------------------
-DROP TABLE IF EXISTS `scm_supplier`;
-CREATE TABLE `scm_supplier`  (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '供应商名称',
-  `number` varchar(18) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '供应商编码',
-  `taxRate` double NULL DEFAULT 0 COMMENT '税率',
-  `amount` double NULL DEFAULT 0 COMMENT '期初应付款',
-  `periodMoney` double NULL DEFAULT 0 COMMENT '期初预付款',
-  `difMoney` double NULL DEFAULT 0 COMMENT '初期往来余额',
-  `beginDate` date NULL DEFAULT NULL COMMENT '余额日期',
-  `remark` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '备注',
-  `place` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '职位',
-  `linkMan` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '联系人',
-  `contact` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '联系方式',
-  `province` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '省',
-  `city` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '市',
-  `county` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '区县',
-  `address` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '收货地址详情',
-  `pinYin` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '',
-  `disable` tinyint(1) NULL DEFAULT 0 COMMENT '0启用   1禁用',
-  `isDelete` tinyint(1) NULL DEFAULT 0 COMMENT '0正常 1删除',
-  `purchaserName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '分管采购员',
-  `createTime` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `length` float NULL DEFAULT 0 COMMENT '长',
+  `width` float NULL DEFAULT 0 COMMENT '宽',
+  `height` float NULL DEFAULT 0 COMMENT '高',
+  `weight` float NULL DEFAULT NULL COMMENT '重量',
   PRIMARY KEY (`id`) USING BTREE,
-  INDEX `id`(`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 34 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+  UNIQUE INDEX `order_sn_index`(`order_num`) USING BTREE,
+  INDEX `shopid_index`(`shop_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 43 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '订单表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
--- Records of scm_supplier
+-- Records of scm_order
 -- ----------------------------
-INSERT INTO `scm_supplier` VALUES (1, '自营仓库', 'A0001', 0, 0, 0, 0, NULL, '', '', NULL, '15000000000', NULL, NULL, NULL, NULL, '', 0, 0, NULL, '2023-12-29 11:01:02');
-INSERT INTO `scm_supplier` VALUES (26, '韩牛服饰', 'HN', 0, 0, 0, 0, NULL, '', '', NULL, '13249570000', NULL, NULL, NULL, NULL, '', 0, 0, NULL, '2023-12-29 11:01:03');
-INSERT INTO `scm_supplier` VALUES (28, '广州衣菲妮服装厂', 'YIFEINI', 0, 0, 0, 0, NULL, '', '', NULL, '13600000000', NULL, NULL, NULL, NULL, '', 1, 1, NULL, '2023-12-29 11:01:03');
-INSERT INTO `scm_supplier` VALUES (29, '中山欧熙妮服饰有限公司', 'ZSOXNFS', 0, 0, 0, 0, NULL, '', '', NULL, '13600000000', NULL, NULL, NULL, NULL, '', 0, 0, NULL, '2023-12-29 11:01:03');
-INSERT INTO `scm_supplier` VALUES (31, '中山市金客隆服饰有限公司', 'JKL', 0, 0, 0, 0, NULL, '', '', NULL, '13600000000', NULL, NULL, NULL, NULL, '', 0, 0, NULL, '2023-12-29 11:01:04');
-INSERT INTO `scm_supplier` VALUES (33, '中山裤豪', 'ZSKH', 0, 0, 0, 0, NULL, '', '', NULL, '', NULL, NULL, NULL, '中山市沙溪镇水牛城三区二楼35-38卡', '', 0, 0, NULL, '2023-12-29 11:01:04');
+INSERT INTO `scm_order` VALUES (42, '1787451058756751361', 2, 2, 0, NULL, NULL, NULL, 1, 2, 99.9, 0, 0, 99.9, '胡**', '188****9606', '****', '中国', '湖北省', '武汉市', '青山区', NULL, NULL, '2024-05-08 15:22:43', NULL, 0, NULL, NULL, NULL, NULL, NULL, '2024-05-08 15:22:43', '手动确认订单', NULL, NULL, 0, 0, 0, NULL);
 
 -- ----------------------------
--- Table structure for sys_config111
+-- Table structure for scm_order_item
 -- ----------------------------
-DROP TABLE IF EXISTS `sys_config111`;
-CREATE TABLE `sys_config111`  (
-  `config_id` int NOT NULL AUTO_INCREMENT COMMENT '参数主键',
-  `config_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '参数名称',
-  `config_key` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '参数键名',
-  `config_value` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '参数键值',
-  `config_type` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT 'N' COMMENT '系统内置（Y是 N否）',
-  `create_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '创建者',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '更新者',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
+DROP TABLE IF EXISTS `scm_order_item`;
+CREATE TABLE `scm_order_item`  (
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'id，自增',
+  `order_id` bigint NOT NULL COMMENT '订单ID',
+  `shop_id` int NOT NULL COMMENT '店铺id',
+  `supplier_id` int NULL DEFAULT NULL COMMENT '供应商ID',
+  `goods_id` bigint NULL DEFAULT 0 COMMENT 'erp系统商品id',
+  `spec_id` bigint NULL DEFAULT 0 COMMENT 'erp系统商品规格id',
+  `goods_title` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '商品标题',
+  `goods_img` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '商品图片',
+  `goods_num` varchar(35) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '商品编码',
+  `goods_spec` varchar(800) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '商品规格',
+  `spec_num` varchar(35) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '商品规格编码',
+  `goods_price` double NULL DEFAULT NULL COMMENT '商品单价',
+  `item_amount` double NULL DEFAULT NULL COMMENT '子订单金额',
+  `quantity` int NOT NULL COMMENT '商品数量',
   `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
-  PRIMARY KEY (`config_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 100 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '参数配置表' ROW_FORMAT = DYNAMIC;
+  `order_item_num` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '子订单编号(来源订单)',
+  `order_num` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '订单编号（来源订单）',
+  `is_gift` tinyint NOT NULL DEFAULT 0 COMMENT '是否赠品0否1是',
+  `refund_count` int NULL DEFAULT 0 COMMENT '已退货数量',
+  `refund_status` int NULL DEFAULT NULL COMMENT '售后状态 1：无售后或售后关闭，2：售后处理中，3：退款中，4： 退款成功 ',
+  `order_status` int NULL DEFAULT NULL COMMENT '订单状态',
+  `ship_type` int NULL DEFAULT NULL COMMENT '发货类型（0仓库发货；1供应商代发）',
+  `ship_status` int NOT NULL COMMENT '发货状态（0待备货1备货中2已出库3已发货）',
+  `ship_time` datetime NULL DEFAULT NULL COMMENT '发货时间',
+  `logistics_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '快递单号',
+  `logistics_company` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '物流公司',
+  `ship_man` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '发货人',
+  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `create_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '创建人',
+  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
+  `update_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '更新人',
+  `tenant_id` bigint NOT NULL COMMENT '租户ID（distributor）',
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `goodId_index`(`goods_id`) USING BTREE,
+  INDEX `order_id`(`order_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1785584827112509448 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '订单明细表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
--- Records of sys_config111
+-- Records of scm_order_item
 -- ----------------------------
-INSERT INTO `sys_config111` VALUES (1, '主框架页-默认皮肤样式名称', 'sys.index.skinName', 'skin-blue', 'Y', 'admin', '2023-08-07 19:31:38', '', NULL, '蓝色 skin-blue、绿色 skin-green、紫色 skin-purple、红色 skin-red、黄色 skin-yellow');
-INSERT INTO `sys_config111` VALUES (2, '用户管理-账号初始密码', 'sys.user.initPassword', '123456', 'Y', 'admin', '2023-08-07 19:31:38', '', NULL, '初始化密码 123456');
-INSERT INTO `sys_config111` VALUES (3, '主框架页-侧边栏主题', 'sys.index.sideTheme', 'theme-dark', 'Y', 'admin', '2023-08-07 19:31:38', '', NULL, '深色主题theme-dark，浅色主题theme-light');
-INSERT INTO `sys_config111` VALUES (4, '账号自助-验证码开关', 'sys.account.captchaEnabled', 'true', 'Y', 'admin', '2023-08-07 19:31:38', '', NULL, '是否开启验证码功能（true开启，false关闭）');
-INSERT INTO `sys_config111` VALUES (5, '账号自助-是否开启用户注册功能', 'sys.account.registerUser', 'false', 'Y', 'admin', '2023-08-07 19:31:38', '', NULL, '是否开启注册用户功能（true开启，false关闭）');
-INSERT INTO `sys_config111` VALUES (6, '用户登录-黑名单列表', 'sys.login.blackIPList', '', 'Y', 'admin', '2023-08-07 19:31:38', '', NULL, '设置登录IP黑名单限制，多个匹配项以;分隔，支持匹配（*通配、网段）');
+INSERT INTO `scm_order_item` VALUES (1785584827112509447, 42, 2, NULL, 0, 0, '大山金黄苦荞 专用麦香形冲饮谷物 黄苦荞500g/罐', 'https://store.mp.video.tencent-cloud.com/161/20304/snscosdownload/SH/reserved/662de0600005f6c31d2d67512006bd1e000000a000004f50', '10000113792713', '[{\"attr_key\":\"净含量\",\"attr_value\":\"拍1发3=到手3罐\"},{\"attr_key\":\"主播承诺\",\"attr_value\":\"7天试喝及运费险\"}]', '', 99.9, 99.9, 1, NULL, '1787451058773528578', '3719517651511152896', 0, 0, 1, NULL, NULL, 0, NULL, NULL, NULL, NULL, '2024-05-08 15:22:43', '手动确认订单', NULL, NULL, 0);
+
+-- ----------------------------
+-- Table structure for scm_platform
+-- ----------------------------
+DROP TABLE IF EXISTS `scm_platform`;
+CREATE TABLE `scm_platform`  (
+  `id` int NOT NULL COMMENT '主键',
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '平台名',
+  `app_key` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'appKey',
+  `app_secret` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'appSecret',
+  `remark` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '描述',
+  `server_url` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '服务url',
+  `redirect_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '回调url',
+  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '电商平台配置表' ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of scm_platform
+-- ----------------------------
+INSERT INTO `scm_platform` VALUES (1, '淘宝天猫', '', '', '淘宝开放平台', 'http://gw.api.taobao.com/router/rest', 'http://qihangerp.cn', '2024-06-04 11:10:58', '2024-06-04 11:10:58');
+INSERT INTO `scm_platform` VALUES (2, '京东POP', '', '', '京东开放平台', NULL, 'http://qihangerp.cn', '2024-06-04 11:10:58', '2024-06-04 11:10:58');
+INSERT INTO `scm_platform` VALUES (3, '拼多多', '', '', '拼多多开放平台', 'https://gw-api.pinduoduo.com/api/router', 'http://qihangerp.cn', '2024-06-04 11:10:58', '2024-06-04 11:10:58');
+INSERT INTO `scm_platform` VALUES (4, '抖店', '', '', '抖店开放平台', 'https://openapi-fxg.jinritemai.com', 'http://qihangerp.cn', '2024-06-04 11:10:58', '2024-06-04 11:10:58');
+INSERT INTO `scm_platform` VALUES (5, '视频号', ' ', ' ', '视频号小店开放平台', 'https://api.weixin.qq.com/', 'http://qihangerp.cn', '2024-06-04 11:10:58', '2024-06-04 11:10:58');
+INSERT INTO `scm_platform` VALUES (99, '其他渠道', '', '', '其他线下渠道', NULL, 'http://qihangerp.cn', '2024-06-04 11:10:58', '2024-06-04 11:10:58');
 
 -- ----------------------------
 -- Table structure for sys_dept
@@ -7180,7 +8214,7 @@ CREATE TABLE `sys_logininfor`  (
   PRIMARY KEY (`info_id`) USING BTREE,
   INDEX `idx_sys_logininfor_s`(`status`) USING BTREE,
   INDEX `idx_sys_logininfor_lt`(`login_time`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 256 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统访问记录' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 257 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统访问记录' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_logininfor
@@ -7214,7 +8248,7 @@ CREATE TABLE `sys_menu`  (
   `update_time` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '备注',
   PRIMARY KEY (`menu_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2086 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '菜单权限表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 2089 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '菜单权限表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_menu

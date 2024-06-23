@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.qihangerp.oms.mapper.OmsTenantShopGoodsSkuMapper">
+
+    <resultMap id="BaseResultMap" type="cn.qihangerp.oms.domain.OmsTenantShopGoodsSku">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="skuId" column="sku_id" jdbcType="BIGINT"/>
+            <result property="platformGoodsId" column="platform_goods_id" jdbcType="BIGINT"/>
+            <result property="erpGoodsSpecId" column="erp_goods_spec_id" jdbcType="BIGINT"/>
+            <result property="erpGoodsId" column="erp_goods_id" jdbcType="BIGINT"/>
+            <result property="skuCode" column="sku_code" jdbcType="VARCHAR"/>
+            <result property="goodsSpec" column="goods_spec" jdbcType="VARCHAR"/>
+            <result property="skuQuantity" column="sku_quantity" jdbcType="BIGINT"/>
+            <result property="outerId" column="outer_id" jdbcType="VARCHAR"/>
+            <result property="outerGoodsId" column="outer_goods_id" jdbcType="VARCHAR"/>
+            <result property="consignPrice" column="consign_price" jdbcType="DECIMAL"/>
+            <result property="retailPrice" column="retail_price" jdbcType="DOUBLE"/>
+            <result property="price" column="price" jdbcType="DOUBLE"/>
+            <result property="amountOnsale" column="amount_onsale" jdbcType="INTEGER"/>
+            <result property="status" column="status" jdbcType="INTEGER"/>
+            <result property="shopId" column="shop_id" jdbcType="BIGINT"/>
+            <result property="shopType" column="shop_type" jdbcType="INTEGER"/>
+            <result property="tenantId" column="tenant_id" jdbcType="BIGINT"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="createBy" column="create_by" jdbcType="VARCHAR"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="updateBy" column="update_by" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,sku_id,platform_goods_id,
+        erp_goods_spec_id,erp_goods_id,sku_code,
+        goods_spec,sku_quantity,outer_id,
+        outer_goods_id,consign_price,retail_price,
+        price,amount_onsale,status,
+        shop_id,shop_type,tenant_id,
+        create_time,create_by,update_time,
+        update_by
+    </sql>
+</mapper>

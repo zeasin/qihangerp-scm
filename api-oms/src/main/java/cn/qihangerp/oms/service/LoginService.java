@@ -7,9 +7,9 @@ import cn.qihangerp.common.redis.RedisCache;
 import cn.qihangerp.common.utils.DateUtils;
 import cn.qihangerp.common.utils.IpUtils;
 import cn.qihangerp.common.utils.StringUtils;
-import cn.qihangerp.oms.domain.ScmDistributor;
+import cn.qihangerp.oms.domain.OmsTenant;
 import cn.qihangerp.oms.security.AuthenticationContextHolder;
-import cn.qihangerp.oms.security.LoginDistributor;
+import cn.qihangerp.oms.security.LoginTenant;
 import cn.qihangerp.oms.security.TokenService;
 import cn.qihangerp.oms.security.UserPasswordNotMatchException;
 import jakarta.annotation.Resource;
@@ -32,7 +32,7 @@ public class LoginService
     @Autowired
     private TokenService tokenService;
     @Autowired
-    private ScmDistributorService distributorService;
+    private OmsTenantService tenantService;
     @Resource
     private AuthenticationManager authenticationManager;
 
@@ -83,7 +83,7 @@ public class LoginService
             AuthenticationContextHolder.clearContext();
         }
 //        AsyncManager.me().execute(AsyncFactory.recordLogininfor(username, Constants.LOGIN_SUCCESS, MessageUtils.message("user.login.success")));
-        LoginDistributor loginUser = (LoginDistributor) authentication.getPrincipal();
+        LoginTenant loginUser = (LoginTenant) authentication.getPrincipal();
         recordLoginInfo(loginUser.getUserId());
         // 生成token
         return tokenService.createToken(loginUser);
@@ -134,10 +134,10 @@ public class LoginService
      */
     public void recordLoginInfo(Long userId)
     {
-        ScmDistributor update = new ScmDistributor();
-//        update.setUserId(userId);
+        OmsTenant update = new OmsTenant();
+        update.setId(userId);
         update.setLoginIp(IpUtils.getIpAddr());
         update.setLoginDate(DateUtils.getNowDate());
-        distributorService.updateByUserId(update,userId);
+        tenantService.updateById(update);
     }
 }

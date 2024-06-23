@@ -41,16 +41,6 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-
-      <el-form-item label="发布日期" prop="publishTime">
-        <el-date-picker clearable
-          v-model="queryParams.publishTime"
-          type="date"
-          value-format="yyyy-MM-dd"
-          placeholder="请选择发布日期">
-        </el-date-picker>
-      </el-form-item>
-
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
         <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
@@ -65,7 +55,6 @@
           icon="el-icon-plus"
           size="mini"
           @click="handleAdd"
-          v-hasPermi="['shop:goods:add']"
         >新增</el-button>
       </el-col>
       <el-col :span="1.5">
@@ -76,7 +65,6 @@
           size="mini"
           :disabled="single"
           @click="handleUpdate"
-          v-hasPermi="['shop:goods:edit']"
         >修改</el-button>
       </el-col>
       <el-col :span="1.5">
@@ -87,18 +75,7 @@
           size="mini"
           :disabled="multiple"
           @click="handleDelete"
-          v-hasPermi="['shop:goods:remove']"
         >删除</el-button>
-      </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="warning"
-          plain
-          icon="el-icon-download"
-          size="mini"
-          @click="handleExport"
-          v-hasPermi="['shop:goods:export']"
-        >导出</el-button>
       </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
@@ -368,13 +345,9 @@ export default {
     };
   },
   created() {
-    console.log('url参数：',this.$route.query.shopType)
-    if(this.$route.query.shopType) {
-      this.queryParams.shopType = this.$route.query.shopType
-      listShop({type:this.queryParams.shopType}).then(response => {
-        this.shopList = response.rows;
-      });
-    }
+    listShop({}).then(response => {
+      this.shopList = response.rows;
+    });
     this.getList();
   },
   methods: {

@@ -2,18 +2,22 @@ package cn.qihangerp.oms.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 /**
- * 分销用户信息表
- * @TableName scm_distributor
+ * 租户用户表
+ * @TableName oms_tenant
  */
 @Data
-public class ScmDistributor implements Serializable {
+public class OmsTenant implements Serializable {
     /**
-     * 用户ID
+     * 用户ID(tenantId)
      */
-    private Long userId;
+    @TableId(value = "id", type = IdType.AUTO)
+    private Long id;
 
     /**
      * 用户账号

@@ -18,10 +18,10 @@
         /> -->
         <el-select v-model="queryParams.type" placeholder="请选择平台" clearable>
          <el-option
-            v-for="item in typeList"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
+            v-for="item in platformList"
+            :key="item.id"
+            :label="item.name"
+            :value="item.id">
           </el-option>
         </el-select>
       </el-form-item>
@@ -40,41 +40,8 @@
           icon="el-icon-plus"
           size="mini"
           @click="handleAdd"
-          v-hasPermi="['shop:shop:add']"
         >新增</el-button>
       </el-col>
-<!--      <el-col :span="1.5">-->
-<!--        <el-button-->
-<!--          type="success"-->
-<!--          plain-->
-<!--          icon="el-icon-edit"-->
-<!--          size="mini"-->
-<!--          :disabled="single"-->
-<!--          @click="handleUpdate"-->
-<!--          v-hasPermi="['shop:shop:edit']"-->
-<!--        >修改</el-button>-->
-<!--      </el-col>-->
-<!--      <el-col :span="1.5">-->
-<!--        <el-button-->
-<!--          type="danger"-->
-<!--          plain-->
-<!--          icon="el-icon-delete"-->
-<!--          size="mini"-->
-<!--          :disabled="multiple"-->
-<!--          @click="handleDelete"-->
-<!--          v-hasPermi="['shop:shop:remove']"-->
-<!--        >删除</el-button>-->
-<!--      </el-col>-->
-<!--      <el-col :span="1.5">-->
-<!--        <el-button-->
-<!--          type="warning"-->
-<!--          plain-->
-<!--          icon="el-icon-download"-->
-<!--          size="mini"-->
-<!--          @click="handleExport"-->
-<!--          v-hasPermi="['shop:shop:export']"-->
-<!--        >导出</el-button>-->
-<!--      </el-col>-->
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 
@@ -82,29 +49,20 @@
       <el-table-column type="selection" width="55" align="center" />
       <el-table-column label="店铺ID" align="center" prop="id" />
       <el-table-column label="店铺名" align="center" prop="name" />
-      <!-- <el-table-column label="店铺别名" align="center" prop="nickName" /> -->
+       <el-table-column label="昵称" align="center" prop="nickName" />
       <!-- <el-table-column label="标识" align="center" prop="ename" /> -->
       <!-- <el-table-column label="店铺主体" align="center" prop="company" /> -->
       <el-table-column label="平台" align="center" prop="type" >
         <template slot-scope="scope">
-          <el-tag v-if="scope.row.type === 4">淘宝</el-tag>
-          <el-tag v-if="scope.row.type === 5">拼多多</el-tag>
-          <el-tag v-if="scope.row.type === 6">抖店</el-tag>
-          <el-tag v-if="scope.row.type === 7">小红书</el-tag>
-          <el-tag v-if="scope.row.type === 13">快手小店</el-tag>
+          <el-tag size="small">{{ platformList.find(x=>x.id === scope.row.type)?platformList.find(x=>x.id === scope.row.type).name :'' }}</el-tag>
         </template>
       </el-table-column>
-      <!-- <el-table-column label="店铺url" align="center" prop="url" /> -->
-      <!-- <el-table-column label="排序" align="center" prop="orderNum" /> -->
-      <!-- <el-table-column label="是否删除0否1是" align="center" prop="isDelete" /> -->
-      <!-- <el-table-column label="是否显示(0：是1否）" align="center" prop="isShow" /> -->
-      <!-- <el-table-column label="更新时间" align="center" prop="modifyOn" /> -->
+
+       <el-table-column label="卖家userId" align="center" prop="sellerUserIdStr" />
+       <el-table-column label="Appkey" align="center" prop="appkey" />
+       <el-table-column label="AppSercet" align="center" prop="appSercet" />
+      <el-table-column label="回调Url" align="center" prop="callbackUrl" />
       <el-table-column label="描述" align="center" prop="remark" />
-      <!-- <el-table-column label="第三方平台店铺id，淘宝天猫开放平台使用" align="center" prop="sellerUserId" /> -->
-      <!-- <el-table-column label="卖家userId" align="center" prop="sellerUserIdStr" /> -->
-      <!-- <el-table-column label="第三方平台sessionKey" align="center" prop="sessionKey" /> -->
-      <!-- <el-table-column label="Appkey暂时抖音用" align="center" prop="appkey" /> -->
-      <!-- <el-table-column label="Appsercet暂时抖音用" align="center" prop="appSercet" /> -->
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
@@ -112,23 +70,20 @@
             type="text"
             icon="el-icon-edit"
             @click="handleUpdate(scope.row)"
-            v-hasPermi="['shop:shop:edit']"
           >修改</el-button>
           <el-button
             size="mini"
             type="text"
             icon="el-icon-delete"
             @click="handleDelete(scope.row)"
-            v-hasPermi="['shop:shop:remove']"
           >删除</el-button>
-
             <el-button
               size="mini"
               plain
               type="primary"
               icon="el-icon-edit"
               @click="handleApiSetting(scope.row)"
-            >API参数设置</el-button>
+            >获取授权Token</el-button>
 
         </template>
       </el-table-column>
@@ -144,24 +99,38 @@
 
     <!-- 添加或修改店铺对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
-      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+      <el-form ref="form" :model="form" :rules="rules" label-width="100px">
         <el-form-item label="店铺名" prop="name">
           <el-input v-model="form.name" placeholder="请输入店铺名" />
         </el-form-item>
         <el-form-item label="平台" prop="type">
           <el-select v-model="form.type" placeholder="请选择店铺">
            <el-option
-              v-for="item in typeList"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value">
+              v-for="item in platformList"
+              :key="item.id"
+              :label="item.name"
+              :value="item.id">
             </el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="店铺别名" prop="nickName">
           <el-input v-model="form.nickName" placeholder="请输入店铺别名" />
         </el-form-item>
-
+        <el-form-item label="卖家UserId" prop="sellerUserId">
+          <el-input v-model="form.sellerUserId" placeholder="请输入店铺卖家UserId" />
+        </el-form-item>
+        <el-form-item label="卖家UserId字符串" prop="sellerUserIdStr">
+          <el-input v-model="form.sellerUserIdStr" placeholder="请输入店铺卖家UserId字符串" />
+        </el-form-item>
+        <el-form-item label="Appkey" prop="appkey">
+          <el-input v-model="form.appkey" placeholder="请输入开放平台appkey" />
+        </el-form-item>
+        <el-form-item label="appSercet" prop="appSercet">
+          <el-input v-model="form.appSercet" placeholder="请输入开放平台appSercet" />
+        </el-form-item>
+        <el-form-item label="回调URL" prop="callbackUrl">
+          <el-input v-model="form.callbackUrl" placeholder="请输入开放平台回调URL" />
+        </el-form-item>
         <el-form-item label="描述" prop="remark">
           <el-input type="textarea" v-model="form.remark" placeholder="请输入描述" />
         </el-form-item>
@@ -202,7 +171,8 @@
 </template>
 
 <script>
-import { listShop, getShop, delShop, addShop, updateShop } from "@/api/shop/shop";
+import { listShop, getShop, delShop, addShop, updateShop,listPlatform } from "@/api/shop/shop";
+// import {listPlatform} from "../../api/shop/shop";
 
 export default {
   name: "Shop",
@@ -222,19 +192,7 @@ export default {
       total: 0,
       // 店铺表格数据
       shopList: [],
-      typeList: [{
-          value: '4',
-          label: '淘宝'
-        }, {
-          value: '5',
-          label: '拼多多'
-        }, {
-          value: '6',
-          label: '抖店'
-        }, {
-          value: '7',
-          label: '小红书'
-        }],
+      platformList: [],
       // 弹出层标题
       title: "",
       // 是否显示弹出层
@@ -253,19 +211,21 @@ export default {
       },
       // 表单校验
       rules: {
-        name: [
-          { required: true, message: "店铺名不能为空", trigger: "blur" }
-        ],
+        name: [{ required: true, message: "店铺名不能为空", trigger: "blur" }],
         type: [{ required: true, message: "请选择平台", trigger: "change" }],
         appkey: [{ required: true, message: "不能为空", trigger: "change" }],
         appSercet: [{ required: true, message: "不能为空", trigger: "change" }],
         apiRequestUrl: [{ required: true, message: "不能为空", trigger: "change" }],
         sellerUserId: [{ required: true, message: "不能为空", trigger: "change" }],
+        sellerUserIdStr: [{ required: true, message: "不能为空", trigger: "change" }],
 
       }
     };
   },
   created() {
+    listPlatform().then(resp =>{
+      this.platformList = resp.rows;
+    })
     this.getList();
   },
   methods: {

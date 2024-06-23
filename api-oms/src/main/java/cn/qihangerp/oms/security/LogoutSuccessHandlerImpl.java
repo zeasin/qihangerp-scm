@@ -1,7 +1,6 @@
 package cn.qihangerp.oms.security;
 
 import cn.qihangerp.common.AjaxResult;
-import cn.qihangerp.common.model.LoginUser;
 import cn.qihangerp.common.utils.ServletUtils;
 import cn.qihangerp.common.utils.StringUtils;
 import com.alibaba.fastjson2.JSON;
@@ -35,7 +34,7 @@ public class LogoutSuccessHandlerImpl implements LogoutSuccessHandler
     public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
             throws IOException, ServletException
     {
-        LoginDistributor loginUser = tokenService.getLoginDistributor(request);
+        LoginTenant loginUser = tokenService.getLoginDistributor(request);
         if (StringUtils.isNotNull(loginUser))
         {
             String userName = loginUser.getUsername();
