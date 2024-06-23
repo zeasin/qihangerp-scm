@@ -3,6 +3,7 @@ package cn.qihangerp.oms.service;
 import cn.qihangerp.common.PageQuery;
 import cn.qihangerp.common.PageResult;
 
+import cn.qihangerp.common.ResultVo;
 import cn.qihangerp.oms.domain.OmsTenantShopGoods;
 import cn.qihangerp.oms.domain.bo.ShopGoodsQuery;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -14,4 +15,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface OmsTenantShopGoodsService extends IService<OmsTenantShopGoods> {
     PageResult<OmsTenantShopGoods> queryPageList(ShopGoodsQuery bo, PageQuery pageQuery);
+
+    ResultVo<Integer> addShopGoods(OmsTenantShopGoods goods);
+
+    ResultVo<Integer> delShopGoods(Long[] ids,Long tenantId);
 }

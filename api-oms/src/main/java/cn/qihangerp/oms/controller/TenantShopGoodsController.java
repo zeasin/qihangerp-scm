@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -51,19 +52,17 @@ public class TenantShopGoodsController extends BaseController {
     @PostMapping("/shop_goods")
     public AjaxResult add(@RequestBody OmsTenantShopGoods goods)
     {
+        if(goods.getSkuList()==null||goods.getSkuList().size()==0) return AjaxResult.error("请添加SKU");
+        for(var sku : goods.getSkuList()){
+            if(sku.getSkuId()==null) {
+                return AjaxResult.error("请填写SKU内容");
+            }
+        }
         goods.setTenantId(SecurityUtils.getUserId());
         goods.setCreateTime(new Date());
-        return toAjax(goodsService.save(goods));
-    }
-
-    /**
-     * 修改店铺
-     */
-    @PutMapping("/shop_goods")
-    public AjaxResult edit(@RequestBody OmsTenantShopGoods goods)
-    {
-        goods.setUpdateTime(new Date());
-        return toAjax(goodsService.updateById(goods));
+        var result = goodsService.addShopGoods(goods);
+        if(result.getCode()==0) return AjaxResult.success();
+        else return AjaxResult.error(result.getMsg());
     }
 
     /**
@@ -72,18 +71,8 @@ public class TenantShopGoodsController extends BaseController {
     @DeleteMapping("/shop_goods/{ids}")
     public AjaxResult remove(@PathVariable Long[] ids)
     {
-//        List<OmsTenantShop> list = new ArrayList<>();
-//        if(ids!=null && ids.length>0) {
-//            for (var id:ids) {
-//                OmsTenantShop shop = new OmsTenantShop();
-//                shop.setId(id);
-//                shop.setUpdateTime(new Date());
-//                shop.setIsDelete(1);
-//                list.add(shop);
-//            }
-//        }
-//        goodsService.updateBatchById(list);
-        return toAjax(1);
+        goodsService.delShopGoods(ids,SecurityUtils.getUserId());
+        return AjaxResult.success();
     }
 
     @GetMapping("/shop_goods/sku_list")

@@ -57,49 +57,35 @@
           @click="handleAdd"
         >新增</el-button>
       </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="success"
-          plain
-          icon="el-icon-edit"
-          size="mini"
-          :disabled="single"
-          @click="handleUpdate"
-        >修改</el-button>
-      </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="danger"
-          plain
-          icon="el-icon-delete"
-          size="mini"
-          :disabled="multiple"
-          @click="handleDelete"
-        >删除</el-button>
-      </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 
     <el-table v-loading="loading" :data="goodsList" @selection-change="handleSelectionChange">
       <el-table-column label="序号" type="index" />
-      <el-table-column label="网店商品ID" align="center" prop="goodsId" />
-      <el-table-column label="店铺" align="center" prop="shopId" />
+      <el-table-column label="网店商品ID" align="center" prop="platformGoodsId" />
+      <el-table-column label="店铺" align="center" prop="shopId" >
+        <template slot-scope="scope">
+          <el-tag size="small">{{ shopList.find(x=>x.id === scope.row.shopId)?shopList.find(x=>x.id === scope.row.shopId).name :'' }}</el-tag>
+        </template>
+      </el-table-column>
       <el-table-column label="商品编码" align="center" prop="goodsNum" />
       <el-table-column label="商品标题" align="center" prop="title" />
-      <el-table-column label="主图" align="center" prop="thumbUrl" >
+      <el-table-column label="主图" align="center" prop="goodsImg" >
         <template slot-scope="scope">
-          <el-image style="width: 70px; height: 70px" :src="scope.row.thumbUrl"></el-image>
+          <el-image style="width: 70px; height: 70px" :src="scope.row.goodsImg"></el-image>
         </template>
       </el-table-column>
       <el-table-column label="累计销量" align="center" prop="totalSales" />
-      <el-table-column label="发布日期" align="center" prop="publishTime" width="180">
-        <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.publishTime, '{y}-{m}-{d}') }}</span>
-        </template>
-      </el-table-column>
+
       <el-table-column label="创建时间" align="center" prop="createTime" width="180">
         <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.createTime, '{y}-{m}-{d}') }}</span>
+          <span>{{ parseTime(scope.row.createTime) }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="状态" align="center" prop="status" >
+        <template slot-scope="scope">
+          <el-tag size="small" v-if="scope.row.status===1">上架中</el-tag>
+          <el-tag size="small" v-if="scope.row.status===2">已下架</el-tag>
         </template>
       </el-table-column>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
@@ -107,16 +93,14 @@
           <el-button
             size="mini"
             type="text"
-            icon="el-icon-edit"
-            @click="handleUpdate(scope.row)"
-            v-hasPermi="['shop:goods:edit']"
-          >修改</el-button>
+            icon="el-icon-view"
+            @click="handleSkuDetail(scope.row)"
+          >SKU列表</el-button>
           <el-button
             size="mini"
             type="text"
             icon="el-icon-delete"
             @click="handleDelete(scope.row)"
-            v-hasPermi="['shop:goods:remove']"
           >删除</el-button>
         </template>
       </el-table-column>
@@ -129,58 +113,95 @@
       :limit.sync="queryParams.pageSize"
       @pagination="getList"
     />
-
+    <el-dialog title="SKU列表" :visible.sync="skuOpen" width="960px" append-to-body>
+      <el-table v-loading="loading" :data="goodsSkuList" @selection-change="handleSelectionChange">
+        <el-table-column label="序号" type="index" />
+        <el-table-column label="网店商品ID" align="center" prop="platformGoodsId" />
+        <el-table-column label="网店SKUID" align="center" prop="skuId" />
+        <el-table-column label="供应链SKUID" align="center" prop="erpGoodsSpecId" />
+        <el-table-column label="SKU编码" align="center" prop="skuCode" />
+        <el-table-column label="SKU名称" align="center" prop="goodsSpec" />
+        <el-table-column label="状态" align="center" prop="status" >
+          <template slot-scope="scope">
+            <el-tag size="small" v-if="scope.row.status===1">上架中</el-tag>
+            <el-tag size="small" v-if="scope.row.status===2">已下架</el-tag>
+          </template>
+        </el-table-column>
+        <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+          <template slot-scope="scope">
+            <el-button
+              size="mini"
+              type="text"
+              icon="el-icon-link"
+            >关联供应链SKUID</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </el-dialog>
     <!-- 添加或修改店铺商品对话框 -->
-    <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
-      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
-        <el-form-item label="商品id，PDD商品id" prop="goodsId">
-          <el-input v-model="form.goodsId" placeholder="请输入商品id，PDD商品id" />
+    <el-dialog :title="title" :visible.sync="open" width="960px" append-to-body>
+      <el-form ref="form" :model="form" :rules="rules" label-width="120px">
+        <el-form-item label="店铺" prop="shopId">
+        <el-select v-model="form.shopId" placeholder="请选择店铺" clearable >
+          <el-option
+            v-for="item in shopList"
+            :key="item.id"
+            :label="item.name"
+            :value="item.id">
+          </el-option>
+        </el-select>
         </el-form-item>
-        <el-form-item label="${comment}" prop="erpGoodsId">
-          <el-input v-model="form.erpGoodsId" placeholder="请输入${comment}" />
+        <el-row>
+          <el-col :span="12">
+            <el-form-item label="平台商品ID" prop="platformGoodsId">
+              <el-input type="number" v-model="form.platformGoodsId" placeholder="请输入平台商品ID" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="供应链商品ID" prop="erpGoodsId">
+              <el-input type="number" v-model="form.erpGoodsId" placeholder="请输入供应链商品ID" />
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="12">
+        <el-form-item label="商品编码" prop="goodsNum">
+          <el-input v-model="form.goodsNum" placeholder="请输入商品编码" />
         </el-form-item>
-        <el-form-item label="${comment}" prop="shopId">
-          <el-input v-model="form.shopId" placeholder="请输入${comment}" />
-        </el-form-item>
-        <el-form-item label="商品货号，erp系统商品编码" prop="goodsNum">
-          <el-input v-model="form.goodsNum" placeholder="请输入商品货号，erp系统商品编码" />
-        </el-form-item>
-        <el-form-item label="${comment}" prop="goodsName">
-          <el-input v-model="form.goodsName" placeholder="请输入${comment}" />
-        </el-form-item>
-        <el-form-item label="参考价格，返回价格区间，可能为空" prop="price">
-          <el-input v-model="form.price" placeholder="请输入参考价格，返回价格区间，可能为空" />
-        </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="参考价格" prop="price">
+              <el-input type="number" v-model="form.price" placeholder="请输入参考价格" />
+            </el-form-item>
+          </el-col>
+        </el-row>
         <el-form-item label="商品标题" prop="title">
           <el-input v-model="form.title" placeholder="请输入商品标题" />
         </el-form-item>
-        <el-form-item label="${comment}" prop="remark">
-          <el-input v-model="form.remark" placeholder="请输入${comment}" />
+
+        <el-form-item label="商品主图URL" prop="goodsImg">
+          <el-input v-model="form.goodsImg" placeholder="请输入商品主图URL" />
         </el-form-item>
-        <el-form-item label="主图" prop="thumbUrl">
-          <el-input v-model="form.thumbUrl" placeholder="请输入主图" />
-        </el-form-item>
-        <el-form-item label="商品图片json" prop="imageUrl">
-          <el-input v-model="form.imageUrl" type="textarea" placeholder="请输入内容" />
-        </el-form-item>
-        <el-form-item label="${comment}" prop="isMoreSku">
-          <el-input v-model="form.isMoreSku" placeholder="请输入${comment}" />
-        </el-form-item>
-        <el-form-item label="${comment}" prop="isOnsale">
-          <el-input v-model="form.isOnsale" placeholder="请输入${comment}" />
-        </el-form-item>
+        <el-row>
+          <el-col :span="12">
         <el-form-item label="累计销量" prop="totalSales">
-          <el-input v-model="form.totalSales" placeholder="请输入累计销量" />
+          <el-input type="number" v-model.number="form.totalSales" placeholder="请输入累计销量" />
         </el-form-item>
-        <el-form-item label="发布日期" prop="publishTime">
-          <el-date-picker clearable
-            v-model="form.publishTime"
-            type="date"
-            value-format="yyyy-MM-dd"
-            placeholder="请选择发布日期">
-          </el-date-picker>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="状态" prop="status">
+              <el-select v-model="form.status" placeholder="状态" clearable>
+                <el-option label="上架中" value="1"></el-option>
+                <el-option label="已下架" value="2"></el-option>
+              </el-select>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-form-item label="备注" prop="remark">
+          <el-input v-model="form.remark" type="textarea" placeholder="请输入备注" />
         </el-form-item>
-        <el-divider content-position="center">${subTable.functionName}信息</el-divider>
+
+        <el-divider content-position="center">商品SKU列表</el-divider>
         <el-row :gutter="10" class="mb8">
           <el-col :span="1.5">
             <el-button type="primary" icon="el-icon-plus" size="mini" @click="handleAddSShopGoodsSku">添加</el-button>
@@ -189,84 +210,45 @@
             <el-button type="danger" icon="el-icon-delete" size="mini" @click="handleDeleteSShopGoodsSku">删除</el-button>
           </el-col>
         </el-row>
-        <el-table :data="sShopGoodsSkuList" :row-class-name="rowSShopGoodsSkuIndex" @selection-change="handleSShopGoodsSkuSelectionChange" ref="sShopGoodsSku">
+        <el-table :data="skuList" :row-class-name="rowSShopGoodsSkuIndex" @selection-change="handleSShopGoodsSkuSelectionChange" ref="sShopGoodsSku">
           <el-table-column type="selection" width="50" align="center" />
           <el-table-column label="序号" align="center" prop="index" width="50"/>
-          <el-table-column label="商品id，阿里productID" prop="goodsId" width="150">
+
+          <el-table-column label="平台商品skuid" prop="skuId" width="150">
             <template slot-scope="scope">
-              <el-input v-model="scope.row.goodsId" placeholder="请输入商品id，阿里productID" />
+              <el-input type="number" v-model="scope.row.skuId" placeholder="请输入平台商品skuid" />
             </template>
           </el-table-column>
-          <el-table-column label="商品skuid，阿里" prop="skuId" width="150">
+          <el-table-column label="供应链商品skuid" prop="spec" width="150">
             <template slot-scope="scope">
-              <el-input v-model="scope.row.skuId" placeholder="请输入商品skuid，阿里" />
+              <el-input type="number" v-model="scope.row.erpGoodsSpecId" placeholder="请输入供应链商品skuid" />
             </template>
           </el-table-column>
-          <el-table-column label="specId" prop="spec" width="150">
+          <el-table-column label="SKU编码" prop="skuCode" width="150">
             <template slot-scope="scope">
-              <el-input v-model="scope.row.spec" placeholder="请输入specId" />
+              <el-input v-model="scope.row.skuCode" placeholder="请输入SKU编码" />
             </template>
           </el-table-column>
-          <el-table-column label="$comment" prop="erpGoodsSpecId" width="150">
+          <el-table-column label="SKU名称" prop="goodsSpec" width="150">
             <template slot-scope="scope">
-              <el-input v-model="scope.row.erpGoodsSpecId" placeholder="请输入$comment" />
+              <el-input v-model="scope.row.goodsSpec" placeholder="请输入SKU名称" />
             </template>
           </el-table-column>
-          <el-table-column label="$comment" prop="erpGoodsId" width="150">
+<!--          <el-table-column label="数量" prop="skuQuantity" width="150">-->
+<!--            <template slot-scope="scope">-->
+<!--              <el-input v-model="scope.row.skuQuantity" placeholder="请输入数量" />-->
+<!--            </template>-->
+<!--          </el-table-column>-->
+          <el-table-column label="状态" prop="status" width="150">
             <template slot-scope="scope">
-              <el-input v-model="scope.row.erpGoodsId" placeholder="请输入$comment" />
+<!--              <el-input type="number" v-model="scope.row.status" placeholder="状态1上架2下架" />-->
+              <el-select v-model="scope.row.status" placeholder="状态" clearable>
+                <el-option label="上架中" value="1"></el-option>
+                <el-option label="已下架" value="2"></el-option>
+              </el-select>
             </template>
           </el-table-column>
-          <el-table-column label="$comment" prop="erpGoodsSpecCode" width="150">
-            <template slot-scope="scope">
-              <el-input v-model="scope.row.erpGoodsSpecCode" placeholder="请输入$comment" />
-            </template>
-          </el-table-column>
-          <el-table-column label="$comment" prop="skuQuantity" width="150">
-            <template slot-scope="scope">
-              <el-input v-model="scope.row.skuQuantity" placeholder="请输入$comment" />
-            </template>
-          </el-table-column>
-          <el-table-column label="分销基准价。代销场景均使用该价格。无SKU商品查看saleInfo中的consignPrice" prop="consignPrice" width="150">
-            <template slot-scope="scope">
-              <el-input v-model="scope.row.consignPrice" placeholder="请输入分销基准价。代销场景均使用该价格。无SKU商品查看saleInfo中的consignPrice" />
-            </template>
-          </el-table-column>
-          <el-table-column label="sku编码" prop="outerId" width="150">
-            <template slot-scope="scope">
-              <el-input v-model="scope.row.outerId" placeholder="请输入sku编码" />
-            </template>
-          </el-table-column>
-          <el-table-column label="spu编码" prop="outerGoodsId" width="150">
-            <template slot-scope="scope">
-              <el-input v-model="scope.row.outerGoodsId" placeholder="请输入spu编码" />
-            </template>
-          </el-table-column>
-          <el-table-column label="报价时该规格的单价，国际站注意要点：含有SKU属性的在线批发产品设定具体价格时使用此值，若设置阶梯价格则使用priceRange" prop="price" width="150">
-            <template slot-scope="scope">
-              <el-input v-model="scope.row.price" placeholder="请输入报价时该规格的单价，国际站注意要点：含有SKU属性的在线批发产品设定具体价格时使用此值，若设置阶梯价格则使用priceRange" />
-            </template>
-          </el-table-column>
-          <el-table-column label="建议零售价" prop="retailPrice" width="150">
-            <template slot-scope="scope">
-              <el-input v-model="scope.row.retailPrice" placeholder="请输入建议零售价" />
-            </template>
-          </el-table-column>
-          <el-table-column label="可销售数量" prop="amountOnSale" width="150">
-            <template slot-scope="scope">
-              <el-input v-model="scope.row.amountOnSale" placeholder="请输入可销售数量" />
-            </template>
-          </el-table-column>
-          <el-table-column label="$comment" prop="isSkuOnsale" width="150">
-            <template slot-scope="scope">
-              <el-input v-model="scope.row.isSkuOnsale" placeholder="请输入$comment" />
-            </template>
-          </el-table-column>
-          <el-table-column label="指定规格的货号,对应ERP系统商品specNumber" prop="cargoNumber" width="150">
-            <template slot-scope="scope">
-              <el-input v-model="scope.row.cargoNumber" placeholder="请输入指定规格的货号,对应ERP系统商品specNumber" />
-            </template>
-          </el-table-column>
+
         </el-table>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -278,7 +260,7 @@
 </template>
 
 <script>
-import { listGoods, getGoods, delGoods, addGoods, updateGoods } from "@/api/shop/goods";
+import { listGoods, delGoods, addGoods } from "@/api/shop/goods";
 import {listShop} from "@/api/shop/shop";
 
 export default {
@@ -301,46 +283,38 @@ export default {
       total: 0,
       // 店铺商品表格数据
       goodsList: [],
+      goodsSkuList: [],
       // ${subTable.functionName}表格数据
-      sShopGoodsSkuList: [],
+      skuList: [],
       shopList:[],
       // 弹出层标题
       title: "",
       // 是否显示弹出层
       open: false,
+      skuOpen: false,
       // 查询参数
       queryParams: {
         pageNum: 1,
         pageSize: 10,
-        goodsId: null,
+        platformGoodsId: null,
         erpGoodsId: null,
         shopId: null,
         shopType: null,
         goodsNum: null,
-        goodsName: null,
-        price: null,
         title: null,
-        thumbUrl: null,
-        imageUrl: null,
-        isMoreSku: null,
-        isOnsale: null,
-        totalSales: null,
-        publishTime: null,
-        createTime: null
+        status: null
       },
       // 表单参数
       form: {},
       // 表单校验
       rules: {
-        goodsId: [
-          { required: true, message: "商品id，PDD商品id不能为空", trigger: "blur" }
-        ],
-        shopId: [
-          { required: true, message: "$comment不能为空", trigger: "blur" }
-        ],
-        shopType: [
-          { required: true, message: "$comment不能为空", trigger: "change" }
-        ],
+        shopId: [{ required: true, message: "请选择店铺", trigger: "change" }],
+        platformGoodsId: [{ required: true, message: "平台商品id不能为空", trigger: "blur" }],
+        shopType: [{ required: true, message: "不能为空", trigger: "change" }],
+        erpGoodsId: [{ required: true, message: "不能为空", trigger: "change" }],
+        goodsNum: [{ required: true, message: "不能为空", trigger: "change" }],
+        title: [{ required: true, message: "不能为空", trigger: "change" }],
+        status: [{ required: true, message: "不能为空", trigger: "change" }],
       }
     };
   },
@@ -363,30 +337,26 @@ export default {
     // 取消按钮
     cancel() {
       this.open = false;
+      this.skuOpen = false;
       this.reset();
     },
     // 表单重置
     reset() {
       this.form = {
         id: null,
-        goodsId: null,
+        platformGoodsId: null,
         erpGoodsId: null,
         shopId: null,
         shopType: null,
         goodsNum: null,
-        goodsName: null,
         price: null,
         title: null,
         remark: null,
-        thumbUrl: null,
-        imageUrl: null,
-        isMoreSku: null,
-        isOnsale: null,
-        totalSales: null,
-        publishTime: null,
-        createTime: null
+        goodsImg: null,
+        status: null,
+        totalSales: 0
       };
-      this.sShopGoodsSkuList = [];
+      this.skuList = [];
       this.resetForm("form");
     },
     /** 搜索按钮操作 */
@@ -417,7 +387,7 @@ export default {
       const id = row.id || this.ids
       getGoods(id).then(response => {
         this.form = response.data;
-        this.sShopGoodsSkuList = response.data.sShopGoodsSkuList;
+        this.skuList = response.data.skuList;
         this.open = true;
         this.title = "修改店铺商品";
       });
@@ -426,7 +396,11 @@ export default {
     submitForm() {
       this.$refs["form"].validate(valid => {
         if (valid) {
-          this.form.sShopGoodsSkuList = this.sShopGoodsSkuList;
+          this.form.skuList = this.skuList;
+          if(!this.form.skuList || this.form.skuList.length===0){
+            this.$modal.msgError("请添加SKU")
+            return
+          }
           if (this.form.id != null) {
             updateGoods(this.form).then(response => {
               this.$modal.msgSuccess("修改成功");
@@ -476,16 +450,16 @@ export default {
       obj.isSkuOnsale = "";
       obj.cargoNumber = "";
       obj.attributes = "";
-      this.sShopGoodsSkuList.push(obj);
+      this.skuList.push(obj);
     },
     /** ${subTable.functionName}删除按钮操作 */
     handleDeleteSShopGoodsSku() {
       if (this.checkedSShopGoodsSku.length == 0) {
-        this.$modal.msgError("请先选择要删除的${subTable.functionName}数据");
+        this.$modal.msgError("请先选择要删除的sku数据");
       } else {
-        const sShopGoodsSkuList = this.sShopGoodsSkuList;
+        const sShopGoodsSkuList = this.skuList;
         const checkedSShopGoodsSku = this.checkedSShopGoodsSku;
-        this.sShopGoodsSkuList = sShopGoodsSkuList.filter(function(item) {
+        this.sShopGoodsSkuList = skuList.filter(function(item) {
           return checkedSShopGoodsSku.indexOf(item.index) == -1
         });
       }
@@ -494,11 +468,9 @@ export default {
     handleSShopGoodsSkuSelectionChange(selection) {
       this.checkedSShopGoodsSku = selection.map(item => item.index)
     },
-    /** 导出按钮操作 */
-    handleExport() {
-      this.download('shop/goods/export', {
-        ...this.queryParams
-      }, `goods_${new Date().getTime()}.xlsx`)
+    handleSkuDetail(row){
+      this.goodsSkuList = row.skuList
+      this.skuOpen = true;
     }
   }
 };

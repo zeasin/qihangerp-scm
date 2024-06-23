@@ -21,7 +21,6 @@
             <result property="amountOnsale" column="amount_onsale" jdbcType="INTEGER"/>
             <result property="status" column="status" jdbcType="INTEGER"/>
             <result property="shopId" column="shop_id" jdbcType="BIGINT"/>
-            <result property="shopType" column="shop_type" jdbcType="INTEGER"/>
             <result property="tenantId" column="tenant_id" jdbcType="BIGINT"/>
             <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
             <result property="createBy" column="create_by" jdbcType="VARCHAR"/>
@@ -35,7 +34,7 @@
         goods_spec,sku_quantity,outer_id,
         outer_goods_id,consign_price,retail_price,
         price,amount_onsale,status,
-        shop_id,shop_type,tenant_id,
+        shop_id,tenant_id,
         create_time,create_by,update_time,
         update_by
     </sql>

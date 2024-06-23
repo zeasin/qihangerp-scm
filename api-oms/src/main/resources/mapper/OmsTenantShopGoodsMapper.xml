@@ -7,7 +7,6 @@
     <resultMap id="BaseResultMap" type="cn.qihangerp.oms.domain.OmsTenantShopGoods">
             <id property="id" column="id" jdbcType="BIGINT"/>
             <result property="shopId" column="shop_id" jdbcType="BIGINT"/>
-            <result property="shopType" column="shop_type" jdbcType="INTEGER"/>
             <result property="platformGoodsId" column="platform_goods_id" jdbcType="BIGINT"/>
             <result property="erpGoodsId" column="erp_goods_id" jdbcType="BIGINT"/>
             <result property="goodsNum" column="goods_num" jdbcType="VARCHAR"/>
@@ -25,7 +24,7 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,shop_id,shop_type,
+        id,shop_id,
         platform_goods_id,erp_goods_id,goods_num,
         price,title,goods_img,
         total_sales,status,remark,

@@ -26,10 +26,6 @@ public class OmsTenantShopGoods implements Serializable {
      */
     private Long shopId;
 
-    /**
-     * 店铺类型
-     */
-    private Integer shopType;
 
     /**
      * 平台商品id
