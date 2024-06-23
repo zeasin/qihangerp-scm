@@ -11,7 +11,7 @@
  Target Server Version : 80200
  File Encoding         : 65001
 
- Date: 23/06/2024 18:57:24
+ Date: 23/06/2024 20:38:38
 */
 
 SET NAMES utf8mb4;
@@ -2740,7 +2740,7 @@ INSERT INTO `oms_menu` VALUES (4, '商品库', 0, 4, '/goods', 'Layout', '', 1, 
 INSERT INTO `oms_menu` VALUES (101, '发货订单管理', 1, 0, 'order_list', 'order/index', '', 1, 0, 'C', '0', '0', '', 'monitor', 'admin', '2023-12-27 15:00:27', 'admin', '2024-04-06 11:18:00', '菜单管理菜单');
 INSERT INTO `oms_menu` VALUES (102, '店铺订单管理', 1, 0, 'shop_order_list', 'shop/order/index', '', 1, 0, 'C', '0', '0', '', 'monitor', 'admin', '2023-12-27 15:00:27', 'admin', '2024-04-06 11:18:00', '菜单管理菜单');
 INSERT INTO `oms_menu` VALUES (103, '手动创建订单', 1, 0, 'create', 'order/create', '', 1, 0, 'C', '1', '0', '', 'monitor', 'admin', '2023-12-27 15:00:27', 'admin', '2024-04-06 11:18:00', '菜单管理菜单');
-INSERT INTO `oms_menu` VALUES (105, '订单发货管理', 1, 2, 'ship', 'ship/index', NULL, 1, 0, 'C', '0', '0', '', 'guide', 'admin', '2024-03-30 17:37:42', 'admin', '2024-04-06 14:49:59', '');
+INSERT INTO `oms_menu` VALUES (105, '发货物流跟踪', 1, 2, 'ship', 'ship/index', NULL, 1, 0, 'C', '0', '0', '', 'guide', 'admin', '2024-03-30 17:37:42', 'admin', '2024-04-06 14:49:59', '');
 INSERT INTO `oms_menu` VALUES (201, '店铺售后管理', 2, 2, 'shop_refund_list', 'shop/refund/index', '', 1, 0, 'C', '0', '0', '', 'edit', 'admin', '2023-12-27 15:00:27', 'admin', '2024-04-06 15:48:21', '参数设置菜单');
 INSERT INTO `oms_menu` VALUES (204, '售后处理查询', 2, 0, 'processing', 'afterSale/index', NULL, 1, 0, 'C', '0', '0', '', 'documentation', 'admin', '2024-04-06 17:27:03', 'admin', '2024-04-06 17:31:12', '');
 INSERT INTO `oms_menu` VALUES (301, '店铺管理', 3, 9, 'shop_list', 'shop/index', '', 1, 0, 'C', '0', '0', '', 'tree', 'admin', '2023-12-29 09:14:02', 'admin', '2024-03-21 17:01:52', '');
@@ -3007,7 +3007,7 @@ CREATE TABLE `oms_tenant`  (
 -- ----------------------------
 -- Records of oms_tenant
 -- ----------------------------
-INSERT INTO `oms_tenant` VALUES (1, '15818590119', '启航', '280645618@qq.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2024-06-23 18:44:57', 'admin', '2023-08-07 19:31:37', '', '2024-05-18 18:50:24', '');
+INSERT INTO `oms_tenant` VALUES (1, '15818590119', '启航', '280645618@qq.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2024-06-23 20:37:48', 'admin', '2023-08-07 19:31:37', '', '2024-05-18 18:50:24', '');
 INSERT INTO `oms_tenant` VALUES (101, '15818590110', '上海人工集团aa', 'admin@qq.com', '15818590119', '0', '', '$2a$10$BXnTczO7JDkXtcWtLhAy4Ohi1y9FDLfGZm6pwGisi0JHr2wt/MlUK', '0', '0', '127.0.0.1', '2024-06-22 16:42:58', '', '2024-06-22 16:37:25', '', '2024-06-22 16:41:29', NULL);
 
 -- ----------------------------

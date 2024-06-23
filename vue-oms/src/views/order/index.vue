@@ -31,10 +31,8 @@
       <el-form-item label="状态" prop="orderStatus">
         <el-select v-model="queryParams.orderStatus" placeholder="请选择状态" clearable @change="handleQuery">
           <el-option label="待发货" value="1" ></el-option>
-          <el-option label="已出库" value="2"></el-option>
-          <el-option label="已发货" value="3"> </el-option>
-          <el-option label="已完成" value="4"></el-option>
-          <el-option label="已取消" value="11"></el-option>
+          <el-option label="已发货" value="2"> </el-option>
+          <el-option label="已完成" value="3"></el-option>
         </el-select>
       </el-form-item>
 
@@ -100,9 +98,13 @@
             <div style="float: left;display: flex;align-items: center;" >
               <el-image  style="width: 70px; height: 70px;" :src="item.goodsImg"></el-image>
               <div style="margin-left:10px">
-              <p>{{item.goodsTitle}}</p>
-              <p>{{item.goodsSpec}}&nbsp;
+              <p>{{item.goodsTitle}} <br />
+                <el-tag size="small" >{{item.skuCode}}</el-tag>
+                {{item.goodsSpec}}&nbsp;
                 <el-tag size="small">x {{item.quantity}}</el-tag>
+                </p>
+                <p v-if="scope.row.refundStatus === 1">
+                  <el-button type="text" size="mini" round @click="handleRefund(scope.row,item)">售后</el-button>
                 </p>
               </div>
             </div>
@@ -111,34 +113,23 @@
       </el-table-column>
       <el-table-column label="订单备注" align="center" prop="remark" >
         <template slot-scope="scope">
-          {{scope.row.remark}}<br />
-          {{scope.row.tag}}
+          {{scope.row.remark}}
         </template>
       </el-table-column>
       <!-- <el-table-column label="买家留言信息" align="center" prop="buyerMemo" /> -->
       <!-- <el-table-column label="标签" align="center" prop="tag" /> -->
-      <el-table-column label="状态" align="center" prop="orderStatus" >
-        <template slot-scope="scope">
-          <el-tag v-if="scope.row.orderStatus === 1" style="margin-bottom: 6px;">待发货</el-tag>
-          <el-tag v-if="scope.row.orderStatus === 2" style="margin-bottom: 6px;">已出库</el-tag>
-          <el-tag v-if="scope.row.orderStatus === 3" style="margin-bottom: 6px;">已发货</el-tag>
-          <el-tag v-if="scope.row.orderStatus === 4" style="margin-bottom: 6px;">已完成</el-tag>
-          <el-tag v-if="scope.row.orderStatus === 11" style="margin-bottom: 6px;">已取消</el-tag>
-          <br />
-           <!-- 1：无售后或售后关闭，2：售后处理中，3：退款中，4： 退款成功 -->
-           <el-tag v-if="scope.row.refundStatus === 1">无售后或售后关闭</el-tag>
-           <el-tag v-if="scope.row.refundStatus === 2">售后处理中</el-tag>
-           <el-tag v-if="scope.row.refundStatus === 3">退款中</el-tag>
-           <el-tag v-if="scope.row.refundStatus === 4">退款成功</el-tag>
-        </template>
-      </el-table-column>
+
       <!-- <el-table-column label="售后状态" align="center" prop="refundStatus" /> -->
       <!-- <el-table-column label="订单状态" align="center" prop="orderStatus" /> -->
       <!-- <el-table-column label="邮费，单位：元" align="center" prop="postage" /> -->
       <!-- <el-table-column label="折扣金额(元)" align="center" prop="discountAmount" /> -->
       <!-- <el-table-column label="商品金额(元)" align="center" prop="goodsAmount" /> -->
-      <el-table-column label="支付金额" align="center" prop="payAmount"  :formatter="amountFormatter" />
-      <!-- <el-table-column label="支付时间" align="center" prop="payTime" /> -->
+
+       <el-table-column label="下单时间" align="center" prop="orderTime" >
+         <template slot-scope="scope">
+           <span>{{ parseTime(scope.row.orderTime) }}</span>
+         </template>
+       </el-table-column>
       <el-table-column label="收件信息" align="center" prop="receiverName" >
         <template slot-scope="scope">
           {{scope.row.receiverName}}<br />
@@ -154,6 +145,21 @@
 <!--      <el-table-column label="发货时间" align="center" prop="shippingTime" />-->
 <!--      <el-table-column label="快递单号" align="center" prop="shippingNumber" />-->
       <!-- <el-table-column label="物流公司" align="center" prop="shippingCompany" /> -->
+      <el-table-column label="状态" align="center" prop="orderStatus" >
+        <template slot-scope="scope">
+          <el-tag v-if="scope.row.orderStatus === 1" style="margin-bottom: 6px;">待发货</el-tag>
+          <el-tag v-if="scope.row.orderStatus === 2" style="margin-bottom: 6px;">已出库</el-tag>
+          <el-tag v-if="scope.row.orderStatus === 3" style="margin-bottom: 6px;">已发货</el-tag>
+          <el-tag v-if="scope.row.orderStatus === 4" style="margin-bottom: 6px;">已完成</el-tag>
+          <el-tag v-if="scope.row.orderStatus === 11" style="margin-bottom: 6px;">已取消</el-tag>
+          <br />
+          <!-- 1：无售后或售后关闭，2：售后处理中，3：退款中，4： 退款成功 -->
+          <el-tag v-if="scope.row.refundStatus === 1">无售后或售后关闭</el-tag>
+          <el-tag v-if="scope.row.refundStatus === 2">售后处理中</el-tag>
+          <el-tag v-if="scope.row.refundStatus === 3">退款中</el-tag>
+          <el-tag v-if="scope.row.refundStatus === 4">退款成功</el-tag>
+        </template>
+      </el-table-column>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
@@ -161,8 +167,16 @@
             type="text"
             icon="el-icon-view"
             @click="handleDetail(scope.row)"
-            v-hasPermi="['shop:order:edit']"
           >详情</el-button>
+          <el-row>
+            <el-button
+              size="mini"
+              type="text"
+              icon="el-icon-warning"
+              @click="handleDetail(scope.row)"
+            >订单拦截</el-button>
+
+          </el-row>
 
         </template>
       </el-table-column>
@@ -280,6 +294,60 @@
         <el-button @click="cancel">取 消</el-button>
       </div> -->
     </el-dialog>
+
+    <!-- 售后对话框 -->
+    <el-dialog title="添加售后" :visible.sync="saleAfterOpen" width="500px" append-to-body :close-on-click-modal="false">
+      <el-form ref="refundForm" :model="saleAfterForm" :rules="saleAfterRules" label-width="80px" inline>
+        <el-form-item label="订单ID" prop="tid">
+          <el-input v-model.number="saleAfterForm.tid" placeholder="订单ID" style="width:250px" disabled />
+        </el-form-item>
+        <!-- <el-form-item label="子订单ID" prop="oid">
+          <el-input v-model="saleAfterForm.oid" placeholder="" style="width:250px" disabled />
+        </el-form-item> -->
+        <el-form-item label="商品图片" prop="productImgUrl">
+          <!-- <el-image style="width: 70px; height: 70px" :src="saleAfterForm.productImgUrl"></el-image> -->
+          <div style="float: left;display: flex;align-items: center;" >
+            <el-image  style="width: 70px; height: 70px;" :src="saleAfterForm.productImgUrl"></el-image>
+            <div style="margin-left:10px">
+              <p>{{saleAfterForm.goodsTitle}}</p>
+              <p>{{saleAfterForm.skuInfo}} </p>
+            </div>
+          </div>
+        </el-form-item>
+        <!-- <el-form-item label="商品名称" prop="goodsTitle">
+          <el-input v-model="saleAfterForm.goodsTitle" placeholder="" style="width:250px" disabled />
+        </el-form-item> -->
+        <el-form-item label="退款单号" prop="refundId">
+          <el-input v-model.number="saleAfterForm.refundId" placeholder="" style="width:250px" />
+        </el-form-item>
+        <el-form-item label="购买数量" prop="quantity">
+          <el-input v-model="saleAfterForm.quantity" placeholder="" style="width:250px" disabled />
+        </el-form-item>
+        <el-form-item label="退货数量" prop="num">
+          <el-input v-model.number="saleAfterForm.num" placeholder="" style="width:250px" />
+        </el-form-item>
+        <el-form-item label="总金额" prop="itemAmount">
+          <el-input v-model="saleAfterForm.itemAmount" placeholder="" style="width:250px" disabled/>
+        </el-form-item>
+        <el-form-item label="退款金额" prop="refundFee">
+          <el-input type="number" v-model.number="saleAfterForm.refundFee" placeholder="请输入退款金额" style="width:250px"/>
+        </el-form-item>
+        <el-form-item label="退款类型" prop="afterSalesType">
+          <el-select v-model="saleAfterForm.afterSalesType" placeholder="退款类型" style="width:250px" >
+            <el-option value="1" label="退货"></el-option>
+            <el-option value="3" label="换货"></el-option>
+            <el-option value="9" label="仅退款"></el-option>
+          </el-select>
+        </el-form-item>
+        <!-- <el-form-item label="实际支付金额" prop="payAmount">
+          <el-input v-model="form.payAmount" placeholder="请输入实际支付金额" style="width:250px"/>
+        </el-form-item> -->
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="submitRefundForm">确 定</el-button>
+        <el-button @click="cancel">取 消</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
@@ -303,6 +371,7 @@ export default {
       multiple: true,
       // 显示搜索条件
       showSearch: true,
+      saleAfterOpen: false,
       // 总条数
       total: 0,
       // 店铺订单表格数据
@@ -334,6 +403,7 @@ export default {
       },
       // 表单参数
       form: {},
+      saleAfterForm: {},
       // 表单校验
       rules: {
 
@@ -382,16 +452,10 @@ export default {
     handlePull(){
       this.$router.push('/order/shop_order_list');
     },
-    /** 导出按钮操作 */
-    handleExport() {
-      this.download('api/order/export', {
-        ...this.queryParams
-      }, `order_${new Date().getTime()}.xlsx`)
-    },
     reset(){
 
     },
-    /** 删除按钮操作 */
+    /** 详情 */
     handleDetail(row) {
       this.reset();
       const id = row.id || this.ids
@@ -404,6 +468,21 @@ export default {
         this.detailTitle = "订单详情";
       });
       this.isAudit = false
+    },
+    /** 售后按钮 */
+    handleRefund(row,item){
+      this.saleAfterForm.tid = row.id
+      this.saleAfterForm.oid = item.subItemId
+      this.saleAfterForm.productImgUrl = item.productImgUrl
+      this.saleAfterForm.goodsTitle = item.goodsTitle
+      this.saleAfterForm.skuInfo = item.skuInfo
+      this.saleAfterForm.num = item.quantity
+      this.saleAfterForm.quantity = item.quantity
+      this.saleAfterForm.itemAmount = item.itemAmount
+      this.saleAfterForm.refundFee = item.itemAmount
+
+      console.log('售后====',row)
+      this.saleAfterOpen = true
     },
   }
 };
