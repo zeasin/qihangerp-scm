@@ -1,7 +1,10 @@
 package cn.qihangerp.interfaces.order.domain;
 
 import java.io.Serializable;
-import java.util.Date;
+
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 /**
@@ -13,6 +16,7 @@ public class ScmOrderItem implements Serializable {
     /**
      * id，自增
      */
+    @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
     /**
@@ -26,19 +30,21 @@ public class ScmOrderItem implements Serializable {
     private Long shopId;
 
     /**
-     * 供应商ID
+     * 平台SKUID
      */
-    private Integer supplierId;
+    private Long platformSkuId;
+    @TableField(exist = false)
+    private Long skuId;
 
     /**
      * erp系统商品id
      */
-    private Long goodsId;
+    private Long erpGoodsId;
 
     /**
      * erp系统商品规格id
      */
-    private Long specId;
+    private Long erpGoodsSpecId;
 
     /**
      * 商品标题
@@ -61,9 +67,9 @@ public class ScmOrderItem implements Serializable {
     private String goodsSpec;
 
     /**
-     * 商品规格编码
+     * SKU编码
      */
-    private String specNum;
+    private String skuCode;
 
     /**
      * 商品单价
@@ -86,16 +92,6 @@ public class ScmOrderItem implements Serializable {
     private String remark;
 
     /**
-     * 子订单编号(来源订单)
-     */
-    private String orderItemNum;
-
-    /**
-     * 订单编号（来源订单）
-     */
-    private String orderNum;
-
-    /**
      * 是否赠品0否1是
      */
     private Integer isGift;
@@ -114,56 +110,6 @@ public class ScmOrderItem implements Serializable {
      * 订单状态
      */
     private Integer orderStatus;
-
-    /**
-     * 发货类型（0仓库发货；1供应商代发）
-     */
-    private Integer shipType;
-
-    /**
-     * 发货状态（0待备货1备货中2已出库3已发货）
-     */
-    private Integer shipStatus;
-
-    /**
-     * 发货时间
-     */
-    private Date shipTime;
-
-    /**
-     * 快递单号
-     */
-    private String logisticsCode;
-
-    /**
-     * 物流公司
-     */
-    private String logisticsCompany;
-
-    /**
-     * 发货人
-     */
-    private String shipMan;
-
-    /**
-     * 创建时间
-     */
-    private Date createTime;
-
-    /**
-     * 创建人
-     */
-    private String createBy;
-
-    /**
-     * 更新时间
-     */
-    private Date updateTime;
-
-    /**
-     * 更新人
-     */
-    private String updateBy;
 
     /**
      * 租户ID（distributor）

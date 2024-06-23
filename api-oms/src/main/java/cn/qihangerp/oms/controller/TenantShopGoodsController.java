@@ -7,6 +7,7 @@ import cn.qihangerp.interfaces.order.service.ScmPlatformService;
 import cn.qihangerp.oms.domain.OmsTenantShop;
 import cn.qihangerp.oms.domain.OmsTenantShopGoods;
 import cn.qihangerp.oms.domain.bo.ShopGoodsQuery;
+import cn.qihangerp.oms.domain.vo.GoodsSpecListVo;
 import cn.qihangerp.oms.security.SecurityUtils;
 import cn.qihangerp.oms.service.OmsTenantShopGoodsService;
 import cn.qihangerp.oms.service.OmsTenantShopGoodsSkuService;
@@ -27,6 +28,8 @@ import java.util.List;
 public class TenantShopGoodsController extends BaseController {
     @Autowired
     private OmsTenantShopGoodsService goodsService;
+    @Autowired
+    private OmsTenantShopGoodsSkuService goodsSkuService;
 
 
     @GetMapping("/shop_goods/list")
@@ -79,5 +82,16 @@ public class TenantShopGoodsController extends BaseController {
     public TableDataInfo platformList()
     {
         return getDataTable(new ArrayList<>());
+    }
+
+    /**
+     * 搜索商品SKU
+     * 条件：商品编码、SKU、商品名称
+     */
+    @GetMapping("/shop_goods/searchSku")
+    public TableDataInfo searchSkuBy(String keyword,Long shopId)
+    {
+        List<GoodsSpecListVo> list = goodsSkuService.searchGoodsSpec(keyword,shopId,SecurityUtils.getUserId());
+        return getDataTable(list);
     }
 }

@@ -14,6 +14,7 @@
             <result property="goodsSpec" column="goods_spec" jdbcType="VARCHAR"/>
             <result property="skuQuantity" column="sku_quantity" jdbcType="BIGINT"/>
             <result property="outerId" column="outer_id" jdbcType="VARCHAR"/>
+            <result property="skuImg" column="sku_img" jdbcType="VARCHAR"/>
             <result property="outerGoodsId" column="outer_goods_id" jdbcType="VARCHAR"/>
             <result property="consignPrice" column="consign_price" jdbcType="DECIMAL"/>
             <result property="retailPrice" column="retail_price" jdbcType="DOUBLE"/>
@@ -30,7 +31,7 @@
 
     <sql id="Base_Column_List">
         id,sku_id,platform_goods_id,
-        erp_goods_spec_id,erp_goods_id,sku_code,
+        erp_goods_spec_id,erp_goods_id,sku_code,sku_img,
         goods_spec,sku_quantity,outer_id,
         outer_goods_id,consign_price,retail_price,
         price,amount_onsale,status,
@@ -38,4 +39,35 @@
         create_time,create_by,update_time,
         update_by
     </sql>
+    <resultMap type="cn.qihangerp.oms.domain.vo.GoodsSpecListVo" id="GoodsSpecListVoResult">
+        <result property="id"    column="id"    />
+        <result property="platformGoodsId"    column="platform_goods_id"    />
+        <result property="title"    column="title"    />
+        <result property="goodsNum"    column="goods_num"    />
+        <result property="skuCode"    column="sku_code"    />
+        <result property="skuId"    column="sku_id"    />
+        <result property="goodsSpec"    column="goods_spec"    />
+        <result property="skuImg"    column="sku_img"    />
+        <result property="goodsImg"    column="goods_img"    />
+    </resultMap>
+    <select id="searchGoodsSpec" parameterType="cn.qihangerp.oms.domain.vo.GoodsSpecListVo" resultMap="GoodsSpecListVoResult">
+        SELECT spec.*,g.goods_num,g.title,g.goods_img
+        FROM `oms_tenant_shop_goods_sku` as spec
+        LEFT JOIN oms_tenant_shop_goods as g on g.platform_goods_id = spec.platform_goods_id
+        <where>
+            and g.tenant_id = #{tenantId}
+            <if test="shopId != null ">
+                and g.shop_id = #{shopId}
+            </if>
+            <if test="keyword != null  and keyword != ''">
+                and
+                (
+                g.title like concat('%', #{keyword}, '%')
+                or g.goods_num like concat(#{keyword}, '%')
+                or spec.sku_code like concat(#{keyword}, '%')
+                )
+            </if>
+        </where>
+        LIMIT 20
+    </select>
 </mapper>

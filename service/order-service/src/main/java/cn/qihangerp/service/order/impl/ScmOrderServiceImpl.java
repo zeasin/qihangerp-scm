@@ -57,6 +57,8 @@ public class ScmOrderServiceImpl extends ServiceImpl<ScmOrderMapper, ScmOrder>
     @Override
     public int insertOrder(ScmOrder order)
     {
+        if(order.getShopId()==null)return -6;
+        if(order.getShopType()==null) return -6;
         List<ScmOrder> orders = orderMapper.selectList(new LambdaQueryWrapper<ScmOrder>().eq(ScmOrder::getOrderNum, order.getOrderNum()));
 
         if (orders!=null&& orders.size()>0) return -1;// 订单号已存在
@@ -66,14 +68,16 @@ public class ScmOrderServiceImpl extends ServiceImpl<ScmOrderMapper, ScmOrder>
 //        return rows;
         if(order.getItemList() == null || order.getItemList().size() == 0) return -2;
         else{
-            // 循环查找是否缺少specId
-            for (ScmOrderItem erpSaleOrderItem : order.getItemList())
+            // 循环查找是否缺少skuId
+            for (ScmOrderItem orderItem : order.getItemList())
             {
-                if(erpSaleOrderItem.getSpecId()==null || erpSaleOrderItem.getSpecId()<=0) return -3;
+                if(orderItem.getPlatformSkuId()==null || orderItem.getPlatformSkuId()<=0) return -3;
+                if(orderItem.getErpGoodsId()==null || orderItem.getErpGoodsId()<=0) return -11;
+                if(orderItem.getErpGoodsSpecId()==null || orderItem.getErpGoodsSpecId()<=0) return -12;
             }
         }
         if(order.getTenantId()==null) return -5;
-        if(order.getShopType()==null) return -4;
+//        if(order.getShopType()==null) return -4;
 //        Shop shop = shopService.getById(order.getShopId());
 //        if(shop!=null){
 //            order.setShopType(shop.getPlatform());
@@ -85,26 +89,16 @@ public class ScmOrderServiceImpl extends ServiceImpl<ScmOrderMapper, ScmOrder>
 //        else if(erpOrder.getShopId() == 13) erpOrder.setShopType(13);
 //        else if(erpOrder.getShopId() == 21) erpOrder.setShopType(7);
 //        else if(erpOrder.getShopId() == 22) erpOrder.setShopType(6);
+        order.setRefundStatus(1);//无售后
+        order.setOrderStatus(1);//待发货
+        order.setGoodsAmount(0.0);
+        order.setDiscountAmount(0.0);
+        order.setPostage(0.0);
+        order.setAmount(0.0);
+        order.setOrderTime(new Date());
         order.setCreateTime(new Date());
+        order.setShipType(1);
         order.setShipStatus(0);
-        order.setOrderStatus(1);
-        order.setRefundStatus(1);
-//        erpOrder.setOrderTime(DateUtils.getTime());
-        order.setOrderTime(DateUtils.parseDateToStr("yyyy-MM-dd HH:mm:ss", order.getCreateTime()));
-
-        order.setGoodsAmount(order.getGoodsAmount());
-        if(order.getPostage() == null) order.setPostage(0.0);
-//        order.setSellerDiscount(0.0);
-//        order.setPlatformDiscount(0.0);
-//        if(erpSaleOrder.getDiscountAmount() == null) erpSaleOrder.setDiscountAmount(BigDecimal.ZERO);
-
-        // 实际金额 = 商品金额 - 折扣金额 + 运费
-//        order.setOrderAmount(order.getGoodsAmount()+order.getPostage());
-
-//        if(order.getPayAmount() == null)order.setPayAmount(0.0);
-//        if(erpOrder.getAuditStatus() == null) shopOrder.setAuditStatus(1L);
-
-        order.setCreateBy(order.getCreateBy());
         order.setCreateTime(DateUtils.getNowDate());
         orderMapper.insert(order);
         for(var item:order.getItemList()){

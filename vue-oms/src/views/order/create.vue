@@ -10,16 +10,7 @@
         <el-form-item label="店铺" prop="shopId">
           <el-select v-model="form.shopId" filterable r placeholder="搜索店铺" >
           <el-option v-for="item in shopList" :key="item.id" :label="item.name" :value="item.id">
-             <span style="float: left">{{ item.name }}</span>
-              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 1">1688</span>
-              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 2">视频号小店</span>
-              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 3">京东</span>
-              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 4">淘系店铺</span>
-              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 5">拼多多</span>
-              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 6">抖店</span>
-              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 7">小红书</span>
-              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 8">快手小店</span>
-              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 99">其他</span>
+
           </el-option>
         </el-select>
         </el-form-item>
@@ -70,14 +61,14 @@
               <el-input v-model="scope.row.specId" placeholder="请输入erp系统商品规格id" />
             </template>
           </el-table-column> -->
-          <el-table-column label="商品" prop="goodsId" width="350">
+          <el-table-column label="商品" prop="skuId" width="350">
             <template slot-scope="scope">
               <!-- <el-input v-model="scope.row.goodsTitle" placeholder="请输入商品标题" /> -->
-              <el-select v-model="scope.row.goodsId" filterable remote reserve-keyword placeholder="搜索商品" style="width: 330px;"
+              <el-select v-model="scope.row.skuId" filterable remote reserve-keyword placeholder="搜索商品" style="width: 330px;"
                 :remote-method="searchSku" :loading="skuListLoading" @change="skuChanage(scope.row)">
                 <el-option v-for="item in skuList" :key="item.id"
-                  :label="item.name + ' - ' + item.colorValue + ' ' + item.sizeValue + ' ' + item.styleValue"
-                  :value="item.id">
+                  :label="item.title + ' - ' + item.goodsSpec + ' ' + item.skuCode "
+                  :value="item.skuId">
                 </el-option>
               </el-select>
             </template>
@@ -98,26 +89,26 @@
               <el-input v-model="scope.row.goodsSpec" disabled placeholder="请输入商品规格" />
             </template>
           </el-table-column>
-          <el-table-column label="商品规格编码" prop="specNum" width="150">
+          <el-table-column label="Sku编码" prop="skuCode" width="150">
             <template slot-scope="scope">
-              <el-input v-model="scope.row.specNum" disabled placeholder="请输入商品规格编码" />
+              <el-input v-model="scope.row.skuCode" disabled placeholder="请输入商品规格编码" />
             </template>
           </el-table-column>
-          <el-table-column label="商品单价" prop="goodsPrice" width="150">
-            <template slot-scope="scope">
-              <el-input v-model="scope.row.goodsPrice" disabled placeholder="请输入商品单价" />
-            </template>
-          </el-table-column>
+<!--          <el-table-column label="商品单价" prop="goodsPrice" width="150">-->
+<!--            <template slot-scope="scope">-->
+<!--              <el-input v-model="scope.row.goodsPrice" disabled placeholder="请输入商品单价" />-->
+<!--            </template>-->
+<!--          </el-table-column>-->
           <el-table-column label="商品数量" prop="quantity" width="150">
             <template slot-scope="scope">
-              <el-input v-model.number="scope.row.quantity" placeholder="请输入商品数量" @input="qtyChange(scope.row)"/>
+              <el-input v-model.number="scope.row.quantity" placeholder="请输入商品数量" />
             </template>
           </el-table-column>
-          <el-table-column label="金额" prop="itemAmount" width="150">
-            <template slot-scope="scope">
-              <el-input v-model="scope.row.itemAmount" disabled placeholder="请输入子订单金额" />
-            </template>
-          </el-table-column>
+<!--          <el-table-column label="金额" prop="itemAmount" width="150">-->
+<!--            <template slot-scope="scope">-->
+<!--              <el-input v-model="scope.row.itemAmount" disabled placeholder="请输入子订单金额" />-->
+<!--            </template>-->
+<!--          </el-table-column>-->
 
           <el-table-column label="是否赠品0否1是" prop="isGift" width="150">
             <template slot-scope="scope">
@@ -141,43 +132,43 @@
             </template>
           </el-table-column> -->
         </el-table>
-        <el-form-item label="商品金额" prop="goodsAmount" style="margin-top: 10px;">
-          <el-input v-model="form.goodsAmount" style="width: 220px;" placeholder="请输入商品金额，单位：元，商品金额=商品销售价格*商品数量-改价金额" />
-        </el-form-item>
-        <el-form-item label="运费" prop="postage">
-          <el-input v-model="form.postage" style="width:220px" placeholder="请输入邮费，单位：元" />
-        </el-form-item>
-        <el-form-item label="折扣金额" prop="discountAmount">
-          <el-input v-model="form.discountAmount" style="width: 220px;" placeholder="请输入折扣金额，单位：元，折扣金额=平台优惠+商家优惠+团长免单优惠金额" />
-        </el-form-item>
+<!--        <el-form-item label="商品金额" prop="goodsAmount" style="margin-top: 10px;">-->
+<!--          <el-input v-model="form.goodsAmount" style="width: 220px;" placeholder="请输入商品金额，单位：元，商品金额=商品销售价格*商品数量-改价金额" />-->
+<!--        </el-form-item>-->
+<!--        <el-form-item label="运费" prop="postage">-->
+<!--          <el-input v-model="form.postage" style="width:220px" placeholder="请输入邮费，单位：元" />-->
+<!--        </el-form-item>-->
+<!--        <el-form-item label="折扣金额" prop="discountAmount">-->
+<!--          <el-input v-model="form.discountAmount" style="width: 220px;" placeholder="请输入折扣金额，单位：元，折扣金额=平台优惠+商家优惠+团长免单优惠金额" />-->
+<!--        </el-form-item>-->
 
-        <el-form-item label="支付金额" prop="payAmount">
-          <el-input v-model="form.payAmount" style="width: 220px;" placeholder="请输入支付金额，单位：元，支付金额=商品金额-折扣金额+邮费" />
-        </el-form-item>
-        <el-form-item label="支付时间" prop="payTime">
-          <el-date-picker clearable v-model="form.payTime" type="date" style="width: 220px;" value-format="yyyy-MM-dd" placeholder="请选择支付日期">
-        </el-date-picker>
-          <!-- <el-input v-model="form.payTime" style="width: 220px;" placeholder="请输入支付时间" /> -->
-        </el-form-item>
+<!--        <el-form-item label="支付金额" prop="payAmount">-->
+<!--          <el-input v-model="form.payAmount" style="width: 220px;" placeholder="请输入支付金额，单位：元，支付金额=商品金额-折扣金额+邮费" />-->
+<!--        </el-form-item>-->
+<!--        <el-form-item label="支付时间" prop="payTime">-->
+<!--          <el-date-picker clearable v-model="form.payTime" type="date" style="width: 220px;" value-format="yyyy-MM-dd" placeholder="请选择支付日期">-->
+<!--        </el-date-picker>-->
+<!--          &lt;!&ndash; <el-input v-model="form.payTime" style="width: 220px;" placeholder="请输入支付时间" /> &ndash;&gt;-->
+<!--        </el-form-item>-->
         <el-form-item label="订单备注" prop="remark">
           <el-input v-model="form.remark" type="textarea" placeholder="请输入内容" />
         </el-form-item>
-        <el-form-item label="买家留言" prop="buyerMemo">
-          <el-input v-model="form.buyerMemo" type="textarea" placeholder="请输入买家留言信息" />
-        </el-form-item>
-        <el-form-item label="标签" prop="tag">
-          <el-input v-model="form.tag" placeholder="请输入标签" style="width: 220px;" />
-        </el-form-item>
+<!--        <el-form-item label="买家留言" prop="buyerMemo">-->
+<!--          <el-input v-model="form.buyerMemo" type="textarea" placeholder="请输入买家留言信息" />-->
+<!--        </el-form-item>-->
+<!--        <el-form-item label="标签" prop="tag">-->
+<!--          <el-input v-model="form.tag" placeholder="请输入标签" style="width: 220px;" />-->
+<!--        </el-form-item>-->
       </el-form>
       <div slot="footer" class="dialog-footer" style="margin-left: 108px;">
-        <el-button type="primary" @click="submitForm">创建订单</el-button>
+        <el-button type="primary" @click="submitForm">创建发货订单</el-button>
         <!-- <el-button @click="cancel">取 消</el-button> -->
       </div>
   </div>
 </template>
 
 <script>
-import { searchSku } from "@/api/goods/goods";
+import { searchSku } from "@/api/shop/goods";
 import { listShop } from "@/api/shop/shop";
 import { addOrder } from "@/api/shop/order";
 import {
@@ -244,7 +235,8 @@ export default {
     searchSku(query) {
       this.shopLoading = true;
       const qw = {
-        keyword: query
+        keyword: query,
+        shopId: this.form.shopId
       }
       searchSku(qw).then(res => {
         this.skuList = res.rows;
@@ -253,88 +245,34 @@ export default {
     },
     skuChanage(row) {
       console.log('=========',row)
-      const spec = this.skuList.find(x => x.id === row.goodsId);
+      const spec = this.skuList.find(x => x.skuId === row.skuId);
       if (spec) {
         console.log('=========', spec)
-        row.specId = spec.id
-        row.goodsPrice = spec.purPrice
-        row.goodsSpec = spec.colorValue + ' ' + spec.sizeValue + ' ' + spec.styleValue
-        row.goodsImg = spec.colorImage
-        row.goodsNum = spec.number
-        row.goodsTitle = spec.name
-        row.specNum = spec.specNum
+        row.id = spec.id
+        row.skuId = spec.skuId
+        row.platformGoodsId = spec.platformGoodsId
+        row.goodsSpec = spec.goodsSpec
+        row.goodsImg = (spec.skuImg ? spec.skuImg : spec.goodsImg)
+        row.goodsNum = spec.goodsNum
+        row.goodsTitle = spec.title
+        row.skuCode = spec.skuCode
         row.isGift = '0'
         row.quantity = 1
-        row.itemAmount = row.goodsPrice * row.quantity
-        row.supplierId = spec.supplierId
-        // 计算总金额
-        let goodsAmount = this.form.goodsAmount ? this.form.goodsAmount:0.0
-        goodsAmount += row.itemAmount
-        this.form.goodsAmount = goodsAmount
-
-
-      //   this.goodsForm.id = spec.id
-      //   this.goodsForm.goodsId = spec.goodsId
-      //   this.goodsForm.name = spec.name
-      //   this.goodsForm.colorImage = spec.colorImage
-      //   this.goodsForm.colorValue = spec.colorValue
-      //   this.goodsForm.number = spec.number
-      //   this.goodsForm.purPrice = spec.purPrice
-      //   this.goodsForm.sizeValue = spec.sizeValue
-      //   this.goodsForm.specNum = spec.specNum
-      //   this.goodsForm.styleValue = spec.styleValue
       }
-    },
-    qtyChange(row) {
-      console.log('======值变化=====', row)
-      row.itemAmount = row.goodsPrice * row.quantity
-      // 计算总金额
-      let goodsAmountNew =0.0
-      this.form.itemList.forEach(x=>{
-        goodsAmountNew+= row.itemAmount
-      })
-      this.form.goodsAmount = goodsAmountNew
-      // if (this.goodsForm.qty && this.goodsForm.qty > 0) {
-      //   if (this.goodsForm.purPrice) {
-      //     this.goodsForm.amount = this.goodsForm.qty * this.goodsForm.purPrice
-      //   }
-
-      // }
-    },
-    // 搜索店铺
-    searchSupplier(query) {
-      this.supplierLoading = true;
-      const qw = {
-        name: query
-      }
-      listShop(qw).then(response => {
-        this.shopList = response.rows;
-        this.total = response.total;
-        this.loading = false;
-      });
-      // listSupplier(qw).then(response => {
-      //   this.supplierList = response.rows;
-      //   this.supplierLoading = false;
-      // });
     },
     /** ${subTable.functionName}添加按钮操作 */
     handleAddSShopOrderItem() {
       let obj = {};
-      obj.supplierId = "";
-      obj.goodsId = "";
-      obj.specId = "";
-      obj.goodsTitle = "";
+      obj.id = null;
+      obj.skuId = null;
+      obj.platformGoodsId = null;
+      obj.goodsSpec = "";
       obj.goodsImg = "";
       obj.goodsNum = "";
-      obj.goodsSpec = "";
-      obj.specNum = "";
-      obj.goodsPrice = "";
-      obj.itemAmount = "";
-      obj.quantity = "";
-      obj.remark = "";
-      obj.isGift = "";
-      obj.refundCount = "";
-      obj.refundStatus = "";
+      obj.goodsTitle = "";
+      obj.skuCode = "";
+      obj.isGift = "0";
+      obj.quantity = 1;
       this.form.itemList.push(obj);
     },
     /** ${subTable.functionName}删除按钮操作 */
@@ -368,7 +306,7 @@ export default {
 
           if(this.form.itemList && this.form.itemList.length >0){
             for(var i=0;i<this.form.itemList.length;i++){
-              if(!this.form.itemList[i].goodsId || !this.form.itemList[i].quantity){
+              if(!this.form.itemList[i].skuId || !this.form.itemList[i].quantity){
                 this.$modal.msgError("请完善商品信息");
                 return
               }

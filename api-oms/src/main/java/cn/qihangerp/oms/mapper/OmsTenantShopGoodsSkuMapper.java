@@ -1,7 +1,10 @@
 package cn.qihangerp.oms.mapper;
 
 import cn.qihangerp.oms.domain.OmsTenantShopGoodsSku;
+import cn.qihangerp.oms.domain.vo.GoodsSpecListVo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+
+import java.util.List;
 
 /**
 * @author qilip
@@ -10,7 +13,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @Entity cn.qihangerp.oms.domain.OmsTenantShopGoodsSku
 */
 public interface OmsTenantShopGoodsSkuMapper extends BaseMapper<OmsTenantShopGoodsSku> {
-
+    List<GoodsSpecListVo> searchGoodsSpec(String keyword,Long shopId,Long tenantId);
 }
 
 

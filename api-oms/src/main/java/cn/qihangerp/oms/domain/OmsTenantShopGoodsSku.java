@@ -44,6 +44,7 @@ public class OmsTenantShopGoodsSku implements Serializable {
      * sku编码
      */
     private String skuCode;
+    private String skuImg;
 
     /**
      * sku描述

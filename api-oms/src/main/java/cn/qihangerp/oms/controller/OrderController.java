@@ -3,10 +3,19 @@ package cn.qihangerp.oms.controller;
 import cn.qihangerp.common.*;
 import cn.qihangerp.interfaces.order.bo.OrderQuery;
 import cn.qihangerp.interfaces.order.domain.ScmOrder;
+import cn.qihangerp.interfaces.order.domain.ScmOrderItem;
 import cn.qihangerp.interfaces.order.service.ScmOrderService;
+import cn.qihangerp.oms.domain.OmsTenantShop;
+import cn.qihangerp.oms.domain.OmsTenantShopGoodsSku;
 import cn.qihangerp.oms.security.SecurityUtils;
+import cn.qihangerp.oms.service.OmsTenantShopGoodsSkuService;
+import cn.qihangerp.oms.service.OmsTenantShopService;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import org.apache.dubbo.config.annotation.DubboReference;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * 店铺订单Controller
@@ -20,6 +29,10 @@ public class OrderController extends BaseController
 {
     @DubboReference
     private ScmOrderService orderService;
+    @Autowired
+    private OmsTenantShopService shopService;
+    @Autowired
+    private OmsTenantShopGoodsSkuService goodsSkuService;
 
     /**
      * 查询店铺订单列表
@@ -48,15 +61,44 @@ public class OrderController extends BaseController
     @PostMapping
     public AjaxResult add(@RequestBody ScmOrder order)
     {
+        if(order.getShopId()==null) return AjaxResult.error("请选择店铺");
+        OmsTenantShop shop = shopService.getById(order.getShopId());
+        if(shop==null) return AjaxResult.error("店铺不存在");
+
+        if(order.getItemList() == null || order.getItemList().size() == 0) return AjaxResult.error("请添加订单商品");
+        else{
+            // 循环查找是否缺少skuId
+            for (ScmOrderItem orderItem : order.getItemList())
+            {
+                if(orderItem.getSkuId()==null || orderItem.getSkuId()<=0) return AjaxResult.error("请选择订单商品规格");
+                orderItem.setPlatformSkuId(orderItem.getSkuId());
+                // 店铺商品表查询商品供应链信息
+                List<OmsTenantShopGoodsSku> shopGoodsSkuList = goodsSkuService.list(new LambdaQueryWrapper<OmsTenantShopGoodsSku>()
+                        .eq(OmsTenantShopGoodsSku::getSkuId, orderItem.getSkuId())
+                        .eq(OmsTenantShopGoodsSku::getShopId, order.getShopId())
+                        .eq(OmsTenantShopGoodsSku::getTenantId, SecurityUtils.getUserId())
+                );
+                if(shopGoodsSkuList == null || shopGoodsSkuList.size()==0) return AjaxResult.error("没有找到店铺商品");
+                if(shopGoodsSkuList.get(0).getErpGoodsId()==null||shopGoodsSkuList.get(0).getErpGoodsId()==0)return AjaxResult.error("店铺商品没有关联供应链商品，无法下单！");
+                if(shopGoodsSkuList.get(0).getErpGoodsSpecId()==null||shopGoodsSkuList.get(0).getErpGoodsSpecId()==0)return AjaxResult.error("店铺商品没有关联供应链商品，无法下单！");
+                orderItem.setErpGoodsId(shopGoodsSkuList.get(0).getErpGoodsId());
+                orderItem.setErpGoodsSpecId(shopGoodsSkuList.get(0).getErpGoodsSpecId());
+            }
+        }
+
+        order.setShopType(shop.getType());
         order.setTenantId(SecurityUtils.getUserId());
-        if(order.getGoodsAmount()==null)return new AjaxResult(1503,"请填写商品价格！");
-        order.setCreateBy(getUsername());
+//        if(order.getGoodsAmount()==null)return new AjaxResult(1503,"请填写商品价格！");
+        order.setCreateBy(SecurityUtils.getUsername());
         int result = orderService.insertOrder(order);
         if(result == -1) return new AjaxResult(501,"订单号已存在！");
         if(result == -2) return new AjaxResult(502,"请添加订单商品！");
         if(result == -3) return new AjaxResult(503,"请选择订单商品规格！");
         if(result == -4) return new AjaxResult(504,"请选择店铺！");
         if(result == -5) return new AjaxResult(505,"TenantId不能为空！");
+        if(result == -6) return new AjaxResult(505,"店铺不能为空！");
+        if(result == -11) return new AjaxResult(511,"商品数据错误：缺少供应链商品ID");
+        if(result == -12) return new AjaxResult(512,"商品数据错误：缺少供应链skuId");
         return toAjax(result);
     }
 
