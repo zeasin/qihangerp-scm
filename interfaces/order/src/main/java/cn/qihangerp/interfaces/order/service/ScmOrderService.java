@@ -13,5 +13,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface ScmOrderService extends IService<ScmOrder> {
     PageResult<ScmOrder> queryPageList(OrderQuery bo, PageQuery pageQuery);
+    ScmOrder queryDetailById(Long id);
     int insertOrder(ScmOrder order);
 }

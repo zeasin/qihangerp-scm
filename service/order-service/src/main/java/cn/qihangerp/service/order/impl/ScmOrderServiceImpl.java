@@ -53,6 +53,16 @@ public class ScmOrderServiceImpl extends ServiceImpl<ScmOrderMapper, ScmOrder>
         return PageResult.build(pages);
     }
 
+    @Override
+    public ScmOrder queryDetailById(Long id) {
+        ScmOrder order = orderMapper.selectById(id);
+        if(order==null) return null;
+        else{
+            order.setItemList(orderItemMapper.selectList(new LambdaQueryWrapper<ScmOrderItem>().eq(ScmOrderItem::getOrderId, order.getId())));
+            return order;
+        }
+    }
+
     @Transactional
     @Override
     public int insertOrder(ScmOrder order)

@@ -9,20 +9,13 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="店铺" prop="shopId">
-        <el-select v-model="queryParams.shopId" placeholder="请选择店铺" clearable @change="handleQuery">
+      <el-form-item label="分销终端" prop="tenantId">
+        <el-select v-model="queryParams.tenantId" placeholder="请选择分销终端" clearable @change="handleQuery">
          <el-option
-            v-for="item in shopList"
+            v-for="item in tenantList"
             :key="item.id"
             :label="item.nickName"
             :value="item.id">
-            <span style="float: left">{{ item.name }}</span>
-              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 4">淘宝天猫</span>
-              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 5">拼多多</span>
-              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 6">抖店</span>
-              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 7">小红书</span>
-              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 13">快手小店</span>
-              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 99">其他</span>
           </el-option>
         </el-select>
       </el-form-item>
@@ -96,16 +89,6 @@
           v-hasPermi="['shop:order:add']"
         >手动创建订单</el-button>
       </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="warning"
-          plain
-          icon="el-icon-download"
-          size="mini"
-          @click="handleExport"
-          v-hasPermi="['shop:order:export']"
-        >导出</el-button>
-      </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 
@@ -115,7 +98,7 @@
       <el-table-column label="订单编号" align="center" prop="orderNum" />
       <el-table-column label="店铺ID" align="center" prop="shopId" >
         <template slot-scope="scope">
-          <span>{{ shopList.find(x=>x.id === scope.row.shopId).name  }}</span>
+          <span>{{ tenantList.find(x=>x.id === scope.row.tenantId).name  }}</span>
         </template>
       </el-table-column>
 
@@ -164,7 +147,7 @@
       <!-- <el-table-column label="商品金额(元)" align="center" prop="goodsAmount" /> -->
       <el-table-column label="支付金额" align="center" prop="amount" />
       <!-- <el-table-column label="支付时间" align="center" prop="payTime" /> -->
-      <el-table-column label="收件信息" align="center" prop="receiverName" >
+      <el-table-column label="收件信息" align="left" prop="receiverName" >
         <template slot-scope="scope">
           {{scope.row.receiverName}}<br />
           {{scope.row.province}} {{scope.row.city}} {{scope.row.town}}
@@ -207,15 +190,8 @@
         <el-descriptions title="订单信息">
             <el-descriptions-item label="ID">{{form.id}}</el-descriptions-item>
             <el-descriptions-item label="订单号">{{form.orderNum}}</el-descriptions-item>
-
             <el-descriptions-item label="店铺">
-              {{ shopList.find(x=>x.id === form.shopId)?shopList.find(x=>x.id === form.shopId).name:'' }}
-              <el-tag size="small" v-if="form.shopType === 4">淘宝天猫</el-tag>
-              <el-tag size="small" v-if="form.shopType === 5">拼多多</el-tag>
-              <el-tag size="small" v-if="form.shopType === 6">抖店</el-tag>
-              <el-tag size="small" v-if="form.shopType === 7">小红书</el-tag>
-              <el-tag size="small" v-if="form.shopType === 13">快手小店</el-tag>
-              <el-tag size="small" v-if="form.shopType === 99">其他</el-tag>
+              {{ tenantList.find(x=>x.id === form.shopId)?tenantList.find(x=>x.id === form.tenantId).name:'' }}
             </el-descriptions-item>
 
 
@@ -282,7 +258,7 @@
         </el-descriptions>
 
         <el-divider content-position="center">订单商品</el-divider>
-        <el-table :data="form.erpOrderItemList"  style="margin-bottom: 10px;">
+        <el-table :data="form.itemList"  style="margin-bottom: 10px;">
           <!-- <el-table-column type="selection" width="50" align="center" /> -->
           <el-table-column label="序号" align="center" type="index" width="50"/>
 
@@ -308,8 +284,8 @@
 </template>
 
 <script>
-import { listOrder, getOrder, delOrder, addOrder, updateOrder } from "@/api/ship/order";
-import { listDistributor } from "@/api/channel/distributor";
+import { listOrder, getOrder} from "@/api/ship/order";
+import { listDistributor } from "@/api/channel/tenant";
 export default {
   name: "Order",
   data() {
@@ -332,7 +308,7 @@ export default {
       orderList: [],
       // ${subTable.functionName}表格数据
       sShopOrderItemList: [],
-      shopList:[],
+      tenantList:[],
       // 弹出层标题
       detailTitle:'订单详情',
       detailOpen:false,
@@ -365,7 +341,7 @@ export default {
   },
   created() {
     listDistributor({}).then(response => {
-        this.shopList = response.rows;
+        this.tenantList = response.rows;
       });
     this.getList();
   },

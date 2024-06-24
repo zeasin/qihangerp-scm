@@ -45,7 +45,7 @@
 
     <el-table v-loading="loading" :data="shopList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="ID" align="center" prop="userId" />
+      <el-table-column label="ID" align="center" prop="id" />
       <el-table-column label="登录名" align="center" prop="userName" />
        <el-table-column label="客户名称" align="center" prop="nickName" />
        <el-table-column label="手机号" align="center" prop="phonenumber" />
@@ -85,7 +85,7 @@
     <!-- 添加或修改店铺对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
-        <el-form-item label="登录账号" v-if="form.userId == undefined" prop="userName">
+        <el-form-item label="登录账号" v-if="form.id == undefined" prop="userName">
           <el-input v-model="form.userName" placeholder="请输入登录账号" />
         </el-form-item>
         <el-form-item label="客户名称" prop="nickName">
@@ -97,7 +97,7 @@
         <el-form-item label="邮箱" prop="email">
           <el-input v-model="form.email" placeholder="请输入邮箱" maxlength="50" />
         </el-form-item>
-        <el-form-item v-if="form.userId == undefined" label="用户密码" prop="password">
+        <el-form-item v-if="form.id == undefined" label="用户密码" prop="password">
           <el-input v-model="form.password" placeholder="请输入用户密码" type="password" maxlength="20" show-password/>
         </el-form-item>
         <el-form-item label="描述" prop="remark">
@@ -125,7 +125,7 @@ import {
   getDistributor,
   addDistributor,
   updateDistributor
-} from "@/api/channel/distributor";
+} from "@/api/channel/tenant";
 
 export default {
   name: "Shop",
@@ -218,7 +218,7 @@ export default {
     /** 修改按钮操作 */
     handleUpdate(row) {
       this.reset();
-      const id = row.userId || this.ids
+      const id = row.id || this.ids
       getDistributor(id).then(response => {
         this.form = response.data;
         this.$nextTick(()=>{

@@ -16,6 +16,7 @@ server:
 # dubbo的配置
 dubbo:
   application:
+    qos-enable: false
     name: sys-service	#配置应用名是为了加以区分不同的服务提供者
   protocol:
     name: dubbo

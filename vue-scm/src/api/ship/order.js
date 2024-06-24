@@ -10,35 +10,9 @@ export function listOrder(query) {
 }
 
 // 查询物流公司详细
-export function getLogistics(id) {
+export function getOrder(id) {
   return request({
-    url: '/ship/logistics/company/' + id,
+    url: '/ship/order/' + id,
     method: 'get'
-  })
-}
-
-// 新增物流公司
-export function addLogistics(data) {
-  return request({
-    url: '/ship/logistics/company',
-    method: 'post',
-    data: data
-  })
-}
-
-// 修改物流公司
-export function updateLogistics(data) {
-  return request({
-    url: '/ship/logistics/company',
-    method: 'put',
-    data: data
-  })
-}
-
-// 删除物流公司
-export function delLogistics(id) {
-  return request({
-    url: '/ship/logistics/company/' + id,
-    method: 'delete'
   })
 }
