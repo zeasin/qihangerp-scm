@@ -9,7 +9,7 @@ import cn.qihangerp.common.model.SysUser;
 import cn.qihangerp.common.model.SysMenu;
 import cn.qihangerp.common.model.vo.RouterVo;
 import cn.qihangerp.common.utils.SecurityUtils;
-import cn.qihangerp.interfaces.sys.service.ISysMenuService;
+import cn.qihangerp.model.sys.service.ISysMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

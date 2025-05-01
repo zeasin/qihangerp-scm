@@ -1,8 +1,8 @@
 package cn.qihangerp.service.order.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import cn.qihangerp.interfaces.order.domain.ScmOrderItem;
-import cn.qihangerp.interfaces.order.service.ScmOrderItemService;
+import cn.qihangerp.model.order.domain.ScmOrderItem;
+import cn.qihangerp.model.order.service.ScmOrderItemService;
 import cn.qihangerp.service.order.mapper.ScmOrderItemMapper;
 
 import org.springframework.stereotype.Service;

@@ -12,7 +12,7 @@ import cn.qihangerp.common.model.SysUser;
 import cn.qihangerp.common.redis.RedisCache;
 import cn.qihangerp.common.utils.IpUtils;
 import cn.qihangerp.common.utils.StringUtils;
-import cn.qihangerp.interfaces.sys.service.ISysUserService;
+import cn.qihangerp.model.sys.service.ISysUserService;
 import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;

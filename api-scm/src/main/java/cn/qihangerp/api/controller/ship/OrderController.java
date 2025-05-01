@@ -1,9 +1,9 @@
 package cn.qihangerp.api.controller.ship;
 
 import cn.qihangerp.common.*;
-import cn.qihangerp.interfaces.order.bo.OrderQuery;
-import cn.qihangerp.interfaces.order.domain.ScmOrder;
-import cn.qihangerp.interfaces.order.service.ScmOrderService;
+import cn.qihangerp.model.order.bo.OrderQuery;
+import cn.qihangerp.model.order.domain.ScmOrder;
+import cn.qihangerp.model.order.service.ScmOrderService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

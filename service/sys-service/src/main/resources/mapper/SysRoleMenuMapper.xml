@@ -4,7 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.qihangerp.service.sys.mapper.SysRoleMenuMapper">
 
-	<resultMap type="cn.qihangerp.interfaces.sys.domain.SysRoleMenu" id="SysRoleMenuResult">
+	<resultMap type="cn.qihangerp.model.sys.domain.SysRoleMenu" id="SysRoleMenuResult">
 		<result property="roleId"     column="role_id"      />
 		<result property="menuId"     column="menu_id"      />
 	</resultMap>

@@ -1,6 +1,6 @@
 package cn.qihangerp.service.order.mapper;
 
-import cn.qihangerp.interfaces.order.domain.ScmOrder;
+import cn.qihangerp.model.order.domain.ScmOrder;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

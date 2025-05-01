@@ -6,7 +6,7 @@ import cn.qihangerp.common.BaseController;
 import cn.qihangerp.common.constant.UserConstants;
 import cn.qihangerp.common.model.SysMenu;
 import cn.qihangerp.common.utils.StringUtils;
-import cn.qihangerp.interfaces.sys.service.ISysMenuService;
+import cn.qihangerp.model.sys.service.ISysMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;

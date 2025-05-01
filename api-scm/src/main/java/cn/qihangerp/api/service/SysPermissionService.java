@@ -1,9 +1,8 @@
 package cn.qihangerp.api.service;
 
 import cn.qihangerp.common.model.SysUser;
-import cn.qihangerp.interfaces.sys.service.ISysMenuService;
-import cn.qihangerp.interfaces.sys.service.ISysRoleService;
-import org.springframework.beans.factory.annotation.Autowired;
+import cn.qihangerp.model.sys.service.ISysMenuService;
+import cn.qihangerp.model.sys.service.ISysRoleService;
 import org.springframework.stereotype.Component;
 
 import java.util.HashSet;

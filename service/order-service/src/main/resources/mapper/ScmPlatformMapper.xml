@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.qihangerp.service.order.mapper.ScmPlatformMapper">
 
-    <resultMap id="BaseResultMap" type="cn.qihangerp.interfaces.order.domain.ScmPlatform">
+    <resultMap id="BaseResultMap" type="cn.qihangerp.model.order.domain.ScmPlatform">
             <id property="id" column="id" jdbcType="INTEGER"/>
             <result property="name" column="name" jdbcType="VARCHAR"/>
             <result property="appKey" column="app_key" jdbcType="VARCHAR"/>

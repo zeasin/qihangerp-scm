@@ -1,6 +1,6 @@
 package cn.qihangerp.service.sys.mapper;
 
-import cn.qihangerp.interfaces.sys.domain.SysRoleMenu;
+import cn.qihangerp.model.sys.domain.SysRoleMenu;
 
 import java.util.List;
 

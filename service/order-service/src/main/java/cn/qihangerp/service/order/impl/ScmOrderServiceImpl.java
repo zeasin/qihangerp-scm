@@ -3,14 +3,14 @@ package cn.qihangerp.service.order.impl;
 import cn.qihangerp.common.PageQuery;
 import cn.qihangerp.common.PageResult;
 import cn.qihangerp.common.utils.DateUtils;
-import cn.qihangerp.interfaces.order.bo.OrderQuery;
-import cn.qihangerp.interfaces.order.domain.ScmOrderItem;
+import cn.qihangerp.model.order.bo.OrderQuery;
+import cn.qihangerp.model.order.domain.ScmOrderItem;
 import cn.qihangerp.service.order.mapper.ScmOrderItemMapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import cn.qihangerp.interfaces.order.domain.ScmOrder;
-import cn.qihangerp.interfaces.order.service.ScmOrderService;
+import cn.qihangerp.model.order.domain.ScmOrder;
+import cn.qihangerp.model.order.service.ScmOrderService;
 import cn.qihangerp.service.order.mapper.ScmOrderMapper;
 import lombok.AllArgsConstructor;
 

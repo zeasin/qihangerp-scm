@@ -1,7 +1,7 @@
 package cn.qihangerp.service.sys.mapper;
 
 
-import cn.qihangerp.interfaces.sys.domain.SysRoleDept;
+import cn.qihangerp.model.sys.domain.SysRoleDept;
 
 import java.util.List;
 

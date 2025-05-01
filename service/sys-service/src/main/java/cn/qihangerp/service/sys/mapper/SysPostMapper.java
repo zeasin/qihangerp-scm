@@ -1,7 +1,7 @@
 package cn.qihangerp.service.sys.mapper;
 
 
-import cn.qihangerp.interfaces.sys.domain.SysPost;
+import cn.qihangerp.model.sys.domain.SysPost;
 
 import java.util.List;
 

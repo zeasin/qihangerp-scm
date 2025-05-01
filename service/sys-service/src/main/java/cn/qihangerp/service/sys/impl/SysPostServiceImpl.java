@@ -4,8 +4,8 @@ package cn.qihangerp.service.sys.impl;
 import cn.qihangerp.common.constant.UserConstants;
 import cn.qihangerp.common.exception.ServiceException;
 import cn.qihangerp.common.utils.StringUtils;
-import cn.qihangerp.interfaces.sys.domain.SysPost;
-import cn.qihangerp.interfaces.sys.service.ISysPostService;
+import cn.qihangerp.model.sys.domain.SysPost;
+import cn.qihangerp.model.sys.service.ISysPostService;
 import cn.qihangerp.service.sys.mapper.SysPostMapper;
 import cn.qihangerp.service.sys.mapper.SysUserPostMapper;
 

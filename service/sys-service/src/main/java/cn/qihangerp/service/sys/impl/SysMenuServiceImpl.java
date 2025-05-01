@@ -10,7 +10,7 @@ import cn.qihangerp.common.model.vo.MetaVo;
 import cn.qihangerp.common.model.vo.RouterVo;
 import cn.qihangerp.common.utils.SecurityUtils;
 import cn.qihangerp.common.utils.StringUtils;
-import cn.qihangerp.interfaces.sys.service.ISysMenuService;
+import cn.qihangerp.model.sys.service.ISysMenuService;
 import cn.qihangerp.service.sys.mapper.SysMenuMapper;
 import cn.qihangerp.service.sys.mapper.SysRoleMapper;
 import cn.qihangerp.service.sys.mapper.SysRoleMenuMapper;

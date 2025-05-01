@@ -2,10 +2,10 @@ package cn.qihangerp.service.sys.impl;
 
 import cn.qihangerp.common.constant.UserConstants;
 import cn.qihangerp.common.utils.StringUtils;
-import cn.qihangerp.interfaces.sys.domain.SysDictData;
-import cn.qihangerp.interfaces.sys.domain.SysDictType;
-import cn.qihangerp.interfaces.sys.service.ISysDictTypeService;
-import cn.qihangerp.interfaces.sys.utils.DictUtils;
+import cn.qihangerp.model.sys.domain.SysDictData;
+import cn.qihangerp.model.sys.domain.SysDictType;
+import cn.qihangerp.model.sys.service.ISysDictTypeService;
+import cn.qihangerp.model.sys.utils.DictUtils;
 import cn.qihangerp.service.sys.mapper.SysDictDataMapper;
 import cn.qihangerp.service.sys.mapper.SysDictTypeMapper;
 

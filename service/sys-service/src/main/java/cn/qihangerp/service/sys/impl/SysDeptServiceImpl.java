@@ -11,7 +11,7 @@ import cn.qihangerp.common.utils.StringUtils;
 import cn.qihangerp.common.model.SysDept;
 import cn.qihangerp.common.model.SysRole;
 import cn.qihangerp.common.model.TreeSelect;
-import cn.qihangerp.interfaces.sys.service.ISysDeptService;
+import cn.qihangerp.model.sys.service.ISysDeptService;
 import cn.qihangerp.service.sys.mapper.SysDeptMapper;
 import cn.qihangerp.service.sys.mapper.SysRoleMapper;
 

@@ -5,13 +5,11 @@ import cn.qihangerp.common.constant.UserConstants;
 import cn.qihangerp.common.exception.ServiceException;
 import cn.qihangerp.common.model.SysRole;
 import cn.qihangerp.common.model.SysUser;
-import cn.qihangerp.common.utils.SecurityUtils;
-import cn.qihangerp.common.utils.SpringUtils;
 import cn.qihangerp.common.utils.StringUtils;
-import cn.qihangerp.interfaces.sys.domain.SysPost;
-import cn.qihangerp.interfaces.sys.domain.SysUserPost;
-import cn.qihangerp.interfaces.sys.domain.SysUserRole;
-import cn.qihangerp.interfaces.sys.service.ISysUserService;
+import cn.qihangerp.model.sys.domain.SysPost;
+import cn.qihangerp.model.sys.domain.SysUserPost;
+import cn.qihangerp.model.sys.domain.SysUserRole;
+import cn.qihangerp.model.sys.service.ISysUserService;
 import cn.qihangerp.service.sys.mapper.*;
 
 import org.slf4j.Logger;
