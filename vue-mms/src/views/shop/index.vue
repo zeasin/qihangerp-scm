@@ -83,7 +83,7 @@
               type="primary"
               icon="el-icon-edit"
               @click="handleApiSetting(scope.row)"
-            >获取授权Token</el-button>
+            >API参数设置</el-button>
 
         </template>
       </el-table-column>
@@ -145,15 +145,15 @@
     <!-- API参数设置对话框 -->
     <el-dialog :title="title" :visible.sync="apiOpen" width="600px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="200px">
-        <el-form-item label="appkey" prop="appkey">
-          <el-input v-model="form.appkey" placeholder="请输入appkey" />
+        <el-form-item label="appKey" prop="appkey">
+          <el-input v-model="form.appkey" placeholder="请输入appKey" />
         </el-form-item>
-        <el-form-item label="appSercet" prop="appSercet">
-          <el-input v-model="form.appSercet" placeholder="请输入appSercet" />
+        <el-form-item label="appSecret" prop="appSercet">
+          <el-input v-model="form.appSercet" placeholder="请输入appSecret" />
         </el-form-item>
-        <el-form-item label="API请求URL" prop="apiRequestUrl">
-          <el-input v-model="form.apiRequestUrl" placeholder="请输入API请求URL" />
-        </el-form-item>
+<!--        <el-form-item label="API请求URL" prop="apiRequestUrl">-->
+<!--          <el-input v-model="form.apiRequestUrl" placeholder="请输入API请求URL" />-->
+<!--        </el-form-item>-->
         <el-form-item label="卖家UserId" prop="sellerUserId">
           <el-input v-model="form.sellerUserId" placeholder="请输入sellerUserId" />
         </el-form-item>
