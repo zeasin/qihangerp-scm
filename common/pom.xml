@@ -6,8 +6,9 @@
         <artifactId>scm</artifactId>
         <version>0.5.18</version>
     </parent>
-
+    <groupId>cn.qihangerp.core</groupId>
     <artifactId>common</artifactId>
+    <version>1.0</version>
     <packaging>jar</packaging>
 
     <name>common</name>

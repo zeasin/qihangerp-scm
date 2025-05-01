@@ -1,10 +1,9 @@
 package cn.qihangerp.oms.controller;
 
 import cn.qihangerp.common.*;
-import cn.qihangerp.interfaces.order.bo.OrderQuery;
-import cn.qihangerp.interfaces.order.domain.ScmOrder;
-import cn.qihangerp.interfaces.order.domain.ScmOrderItem;
-import cn.qihangerp.interfaces.order.service.ScmOrderService;
+import cn.qihangerp.model.order.bo.OrderQuery;
+import cn.qihangerp.model.order.domain.ScmOrder;
+import cn.qihangerp.model.order.domain.ScmOrderItem;
 import cn.qihangerp.oms.domain.OmsTenantShop;
 import cn.qihangerp.oms.domain.OmsTenantShopGoodsSku;
 import cn.qihangerp.oms.security.SecurityUtils;

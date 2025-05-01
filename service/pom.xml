@@ -16,7 +16,7 @@
 
     <groupId>cn.qihangerp.service</groupId>
     <artifactId>service</artifactId>
-    <version>0.4.20</version>
+    <version>1.0.0</version>
     <packaging>pom</packaging>
 
     <name>service</name>
@@ -30,6 +30,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <spring-cloud-alibaba.version>2022.0.0.0</spring-cloud-alibaba.version>
         <spring-boot.version>3.0.13</spring-boot.version>
+
     </properties>
 
     <dependencies>

@@ -4,11 +4,11 @@
     <parent>
         <groupId>cn.qihangerp.model</groupId>
         <artifactId>model</artifactId>
-        <version>0.4.20</version>
+        <version>1.0.0</version>
     </parent>
     <artifactId>goods</artifactId>
     <packaging>jar</packaging>
-
+    <version>0.5.1</version>
     <name>goods</name>
     <url>http://maven.apache.org</url>
 

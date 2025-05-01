@@ -1,11 +1,10 @@
-package cn.qihangerp.oms.domain.vo;
+package cn.qihangerp.model.shop.vo;
 
 
 import lombok.Data;
 
-import java.math.BigDecimal;
 @Data
-public class GoodsSpecListVo {
+public class ShopGoodsSpecListVo {
 
     private Long id;
     private Long platformGoodsId;

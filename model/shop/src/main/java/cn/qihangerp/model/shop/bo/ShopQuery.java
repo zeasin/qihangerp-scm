@@ -1,11 +1,11 @@
-package cn.qihangerp.oms.domain.bo;
+package cn.qihangerp.model.shop.bo;
 
 import lombok.Data;
 
 import java.io.Serializable;
 
 @Data
-public class ShopGoodsQuery implements Serializable {
+public class ShopQuery implements Serializable {
     private Long tenantId;
     private Long shopId;
     private String goodsNum;

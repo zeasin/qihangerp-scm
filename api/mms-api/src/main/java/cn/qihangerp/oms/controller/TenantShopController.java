@@ -1,20 +1,15 @@
 package cn.qihangerp.oms.controller;
 
 import cn.qihangerp.common.*;
-import cn.qihangerp.interfaces.order.bo.OrderQuery;
-import cn.qihangerp.interfaces.order.domain.ScmOrder;
-import cn.qihangerp.interfaces.order.service.ScmPlatformService;
+import cn.qihangerp.model.order.service.ScmPlatformService;
 import cn.qihangerp.oms.domain.OmsTenantShop;
 import cn.qihangerp.oms.security.SecurityUtils;
 import cn.qihangerp.oms.service.OmsTenantShopService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -91,6 +86,6 @@ public class TenantShopController extends BaseController {
     @GetMapping("/platform/list")
     public TableDataInfo platformList()
     {
-        return getDataTable(new ArrayList<>());
+        return getDataTable(platformService.list());
     }
 }

@@ -1,6 +1,6 @@
-package cn.qihangerp.oms.service;
+package cn.qihangerp.model.shop.service;
 
-import cn.qihangerp.oms.domain.OmsTenantShop;
+import cn.qihangerp.model.shop.domain.OmsTenantShop;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

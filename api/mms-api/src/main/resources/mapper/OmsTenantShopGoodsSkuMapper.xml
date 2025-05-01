@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.qihangerp.oms.mapper.OmsTenantShopGoodsSkuMapper">
 
-    <resultMap id="BaseResultMap" type="cn.qihangerp.oms.domain.OmsTenantShopGoodsSku">
+    <resultMap id="BaseResultMap" type="cn.qihangerp.model.shop.domain.OmsTenantShopGoodsSku">
             <id property="id" column="id" jdbcType="BIGINT"/>
             <result property="skuId" column="sku_id" jdbcType="BIGINT"/>
             <result property="platformGoodsId" column="platform_goods_id" jdbcType="BIGINT"/>
@@ -39,7 +39,7 @@
         create_time,create_by,update_time,
         update_by
     </sql>
-    <resultMap type="cn.qihangerp.oms.domain.vo.GoodsSpecListVo" id="GoodsSpecListVoResult">
+    <resultMap type="cn.qihangerp.model.goods.vo.GoodsSpecListVo" id="GoodsSpecListVoResult">
         <result property="id"    column="id"    />
         <result property="platformGoodsId"    column="platform_goods_id"    />
         <result property="title"    column="title"    />
@@ -50,7 +50,7 @@
         <result property="skuImg"    column="sku_img"    />
         <result property="goodsImg"    column="goods_img"    />
     </resultMap>
-    <select id="searchGoodsSpec" parameterType="cn.qihangerp.oms.domain.vo.GoodsSpecListVo" resultMap="GoodsSpecListVoResult">
+    <select id="searchGoodsSpec" parameterType="cn.qihangerp.model.goods.vo.GoodsSpecListVo" resultMap="GoodsSpecListVoResult">
         SELECT spec.*,g.goods_num,g.title,g.goods_img
         FROM `oms_tenant_shop_goods_sku` as spec
         LEFT JOIN oms_tenant_shop_goods as g on g.platform_goods_id = spec.platform_goods_id

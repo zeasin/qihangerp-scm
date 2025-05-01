@@ -9,6 +9,7 @@
     </parent>
     <groupId>cn.qihangerp.api</groupId>
     <artifactId>oms-api</artifactId>
+    <version>0.5.1</version>
     <packaging>jar</packaging>
 
     <name>oms-api</name>
@@ -125,22 +126,22 @@
         <dependency>
             <groupId>cn.qihangerp.service</groupId>
             <artifactId>sys-service</artifactId>
-            <version>0.4.20</version>
+            <version>0.5.1</version>
         </dependency>
         <dependency>
             <groupId>cn.qihangerp.model</groupId>
             <artifactId>goods</artifactId>
-            <version>0.4.20</version>
+            <version>0.5.1</version>
         </dependency>
         <dependency>
             <groupId>cn.qihangerp.model</groupId>
             <artifactId>order</artifactId>
-            <version>0.4.24</version>
+            <version>0.5.1</version>
         </dependency>
         <dependency>
             <groupId>cn.qihangerp.model</groupId>
             <artifactId>ship</artifactId>
-            <version>0.4.24</version>
+            <version>0.5.1</version>
         </dependency>
 
         <dependency>

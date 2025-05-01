@@ -4,12 +4,12 @@
     <parent>
         <groupId>cn.qihangerp.service</groupId>
         <artifactId>service</artifactId>
-        <version>0.4.20</version>
+        <version>1.0.0</version>
     </parent>
 
     <artifactId>goods-service</artifactId>
     <packaging>jar</packaging>
-
+    <version>0.5.1</version>
     <name>goods-service</name>
     <url>http://maven.apache.org</url>
 
@@ -25,7 +25,7 @@
         <dependency>
             <groupId>cn.qihangerp.model</groupId>
             <artifactId>goods</artifactId>
-            <version>0.4.20</version>
+            <version>0.5.1</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>

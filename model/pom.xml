@@ -4,12 +4,13 @@
 
     <groupId>cn.qihangerp.model</groupId>
     <artifactId>model</artifactId>
-    <version>0.4.20</version>
+    <version>1.0.0</version>
     <packaging>pom</packaging>
 
     <name>model</name>
     <url>http://maven.apache.org</url>
     <modules>
+        <module>shop</module>
         <module>sys</module>
         <module>goods</module>
         <module>ship</module>

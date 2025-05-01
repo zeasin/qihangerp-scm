@@ -1,4 +1,4 @@
-package cn.qihangerp.oms.domain;
+package cn.qihangerp.model.shop.domain;
 
 import java.io.Serializable;
 import java.util.Date;

@@ -1,7 +1,7 @@
-package cn.qihangerp.oms.service;
+package cn.qihangerp.model.shop.service;
 
-import cn.qihangerp.oms.domain.OmsTenantShopGoodsSku;
-import cn.qihangerp.oms.domain.vo.GoodsSpecListVo;
+import cn.qihangerp.model.shop.domain.OmsTenantShopGoodsSku;
+import cn.qihangerp.model.shop.vo.ShopGoodsSpecListVo;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
@@ -12,5 +12,5 @@ import java.util.List;
 * @createDate 2024-06-23 14:13:07
 */
 public interface OmsTenantShopGoodsSkuService extends IService<OmsTenantShopGoodsSku> {
-    List<GoodsSpecListVo> searchGoodsSpec(String keyword,Long shopId,Long tenantId);
+    List<ShopGoodsSpecListVo> searchGoodsSpec(String keyword, Long shopId, Long tenantId);
 }
