@@ -2,17 +2,15 @@ package cn.qihangerp.service.goods.impl;
 
 import cn.qihangerp.common.PageQuery;
 import cn.qihangerp.common.PageResult;
-import cn.qihangerp.interfaces.goods.domain.ErpGoods;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import cn.qihangerp.interfaces.goods.domain.ErpGoodsCategoryAttribute;
-import cn.qihangerp.interfaces.goods.service.ErpGoodsCategoryAttributeService;
+import cn.qihangerp.model.goods.domain.ErpGoodsCategoryAttribute;
+import cn.qihangerp.model.goods.service.ErpGoodsCategoryAttributeService;
 import cn.qihangerp.service.goods.mapper.ErpGoodsCategoryAttributeMapper;
 import lombok.AllArgsConstructor;
 
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 /**
 * @author qilip

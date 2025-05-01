@@ -8,6 +8,7 @@ import cn.qihangerp.common.utils.StringUtils;
 import cn.qihangerp.interfaces.sys.domain.SysDictData;
 import cn.qihangerp.interfaces.sys.service.ISysDictDataService;
 import cn.qihangerp.interfaces.sys.service.ISysDictTypeService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
@@ -68,7 +69,7 @@ public class SysDictDataController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('system:dict:add')")
     @PostMapping
-    public AjaxResult add(@Validated @RequestBody SysDictData dict)
+    public AjaxResult add(@Validated @RequestBody SysDictData dict, HttpServletRequest request)
     {
         dict.setCreateBy(getUsername());
         return toAjax(dictDataService.insertDictData(dict));
@@ -79,7 +80,7 @@ public class SysDictDataController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('system:dict:edit')")
     @PutMapping
-    public AjaxResult edit(@Validated @RequestBody SysDictData dict)
+    public AjaxResult edit(@Validated @RequestBody SysDictData dict, HttpServletRequest request)
     {
         dict.setUpdateBy(getUsername());
         return toAjax(dictDataService.updateDictData(dict));

@@ -4,8 +4,8 @@ import cn.qihangerp.common.BaseController;
 import cn.qihangerp.common.TableDataInfo;
 import cn.qihangerp.common.PageQuery;
 import cn.qihangerp.common.PageResult;
-import cn.qihangerp.interfaces.goods.domain.ErpGoods;
-import cn.qihangerp.interfaces.goods.service.ErpGoodsService;
+import cn.qihangerp.model.goods.domain.ErpGoods;
+import cn.qihangerp.model.goods.service.ErpGoodsService;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

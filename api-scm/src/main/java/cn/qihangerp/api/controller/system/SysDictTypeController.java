@@ -5,6 +5,7 @@ import cn.qihangerp.common.BaseController;
 import cn.qihangerp.common.TableDataInfo;
 import cn.qihangerp.interfaces.sys.domain.SysDictType;
 import cn.qihangerp.interfaces.sys.service.ISysDictTypeService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -46,7 +47,7 @@ public class SysDictTypeController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('system:dict:add')")
     @PostMapping
-    public AjaxResult add(@Validated @RequestBody SysDictType dict)
+    public AjaxResult add(@Validated @RequestBody SysDictType dict, HttpServletRequest request)
     {
         if (!dictTypeService.checkDictTypeUnique(dict))
         {
@@ -61,7 +62,7 @@ public class SysDictTypeController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('system:dict:edit')")
     @PutMapping
-    public AjaxResult edit(@Validated @RequestBody SysDictType dict)
+    public AjaxResult edit(@Validated @RequestBody SysDictType dict, HttpServletRequest request)
     {
         if (!dictTypeService.checkDictTypeUnique(dict))
         {

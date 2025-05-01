@@ -20,7 +20,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>cn.qihangerp.interfaces</groupId>
+            <groupId>cn.qihangerp.model</groupId>
             <artifactId>order</artifactId>
             <version>0.4.24</version>
         </dependency>

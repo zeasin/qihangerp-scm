@@ -117,11 +117,10 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.12.0</version>
         </dependency>
-
         <dependency>
-            <groupId>cn.qihangerp.interfaces</groupId>
-            <artifactId>sys</artifactId>
-            <version>0.4.20</version>
+            <groupId>cn.qihangerp.core</groupId>
+            <artifactId>common</artifactId>
+            <version>1.0</version>
         </dependency>
         <dependency>
             <groupId>cn.qihangerp.service</groupId>
@@ -129,25 +128,21 @@
             <version>0.4.20</version>
         </dependency>
         <dependency>
-            <groupId>cn.qihangerp.interfaces</groupId>
+            <groupId>cn.qihangerp.model</groupId>
             <artifactId>goods</artifactId>
             <version>0.4.20</version>
         </dependency>
         <dependency>
-            <groupId>cn.qihangerp.interfaces</groupId>
+            <groupId>cn.qihangerp.model</groupId>
             <artifactId>order</artifactId>
             <version>0.4.24</version>
         </dependency>
         <dependency>
-            <groupId>cn.qihangerp.interfaces</groupId>
+            <groupId>cn.qihangerp.model</groupId>
             <artifactId>ship</artifactId>
             <version>0.4.24</version>
         </dependency>
-        <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-reflect</artifactId>
-            <version>1.8.21</version>
-        </dependency>
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>

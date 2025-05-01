@@ -1,6 +1,6 @@
 package cn.qihangerp.service.ship.mapper;
 
-import cn.qihangerp.interfaces.ship.domain.ErpShipLogistics;
+import cn.qihangerp.model.ship.domain.ErpShipLogistics;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

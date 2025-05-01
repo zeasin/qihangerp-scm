@@ -4,8 +4,6 @@ import cn.qihangerp.common.*;
 import cn.qihangerp.interfaces.order.bo.OrderQuery;
 import cn.qihangerp.interfaces.order.domain.ScmOrder;
 import cn.qihangerp.interfaces.order.service.ScmOrderService;
-import cn.qihangerp.interfaces.ship.domain.ErpShipLogistics;
-import cn.qihangerp.interfaces.ship.service.ErpShipLogisticsService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

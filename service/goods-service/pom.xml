@@ -21,10 +21,12 @@
 
     <dependencies>
 
+
         <dependency>
-            <groupId>cn.qihangerp.interfaces</groupId>
+            <groupId>cn.qihangerp.model</groupId>
             <artifactId>goods</artifactId>
             <version>0.4.20</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 </project>

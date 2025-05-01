@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.qihangerp.service.goods.mapper.ErpGoodsMapper">
 
-    <resultMap id="BaseResultMap" type="cn.qihangerp.interfaces.goods.domain.ErpGoods">
+    <resultMap id="BaseResultMap" type="cn.qihangerp.model.goods.domain.ErpGoods">
             <id property="id" column="id" jdbcType="BIGINT"/>
             <result property="name" column="name" jdbcType="VARCHAR"/>
             <result property="image" column="image" jdbcType="VARCHAR"/>

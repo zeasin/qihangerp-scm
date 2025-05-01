@@ -5,16 +5,11 @@ import cn.qihangerp.common.AjaxResult;
 import cn.qihangerp.common.BaseController;
 import cn.qihangerp.common.PageQuery;
 import cn.qihangerp.common.TableDataInfo;
-import cn.qihangerp.interfaces.goods.domain.ErpGoodsCategoryAttribute;
-import cn.qihangerp.interfaces.goods.service.ErpGoodsCategoryAttributeService;
-import jakarta.servlet.http.HttpServletResponse;
-import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
+import cn.qihangerp.model.goods.domain.ErpGoodsCategoryAttribute;
+import cn.qihangerp.model.goods.service.ErpGoodsCategoryAttributeService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * 商品分类属性Controller

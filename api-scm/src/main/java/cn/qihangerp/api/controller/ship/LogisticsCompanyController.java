@@ -1,14 +1,12 @@
 package cn.qihangerp.api.controller.ship;
 
 import cn.qihangerp.common.*;
-import cn.qihangerp.interfaces.ship.domain.ErpShipLogistics;
-import cn.qihangerp.interfaces.ship.service.ErpShipLogisticsService;
-import org.springframework.beans.factory.annotation.Autowired;
+import cn.qihangerp.model.ship.domain.ErpShipLogistics;
+import cn.qihangerp.model.ship.service.ErpShipLogisticsService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * 物流公司Controller

@@ -6,8 +6,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import cn.qihangerp.common.PageQuery;
 import cn.qihangerp.common.PageResult;
-import cn.qihangerp.interfaces.goods.domain.ErpGoods;
-import cn.qihangerp.interfaces.goods.service.ErpGoodsService;
+import cn.qihangerp.model.goods.domain.ErpGoods;
+import cn.qihangerp.model.goods.service.ErpGoodsService;
 import lombok.AllArgsConstructor;
 
 import org.springframework.stereotype.Service;

@@ -1,8 +1,8 @@
 package cn.qihangerp.service.goods.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import cn.qihangerp.interfaces.goods.domain.ErpGoodsSpecAttr;
-import cn.qihangerp.interfaces.goods.service.ErpGoodsSpecAttrService;
+import cn.qihangerp.model.goods.domain.ErpGoodsSpecAttr;
+import cn.qihangerp.model.goods.service.ErpGoodsSpecAttrService;
 import cn.qihangerp.service.goods.mapper.ErpGoodsSpecAttrMapper;
 
 import org.springframework.stereotype.Service;

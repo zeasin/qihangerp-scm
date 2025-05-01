@@ -1,13 +1,12 @@
 package cn.qihangerp.api.controller.goods;
 
-import cn.qihangerp.interfaces.goods.bo.GoodsSpecBo;
+import cn.qihangerp.model.goods.bo.GoodsSpecBo;
 import cn.qihangerp.common.BaseController;
 import cn.qihangerp.common.PageQuery;
 import cn.qihangerp.common.PageResult;
 import cn.qihangerp.common.TableDataInfo;
-import cn.qihangerp.interfaces.goods.domain.ErpGoods;
-import cn.qihangerp.interfaces.goods.domain.ErpGoodsSpec;
-import cn.qihangerp.interfaces.goods.service.ErpGoodsSpecService;
+import cn.qihangerp.model.goods.domain.ErpGoodsSpec;
+import cn.qihangerp.model.goods.service.ErpGoodsSpecService;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

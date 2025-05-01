@@ -1,6 +1,6 @@
 package cn.qihangerp.service.goods.mapper;
 
-import cn.qihangerp.interfaces.goods.domain.ErpGoodsSpec;
+import cn.qihangerp.model.goods.domain.ErpGoodsSpec;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

@@ -4,13 +4,9 @@ package cn.qihangerp.api.controller.goods;
 import cn.qihangerp.common.AjaxResult;
 import cn.qihangerp.common.BaseController;
 import cn.qihangerp.common.TableDataInfo;
-import cn.qihangerp.interfaces.goods.domain.ErpGoodsCategoryAttributeValue;
-import cn.qihangerp.interfaces.goods.service.ErpGoodsCategoryAttributeValueService;
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import jakarta.servlet.http.HttpServletResponse;
+import cn.qihangerp.model.goods.domain.ErpGoodsCategoryAttributeValue;
+import cn.qihangerp.model.goods.service.ErpGoodsCategoryAttributeValueService;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;

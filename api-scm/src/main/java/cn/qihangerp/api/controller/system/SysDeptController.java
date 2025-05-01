@@ -6,6 +6,7 @@ import cn.qihangerp.common.constant.UserConstants;
 import cn.qihangerp.common.model.SysDept;
 import cn.qihangerp.common.utils.StringUtils;
 import cn.qihangerp.interfaces.sys.service.ISysDeptService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -64,7 +65,7 @@ public class SysDeptController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('system:dept:add')")
     @PostMapping
-    public AjaxResult add(@Validated @RequestBody SysDept dept)
+    public AjaxResult add(@Validated @RequestBody SysDept dept, HttpServletRequest request)
     {
         if (!deptService.checkDeptNameUnique(dept))
         {
@@ -79,7 +80,7 @@ public class SysDeptController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('system:dept:edit')")
     @PutMapping
-    public AjaxResult edit(@Validated @RequestBody SysDept dept)
+    public AjaxResult edit(@Validated @RequestBody SysDept dept, HttpServletRequest request)
     {
         Long deptId = dept.getDeptId();
         deptService.checkDeptDataScope(deptId);
