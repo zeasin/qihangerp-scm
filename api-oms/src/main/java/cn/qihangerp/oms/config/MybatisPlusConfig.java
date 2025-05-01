@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@MapperScan("cn.qihangerp.oms.mapper")
+@MapperScan(basePackages = {"cn.qihangerp.oms.mapper","cn.qihangerp.service.*.mapper"})
 public class MybatisPlusConfig {
     @Bean
     public MybatisPlusInterceptor mybatisPlusInterceptor() {

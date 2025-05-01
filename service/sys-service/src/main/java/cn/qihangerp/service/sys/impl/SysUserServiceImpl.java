@@ -13,7 +13,7 @@ import cn.qihangerp.interfaces.sys.domain.SysUserPost;
 import cn.qihangerp.interfaces.sys.domain.SysUserRole;
 import cn.qihangerp.interfaces.sys.service.ISysUserService;
 import cn.qihangerp.service.sys.mapper.*;
-import org.apache.dubbo.config.annotation.DubboService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,7 @@ import java.util.stream.Collectors;
  * 
  * @author qihang
  */
-@DubboService
+
 @Service
 public class SysUserServiceImpl implements ISysUserService
 {

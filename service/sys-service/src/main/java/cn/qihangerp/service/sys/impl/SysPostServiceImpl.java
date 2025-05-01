@@ -8,7 +8,7 @@ import cn.qihangerp.interfaces.sys.domain.SysPost;
 import cn.qihangerp.interfaces.sys.service.ISysPostService;
 import cn.qihangerp.service.sys.mapper.SysPostMapper;
 import cn.qihangerp.service.sys.mapper.SysUserPostMapper;
-import org.apache.dubbo.config.annotation.DubboService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +19,7 @@ import java.util.List;
  * 
  * @author qihang
  */
-@DubboService
+
 @Service
 public class SysPostServiceImpl implements ISysPostService
 {

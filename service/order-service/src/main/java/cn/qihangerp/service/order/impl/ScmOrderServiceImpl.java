@@ -13,7 +13,7 @@ import cn.qihangerp.interfaces.order.domain.ScmOrder;
 import cn.qihangerp.interfaces.order.service.ScmOrderService;
 import cn.qihangerp.service.order.mapper.ScmOrderMapper;
 import lombok.AllArgsConstructor;
-import org.apache.dubbo.config.annotation.DubboService;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
@@ -26,7 +26,7 @@ import java.util.List;
 * @description 针对表【scm_order(订单表)】的数据库操作Service实现
 * @createDate 2024-06-23 09:36:46
 */
-@DubboService
+
 @AllArgsConstructor
 @Service
 public class ScmOrderServiceImpl extends ServiceImpl<ScmOrderMapper, ScmOrder>

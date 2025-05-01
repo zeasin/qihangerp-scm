@@ -14,19 +14,7 @@ spring:
   messages:
     # 国际化资源文件路径
     basename: i18n/messages
-#dubbo:
-#  application:
-#    name: qihang-oms-api
-#  protocol:
-#    name: dubbo
-#    port: -1
-#  registry:
-#    id: nacos-registry
-#    address: nacos://127.0.0.1:8848
-#  config-center:
-#    address: nacos://127.0.0.1:8848
-#  metadata-report:
-#    address: nacos://127.0.0.1:8848
+
 server:
   port: 8081
 

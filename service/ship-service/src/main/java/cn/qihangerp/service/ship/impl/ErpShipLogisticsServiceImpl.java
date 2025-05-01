@@ -10,7 +10,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import cn.qihangerp.service.ship.mapper.ErpShipLogisticsMapper;
 import lombok.AllArgsConstructor;
-import org.apache.dubbo.config.annotation.DubboService;
+
 import org.springframework.stereotype.Service;
 
 /**
@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
 * @createDate 2024-04-24 14:41:40
 */
 @AllArgsConstructor
-@DubboService
+
 @Service
 public class ErpShipLogisticsServiceImpl extends ServiceImpl<ErpShipLogisticsMapper, ErpShipLogistics>
     implements ErpShipLogisticsService {

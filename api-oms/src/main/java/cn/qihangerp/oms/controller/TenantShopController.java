@@ -24,8 +24,8 @@ import java.util.List;
 public class TenantShopController extends BaseController {
     @Autowired
     private OmsTenantShopService shopService;
-//    @DubboReference
-//    private ScmPlatformService platformService;
+    @Autowired
+    private ScmPlatformService platformService;
 
     @GetMapping("/shop/list")
     public TableDataInfo list()

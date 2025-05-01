@@ -8,14 +8,13 @@ import cn.qihangerp.interfaces.sys.service.ISysDictTypeService;
 import cn.qihangerp.interfaces.sys.utils.DictUtils;
 import cn.qihangerp.service.sys.mapper.SysDictDataMapper;
 import cn.qihangerp.service.sys.mapper.SysDictTypeMapper;
-import org.apache.dubbo.config.annotation.DubboService;
+
+import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.annotation.PostConstruct;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +25,7 @@ import java.util.stream.Collectors;
  * 
  * @author qihang
  */
-@DubboService
+
 @Service
 public class SysDictTypeServiceImpl implements ISysDictTypeService
 {

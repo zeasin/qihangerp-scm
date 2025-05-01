@@ -14,7 +14,7 @@ import cn.qihangerp.common.model.TreeSelect;
 import cn.qihangerp.interfaces.sys.service.ISysDeptService;
 import cn.qihangerp.service.sys.mapper.SysDeptMapper;
 import cn.qihangerp.service.sys.mapper.SysRoleMapper;
-import org.apache.dubbo.config.annotation.DubboService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
  * 
  * @author qihang
  */
-@DubboService
+
 @Service
 public class SysDeptServiceImpl implements ISysDeptService
 {

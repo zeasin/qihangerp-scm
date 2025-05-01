@@ -9,7 +9,7 @@
 //import cn.qihangerp.interfaces.sys.domain.SysConfig;
 //import cn.qihangerp.interfaces.sys.service.ISysConfigService;
 //import cn.qihangerp.service.sys.mapper.SysConfigMapper;
-//import org.apache.dubbo.config.annotation.DubboService;
+//
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
 //import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@
 // *
 // * @author qihang
 // */
-//@DubboService
+//
 //@Service
 //public class SysConfigServiceImpl implements ISysConfigService
 //{

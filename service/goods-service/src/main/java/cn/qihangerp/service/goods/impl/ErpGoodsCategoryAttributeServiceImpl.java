@@ -10,7 +10,7 @@ import cn.qihangerp.interfaces.goods.domain.ErpGoodsCategoryAttribute;
 import cn.qihangerp.interfaces.goods.service.ErpGoodsCategoryAttributeService;
 import cn.qihangerp.service.goods.mapper.ErpGoodsCategoryAttributeMapper;
 import lombok.AllArgsConstructor;
-import org.apache.dubbo.config.annotation.DubboService;
+
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -19,7 +19,7 @@ import org.springframework.util.StringUtils;
 * @description 针对表【erp_goods_category_attribute】的数据库操作Service实现
 * @createDate 2024-06-22 17:07:17
 */
-@DubboService
+
 @AllArgsConstructor
 @Service
 public class ErpGoodsCategoryAttributeServiceImpl extends ServiceImpl<ErpGoodsCategoryAttributeMapper, ErpGoodsCategoryAttribute>

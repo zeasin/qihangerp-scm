@@ -15,7 +15,7 @@ import cn.qihangerp.service.sys.mapper.SysRoleDeptMapper;
 import cn.qihangerp.service.sys.mapper.SysRoleMapper;
 import cn.qihangerp.service.sys.mapper.SysRoleMenuMapper;
 import cn.qihangerp.service.sys.mapper.SysUserRoleMapper;
-import org.apache.dubbo.config.annotation.DubboService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,7 +27,7 @@ import java.util.*;
  * 
  * @author qihang
  */
-@DubboService
+
 @Service
 public class SysRoleServiceImpl implements ISysRoleService
 {

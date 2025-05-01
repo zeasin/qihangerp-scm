@@ -11,7 +11,7 @@ import cn.qihangerp.interfaces.goods.domain.ErpGoodsSpec;
 import cn.qihangerp.interfaces.goods.service.ErpGoodsSpecService;
 import cn.qihangerp.service.goods.mapper.ErpGoodsSpecMapper;
 import lombok.AllArgsConstructor;
-import org.apache.dubbo.config.annotation.DubboService;
+
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -21,7 +21,7 @@ import org.springframework.util.StringUtils;
 * @createDate 2024-06-22 17:07:17
 */
 @AllArgsConstructor
-@DubboService
+
 @Service
 public class ErpGoodsSpecServiceImpl extends ServiceImpl<ErpGoodsSpecMapper, ErpGoodsSpec>
     implements ErpGoodsSpecService{

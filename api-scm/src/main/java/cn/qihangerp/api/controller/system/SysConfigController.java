@@ -6,7 +6,6 @@
 //import cn.qihangerp.common.TableDataInfo;
 //import cn.qihangerp.interfaces.sys.domain.SysConfig;
 //import cn.qihangerp.interfaces.sys.service.ISysConfigService;
-//import org.apache.dubbo.config.annotation.DubboReference;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.access.prepost.PreAuthorize;
 //import org.springframework.validation.annotation.Validated;
@@ -22,7 +21,7 @@
 //@RequestMapping("/system/config")
 //public class SysConfigController extends BaseController
 //{
-//    @DubboReference
+//
 //    private ISysConfigService configService;
 //
 //    /**

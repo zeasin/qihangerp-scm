@@ -32,7 +32,6 @@
 <!--        <poi.version>4.1.2</poi.version>-->
 <!--        <velocity.version>2.3</velocity.version>-->
 <!--        <jwt.version>0.9.1</jwt.version>-->
-<!--        <dubbo.version>3.2.12</dubbo.version>-->
     </properties>
     <modules>
         <module>api-scm</module>

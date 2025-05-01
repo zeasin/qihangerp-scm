@@ -6,7 +6,7 @@ import cn.qihangerp.interfaces.goods.domain.ErpGoodsCategoryAttributeValue;
 import cn.qihangerp.interfaces.goods.service.ErpGoodsCategoryAttributeValueService;
 import cn.qihangerp.service.goods.mapper.ErpGoodsCategoryAttributeValueMapper;
 import lombok.AllArgsConstructor;
-import org.apache.dubbo.config.annotation.DubboService;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,7 +17,7 @@ import java.util.List;
 * @createDate 2024-06-22 17:07:17
 */
 @AllArgsConstructor
-@DubboService
+
 @Service
 public class ErpGoodsCategoryAttributeValueServiceImpl extends ServiceImpl<ErpGoodsCategoryAttributeValueMapper, ErpGoodsCategoryAttributeValue>
     implements ErpGoodsCategoryAttributeValueService{

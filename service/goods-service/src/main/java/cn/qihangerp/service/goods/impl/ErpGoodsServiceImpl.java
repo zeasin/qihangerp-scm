@@ -9,7 +9,7 @@ import cn.qihangerp.common.PageResult;
 import cn.qihangerp.interfaces.goods.domain.ErpGoods;
 import cn.qihangerp.interfaces.goods.service.ErpGoodsService;
 import lombok.AllArgsConstructor;
-import org.apache.dubbo.config.annotation.DubboService;
+
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -18,7 +18,7 @@ import org.springframework.util.StringUtils;
 * @description 针对表【erp_goods(商品库存管理)】的数据库操作Service实现
 * @createDate 2024-03-26 10:06:36
 */
-@DubboService
+
 @AllArgsConstructor
 @Service
 public class ErpGoodsServiceImpl extends ServiceImpl<ErpGoodsMapper, ErpGoods>

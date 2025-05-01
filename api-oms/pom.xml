@@ -131,5 +131,10 @@
             <artifactId>order</artifactId>
             <version>0.4.24</version>
         </dependency>
+        <dependency>
+            <groupId>cn.qihangerp.service</groupId>
+            <artifactId>order-service</artifactId>
+            <version>0.4.24</version>
+        </dependency>
     </dependencies>
 </project>

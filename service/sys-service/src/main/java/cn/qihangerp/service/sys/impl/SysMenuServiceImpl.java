@@ -14,7 +14,7 @@ import cn.qihangerp.interfaces.sys.service.ISysMenuService;
 import cn.qihangerp.service.sys.mapper.SysMenuMapper;
 import cn.qihangerp.service.sys.mapper.SysRoleMapper;
 import cn.qihangerp.service.sys.mapper.SysRoleMenuMapper;
-import org.apache.dubbo.config.annotation.DubboService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
  * 
  * @author qihang
  */
-@DubboService
+
 @Service
 public class SysMenuServiceImpl implements ISysMenuService
 {

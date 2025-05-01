@@ -3,7 +3,7 @@ package cn.qihangerp.service.sys.impl;
 import cn.qihangerp.interfaces.sys.domain.SysDictData;
 import cn.qihangerp.interfaces.sys.service.ISysDictDataService;
 import cn.qihangerp.service.sys.mapper.SysDictDataMapper;
-import org.apache.dubbo.config.annotation.DubboService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,7 @@ import java.util.List;
  * 
  * @author qihang
  */
-@DubboService
+
 @Service
 public class SysDictDataServiceImpl implements ISysDictDataService
 {

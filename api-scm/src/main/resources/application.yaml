@@ -12,19 +12,7 @@ spring:
     import:
       - nacos:qihangerp-scm.yaml?refresh=true
 
-#dubbo:
-#  application:
-#    name: qihang-scm-api
-#  protocol:
-#    name: dubbo
-#    port: -1
-#  registry:
-#    id: nacos-registry
-#    address: nacos://127.0.0.1:8848
-#  config-center:
-#    address: nacos://127.0.0.1:8848
-#  metadata-report:
-#    address: nacos://127.0.0.1:8848
+
 server:
   port: 8080
 
