@@ -1,7 +1,7 @@
 package cn.qihangerp.oms.controller;
 
 import cn.qihangerp.common.*;
-import cn.qihangerp.model.order.service.ScmPlatformService;
+import cn.qihangerp.model.shop.service.ErpShopPlatformService;
 
 import cn.qihangerp.model.shop.domain.OmsTenantShop;
 import cn.qihangerp.model.shop.service.OmsTenantShopService;
@@ -22,7 +22,7 @@ public class TenantShopController extends BaseController {
     @Autowired
     private OmsTenantShopService shopService;
     @Autowired
-    private ScmPlatformService platformService;
+    private ErpShopPlatformService platformService;
 
     @GetMapping("/shop/list")
     public TableDataInfo list()

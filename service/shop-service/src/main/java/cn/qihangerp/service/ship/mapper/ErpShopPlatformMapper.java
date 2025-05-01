@@ -1,6 +1,6 @@
-package cn.qihangerp.service.order.mapper;
+package cn.qihangerp.service.ship.mapper;
 
-import cn.qihangerp.model.order.domain.ScmPlatform;
+import cn.qihangerp.model.shop.domain.ErpShopPlatform;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @createDate 2024-06-23 13:28:41
 * @Entity cn.qihangerp.interfaces.order.domain.ScmPlatform
 */
-public interface ScmPlatformMapper extends BaseMapper<ScmPlatform> {
+public interface ErpShopPlatformMapper extends BaseMapper<ErpShopPlatform> {
 
 }
 

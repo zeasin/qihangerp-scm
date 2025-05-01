@@ -37,7 +37,7 @@ public class OmsTenantShop implements Serializable {
     /**
      * 对应第三方平台Id
      */
-    private Integer type;
+    private String type;
 
     /**
      * 店铺url

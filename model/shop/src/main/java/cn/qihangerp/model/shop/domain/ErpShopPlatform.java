@@ -1,4 +1,4 @@
-package cn.qihangerp.model.order.domain;
+package cn.qihangerp.model.shop.domain;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -12,12 +12,12 @@ import lombok.Data;
  * @TableName scm_platform
  */
 @Data
-public class ScmPlatform implements Serializable {
+public class ErpShopPlatform implements Serializable {
     /**
      * 主键
      */
     @TableId(value = "id", type = IdType.AUTO)
-    private Integer id;
+    private String id;
 
     /**
      * 平台名

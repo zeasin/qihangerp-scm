@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.qihangerp.service.order.mapper.ScmPlatformMapper">
+<mapper namespace="cn.qihangerp.service.ship.mapper.ErpShopPlatformMapper">
 
-    <resultMap id="BaseResultMap" type="cn.qihangerp.model.order.domain.ScmPlatform">
+    <resultMap id="BaseResultMap" type="cn.qihangerp.model.shop.domain.ErpShopPlatform">
             <id property="id" column="id" jdbcType="INTEGER"/>
             <result property="name" column="name" jdbcType="VARCHAR"/>
             <result property="appKey" column="app_key" jdbcType="VARCHAR"/>

@@ -59,9 +59,9 @@
       </el-table-column>
 
        <el-table-column label="卖家userId" align="center" prop="sellerUserIdStr" />
-       <el-table-column label="Appkey" align="center" prop="appkey" />
-       <el-table-column label="AppSercet" align="center" prop="appSercet" />
-      <el-table-column label="回调Url" align="center" prop="callbackUrl" />
+       <el-table-column label="AppKey" align="center" prop="appkey" />
+       <el-table-column label="AppSecret" align="center" prop="appSercet" />
+<!--      <el-table-column label="回调Url" align="center" prop="callbackUrl" />-->
       <el-table-column label="描述" align="center" prop="remark" />
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
@@ -98,8 +98,8 @@
     />
 
     <!-- 添加或修改店铺对话框 -->
-    <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
-      <el-form ref="form" :model="form" :rules="rules" label-width="100px">
+    <el-dialog :title="title" :visible.sync="open" width="600px" append-to-body>
+      <el-form ref="form" :model="form" :rules="rules" label-width="200px">
         <el-form-item label="店铺名" prop="name">
           <el-input v-model="form.name" placeholder="请输入店铺名" />
         </el-form-item>
@@ -128,9 +128,9 @@
         <el-form-item label="appSercet" prop="appSercet">
           <el-input v-model="form.appSercet" placeholder="请输入开放平台appSercet" />
         </el-form-item>
-        <el-form-item label="回调URL" prop="callbackUrl">
-          <el-input v-model="form.callbackUrl" placeholder="请输入开放平台回调URL" />
-        </el-form-item>
+<!--        <el-form-item label="回调URL" prop="callbackUrl">-->
+<!--          <el-input v-model="form.callbackUrl" placeholder="请输入开放平台回调URL" />-->
+<!--        </el-form-item>-->
         <el-form-item label="描述" prop="remark">
           <el-input type="textarea" v-model="form.remark" placeholder="请输入描述" />
         </el-form-item>
@@ -143,8 +143,8 @@
     </el-dialog>
 
     <!-- API参数设置对话框 -->
-    <el-dialog :title="title" :visible.sync="apiOpen" width="500px" append-to-body>
-      <el-form ref="form" :model="form" :rules="rules" label-width="120px">
+    <el-dialog :title="title" :visible.sync="apiOpen" width="600px" append-to-body>
+      <el-form ref="form" :model="form" :rules="rules" label-width="200px">
         <el-form-item label="appkey" prop="appkey">
           <el-input v-model="form.appkey" placeholder="请输入appkey" />
         </el-form-item>

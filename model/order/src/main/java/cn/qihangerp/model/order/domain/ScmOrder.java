@@ -30,7 +30,7 @@ public class ScmOrder implements Serializable {
     /**
      * 店铺类型
      */
-    private Integer shopType;
+    private String shopType;
 
     /**
      * 店铺ID
