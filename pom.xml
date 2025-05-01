@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	
     <groupId>cn.qihangerp</groupId>
-    <artifactId>scm</artifactId>
+    <artifactId>qihangerp-scm</artifactId>
     <version>0.5.18</version>
 
     <name>qihangerp-scm</name>
