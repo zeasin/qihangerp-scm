@@ -117,7 +117,7 @@
             icon="el-icon-edit"
             @click="handleUpdate(scope.row)"
             v-hasPermi="['api:returned:edit']"
-          >拦截入库</el-button>
+          >退货入库</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -206,11 +206,11 @@
 </template>
 
 <script>
-import {listReturned, addExchange, shipAgainComplete} from "@/api/afterSale/intercept";
-import {listShop} from "@/api/channel/tenant";
+import {listReturned, addExchange, shipAgainComplete} from "@/api/afterSale/returned";
+import {listShop} from "@/api/shop/shop";
 
 export default {
-  name: "InterceptAfter",
+  name: "ReturnedAfter",
   data() {
     return {
       // 遮罩层

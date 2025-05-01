@@ -74,67 +74,52 @@ export const constantRoutes = [
       }
     ]
   },
-  {
-    path: '/user',
-    component: Layout,
-    hidden: true,
-    redirect: 'noredirect',
-    children: [
-      {
-        path: 'profile',
-        component: () => import('@/views/system/user/profile/index'),
-        name: 'Profile',
-        meta: { title: '个人中心', icon: 'user' }
-      }
-    ]
-  }
 ]
 
 // 动态路由，基于用户权限动态去加载
 export const dynamicRoutes = [
-  {
-    path: '/system/user-auth',
-    component: Layout,
-    hidden: true,
-    permissions: ['system:user:edit'],
-    children: [
-      {
-        path: 'role/:userId(\\d+)',
-        component: () => import('@/views/system/user/authRole'),
-        name: 'AuthRole',
-        meta: { title: '分配角色', activeMenu: '/system/user' }
-      }
-    ]
-  },
-  {
-    path: '/system/role-auth',
-    component: Layout,
-    hidden: true,
-    permissions: ['system:role:edit'],
-    children: [
-      {
-        path: 'user/:roleId(\\d+)',
-        component: () => import('@/views/system/role/authUser'),
-        name: 'AuthUser',
-        meta: { title: '分配用户', activeMenu: '/system/role' }
-      }
-    ]
-  },
-  {
-    path: '/system/dict-data',
-    component: Layout,
-    hidden: true,
-    permissions: ['system:dict:list'],
-    children: [
-      {
-        path: 'index/:dictId(\\d+)',
-        component: () => import('@/views/system/dict/data'),
-        name: 'Data',
-        meta: { title: '字典数据', activeMenu: '/system/dict' }
-      }
-    ]
-  }
-
+  // {
+  //   path: '/system/user-auth',
+  //   component: Layout,
+  //   hidden: true,
+  //   permissions: ['system:user:edit'],
+  //   children: [
+  //     {
+  //       path: 'role/:userId(\\d+)',
+  //       component: () => import('@/views/system/user/authRole'),
+  //       name: 'AuthRole',
+  //       meta: { title: '分配角色', activeMenu: '/system/user' }
+  //     }
+  //   ]
+  // },
+  // {
+  //   path: '/system/role-auth',
+  //   component: Layout,
+  //   hidden: true,
+  //   permissions: ['system:role:edit'],
+  //   children: [
+  //     {
+  //       path: 'user/:roleId(\\d+)',
+  //       component: () => import('@/views/system/role/authUser'),
+  //       name: 'AuthUser',
+  //       meta: { title: '分配用户', activeMenu: '/system/role' }
+  //     }
+  //   ]
+  // },
+  // {
+  //   path: '/system/dict-data',
+  //   component: Layout,
+  //   hidden: true,
+  //   permissions: ['system:dict:list'],
+  //   children: [
+  //     {
+  //       path: 'index/:dictId(\\d+)',
+  //       component: () => import('@/views/system/dict/data'),
+  //       name: 'Data',
+  //       meta: { title: '字典数据', activeMenu: '/system/dict' }
+  //     }
+  //   ]
+  // }
 ]
 
 // 防止连续点击多次路由报错

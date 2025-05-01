@@ -10,7 +10,7 @@
           <div class="card-panel-text">
             待发货
           </div>
-          <count-to :start-val="0" :end-val="1212" :duration="3000" class="card-panel-num" />
+          <count-to :start-val="0" :end-val="12" :duration="3000" class="card-panel-num" />
         </div>
       </div>
     </el-col>
@@ -34,7 +34,7 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            待售后
+            商品库
           </div>
           <count-to :start-val="0" :end-val="36" :duration="3600" class="card-panel-num" />
         </div>
@@ -47,9 +47,9 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            分销终端
+            待售后
           </div>
-          <count-to :start-val="0" :end-val="102" :duration="2600" class="card-panel-num" />
+          <count-to :start-val="0" :end-val="5" :duration="2600" class="card-panel-num" />
         </div>
       </div>
     </el-col>

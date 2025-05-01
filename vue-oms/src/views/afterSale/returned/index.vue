@@ -1,37 +1,21 @@
 <template>
   <div class="app-container">
     <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
-      <el-form-item label="退货单号" prop="afterSaleOrderId">
+      <el-form-item label="退货单号" prop="returnedNum">
         <el-input
-          v-model="queryParams.afterSaleOrderId"
+          v-model="queryParams.returnedNum"
           placeholder="请输入退货单号"
           clearable
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="源订单号" prop="orderId">
+      <el-form-item label="源订单号" prop="orderNum">
         <el-input
-          v-model="queryParams.orderId"
+          v-model="queryParams.orderNum"
           placeholder="请输入源订单号"
           clearable
           @keyup.enter.native="handleQuery"
         />
-      </el-form-item>
-      <el-form-item label="店铺" prop="shopId">
-        <el-select v-model="queryParams.shopId" placeholder="请选择店铺" clearable @change="handleQuery">
-          <el-option
-            v-for="item in shopList"
-            :key="item.id"
-            :label="item.name"
-            :value="item.id">
-            <span style="float: left">{{ item.name }}</span>
-            <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 1">淘宝天猫</span>
-            <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 2">京东</span>
-            <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 3">抖店</span>
-            <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 4">拼多多</span>
-            <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 5">视频号小店</span>
-          </el-option>
-        </el-select>
       </el-form-item>
 
       <el-form-item label="商品id" prop="goodsId">
@@ -42,23 +26,32 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="sku编码" prop="skuCode">
+
+      <el-form-item label="商品编码" prop="goodsNum">
         <el-input
-          v-model="queryParams.skuCode"
-          placeholder="请输入sku编码"
+          v-model="queryParams.goodsNum"
+          placeholder="请输入商品编码"
+          clearable
+          @keyup.enter.native="handleQuery"
+        />
+      </el-form-item>
+      <el-form-item label="规格编码" prop="specNum">
+        <el-input
+          v-model="queryParams.specNum"
+          placeholder="请输入规格编码"
           clearable
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
 
-<!--      <el-form-item label="物流单号" prop="logisticsCode">-->
-<!--        <el-input-->
-<!--          v-model="queryParams.logisticsCode"-->
-<!--          placeholder="请输入物流单号"-->
-<!--          clearable-->
-<!--          @keyup.enter.native="handleQuery"-->
-<!--        />-->
-<!--      </el-form-item>-->
+      <el-form-item label="物流单号" prop="logisticsCode">
+        <el-input
+          v-model="queryParams.logisticsCode"
+          placeholder="请输入物流单号"
+          clearable
+          @keyup.enter.native="handleQuery"
+        />
+      </el-form-item>
 
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
@@ -67,57 +60,114 @@
     </el-form>
 
     <el-row :gutter="10" class="mb8">
-
+      <!-- <el-col :span="1.5">
+        <el-button
+          type="primary"
+          plain
+          icon="el-icon-plus"
+          size="mini"
+          @click="handleAdd"
+          v-hasPermi="['api:returned:add']"
+        >新增</el-button>
+      </el-col> -->
+      <!-- <el-col :span="1.5">
+        <el-button
+          type="success"
+          plain
+          icon="el-icon-edit"
+          size="mini"
+          :disabled="single"
+          @click="handleUpdate"
+          v-hasPermi="['api:returned:edit']"
+        >修改</el-button>
+      </el-col>
+      <el-col :span="1.5">
+        <el-button
+          type="danger"
+          plain
+          icon="el-icon-delete"
+          size="mini"
+          :disabled="multiple"
+          @click="handleDelete"
+          v-hasPermi="['api:returned:remove']"
+        >删除</el-button>
+      </el-col> -->
+      <el-col :span="1.5">
+        <el-button
+          type="warning"
+          plain
+          icon="el-icon-download"
+          size="mini"
+          @click="handleExport"
+          v-hasPermi="['api:returned:export']"
+        >导出</el-button>
+      </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 
-    <el-table v-loading="loading" :data="dataList" @selection-change="handleSelectionChange">
+    <el-table v-loading="loading" :data="returnedList" @selection-change="handleSelectionChange">
       <!-- <el-table-column type="selection" width="55" align="center" /> -->
       <el-table-column label="ID" align="center" prop="id" />
-      <el-table-column label="退货单号" align="center" prop="afterSaleOrderId" />
-      <el-table-column label="退货类型" align="center" prop="type" >
+      <el-table-column label="退货单号" align="center" prop="returnedNum" />
+      <el-table-column label="退货类型" align="center" prop="returnedType" >
         <template slot-scope="scope">
-          <el-tag size="small" v-if="scope.row.type === 10"> 退货</el-tag>
-          <el-tag size="small" v-if="scope.row.type === 20"> 换货</el-tag>
-          <el-tag size="small" v-if="scope.row.type === 80"> 补发</el-tag>
-          <el-tag size="small" v-if="scope.row.type === 99"> 订单拦截</el-tag>
+          <el-tag size="small" v-if="scope.row.returnedType === 1"> 退货</el-tag>
+          <el-tag size="small" v-if="scope.row.returnedType === 2"> 换货</el-tag>
         </template>
       </el-table-column>
-      <el-table-column label="源订单号" align="center" prop="orderId" />
-       <el-table-column label="店铺" align="center" prop="shopId" >
-         <template slot-scope="scope">
-           <span>{{ shopList.find(x=>x.id === scope.row.shopId).name  }}</span>
-         </template>
-       </el-table-column>
-       <el-table-column label="订单id" align="center" prop="orderId" />
-       <el-table-column label="子订单id" align="center" prop="subOrderId" />
-       <el-table-column label="商品" align="center" prop="title" />
-       <el-table-column label="sku" align="center" prop="skuInfo" />
-       <el-table-column label="SKU编码" align="center" prop="skuCode" />
-      <el-table-column label="数量" align="center" prop="count" />
-       <el-table-column label="物流公司" align="center" prop="shipCompany" />
-      <el-table-column label="物流单号" align="center" prop="shipWaybillCode" />
-      <el-table-column label="收货人" align="center" prop="receiverName" />
-      <el-table-column label="手机号" align="center" prop="receiverTel" />
-      <el-table-column label="收货地址" align="center" prop="receiverAddress" />
+      <el-table-column label="源订单号" align="center" prop="orderNum" />
+      <!-- <el-table-column label="店铺id" align="center" prop="shopId" /> -->
+      <!-- <el-table-column label="店铺类型" align="center" prop="shopType" /> -->
+      <!-- <el-table-column label="订单id" align="center" prop="orderId" /> -->
+      <!-- <el-table-column label="子订单id" align="center" prop="orderItemId" /> -->
+      <!-- <el-table-column label="商品id" align="center" prop="goodsId" /> -->
+      <!-- <el-table-column label="规格id" align="center" prop="specId" /> -->
+      <!-- <el-table-column label="商品编码" align="center" prop="goodsNum" /> -->
+      <el-table-column label="规格编码" align="center" prop="specNum" />
+      <el-table-column label="商品名称" align="center" prop="goodsName" />
+      <el-table-column label="商品规格" align="center" prop="goodsSpec" />
+      <el-table-column label="商品图片" align="center" prop="goodsImage" width="100">
+        <template slot-scope="scope">
+          <image-preview :src="scope.row.goodsImage" :width="50" :height="50"/>
+        </template>
+      </el-table-column>
+      <el-table-column label="退货数量" align="center" prop="quantity" />
+      <!-- <el-table-column label="物流公司" align="center" prop="logisticsCompany" /> -->
+      <el-table-column label="物流单号" align="center" prop="logisticsCode" />
+      <el-table-column label="收货时间" align="center" prop="receiveTime" width="180">
+        <template slot-scope="scope">
+          <span>{{ parseTime(scope.row.receiveTime, '{y}-{m}-{d}') }}</span>
+        </template>
+      </el-table-column>
       <el-table-column label="备注" align="center" prop="remark" />
+      <!-- <el-table-column label="发货人" align="center" prop="contactPerson" />
+      <el-table-column label="发货人手机号" align="center" prop="mobile" />
+      <el-table-column label="发货地址" align="center" prop="address" /> -->
       <el-table-column label="状态" align="center" prop="status" >
         <template slot-scope="scope">
-          <el-tag size="small" v-if="scope.row.status === 1"> 已发出</el-tag>
-          <el-tag size="small" v-if="scope.row.status === 2"> 已签收</el-tag>
+          <el-tag size="small" v-if="scope.row.status === 1"> 待收货</el-tag>
+          <el-tag size="small" v-if="scope.row.status === 2"> 已收货</el-tag>
           <el-tag size="small" v-if="scope.row.status === 3"> 已完成</el-tag>
         </template>
       </el-table-column>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
-            v-if="scope.row.status === 2"
+           v-if="scope.row.status === 1"
             size="mini"
             type="text"
             icon="el-icon-edit"
             @click="handleUpdate(scope.row)"
             v-hasPermi="['api:returned:edit']"
-          >退货入库</el-button>
+          >确认收货</el-button>
+          <el-button
+           v-if="scope.row.status === 2"
+            size="mini"
+            type="text"
+            icon="el-icon-edit"
+            @click="handleUpdate(scope.row)"
+            v-hasPermi="['api:returned:edit']"
+          >入库</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -132,69 +182,71 @@
 
     <!-- 添加或修改退换货对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
-      <el-form ref="form" :model="form" :rules="rules" label-width="120px">
-        <el-form-item label="店铺" prop="shopId">
-          <el-select v-model="form.shopId" filterable r placeholder="搜索店铺" >
-            <el-option v-for="item in shopList" :key="item.id" :label="item.name" :value="item.id">
-              <span style="float: left">{{ item.name }}</span>
-              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 1">淘宝天猫</span>
-              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 2">京东</span>
-              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 3">抖店</span>
-              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 4">拼多多</span>
-              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 5">视频号小店</span>
-            </el-option>
-          </el-select>
+      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+        <el-form-item label="退货单号" prop="returnedNum">
+          <el-input v-model="form.returnedNum" placeholder="请输入退货单号" />
         </el-form-item>
-        <el-form-item label="退货单号" prop="afterSaleOrderId">
-          <el-input v-model="form.afterSaleOrderId" placeholder="请输入退货单号" />
+        <el-form-item label="源订单号" prop="orderNum">
+          <el-input v-model="form.orderNum" placeholder="请输入源订单号" />
         </el-form-item>
-        <el-form-item label="源订单号" prop="orderId">
-          <el-input v-model="form.orderId" placeholder="请输入源订单号" />
+        <el-form-item label="店铺id" prop="shopId">
+          <el-input v-model="form.shopId" placeholder="请输入店铺id" />
         </el-form-item>
-        <el-form-item label="子订单id" prop="subOrderId">
-          <el-input v-model="form.subOrderId" placeholder="请输入订单id" />
+        <el-form-item label="订单id" prop="orderId">
+          <el-input v-model="form.orderId" placeholder="请输入订单id" />
         </el-form-item>
-        <el-form-item label="平台商品id" prop="productId">
-          <el-input v-model="form.productId" placeholder="请输入平台商品id" />
+        <el-form-item label="子订单id" prop="orderTimeId">
+          <el-input v-model="form.orderTimeId" placeholder="请输入子订单id" />
         </el-form-item>
-        <el-form-item label="平台skuId" prop="skuId">
-          <el-input v-model="form.skuId" placeholder="请输入平台skuId" />
+        <el-form-item label="商品id" prop="goodsId">
+          <el-input v-model="form.goodsId" placeholder="请输入商品id" />
         </el-form-item>
-        <el-form-item label="Sku编码" prop="skuCode">
-          <el-input v-model="form.skuCode" placeholder="请输入Sku编码" />
+        <el-form-item label="规格id" prop="specId">
+          <el-input v-model="form.specId" placeholder="请输入规格id" />
         </el-form-item>
-        <el-form-item label="ERP商品id" prop="erpGoodsId">
-          <el-input v-model="form.erpGoodsId" placeholder="请输入ERP商品id" />
+        <el-form-item label="商品编码" prop="goodsNum">
+          <el-input v-model="form.goodsNum" placeholder="请输入商品编码" />
         </el-form-item>
-        <el-form-item label="ERP商品skuId" prop="erpSkuId">
-          <el-input v-model="form.erpSkuId" placeholder="请输入ERP商品skuId" />
+        <el-form-item label="规格编码" prop="specNum">
+          <el-input v-model="form.specNum" placeholder="请输入规格编码" />
         </el-form-item>
-        <el-form-item label="商品名称" prop="title">
-          <el-input v-model="form.title" placeholder="请输入商品名称" />
+        <el-form-item label="商品名称" prop="goodsName">
+          <el-input v-model="form.goodsName" placeholder="请输入商品名称" />
         </el-form-item>
-        <el-form-item label="商品SKU信息" prop="skuInfo">
-          <el-input v-model="form.skuInfo" placeholder="请输入商品SKU信息" />
+        <el-form-item label="商品规格" prop="goodsSpec">
+          <el-input v-model="form.goodsSpec" placeholder="请输入商品规格" />
         </el-form-item>
-        <el-form-item label="数量" prop="count">
-          <el-input v-model="form.count" placeholder="请输入数量" />
+        <el-form-item label="商品图片" prop="goodsImage">
+          <image-upload v-model="form.goodsImage"/>
         </el-form-item>
-        <el-form-item label="发货物流公司" prop="shipCompany">
-          <el-input v-model="form.shipCompany" placeholder="请输入发货物流公司" />
+        <el-form-item label="退货数量" prop="quantity">
+          <el-input v-model="form.quantity" placeholder="请输入退货数量" />
         </el-form-item>
-        <el-form-item label="发货物流单号" prop="shipWaybillCode">
-          <el-input v-model="form.shipWaybillCode" placeholder="请输入发货物流单号" />
+        <el-form-item label="物流公司" prop="logisticsCompany">
+          <el-input v-model="form.logisticsCompany" placeholder="请输入物流公司" />
         </el-form-item>
-        <el-form-item label="收货人" prop="receiverName">
-          <el-input v-model="form.receiverName" placeholder="请输入收货人" />
+        <el-form-item label="物流单号" prop="logisticsCode">
+          <el-input v-model="form.logisticsCode" placeholder="请输入物流单号" />
         </el-form-item>
-        <el-form-item label="收货人手机号" prop="receiverTel">
-          <el-input v-model="form.receiverTel" placeholder="请输入收货人手机号" />
-        </el-form-item>
-        <el-form-item label="收货地址" prop="receiverAddress">
-          <el-input v-model="form.receiverAddress" placeholder="请输入收货地址" />
+        <el-form-item label="收货时间" prop="receiveTime">
+          <el-date-picker clearable
+            v-model="form.receiveTime"
+            type="date"
+            value-format="yyyy-MM-dd"
+            placeholder="请选择收货时间">
+          </el-date-picker>
         </el-form-item>
         <el-form-item label="备注" prop="remark">
           <el-input v-model="form.remark" placeholder="请输入备注" />
+        </el-form-item>
+        <el-form-item label="发货人" prop="contactPerson">
+          <el-input v-model="form.contactPerson" placeholder="请输入发货人" />
+        </el-form-item>
+        <el-form-item label="发货人手机号" prop="mobile">
+          <el-input v-model="form.mobile" placeholder="请输入发货人手机号" />
+        </el-form-item>
+        <el-form-item label="发货地址" prop="address">
+          <el-input v-model="form.address" placeholder="请输入发货地址" />
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -206,11 +258,10 @@
 </template>
 
 <script>
-import {listReturned, addExchange, shipAgainComplete} from "@/api/afterSale/returned";
-import {listShop} from "@/api/shop/shop";
-
+// import { listReturned, getReturned, delReturned, addReturned, updateReturned } from "@/api/api/returned";
+import {listShop} from "@/api/channel/tenant";
 export default {
-  name: "ReturnedAfter",
+  name: "Returned",
   data() {
     return {
       // 遮罩层
@@ -225,9 +276,8 @@ export default {
       showSearch: true,
       // 总条数
       total: 0,
-      // 表格数据
-      dataList: [],
-      shopList: [],
+      // 退换货表格数据
+      returnedList: [],
       // 弹出层标题
       title: "",
       // 是否显示弹出层
@@ -236,36 +286,55 @@ export default {
       queryParams: {
         pageNum: 1,
         pageSize: 10,
-        afterSaleOrderId: null,
+        returnedNum: null,
+        returnedType: null,
+        orderNum: null,
         shopId: null,
+        shopType: null,
         orderId: null,
+        orderTimeId: null,
+        goodsId: null,
+        specId: null,
+        goodsNum: null,
+        specNum: null,
+        goodsName: null,
+        goodsSpec: null,
+        goodsImage: null,
+        quantity: null,
+        logisticsCompany: null,
+        logisticsCode: null,
+        receiveTime: null,
+        contactPerson: null,
+        mobile: null,
+        address: null,
         status: null,
       },
       // 表单参数
       form: {},
       // 表单校验
       rules: {
-        shopId: [{ required: true, message: "请选择店铺", trigger: "change" }],
-        afterSaleOrderId: [{ required: true, message: "不能为空", trigger: "blur" }],
-        orderId: [{ required: true, message: "订单号不能为空", trigger: "blur" }],
-        subOrderId: [{ required: true, message: "不能为空", trigger: "blur" }],
-        erpGoodsId: [{ required: true, message: "不能为空", trigger: "blur" }],
-        erpSkuId: [{ required: true, message: "不能为空", trigger: "change" }],
-        skuInfo: [{ required: true, message: "不能为空", trigger: "change" }],
-        title: [{ required: true, message: "不能为空", trigger: "change" }],
-        count: [{ required: true, message: "不能为空", trigger: "change" }],
-        shipCompany: [{ required: true, message: "不能为空", trigger: "change" }],
-        shipWaybillCode: [{ required: true, message: "不能为空", trigger: "change" }],
-        receiverName: [{ required: true, message: "不能为空", trigger: "change" }],
-        receiverTel: [{ required: true, message: "不能为空", trigger: "change" }],
-        receiverAddress: [{ required: true, message: "不能为空", trigger: "change" }],
+        returnedNum: [
+          { required: true, message: "退货单号不能为空", trigger: "blur" }
+        ],
+        orderNum: [
+          { required: true, message: "源订单号不能为空", trigger: "blur" }
+        ],
+        orderId: [
+          { required: true, message: "订单id不能为空", trigger: "blur" }
+        ],
+        orderTimeId: [
+          { required: true, message: "子订单id不能为空", trigger: "blur" }
+        ],
+        status: [
+          { required: true, message: "状态不能为空", trigger: "change" }
+        ],
+        createTime: [
+          { required: true, message: "订单创建时间不能为空", trigger: "blur" }
+        ],
       }
     };
   },
   created() {
-    listShop({}).then(response => {
-      this.shopList = response.rows;
-    });
     this.getList();
   },
   methods: {
@@ -273,7 +342,7 @@ export default {
     getList() {
       this.loading = true;
       listReturned(this.queryParams).then(response => {
-        this.dataList = response.rows;
+        this.returnedList = response.rows;
         this.total = response.total;
         this.loading = false;
       });
@@ -285,7 +354,36 @@ export default {
     },
     // 表单重置
     reset() {
-      this.form = {};
+      this.form = {
+        id: null,
+        returnedNum: null,
+        returnedType: null,
+        orderNum: null,
+        shopId: null,
+        shopType: null,
+        orderId: null,
+        orderTimeId: null,
+        goodsId: null,
+        specId: null,
+        goodsNum: null,
+        specNum: null,
+        goodsName: null,
+        goodsSpec: null,
+        goodsImage: null,
+        quantity: null,
+        logisticsCompany: null,
+        logisticsCode: null,
+        receiveTime: null,
+        remark: null,
+        contactPerson: null,
+        mobile: null,
+        address: null,
+        status: null,
+        createTime: null,
+        createBy: null,
+        updateTime: null,
+        updateBy: null
+      };
       this.resetForm("form");
     },
     /** 搜索按钮操作 */
@@ -304,32 +402,43 @@ export default {
       this.single = selection.length!==1
       this.multiple = !selection.length
     },
-    handleAdd(){
-      this.reset()
-      this.open=true
-      this.title="手动添加换货"
-    },
+
     /** 修改按钮操作 */
     handleUpdate(row) {
       this.reset();
       const id = row.id || this.ids
-      shipAgainComplete(id).then(response => {
-        this.$modal.msgSuccess("确认完成");
-        this.getList()
+      getReturned(id).then(response => {
+        this.form = response.data;
+        this.open = true;
+        this.title = "修改退换货";
       });
     },
     /** 提交按钮 */
     submitForm() {
       this.$refs["form"].validate(valid => {
         if (valid) {
-          addExchange(this.form).then(response => {
-            this.$modal.msgSuccess("补发成功");
-            this.open = false;
-            this.getList();
-          });
-
+          if (this.form.id != null) {
+            updateReturned(this.form).then(response => {
+              this.$modal.msgSuccess("修改成功");
+              this.open = false;
+              this.getList();
+            });
+          } else {
+            addReturned(this.form).then(response => {
+              this.$modal.msgSuccess("新增成功");
+              this.open = false;
+              this.getList();
+            });
+          }
         }
       });
+    },
+
+    /** 导出按钮操作 */
+    handleExport() {
+      this.download('api/returned/export', {
+        ...this.queryParams
+      }, `returned_${new Date().getTime()}.xlsx`)
     }
   }
 };

@@ -34,11 +34,10 @@
 <!--        <jwt.version>0.9.1</jwt.version>-->
     </properties>
     <modules>
-        <module>api-scm</module>
         <module>model</module>
         <module>service</module>
         <module>common</module>
-        <module>api-oms</module>
+        <module>api</module>
     </modules>
     <packaging>pom</packaging>
 

@@ -3,11 +3,11 @@
     <el-form ref="form" :model="form" :rules="rules" label-width="108px">
 
         <el-form-item label="商品分类" prop="categoryId">
-          <treeselect :options="dataList" placeholder="请选择上级菜单" v-model="form.categoryId" style="width:220px" @select="categoryChange"/>
+          <treeselect :options="dataList" placeholder="请选择上级菜单" v-model="form.categoryId" style="width:220px"/>
         </el-form-item>
-        <el-form-item label="供应商" prop="supplierId">
+        <el-form-item label="供应商id" prop="supplierId">
           <!-- <el-input v-model="form.supplierId" placeholder="请输入供应商id" /> -->
-          <el-select v-model="form.supplierId" filterable  placeholder="请选择供应商">
+          <el-select v-model="form.supplierId" filterable  placeholder="请选择供应商名称">
             <el-option v-for="item in supplierList" :key="item.id" :label="item.name" :value="item.id">
           </el-option>
         </el-select>
@@ -34,9 +34,9 @@
         <el-form-item label="单位名称" prop="unitName">
           <el-input v-model="form.unitName" placeholder="请输入单位名称" style="width:220px" />
         </el-form-item>
-<!--        <el-form-item label="条码" prop="barCode">-->
-<!--          <el-input v-model="form.barCode" placeholder="请输入条码" style="width:220px"/>-->
-<!--        </el-form-item>-->
+        <el-form-item label="条码" prop="barCode">
+          <el-input v-model="form.barCode" placeholder="请输入条码" style="width:220px"/>
+        </el-form-item>
         <el-form-item label="备注" prop="remark">
           <el-input v-model="form.remark" type="textarea" placeholder="请输入内容" />
         </el-form-item>
@@ -214,7 +214,7 @@
 import Treeselect from '@riophae/vue-treeselect'
 import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 import { listCategory } from "@/api/goods/category";
-// import { listSupplier } from "@/api/scm/supplier";
+
 import { listCategoryAttributeValue } from "@/api/goods/categoryAttributeValue";
 import { addGoods } from "@/api/goods/goods";
 import { getToken } from "@/utils/auth";
@@ -225,7 +225,6 @@ import {
   pcaTextArr,
   codeToText,
 } from "element-china-area-data";
-import {listCategoryAttribute} from "@/api/goods/categoryAttribute";
 
 export default {
   name: "OrderCreate",
@@ -286,54 +285,17 @@ export default {
       this.supplierList = response.rows;
       // this.supplierLoading = false;
     });
-
+    listCategoryAttributeValue({categoryAttributeId:114}).then(resp=>{
+      this.colorList = resp.rows
+    })
+    listCategoryAttributeValue({categoryAttributeId:115}).then(resp=>{
+      this.sizeList = resp.rows
+    })
+    listCategoryAttributeValue({categoryAttributeId:116}).then(resp=>{
+      this.styleList = resp.rows
+    })
   },
   methods: {
-    categoryChange(node, instanceId){
-      // console.log("====分类边哈11111====",node,instanceId)
-      // console.log("====分类边哈====",this.form.categoryId)
-      if(node){
-        this.form.categoryId = node.id
-        let topCategoryId = 0;
-        if(node.parentId===0) topCategoryId=node.id;
-        else topCategoryId = node.parentId
-        console.log("====分类边哈22222====",topCategoryId)
-        this.colorList = []
-        this.sizeList = []
-        this.styleList=[]
-        listCategoryAttribute({categoryId:topCategoryId}).then(response => {
-          this.categoryAttributeList = response.rows;
-          if(response.rows){
-            // 获取分类属性
-            response.rows.forEach(x=>{
-              listCategoryAttributeValue({categoryAttributeId:x.id}).then(resp=>{
-
-                if(x.code==='color'){
-                  this.colorList = resp.rows
-                }else if(x.code==='size'){
-                  this.sizeList = resp.rows
-                }else if(x.code==='style'){
-                  this.styleList = resp.rows
-                }
-
-              })
-            })
-          }
-        });
-
-
-        // 获取分类属性
-        // listCategoryAttributeValue({categoryAttributeId:114}).then(resp=>{
-        //   this.colorList = resp.rows
-        // })
-        // listCategoryAttributeValue({categoryAttributeId:115}).then(resp=>{
-        //   this.sizeList = resp.rows
-        // })
-        // listCategoryAttributeValue({categoryAttributeId:116}).then(resp=>{
-        //   this.styleList = resp.rows
-        // })
-      }
-    },
     getRowDate(row){
 
     },
@@ -428,7 +390,6 @@ export default {
         if (list[i].parentId === parentId) {
           let node = {
             id: list[i].id,
-            parentId:list[i].parentId,
             label: list[i].name,
             children: this.buildTree(list, list[i].id)
           };

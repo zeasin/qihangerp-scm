@@ -67,7 +67,37 @@
     </el-form>
 
     <el-row :gutter="10" class="mb8">
-
+      <el-col :span="1.5">
+        <el-button
+          type="primary"
+          plain
+          icon="el-icon-plus"
+          size="mini"
+          @click="handleAdd"
+        >新增</el-button>
+      </el-col>
+      <!-- <el-col :span="1.5">
+        <el-button
+          type="success"
+          plain
+          icon="el-icon-edit"
+          size="mini"
+          :disabled="single"
+          @click="handleUpdate"
+          v-hasPermi="['api:returned:edit']"
+        >修改</el-button>
+      </el-col>
+      <el-col :span="1.5">
+        <el-button
+          type="danger"
+          plain
+          icon="el-icon-delete"
+          size="mini"
+          :disabled="multiple"
+          @click="handleDelete"
+          v-hasPermi="['api:returned:remove']"
+        >删除</el-button>
+      </el-col> -->
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 
@@ -104,20 +134,19 @@
       <el-table-column label="状态" align="center" prop="status" >
         <template slot-scope="scope">
           <el-tag size="small" v-if="scope.row.status === 1"> 已发出</el-tag>
-          <el-tag size="small" v-if="scope.row.status === 2"> 已签收</el-tag>
-          <el-tag size="small" v-if="scope.row.status === 3"> 已完成</el-tag>
+          <el-tag size="small" v-if="scope.row.status === 2"> 已完成</el-tag>
         </template>
       </el-table-column>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
-            v-if="scope.row.status === 2"
+           v-if="scope.row.status === 1"
             size="mini"
             type="text"
             icon="el-icon-edit"
             @click="handleUpdate(scope.row)"
             v-hasPermi="['api:returned:edit']"
-          >拦截入库</el-button>
+          >确认完成</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -206,11 +235,11 @@
 </template>
 
 <script>
-import {listReturned, addExchange, shipAgainComplete} from "@/api/afterSale/intercept";
-import {listShop} from "@/api/channel/tenant";
+import {list, addExchange, shipAgainComplete} from "@/api/afterSale/exchange";
+import {listShop} from "@/api/shop/shop";
 
 export default {
-  name: "InterceptAfter",
+  name: "ExchangeAfter",
   data() {
     return {
       // 遮罩层
@@ -272,7 +301,7 @@ export default {
     /** 查询退换货列表 */
     getList() {
       this.loading = true;
-      listReturned(this.queryParams).then(response => {
+      list(this.queryParams).then(response => {
         this.dataList = response.rows;
         this.total = response.total;
         this.loading = false;
