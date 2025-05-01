@@ -1,13 +1,14 @@
 package cn.qihangerp.oms.controller;
 
 import cn.qihangerp.common.*;
-import cn.qihangerp.oms.domain.OmsTenantShopGoods;
-import cn.qihangerp.oms.domain.bo.ShopGoodsQuery;
-import cn.qihangerp.oms.domain.vo.GoodsSpecListVo;
+
+import cn.qihangerp.model.shop.bo.ShopGoodsQuery;
+import cn.qihangerp.model.shop.domain.OmsTenantShopGoods;
+import cn.qihangerp.model.shop.service.OmsTenantShopGoodsService;
+import cn.qihangerp.model.shop.service.OmsTenantShopGoodsSkuService;
+import cn.qihangerp.model.shop.vo.ShopGoodsSpecListVo;
 import cn.qihangerp.oms.security.SecurityUtils;
-import cn.qihangerp.oms.service.OmsTenantShopGoodsService;
-import cn.qihangerp.oms.service.OmsTenantShopGoodsSkuService;
-import cn.qihangerp.oms.service.OmsTenantShopService;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -85,7 +86,7 @@ public class TenantShopGoodsController extends BaseController {
     @GetMapping("/shop_goods/searchSku")
     public TableDataInfo searchSkuBy(String keyword,Long shopId)
     {
-        List<GoodsSpecListVo> list = goodsSkuService.searchGoodsSpec(keyword,shopId,SecurityUtils.getUserId());
+        List<ShopGoodsSpecListVo> list = goodsSkuService.searchGoodsSpec(keyword,shopId,SecurityUtils.getUserId());
         return getDataTable(list);
     }
 }

@@ -1,6 +1,6 @@
-package cn.qihangerp.oms.mapper;
+package cn.qihangerp.service.ship.mapper;
 
-import cn.qihangerp.oms.domain.OmsTenantShopGoods;
+import cn.qihangerp.model.shop.domain.OmsTenantShopGoods;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

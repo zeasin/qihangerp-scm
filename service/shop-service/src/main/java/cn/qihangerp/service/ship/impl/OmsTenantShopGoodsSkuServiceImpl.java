@@ -1,10 +1,12 @@
-package cn.qihangerp.oms.service.impl;
+package cn.qihangerp.service.ship.impl;
 
-import cn.qihangerp.oms.domain.vo.GoodsSpecListVo;
+
+import cn.qihangerp.model.shop.domain.OmsTenantShopGoodsSku;
+import cn.qihangerp.model.shop.service.OmsTenantShopGoodsSkuService;
+import cn.qihangerp.model.shop.vo.ShopGoodsSpecListVo;
+import cn.qihangerp.service.ship.mapper.OmsTenantShopGoodsSkuMapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import cn.qihangerp.oms.domain.OmsTenantShopGoodsSku;
-import cn.qihangerp.oms.service.OmsTenantShopGoodsSkuService;
-import cn.qihangerp.oms.mapper.OmsTenantShopGoodsSkuMapper;
+
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,11 +20,11 @@ import java.util.List;
 @AllArgsConstructor
 @Service
 public class OmsTenantShopGoodsSkuServiceImpl extends ServiceImpl<OmsTenantShopGoodsSkuMapper, OmsTenantShopGoodsSku>
-    implements OmsTenantShopGoodsSkuService{
+    implements OmsTenantShopGoodsSkuService {
     private final OmsTenantShopGoodsSkuMapper mapper;
 
     @Override
-    public List<GoodsSpecListVo> searchGoodsSpec(String keyword,Long shopId,Long tenantId) {
+    public List<ShopGoodsSpecListVo> searchGoodsSpec(String keyword, Long shopId, Long tenantId) {
         return mapper.searchGoodsSpec(keyword, shopId, tenantId);
     }
 }

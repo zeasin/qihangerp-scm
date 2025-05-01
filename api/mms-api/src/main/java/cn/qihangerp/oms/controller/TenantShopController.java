@@ -2,9 +2,11 @@ package cn.qihangerp.oms.controller;
 
 import cn.qihangerp.common.*;
 import cn.qihangerp.model.order.service.ScmPlatformService;
-import cn.qihangerp.oms.domain.OmsTenantShop;
+
+import cn.qihangerp.model.shop.domain.OmsTenantShop;
+import cn.qihangerp.model.shop.service.OmsTenantShopService;
 import cn.qihangerp.oms.security.SecurityUtils;
-import cn.qihangerp.oms.service.OmsTenantShopService;
+
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

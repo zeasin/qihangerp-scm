@@ -2,15 +2,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>cn.qihangerp.model</groupId>
-        <artifactId>model</artifactId>
+        <groupId>cn.qihangerp.service</groupId>
+        <artifactId>service</artifactId>
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>shop</artifactId>
+    <artifactId>shop-service</artifactId>
     <packaging>jar</packaging>
     <version>0.5.1</version>
-    <name>shop</name>
+    <name>shop-service</name>
     <url>http://maven.apache.org</url>
 
     <properties>
@@ -18,7 +18,10 @@
     </properties>
 
     <dependencies>
-
-
+        <dependency>
+            <groupId>cn.qihangerp.model</groupId>
+            <artifactId>shop</artifactId>
+            <version>0.5.1</version>
+        </dependency>
     </dependencies>
 </project>

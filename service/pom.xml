@@ -12,6 +12,7 @@
         <module>goods-service</module>
         <module>ship-service</module>
         <module>order-service</module>
+        <module>shop-service</module>
     </modules>
 
     <groupId>cn.qihangerp.service</groupId>

@@ -1,18 +1,18 @@
-package cn.qihangerp.oms.service.impl;
+package cn.qihangerp.service.ship.impl;
 
 import cn.qihangerp.common.PageQuery;
 import cn.qihangerp.common.PageResult;
 import cn.qihangerp.common.ResultVo;
 import cn.qihangerp.common.ResultVoEnum;
-import cn.qihangerp.oms.domain.OmsTenantShopGoodsSku;
-import cn.qihangerp.oms.domain.bo.ShopGoodsQuery;
-import cn.qihangerp.oms.mapper.OmsTenantShopGoodsSkuMapper;
+import cn.qihangerp.model.shop.bo.ShopGoodsQuery;
+import cn.qihangerp.model.shop.domain.OmsTenantShopGoods;
+import cn.qihangerp.model.shop.domain.OmsTenantShopGoodsSku;
+import cn.qihangerp.model.shop.service.OmsTenantShopGoodsService;
+import cn.qihangerp.service.ship.mapper.OmsTenantShopGoodsMapper;
+import cn.qihangerp.service.ship.mapper.OmsTenantShopGoodsSkuMapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import cn.qihangerp.oms.domain.OmsTenantShopGoods;
-import cn.qihangerp.oms.service.OmsTenantShopGoodsService;
-import cn.qihangerp.oms.mapper.OmsTenantShopGoodsMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,7 +28,7 @@ import java.util.Date;
 @AllArgsConstructor
 @Service
 public class OmsTenantShopGoodsServiceImpl extends ServiceImpl<OmsTenantShopGoodsMapper, OmsTenantShopGoods>
-    implements OmsTenantShopGoodsService{
+    implements OmsTenantShopGoodsService {
     private OmsTenantShopGoodsMapper mapper;
     private OmsTenantShopGoodsSkuMapper skuMapper;
 

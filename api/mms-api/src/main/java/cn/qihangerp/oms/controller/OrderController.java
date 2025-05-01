@@ -4,11 +4,13 @@ import cn.qihangerp.common.*;
 import cn.qihangerp.model.order.bo.OrderQuery;
 import cn.qihangerp.model.order.domain.ScmOrder;
 import cn.qihangerp.model.order.domain.ScmOrderItem;
-import cn.qihangerp.oms.domain.OmsTenantShop;
-import cn.qihangerp.oms.domain.OmsTenantShopGoodsSku;
+
+import cn.qihangerp.model.shop.domain.OmsTenantShop;
+import cn.qihangerp.model.shop.domain.OmsTenantShopGoodsSku;
+import cn.qihangerp.model.shop.service.OmsTenantShopGoodsSkuService;
+import cn.qihangerp.model.shop.service.OmsTenantShopService;
 import cn.qihangerp.oms.security.SecurityUtils;
-import cn.qihangerp.oms.service.OmsTenantShopGoodsSkuService;
-import cn.qihangerp.oms.service.OmsTenantShopService;
+
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

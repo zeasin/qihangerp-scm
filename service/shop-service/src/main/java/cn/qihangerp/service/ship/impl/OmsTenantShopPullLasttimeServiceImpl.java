@@ -1,9 +1,10 @@
-package cn.qihangerp.oms.service.impl;
+package cn.qihangerp.service.ship.impl;
 
+import cn.qihangerp.model.shop.domain.OmsTenantShopPullLasttime;
+import cn.qihangerp.model.shop.service.OmsTenantShopPullLasttimeService;
+import cn.qihangerp.service.ship.mapper.OmsTenantShopPullLasttimeMapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import cn.qihangerp.oms.domain.OmsTenantShopPullLasttime;
-import cn.qihangerp.oms.service.OmsTenantShopPullLasttimeService;
-import cn.qihangerp.oms.mapper.OmsTenantShopPullLasttimeMapper;
+
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Service;
 */
 @Service
 public class OmsTenantShopPullLasttimeServiceImpl extends ServiceImpl<OmsTenantShopPullLasttimeMapper, OmsTenantShopPullLasttime>
-    implements OmsTenantShopPullLasttimeService{
+    implements OmsTenantShopPullLasttimeService {
 
 }
 
