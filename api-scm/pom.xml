@@ -20,7 +20,6 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <spring-cloud-alibaba.version>2022.0.0.0</spring-cloud-alibaba.version>
         <jwt.version>0.11.5</jwt.version>
-        <dubbo.version>3.2.12</dubbo.version>
         <spring-boot.version>3.0.13</spring-boot.version>
     </properties>
 
@@ -68,11 +67,7 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.33</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.dubbo</groupId>
-            <artifactId>dubbo-spring-boot-starter</artifactId>
-            <version>${dubbo.version}</version>
-        </dependency>
+
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
@@ -126,6 +121,11 @@
         <dependency>
             <groupId>cn.qihangerp.interfaces</groupId>
             <artifactId>sys</artifactId>
+            <version>0.4.20</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.qihangerp.service</groupId>
+            <artifactId>sys-service</artifactId>
             <version>0.4.20</version>
         </dependency>
         <dependency>

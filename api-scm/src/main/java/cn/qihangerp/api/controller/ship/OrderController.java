@@ -6,7 +6,6 @@ import cn.qihangerp.interfaces.order.domain.ScmOrder;
 import cn.qihangerp.interfaces.order.service.ScmOrderService;
 import cn.qihangerp.interfaces.ship.domain.ErpShipLogistics;
 import cn.qihangerp.interfaces.ship.service.ErpShipLogisticsService;
-import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/ship/order")
 public class OrderController extends BaseController {
-    @DubboReference
+
     private ScmOrderService orderService;
     @GetMapping("/list")
     public TableDataInfo list(OrderQuery bo, PageQuery pageQuery)

@@ -9,7 +9,6 @@ import cn.qihangerp.oms.security.SecurityUtils;
 import cn.qihangerp.oms.service.OmsTenantShopService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import lombok.AllArgsConstructor;
-import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -25,8 +24,8 @@ import java.util.List;
 public class TenantShopController extends BaseController {
     @Autowired
     private OmsTenantShopService shopService;
-    @DubboReference
-    private ScmPlatformService platformService;
+//    @DubboReference
+//    private ScmPlatformService platformService;
 
     @GetMapping("/shop/list")
     public TableDataInfo list()
@@ -92,6 +91,6 @@ public class TenantShopController extends BaseController {
     @GetMapping("/platform/list")
     public TableDataInfo platformList()
     {
-        return getDataTable(platformService.list());
+        return getDataTable(new ArrayList<>());
     }
 }

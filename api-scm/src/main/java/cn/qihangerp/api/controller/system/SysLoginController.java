@@ -10,8 +10,6 @@ import cn.qihangerp.common.model.SysMenu;
 import cn.qihangerp.common.model.vo.RouterVo;
 import cn.qihangerp.common.utils.SecurityUtils;
 import cn.qihangerp.interfaces.sys.service.ISysMenuService;
-import org.apache.dubbo.config.annotation.DubboReference;
-import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,8 +29,7 @@ public class SysLoginController
 {
     @Autowired
     private SysLoginService loginService;
-
-    @DubboReference
+    @Autowired
     private ISysMenuService menuService;
 
     @Autowired

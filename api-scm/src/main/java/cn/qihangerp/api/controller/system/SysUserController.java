@@ -13,7 +13,6 @@ import cn.qihangerp.interfaces.sys.service.ISysPostService;
 import cn.qihangerp.interfaces.sys.service.ISysRoleService;
 import cn.qihangerp.interfaces.sys.service.ISysUserService;
 import org.apache.commons.lang3.ArrayUtils;
-import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -30,16 +29,12 @@ import java.util.stream.Collectors;
 @RequestMapping("/system/user")
 public class SysUserController extends BaseController
 {
-    @DubboReference
     private ISysUserService userService;
 
-    @DubboReference
     private ISysRoleService roleService;
 
-    @DubboReference
     private ISysDeptService deptService;
 
-    @DubboReference
     private ISysPostService postService;
 
     /**

@@ -13,7 +13,7 @@ import cn.qihangerp.oms.service.OmsTenantShopGoodsService;
 import cn.qihangerp.oms.service.OmsTenantShopGoodsSkuService;
 import cn.qihangerp.oms.service.OmsTenantShopService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import org.apache.dubbo.config.annotation.DubboReference;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

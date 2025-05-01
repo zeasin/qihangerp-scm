@@ -25,7 +25,6 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <spring-cloud-alibaba.version>2022.0.0.0</spring-cloud-alibaba.version>
         <jwt.version>0.11.5</jwt.version>
-        <dubbo.version>3.2.12</dubbo.version>
         <spring-boot.version>3.0.13</spring-boot.version>
     </properties>
 
@@ -113,11 +112,6 @@
             <groupId>cn.qihangerp</groupId>
             <artifactId>common</artifactId>
             <version>0.5.18</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.dubbo</groupId>
-            <artifactId>dubbo-spring-boot-starter</artifactId>
-            <version>${dubbo.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>

@@ -5,7 +5,6 @@ import cn.qihangerp.common.BaseController;
 import cn.qihangerp.common.TableDataInfo;
 import cn.qihangerp.interfaces.sys.domain.SysDictType;
 import cn.qihangerp.interfaces.sys.service.ISysDictTypeService;
-import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +20,6 @@ import java.util.List;
 @RequestMapping("/system/dict/type")
 public class SysDictTypeController extends BaseController
 {
-    @DubboReference
     private ISysDictTypeService dictTypeService;
 
     @PreAuthorize("@ss.hasPermi('system:dict:list')")

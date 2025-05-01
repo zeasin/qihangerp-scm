@@ -14,7 +14,6 @@ import cn.qihangerp.interfaces.sys.domain.SysUserRole;
 import cn.qihangerp.interfaces.sys.service.ISysDeptService;
 import cn.qihangerp.interfaces.sys.service.ISysRoleService;
 import cn.qihangerp.interfaces.sys.service.ISysUserService;
-import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
@@ -31,7 +30,6 @@ import java.util.List;
 @RequestMapping("/system/role")
 public class SysRoleController extends BaseController
 {
-    @DubboReference
     private ISysRoleService roleService;
 
     @Autowired
@@ -40,10 +38,8 @@ public class SysRoleController extends BaseController
     @Autowired
     private SysPermissionService permissionService;
 
-    @DubboReference
     private ISysUserService userService;
 
-    @DubboReference
     private ISysDeptService deptService;
 
     @PreAuthorize("@ss.hasPermi('system:role:list')")

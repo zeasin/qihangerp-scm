@@ -7,7 +7,6 @@ import cn.qihangerp.common.model.SysUser;
 import cn.qihangerp.common.utils.MessageUtils;
 import cn.qihangerp.common.utils.StringUtils;
 import cn.qihangerp.interfaces.sys.service.ISysUserService;
-import org.apache.dubbo.config.annotation.DubboReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +27,7 @@ import java.util.Set;
 public class UserDetailsServiceImpl implements UserDetailsService
 {
     private static final Logger log = LoggerFactory.getLogger(UserDetailsServiceImpl.class);
-
-    @DubboReference
+    @Autowired
     private ISysUserService userService;
     
 //    @Autowired

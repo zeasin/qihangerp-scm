@@ -8,7 +8,7 @@ import cn.qihangerp.interfaces.goods.domain.ErpGoodsCategoryAttributeValue;
 import cn.qihangerp.interfaces.goods.service.ErpGoodsCategoryAttributeValueService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import jakarta.servlet.http.HttpServletResponse;
-import org.apache.dubbo.config.annotation.DubboReference;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +26,7 @@ import java.util.List;
 @RequestMapping("/goods/categoryAttributeValue")
 public class GoodsCategoryAttributeValueController extends BaseController
 {
-    @DubboReference
+
     private ErpGoodsCategoryAttributeValueService erpGoodsCategoryAttributeValueService;
 
     /**

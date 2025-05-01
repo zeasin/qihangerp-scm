@@ -8,7 +8,7 @@ import cn.qihangerp.common.TableDataInfo;
 import cn.qihangerp.interfaces.goods.domain.ErpGoods;
 import cn.qihangerp.interfaces.goods.domain.ErpGoodsSpec;
 import cn.qihangerp.interfaces.goods.service.ErpGoodsSpecService;
-import org.apache.dubbo.config.annotation.DubboReference;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/goods/goodsSpec")
 @RestController
 public class GoodsSpecController extends BaseController {
-    @DubboReference
+
     private ErpGoodsSpecService goodsSpecService;
     @GetMapping("/list")
     public TableDataInfo list(GoodsSpecBo goods, PageQuery pageQuery)

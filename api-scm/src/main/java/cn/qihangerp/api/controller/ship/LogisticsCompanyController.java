@@ -3,8 +3,6 @@ package cn.qihangerp.api.controller.ship;
 import cn.qihangerp.common.*;
 import cn.qihangerp.interfaces.ship.domain.ErpShipLogistics;
 import cn.qihangerp.interfaces.ship.service.ErpShipLogisticsService;
-import org.apache.dubbo.config.annotation.DubboReference;
-import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +20,7 @@ import java.util.List;
 @RequestMapping("/ship/logistics")
 public class LogisticsCompanyController extends BaseController
 {
-    @DubboReference
+
     private ErpShipLogisticsService logisticsService;
 
     /**

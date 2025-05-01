@@ -7,7 +7,6 @@ import cn.qihangerp.common.model.SysDept;
 import cn.qihangerp.common.utils.StringUtils;
 import cn.qihangerp.interfaces.sys.service.ISysDeptService;
 import org.apache.commons.lang3.ArrayUtils;
-import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
@@ -24,7 +23,6 @@ import java.util.List;
 @RequestMapping("/system/dept")
 public class SysDeptController extends BaseController
 {
-    @DubboReference
     private ISysDeptService deptService;
 
     /**

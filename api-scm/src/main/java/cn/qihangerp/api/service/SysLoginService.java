@@ -14,7 +14,6 @@ import cn.qihangerp.common.utils.IpUtils;
 import cn.qihangerp.common.utils.StringUtils;
 import cn.qihangerp.interfaces.sys.service.ISysUserService;
 import jakarta.annotation.Resource;
-import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -39,8 +38,7 @@ public class SysLoginService
 
     @Autowired
     private RedisCache redisCache;
-
-    @DubboReference
+    @Autowired
     private ISysUserService userService;
 
 //    @Autowired

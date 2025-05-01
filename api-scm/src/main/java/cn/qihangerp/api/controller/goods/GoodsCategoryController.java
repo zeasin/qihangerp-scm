@@ -4,7 +4,6 @@ import cn.qihangerp.common.BaseController;
 import cn.qihangerp.common.TableDataInfo;
 import cn.qihangerp.interfaces.goods.domain.ErpGoodsCategory;
 import cn.qihangerp.interfaces.goods.service.ErpGoodsCategoryService;
-import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/goods/category")
 public class GoodsCategoryController extends BaseController {
-    @DubboReference
+
     private ErpGoodsCategoryService categoryService;
 
     @GetMapping("/list")

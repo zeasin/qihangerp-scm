@@ -11,10 +11,10 @@ import cn.qihangerp.oms.security.SecurityUtils;
 import cn.qihangerp.oms.service.OmsTenantShopGoodsSkuService;
 import cn.qihangerp.oms.service.OmsTenantShopService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,8 +27,7 @@ import java.util.List;
 @RequestMapping("/order")
 public class OrderController extends BaseController
 {
-    @DubboReference
-    private ScmOrderService orderService;
+
     @Autowired
     private OmsTenantShopService shopService;
     @Autowired
@@ -40,9 +39,9 @@ public class OrderController extends BaseController
     @GetMapping("/list")
     public TableDataInfo list(OrderQuery query, PageQuery pageQuery)
     {
-        query.setTenantId(SecurityUtils.getUserId());
-        PageResult<ScmOrder> pageResult = orderService.queryPageList(query,pageQuery);
-        return getDataTable(pageResult);
+//        query.setTenantId(SecurityUtils.getUserId());
+//        PageResult<ScmOrder> pageResult = orderService.queryPageList(query,pageQuery);
+        return getDataTable(new ArrayList<>());
     }
 
 
@@ -52,7 +51,8 @@ public class OrderController extends BaseController
     @GetMapping(value = "/{id}")
     public AjaxResult getInfo(@PathVariable("id") Long id)
     {
-        return success(orderService.getById(id));
+        return AjaxResult.success(shopService.getById(id));
+//        return success(orderService.getById(id));
     }
 
     /**
@@ -90,16 +90,16 @@ public class OrderController extends BaseController
         order.setTenantId(SecurityUtils.getUserId());
 //        if(order.getGoodsAmount()==null)return new AjaxResult(1503,"请填写商品价格！");
         order.setCreateBy(SecurityUtils.getUsername());
-        int result = orderService.insertOrder(order);
-        if(result == -1) return new AjaxResult(501,"订单号已存在！");
-        if(result == -2) return new AjaxResult(502,"请添加订单商品！");
-        if(result == -3) return new AjaxResult(503,"请选择订单商品规格！");
-        if(result == -4) return new AjaxResult(504,"请选择店铺！");
-        if(result == -5) return new AjaxResult(505,"TenantId不能为空！");
-        if(result == -6) return new AjaxResult(505,"店铺不能为空！");
-        if(result == -11) return new AjaxResult(511,"商品数据错误：缺少供应链商品ID");
-        if(result == -12) return new AjaxResult(512,"商品数据错误：缺少供应链skuId");
-        return toAjax(result);
+//        int result = orderService.insertOrder(order);
+//        if(result == -1) return new AjaxResult(501,"订单号已存在！");
+//        if(result == -2) return new AjaxResult(502,"请添加订单商品！");
+//        if(result == -3) return new AjaxResult(503,"请选择订单商品规格！");
+//        if(result == -4) return new AjaxResult(504,"请选择店铺！");
+//        if(result == -5) return new AjaxResult(505,"TenantId不能为空！");
+//        if(result == -6) return new AjaxResult(505,"店铺不能为空！");
+//        if(result == -11) return new AjaxResult(511,"商品数据错误：缺少供应链商品ID");
+//        if(result == -12) return new AjaxResult(512,"商品数据错误：缺少供应链skuId");
+        return AjaxResult.success();
     }
 
     /**

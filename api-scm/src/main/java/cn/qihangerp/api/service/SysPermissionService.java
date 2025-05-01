@@ -3,7 +3,6 @@ package cn.qihangerp.api.service;
 import cn.qihangerp.common.model.SysUser;
 import cn.qihangerp.interfaces.sys.service.ISysMenuService;
 import cn.qihangerp.interfaces.sys.service.ISysRoleService;
-import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,10 +17,8 @@ import java.util.Set;
 @Component
 public class SysPermissionService
 {
-    @DubboReference
     private ISysRoleService roleService;
 
-    @DubboReference
     private ISysMenuService menuService;
 
     /**

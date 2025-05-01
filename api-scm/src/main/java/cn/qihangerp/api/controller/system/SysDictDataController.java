@@ -8,7 +8,6 @@ import cn.qihangerp.common.utils.StringUtils;
 import cn.qihangerp.interfaces.sys.domain.SysDictData;
 import cn.qihangerp.interfaces.sys.service.ISysDictDataService;
 import cn.qihangerp.interfaces.sys.service.ISysDictTypeService;
-import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
@@ -25,10 +24,8 @@ import java.util.List;
 @RequestMapping("/system/dict/data")
 public class SysDictDataController extends BaseController
 {
-    @DubboReference
     private ISysDictDataService dictDataService;
 
-    @DubboReference
     private ISysDictTypeService dictTypeService;
 
     @PreAuthorize("@ss.hasPermi('system:dict:list')")
