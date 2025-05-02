@@ -100,7 +100,13 @@
             <version>${jwt.version}</version>
             <scope>runtime</scope>
         </dependency>
-
+        <dependency>
+            <groupId>cn.qihangerp.open</groupId>
+            <artifactId>open-sdk</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/open-sdk-1.4.30.jar</systemPath>
+        </dependency>
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-jackson</artifactId>
