@@ -7,6 +7,7 @@ import cn.qihangerp.common.model.SysDept;
 import cn.qihangerp.common.utils.StringUtils;
 import cn.qihangerp.model.sys.service.ISysDeptService;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
@@ -19,6 +20,7 @@ import java.util.List;
  * 
  * @author qihang
  */
+@AllArgsConstructor
 @RestController
 @RequestMapping("/system/dept")
 public class SysDeptController extends BaseController

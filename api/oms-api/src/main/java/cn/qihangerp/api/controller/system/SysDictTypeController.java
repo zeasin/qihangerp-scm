@@ -6,6 +6,7 @@ import cn.qihangerp.common.TableDataInfo;
 import cn.qihangerp.model.sys.domain.SysDictType;
 import cn.qihangerp.model.sys.service.ISysDictTypeService;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,7 @@ import java.util.List;
  * 
  * @author qihang
  */
+@AllArgsConstructor
 @RestController
 @RequestMapping("/system/dict/type")
 public class SysDictTypeController extends BaseController

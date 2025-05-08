@@ -14,6 +14,7 @@ import cn.qihangerp.model.sys.domain.SysUserRole;
 import cn.qihangerp.model.sys.service.ISysDeptService;
 import cn.qihangerp.model.sys.service.ISysRoleService;
 import cn.qihangerp.model.sys.service.ISysUserService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
@@ -26,6 +27,7 @@ import java.util.List;
  * 
  * @author qihang
  */
+@AllArgsConstructor
 @RestController
 @RequestMapping("/system/role")
 public class SysRoleController extends BaseController

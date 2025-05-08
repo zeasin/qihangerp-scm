@@ -12,6 +12,7 @@ import cn.qihangerp.model.sys.service.ISysDeptService;
 import cn.qihangerp.model.sys.service.ISysPostService;
 import cn.qihangerp.model.sys.service.ISysRoleService;
 import cn.qihangerp.model.sys.service.ISysUserService;
+import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
@@ -25,6 +26,7 @@ import java.util.stream.Collectors;
  * 
  * @author qihang
  */
+@AllArgsConstructor
 @RestController
 @RequestMapping("/system/user")
 public class SysUserController extends BaseController
