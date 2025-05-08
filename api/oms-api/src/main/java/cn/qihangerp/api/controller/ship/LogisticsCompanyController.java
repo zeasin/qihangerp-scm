@@ -3,6 +3,7 @@ package cn.qihangerp.api.controller.ship;
 import cn.qihangerp.common.*;
 import cn.qihangerp.model.ship.domain.ErpShipLogistics;
 import cn.qihangerp.model.ship.service.ErpShipLogisticsService;
+import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +15,7 @@ import java.util.Arrays;
  * @author qihang
  * @date 2024-01-12
  */
+@AllArgsConstructor
 @RestController
 @RequestMapping("/ship/logistics")
 public class LogisticsCompanyController extends BaseController

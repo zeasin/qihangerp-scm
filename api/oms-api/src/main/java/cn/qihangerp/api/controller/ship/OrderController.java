@@ -4,11 +4,12 @@ import cn.qihangerp.common.*;
 import cn.qihangerp.model.order.bo.OrderQuery;
 import cn.qihangerp.model.order.domain.ScmOrder;
 import cn.qihangerp.model.order.service.ScmOrderService;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+@AllArgsConstructor
 @RestController
 @RequestMapping("/ship/order")
 public class OrderController extends BaseController {
