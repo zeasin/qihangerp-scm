@@ -8,15 +8,17 @@ import cn.qihangerp.common.TableDataInfo;
 import cn.qihangerp.model.goods.domain.ErpGoodsSpec;
 import cn.qihangerp.model.goods.service.ErpGoodsSpecService;
 
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@AllArgsConstructor
 @RequestMapping("/goods/goodsSpec")
 @RestController
 public class GoodsSpecController extends BaseController {
 
-    private ErpGoodsSpecService goodsSpecService;
+    private final ErpGoodsSpecService goodsSpecService;
     @GetMapping("/list")
     public TableDataInfo list(GoodsSpecBo goods, PageQuery pageQuery)
     {

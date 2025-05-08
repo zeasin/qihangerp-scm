@@ -7,6 +7,7 @@ import cn.qihangerp.common.PageQuery;
 import cn.qihangerp.common.TableDataInfo;
 import cn.qihangerp.model.goods.domain.ErpGoodsCategoryAttribute;
 import cn.qihangerp.model.goods.service.ErpGoodsCategoryAttributeService;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
@@ -17,12 +18,13 @@ import java.util.Arrays;
  * @author qihang
  * @date 2023-12-29
  */
+@AllArgsConstructor
 @RestController
 @RequestMapping("/goods/categoryAttribute")
 public class GoodsCategoryAttributeController extends BaseController
 {
 
-    private ErpGoodsCategoryAttributeService erpGoodsCategoryAttributeService;
+    private final ErpGoodsCategoryAttributeService erpGoodsCategoryAttributeService;
 
     /**
      * 查询商品分类属性列表
