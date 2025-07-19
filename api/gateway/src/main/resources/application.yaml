@@ -1,0 +1,86 @@
+server:
+  port: 8088
+spring:
+  application:
+    name: gateway
+#  security:
+#    user:
+#      name: admin
+#      password: password
+    basic:
+      enabled: true
+  cloud:
+    nacos:
+      discovery:
+#        namespace: dev
+#        server-addr: 121.229.189.144:8848
+#        server-addr: 10.0.2.22:8848
+#        server-addr: 172.23.85.46:8848
+#        server-addr: 172.31.7.116:8848
+        server-addr: 127.0.0.1:8848
+#        server-addr: 172.17.62.227:8848
+#        username: nacos
+#        password: nacos
+    sentinel:
+      transport:
+        dashboard: 127.0.0.1:8888 # sentinel控制台地址
+#        dashboard: 172.17.62.227:8888 # sentinel控制台地址
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: store-api-route
+          uri: lb://store-api
+          predicates:
+            - Path=/api/store-api/**
+          filters:
+            - StripPrefix=2
+        - id: open-route
+          uri: lb://open
+          predicates:
+            - Path=/api/open/**
+          filters:
+            - StripPrefix=2
+        - id: oms_api_route
+          uri: lb://oms-api
+          predicates:
+            - Path=/api/oms-api/**
+          filters:
+            - StripPrefix=2
+#        - id: erp_api_route
+#          uri: lb://sys-api
+#          predicates:
+#            - Path=/license/getLicense
+#          filters:
+#            - StripPrefix=2
+#        - id: jd_api_route
+#          uri: lb://jd-api
+#          predicates:
+#            - Path=/api/jd-api/**
+#          filters:
+#            - StripPrefix=2
+        - id: sys_api_route
+          uri: lb://sys-api
+          predicates:
+            - Path=/api/sys-api/**
+          filters:
+            - StripPrefix=2
+#        - id: dou_api_route
+#          uri: lb://dou-api
+#          predicates:
+#            - Path=/api/dou-api/**
+#          filters:
+#            - StripPrefix=2
+#        - id: pdd_api_route
+#          uri: lb://pdd-api
+#          predicates:
+#            - Path=/api/pdd-api/**
+#          filters:
+#            - StripPrefix=2
+        - id: vms_api_route
+          uri: lb://vms-api
+          predicates:
+            - Path=/api/vms-api/**
+          filters:
+            - StripPrefix=2

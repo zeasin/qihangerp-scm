@@ -18,6 +18,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <modules>
+        <module>gateway</module>
         <module>oms-api</module>
         <module>mms-api</module>
         <module>vms-api</module>
