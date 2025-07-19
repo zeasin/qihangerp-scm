@@ -3,7 +3,7 @@ package cn.qihangerp.api.controller.system;
 import cn.qihangerp.common.AjaxResult;
 import cn.qihangerp.common.BaseController;
 import cn.qihangerp.common.constant.UserConstants;
-import cn.qihangerp.common.model.SysDept;
+import cn.qihangerp.domain.SysDept;
 import cn.qihangerp.common.utils.StringUtils;
 import cn.qihangerp.model.sys.service.ISysDeptService;
 import jakarta.servlet.http.HttpServletRequest;

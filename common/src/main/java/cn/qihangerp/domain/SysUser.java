@@ -1,8 +1,5 @@
-package cn.qihangerp.common.model;
+package cn.qihangerp.domain;
 
-
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 
 import java.util.Date;
 import java.util.List;
@@ -23,6 +20,7 @@ public class SysUser extends BaseEntity
     /** 部门ID */
 
     private Long deptId;
+    private String userType;
 
     /** 用户账号 */
 
@@ -82,6 +80,14 @@ public class SysUser extends BaseEntity
     public SysUser()
     {
 
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 
     public SysUser(Long userId)

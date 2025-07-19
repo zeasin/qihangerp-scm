@@ -1,6 +1,6 @@
 package cn.qihangerp.api.service;
 
-import cn.qihangerp.common.model.SysUser;
+import cn.qihangerp.domain.SysUser;
 import cn.qihangerp.model.sys.service.ISysMenuService;
 import cn.qihangerp.model.sys.service.ISysRoleService;
 import org.springframework.stereotype.Component;

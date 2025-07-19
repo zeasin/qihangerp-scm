@@ -1,7 +1,7 @@
 package cn.qihangerp.service.sys.mapper;
 
 
-import cn.qihangerp.common.model.SysDept;
+import cn.qihangerp.domain.SysDept;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

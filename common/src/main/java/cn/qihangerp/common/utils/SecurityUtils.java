@@ -3,7 +3,7 @@ package cn.qihangerp.common.utils;
 
 import cn.qihangerp.common.constant.HttpStatus;
 import cn.qihangerp.common.exception.ServiceException;
-import cn.qihangerp.common.model.LoginUser;
+import cn.qihangerp.domain.LoginUser;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

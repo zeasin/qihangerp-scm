@@ -1,7 +1,7 @@
 package cn.qihangerp.model.sys.domain;
 
 
-import cn.qihangerp.common.model.BaseEntity;
+import cn.qihangerp.domain.BaseEntity;
 
 /**
  * 岗位表 sys_post

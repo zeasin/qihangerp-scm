@@ -1,9 +1,7 @@
 package cn.qihangerp.common;
 
-import cn.qihangerp.common.AjaxResult;
-import cn.qihangerp.common.PageResult;
 import cn.qihangerp.common.constant.HttpStatus;
-import cn.qihangerp.common.model.LoginUser;
+import cn.qihangerp.domain.LoginUser;
 import cn.qihangerp.common.utils.SecurityUtils;
 import cn.qihangerp.common.utils.StringUtils;
 import org.slf4j.Logger;

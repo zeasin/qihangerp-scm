@@ -1,4 +1,4 @@
-package cn.qihangerp.common.model;
+package cn.qihangerp.domain;
 
 import java.util.ArrayList;
 import java.util.List;

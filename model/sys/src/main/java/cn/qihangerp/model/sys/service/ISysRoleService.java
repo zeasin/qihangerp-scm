@@ -2,7 +2,7 @@ package cn.qihangerp.model.sys.service;
 
 
 
-import cn.qihangerp.common.model.SysRole;
+import cn.qihangerp.domain.SysRole;
 import cn.qihangerp.model.sys.domain.SysUserRole;
 
 import java.util.List;

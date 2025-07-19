@@ -4,7 +4,7 @@ import cn.qihangerp.common.utils.AddressUtils;
 import cn.qihangerp.common.utils.IdUtils;
 import cn.qihangerp.common.constant.CacheConstants;
 import cn.qihangerp.common.constant.Constants;
-import cn.qihangerp.common.model.LoginUser;
+import cn.qihangerp.domain.LoginUser;
 import cn.qihangerp.common.redis.RedisCache;
 import cn.qihangerp.common.utils.IpUtils;
 import cn.qihangerp.common.utils.ServletUtils;

@@ -1,6 +1,6 @@
 package cn.qihangerp.oms.service;
 
-import cn.qihangerp.common.model.vo.RouterVo;
+import cn.qihangerp.domain.vo.RouterVo;
 import cn.qihangerp.oms.domain.OmsMenu;
 import com.baomidou.mybatisplus.extension.service.IService;
 

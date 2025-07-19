@@ -1,4 +1,4 @@
-package cn.qihangerp.common.model;
+package cn.qihangerp.domain;
 
 import com.alibaba.fastjson2.annotation.JSONField;
 import org.springframework.security.core.GrantedAuthority;

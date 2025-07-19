@@ -30,57 +30,23 @@ spring:
         locator:
           enabled: true
       routes:
-        - id: store-api-route
-          uri: lb://store-api
-          predicates:
-            - Path=/api/store-api/**
-          filters:
-            - StripPrefix=2
-        - id: open-route
-          uri: lb://open
-          predicates:
-            - Path=/api/open/**
-          filters:
-            - StripPrefix=2
         - id: oms_api_route
-          uri: lb://oms-api
+          uri: lb://scm-oms-api
           predicates:
-            - Path=/api/oms-api/**
+            - Path=/api/scm-oms-api/**
           filters:
             - StripPrefix=2
-#        - id: erp_api_route
-#          uri: lb://sys-api
-#          predicates:
-#            - Path=/license/getLicense
-#          filters:
-#            - StripPrefix=2
-#        - id: jd_api_route
-#          uri: lb://jd-api
-#          predicates:
-#            - Path=/api/jd-api/**
-#          filters:
-#            - StripPrefix=2
-        - id: sys_api_route
-          uri: lb://sys-api
+
+        - id: mms_api_route
+          uri: lb://scm-mms-api
           predicates:
-            - Path=/api/sys-api/**
+            - Path=/api/scm-mms-api/**
           filters:
             - StripPrefix=2
-#        - id: dou_api_route
-#          uri: lb://dou-api
-#          predicates:
-#            - Path=/api/dou-api/**
-#          filters:
-#            - StripPrefix=2
-#        - id: pdd_api_route
-#          uri: lb://pdd-api
-#          predicates:
-#            - Path=/api/pdd-api/**
-#          filters:
-#            - StripPrefix=2
+
         - id: vms_api_route
-          uri: lb://vms-api
+          uri: lb://scm-vms-api
           predicates:
-            - Path=/api/vms-api/**
+            - Path=/api/scm-vms-api/**
           filters:
             - StripPrefix=2

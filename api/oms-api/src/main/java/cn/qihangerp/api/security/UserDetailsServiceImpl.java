@@ -2,11 +2,11 @@ package cn.qihangerp.api.security;
 
 import cn.qihangerp.common.enums.UserStatus;
 import cn.qihangerp.common.exception.ServiceException;
-import cn.qihangerp.common.model.LoginUser;
-import cn.qihangerp.common.model.SysUser;
+import cn.qihangerp.domain.LoginUser;
+import cn.qihangerp.domain.SysUser;
 import cn.qihangerp.common.utils.MessageUtils;
 import cn.qihangerp.common.utils.StringUtils;
-import cn.qihangerp.model.sys.service.ISysUserService;
+import cn.qihangerp.service.ISysUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

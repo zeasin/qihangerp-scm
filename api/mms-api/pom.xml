@@ -110,11 +110,11 @@
             <artifactId>mybatis-spring</artifactId>
             <version>3.0.3</version>
         </dependency>
-        <dependency>
-            <groupId>cn.qihangerp.core</groupId>
-            <artifactId>common</artifactId>
-            <version>1.0</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>cn.qihangerp.core</groupId>-->
+<!--            <artifactId>common</artifactId>-->
+<!--            <version>1.0</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>cn.qihangerp.service</groupId>
             <artifactId>shop-service</artifactId>

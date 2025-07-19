@@ -1,7 +1,7 @@
 package cn.qihangerp.model.sys.domain;
 
 
-import cn.qihangerp.common.model.BaseEntity;
+import cn.qihangerp.domain.BaseEntity;
 
 /**
  * 字典类型表 sys_dict_type

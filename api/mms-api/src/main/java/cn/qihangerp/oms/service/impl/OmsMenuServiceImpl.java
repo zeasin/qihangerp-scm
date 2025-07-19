@@ -2,9 +2,8 @@ package cn.qihangerp.oms.service.impl;
 
 import cn.qihangerp.common.constant.Constants;
 import cn.qihangerp.common.constant.UserConstants;
-import cn.qihangerp.common.model.SysMenu;
-import cn.qihangerp.common.model.vo.MetaVo;
-import cn.qihangerp.common.model.vo.RouterVo;
+import cn.qihangerp.domain.vo.MetaVo;
+import cn.qihangerp.domain.vo.RouterVo;
 import cn.qihangerp.common.utils.StringUtils;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;

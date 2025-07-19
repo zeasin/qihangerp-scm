@@ -2,7 +2,7 @@ package cn.qihangerp.service.sys.mapper;
 
 
 
-import cn.qihangerp.common.model.SysRole;
+import cn.qihangerp.domain.SysRole;
 
 import java.util.List;
 

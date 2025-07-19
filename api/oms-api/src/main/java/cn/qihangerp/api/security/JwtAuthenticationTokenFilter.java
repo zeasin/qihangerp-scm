@@ -2,7 +2,7 @@ package cn.qihangerp.api.security;
 
 
 import cn.qihangerp.common.constant.HttpStatus;
-import cn.qihangerp.common.model.LoginUser;
+import cn.qihangerp.domain.LoginUser;
 import com.alibaba.fastjson2.JSON;
 import cn.qihangerp.common.AjaxResult;
 import jakarta.servlet.FilterChain;

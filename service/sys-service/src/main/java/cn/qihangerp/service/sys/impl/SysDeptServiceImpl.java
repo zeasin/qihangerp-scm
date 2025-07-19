@@ -3,14 +3,14 @@ package cn.qihangerp.service.sys.impl;
 
 import cn.qihangerp.common.constant.UserConstants;
 import cn.qihangerp.common.exception.ServiceException;
-import cn.qihangerp.common.model.SysUser;
+import cn.qihangerp.domain.SysUser;
 import cn.qihangerp.common.text.Convert;
 import cn.qihangerp.common.utils.SecurityUtils;
 import cn.qihangerp.common.utils.SpringUtils;
 import cn.qihangerp.common.utils.StringUtils;
-import cn.qihangerp.common.model.SysDept;
-import cn.qihangerp.common.model.SysRole;
-import cn.qihangerp.common.model.TreeSelect;
+import cn.qihangerp.domain.SysDept;
+import cn.qihangerp.domain.SysRole;
+import cn.qihangerp.domain.TreeSelect;
 import cn.qihangerp.model.sys.service.ISysDeptService;
 import cn.qihangerp.service.sys.mapper.SysDeptMapper;
 import cn.qihangerp.service.sys.mapper.SysRoleMapper;

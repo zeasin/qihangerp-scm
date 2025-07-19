@@ -1,7 +1,5 @@
-package cn.qihangerp.common.model;
+package cn.qihangerp.domain;
 
-
-import cn.qihangerp.common.model.BaseEntity;
 
 import java.util.Set;
 

@@ -1,8 +1,8 @@
-package cn.qihangerp.model.sys.service;
+package cn.qihangerp.service;
 
 
 
-import cn.qihangerp.common.model.SysUser;
+import cn.qihangerp.domain.SysUser;
 
 import java.util.List;
 

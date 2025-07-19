@@ -1,4 +1,4 @@
-package cn.qihangerp.common.model;
+package cn.qihangerp.domain;
 
 /**
  * 用户注册对象

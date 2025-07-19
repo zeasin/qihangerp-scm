@@ -1,8 +1,8 @@
 package cn.qihangerp.model.sys.service;
 
 
-import cn.qihangerp.common.model.SysDept;
-import cn.qihangerp.common.model.TreeSelect;
+import cn.qihangerp.domain.SysDept;
+import cn.qihangerp.domain.TreeSelect;
 
 import java.util.List;
 

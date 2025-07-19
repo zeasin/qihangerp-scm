@@ -1,6 +1,6 @@
 package cn.qihangerp.service.sys.mapper;
 
-import cn.qihangerp.common.model.SysMenu;
+import cn.qihangerp.domain.SysMenu;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

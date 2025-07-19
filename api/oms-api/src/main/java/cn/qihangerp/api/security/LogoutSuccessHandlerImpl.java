@@ -1,6 +1,6 @@
 package cn.qihangerp.api.security;
 
-import cn.qihangerp.common.model.LoginUser;
+import cn.qihangerp.domain.LoginUser;
 import cn.qihangerp.common.utils.ServletUtils;
 import cn.qihangerp.common.utils.StringUtils;
 import com.alibaba.fastjson2.JSON;
