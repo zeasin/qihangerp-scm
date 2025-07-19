@@ -14,8 +14,11 @@ spring:
 
 
 server:
-  port: 8080
-
+  port: 8081
+user:
+  password:
+    maxRetryCount: 5 #密码最大错误次数
+    lockTime: 10 #密码锁定时间（默认10分钟）
 mybatis-plus:
   mapper-locations: classpath*:mapper/**/*Mapper.xml
   type-aliases-package: cn.qihangerp.api.domain;com.qihangerp.api.common.security;cn.qihangerp.model.goods.domain;

@@ -16,7 +16,7 @@ spring:
     basename: i18n/messages
 
 server:
-  port: 8081
+  port: 8082
 
 mybatis-plus:
   mapper-locations: classpath*:mapper/*Mapper.xml

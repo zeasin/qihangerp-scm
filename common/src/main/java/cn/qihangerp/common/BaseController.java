@@ -1,9 +1,9 @@
 package cn.qihangerp.common;
 
 import cn.qihangerp.common.constant.HttpStatus;
-import cn.qihangerp.domain.LoginUser;
 import cn.qihangerp.common.utils.SecurityUtils;
 import cn.qihangerp.common.utils.StringUtils;
+import cn.qihangerp.security.LoginUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

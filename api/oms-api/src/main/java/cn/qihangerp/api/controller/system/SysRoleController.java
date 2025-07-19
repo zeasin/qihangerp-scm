@@ -1,11 +1,9 @@
 package cn.qihangerp.api.controller.system;
 
-import cn.qihangerp.api.security.TokenService;
 import cn.qihangerp.api.service.SysPermissionService;
 import cn.qihangerp.common.AjaxResult;
 import cn.qihangerp.common.BaseController;
 import cn.qihangerp.common.TableDataInfo;
-import cn.qihangerp.domain.LoginUser;
 import cn.qihangerp.domain.SysDept;
 import cn.qihangerp.domain.SysRole;
 import cn.qihangerp.domain.SysUser;
@@ -13,6 +11,8 @@ import cn.qihangerp.common.utils.StringUtils;
 import cn.qihangerp.model.sys.domain.SysUserRole;
 import cn.qihangerp.model.sys.service.ISysDeptService;
 import cn.qihangerp.model.sys.service.ISysRoleService;
+import cn.qihangerp.security.LoginUser;
+import cn.qihangerp.security.TokenService;
 import cn.qihangerp.service.ISysUserService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -103,18 +103,18 @@ public class SysRoleController extends BaseController
         }
         role.setUpdateBy(getUsername());
         
-        if (roleService.updateRole(role) > 0)
-        {
-            // 更新缓存用户权限
-            LoginUser loginUser = getLoginUser();
-            if (StringUtils.isNotNull(loginUser.getUser()) && !loginUser.getUser().isAdmin())
-            {
-                loginUser.setPermissions(permissionService.getMenuPermission(loginUser.getUser()));
-                loginUser.setUser(userService.selectUserByUserName(loginUser.getUser().getUserName()));
-                tokenService.setLoginUser(loginUser);
-            }
-            return success();
-        }
+//        if (roleService.updateRole(role) > 0)
+//        {
+//            // 更新缓存用户权限
+//            LoginUser loginUser = getLoginUser();
+//            if (StringUtils.isNotNull(loginUser.getUser()) && !loginUser.getUser().isAdmin())
+//            {
+//                loginUser.setPermissions(permissionService.getMenuPermission(loginUser.getUser()));
+//                loginUser.setUser(userService.selectUserByUserName(loginUser.getUser().getUserName()));
+//                tokenService.setLoginUser(loginUser);
+//            }
+//            return success();
+//        }
         return error("修改角色'" + role.getRoleName() + "'失败，请联系管理员");
     }
 
