@@ -104,21 +104,27 @@ A[供应商发布商品] -->B(设置商户价格)
 
 ## 三、如何使用？
 ### 3.1、开发环境配置
-+ MySQL数据库创建
-  + 运行MySQL脚本`docs\sql\qihangerp-scm.sql`导入数据到主库`qihangerp-scm`
+#### 3.1.1 导入数据库
++ 创建MySql数据库：`qihangerp-scm`
++ 导入数据库`docs\sql\qihangerp-scm.sql`
 
+#### 3.1.2 配置Nacos
 + 启动nacos
   + 启动
-  
     **一般情况下：下载nacos2.3.2解压之后直接运行：**
-  
     `startup.cmd -m standalone`
 
++ 添加Nacos配置
+  + 新建配置`Data ID`:`qihangerp-scm.yaml`
+  + 添加配置内容（拷贝`docs\qihangerp-scm.yaml`并修改成自己的配置）
 
-+ 启动Redis
+#### 3.1.3 启动Redis
 
-  
-+ 启动minio
+**不会的百度一下**
+
+#### 3.1.4 启动minio
+
+**图片服务器，不会的百度一下**
 
 
   
@@ -149,10 +155,9 @@ A[供应商发布商品] -->B(设置商户价格)
 ### 1、有偿服务
 + 提供部署服务
 + 提供定制化开发服务
-+ 提供系统培训服务
-+ 提供版本商业化支持服务
-+ 提供电商系统软著代申请服务（文档、源代码）
-+ 提供电商平台appkey申请协助服务
++ 提供商业版本售卖
++ 围绕电商ERP系统的其他商业服务
+
 
 ### 2、一起交流
 

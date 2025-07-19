@@ -33,20 +33,20 @@ spring:
         - id: oms_api_route
           uri: lb://scm-oms-api
           predicates:
-            - Path=/api/scm-oms-api/**
+            - Path=/scm-oms-api/**
           filters:
-            - StripPrefix=2
+            - StripPrefix=1
 
         - id: mms_api_route
           uri: lb://scm-mms-api
           predicates:
-            - Path=/api/scm-mms-api/**
+            - Path=/scm-mms-api/**
           filters:
-            - StripPrefix=2
+            - StripPrefix=1
 
         - id: vms_api_route
           uri: lb://scm-vms-api
           predicates:
-            - Path=/api/scm-vms-api/**
+            - Path=/scm-vms-api/**
           filters:
-            - StripPrefix=2
+            - StripPrefix=1

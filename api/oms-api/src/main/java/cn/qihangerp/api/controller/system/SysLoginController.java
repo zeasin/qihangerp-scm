@@ -66,6 +66,15 @@ public class SysLoginController
             if (sysUser.getStatus().equals("1")) {
                 return AjaxResult.error("用户已锁定，请联系管理员解锁!");
             }
+            if(!sysUser.getUserType().equals("00")){
+                if(sysUser.getUserType().equals("10")) {
+                    return AjaxResult.error("供应商账号请登录VMS系统!");
+                }else if(sysUser.getUserType().equals("20")) {
+                    return AjaxResult.error("商户账号请登录MMS系统!");
+                }else{
+                    return AjaxResult.error("账号非法，请联系管理员！");
+                }
+            }
 
             try {
                 AjaxResult ajax = AjaxResult.success();

@@ -1,4 +1,4 @@
-//package cn.qihangerp.security;
+//package cn.qihangerp.api.security;
 //
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.context.annotation.Bean;
@@ -10,6 +10,7 @@
 //import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 //import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 //import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+//import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 //import org.springframework.security.config.http.SessionCreationPolicy;
 //import org.springframework.security.core.userdetails.UserDetailsService;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -40,7 +41,10 @@
 //    public JwtAuthenticationTokenFilter authenticationJwtTokenFilter() {
 //        return new JwtAuthenticationTokenFilter();
 //    }
-//
+//    @Bean
+//    public WebSecurityCustomizer ignoringCustomizer() {
+//        return (web) -> web.ignoring().requestMatchers("/h2-console/**", "/h2-console");
+//    }
 //    @Bean
 //    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 //
@@ -61,23 +65,8 @@
 //                        // 允许所有OPTIONS请求
 //                        .requestMatchers("/home").permitAll()
 //                        .requestMatchers(HttpMethod.GET, "/favicon.ico").permitAll()
-//                        .requestMatchers(HttpMethod.GET, "/code_callback").permitAll()
-//                        .requestMatchers(HttpMethod.GET, "/api/open-api/tao/code_callback").permitAll()
-//                        .requestMatchers(HttpMethod.GET, "/*/order/get_detail").permitAll()
-//                        .requestMatchers(HttpMethod.GET, "/*/refund/get_detail").permitAll()
-////                        .requestMatchers(HttpMethod.GET, "/*/ship/order_ship").permitAll()
-//                        .requestMatchers(HttpMethod.GET, "/images/preview/**").permitAll()
-//                        .requestMatchers(HttpMethod.GET, "/system/config/**").permitAll()
-//                        .requestMatchers(HttpMethod.GET,"/captchaImage").permitAll()
-//                        .requestMatchers(HttpMethod.GET,"/api/sys-api/captchaImage").permitAll()
-//                        .requestMatchers(HttpMethod.GET, "/api/sys-api/system/config/**").permitAll()
 //                        // 允许直接访问授权登录接口
 //                        .requestMatchers(HttpMethod.POST, "/login").permitAll()
-//                        .requestMatchers(HttpMethod.POST, "/dou/msg").permitAll()
-//                        .requestMatchers("/wei/msg").permitAll()
-//                        .requestMatchers(HttpMethod.POST, "/api/sys-api/login").permitAll()
-//                        .requestMatchers(HttpMethod.POST, "/api/erp-api/supplier/login").permitAll()
-//
 //                        // 允许 SpringMVC 的默认错误地址匿名访问
 //                        .requestMatchers("/error").permitAll()
 //                        // 其他所有接口必须有Authority信息，Authority在登录成功后的UserDetailsImpl对象中默认设置“ROLE_USER”
@@ -89,10 +78,7 @@
 //                // 加我们自定义的过滤器，替代UsernamePasswordAuthenticationFilter
 //                .addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 //        // 添加Logout filter
-//                // 微服务退出
 //                http.logout().logoutUrl("/logout").logoutSuccessHandler(logoutSuccessHandler);
-//                // 单体服务退出
-////                http.logout().logoutUrl("/api/sys-api/logout").logoutSuccessHandler(logoutSuccessHandler);
 //        return http.build();
 //    }
 //

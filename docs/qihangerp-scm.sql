@@ -11,7 +11,7 @@
  Target Server Version : 80200
  File Encoding         : 65001
 
- Date: 01/05/2025 11:27:09
+ Date: 19/07/2025 22:46:50
 */
 
 SET NAMES utf8mb4;
@@ -2488,6 +2488,33 @@ CREATE TABLE `erp_ship_order_fee`  (
 INSERT INTO `erp_ship_order_fee` VALUES (1786238985318604801, '京东快递', NULL, 'JD903989932', '2137984935735126281', 6, 5.00, '2024-05-03', NULL, 0, '2024-05-03 11:38:54', '发货', NULL, NULL, 0, 0, 0, NULL, '刘**', '*******6949', '湖南省', '长沙市', '开福区');
 
 -- ----------------------------
+-- Table structure for erp_shop_platform
+-- ----------------------------
+DROP TABLE IF EXISTS `erp_shop_platform`;
+CREATE TABLE `erp_shop_platform`  (
+  `id` int NOT NULL COMMENT '主键',
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '平台名',
+  `app_key` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'appKey',
+  `app_secret` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'appSecret',
+  `remark` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '描述',
+  `server_url` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '服务url',
+  `redirect_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '回调url',
+  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '电商平台配置表' ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of erp_shop_platform
+-- ----------------------------
+INSERT INTO `erp_shop_platform` VALUES (1, '淘宝天猫', '', '', '淘宝开放平台', 'http://gw.api.taobao.com/router/rest', 'http://qihangerp.cn', '2024-06-04 11:10:58', '2024-06-04 11:10:58');
+INSERT INTO `erp_shop_platform` VALUES (2, '京东POP', '', '', '京东开放平台', NULL, 'http://qihangerp.cn', '2024-06-04 11:10:58', '2024-06-04 11:10:58');
+INSERT INTO `erp_shop_platform` VALUES (3, '拼多多', '', '', '拼多多开放平台', 'https://gw-api.pinduoduo.com/api/router', 'http://qihangerp.cn', '2024-06-04 11:10:58', '2024-06-04 11:10:58');
+INSERT INTO `erp_shop_platform` VALUES (4, '抖店', '', '', '抖店开放平台', 'https://openapi-fxg.jinritemai.com', 'http://qihangerp.cn', '2024-06-04 11:10:58', '2024-06-04 11:10:58');
+INSERT INTO `erp_shop_platform` VALUES (5, '视频号', ' ', ' ', '视频号小店开放平台', 'https://api.weixin.qq.com/', 'http://qihangerp.cn', '2024-06-04 11:10:58', '2024-06-04 11:10:58');
+INSERT INTO `erp_shop_platform` VALUES (99, '其他渠道', '', '', '其他线下渠道', NULL, 'http://qihangerp.cn', '2024-06-04 11:10:58', '2024-06-04 11:10:58');
+
+-- ----------------------------
 -- Table structure for oms_jd_after_sale
 -- ----------------------------
 DROP TABLE IF EXISTS `oms_jd_after_sale`;
@@ -3007,7 +3034,7 @@ CREATE TABLE `oms_tenant`  (
 -- ----------------------------
 -- Records of oms_tenant
 -- ----------------------------
-INSERT INTO `oms_tenant` VALUES (1, '15818590119', '启航', '280645618@qq.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2024-06-23 20:37:48', 'admin', '2023-08-07 19:31:37', '', '2024-05-18 18:50:24', '');
+INSERT INTO `oms_tenant` VALUES (1, '15818590119', '启航', '280645618@qq.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2025-05-08 18:53:46', 'admin', '2023-08-07 19:31:37', '', '2024-05-18 18:50:24', '');
 INSERT INTO `oms_tenant` VALUES (101, '15818590110', '上海人工集团aa', 'admin@qq.com', '15818590119', '0', '', '$2a$10$BXnTczO7JDkXtcWtLhAy4Ohi1y9FDLfGZm6pwGisi0JHr2wt/MlUK', '0', '0', '127.0.0.1', '2024-06-22 16:42:58', '', '2024-06-22 16:37:25', '', '2024-06-22 16:41:29', NULL);
 
 -- ----------------------------
@@ -7114,33 +7141,6 @@ CREATE TABLE `scm_order_item`  (
 INSERT INTO `scm_order_item` VALUES (1, 43, 23, 1262178610550, 9, 400, '高腰宽松直筒牛仔短裤女夏a字型显瘦甜欲风辣妹毛边2022新款黑色', 'https://img.pddpic.com/gaudit-image/2022-09-28/ed63f69d82e863972d1633cad97352a2.jpeg', '2720218026', '复古蓝 S（80-95斤）', 'HN80264001', NULL, NULL, 1, NULL, 0, 0, NULL, NULL, 1);
 
 -- ----------------------------
--- Table structure for scm_platform
--- ----------------------------
-DROP TABLE IF EXISTS `scm_platform`;
-CREATE TABLE `scm_platform`  (
-  `id` int NOT NULL COMMENT '主键',
-  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '平台名',
-  `app_key` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'appKey',
-  `app_secret` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'appSecret',
-  `remark` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '描述',
-  `server_url` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '服务url',
-  `redirect_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '回调url',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '电商平台配置表' ROW_FORMAT = DYNAMIC;
-
--- ----------------------------
--- Records of scm_platform
--- ----------------------------
-INSERT INTO `scm_platform` VALUES (1, '淘宝天猫', '', '', '淘宝开放平台', 'http://gw.api.taobao.com/router/rest', 'http://qihangerp.cn', '2024-06-04 11:10:58', '2024-06-04 11:10:58');
-INSERT INTO `scm_platform` VALUES (2, '京东POP', '', '', '京东开放平台', NULL, 'http://qihangerp.cn', '2024-06-04 11:10:58', '2024-06-04 11:10:58');
-INSERT INTO `scm_platform` VALUES (3, '拼多多', '', '', '拼多多开放平台', 'https://gw-api.pinduoduo.com/api/router', 'http://qihangerp.cn', '2024-06-04 11:10:58', '2024-06-04 11:10:58');
-INSERT INTO `scm_platform` VALUES (4, '抖店', '', '', '抖店开放平台', 'https://openapi-fxg.jinritemai.com', 'http://qihangerp.cn', '2024-06-04 11:10:58', '2024-06-04 11:10:58');
-INSERT INTO `scm_platform` VALUES (5, '视频号', ' ', ' ', '视频号小店开放平台', 'https://api.weixin.qq.com/', 'http://qihangerp.cn', '2024-06-04 11:10:58', '2024-06-04 11:10:58');
-INSERT INTO `scm_platform` VALUES (99, '其他渠道', '', '', '其他线下渠道', NULL, 'http://qihangerp.cn', '2024-06-04 11:10:58', '2024-06-04 11:10:58');
-
--- ----------------------------
 -- Table structure for sys_dept
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_dept`;
@@ -7320,7 +7320,7 @@ CREATE TABLE `sys_menu`  (
 -- Records of sys_menu
 -- ----------------------------
 INSERT INTO `sys_menu` VALUES (1, '系统管理', 0, 99, 'system', '', '', 1, 0, 'M', '0', '0', '', 'system', 'admin', '2023-12-27 15:00:27', 'admin', '2023-12-29 09:07:42.856856', '系统管理目录');
-INSERT INTO `sys_menu` VALUES (2, '商品管理', 0, 5, 'goods', '', '', 1, 0, 'M', '0', '0', '', 'theme', 'admin', '2023-12-29 13:29:44', '', '', '');
+INSERT INTO `sys_menu` VALUES (2, '商品库管理', 0, 1, 'goods', '', '', 1, 0, 'M', '0', '0', '', 'theme', 'admin', '2023-12-29 13:29:44', 'admin', '2025-07-19 22:16:50', '');
 INSERT INTO `sys_menu` VALUES (6, '发货管理', 0, 3, 'ship', '', '', 1, 0, 'M', '0', '0', '', 'excel', 'admin', '2024-01-01 14:08:04', 'admin', '2024-01-03 14:07:29', '');
 INSERT INTO `sys_menu` VALUES (7, '售后管理', 0, 4, 'saleafter', NULL, NULL, 1, 0, 'M', '0', '0', '', 'clipboard', 'admin', '2024-01-03 14:23:55', 'admin', '2024-01-12 19:47:33', '');
 INSERT INTO `sys_menu` VALUES (8, '商户管理', 0, 7, 'merchant', NULL, NULL, 1, 0, 'M', '0', '0', '', 'server', 'admin', '2024-04-12 16:46:19', 'admin', '2025-05-01 11:26:14', '');
@@ -7532,7 +7532,7 @@ CREATE TABLE `sys_user`  (
   `dept_id` bigint NULL DEFAULT NULL COMMENT '部门ID',
   `user_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '用户账号',
   `nick_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '用户昵称',
-  `user_type` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '00' COMMENT '用户类型（00系统用户）',
+  `user_type` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '00' COMMENT '用户类型（00系统用户10供应商20商户）',
   `email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '用户邮箱',
   `phonenumber` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '手机号码',
   `sex` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '用户性别（0男 1女 2未知）',
@@ -7553,8 +7553,8 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES (1, 100, 'admin', '启航', '00', '280645618@qq.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2024-06-24 13:53:40', 'admin', '2023-08-07 19:31:37', '', '2024-06-24 13:53:40', '管理员');
-INSERT INTO `sys_user` VALUES (2, 101, 'qihang', 'qihang', '00', 'qihang@qq.com', '15666666666', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2023-08-07 19:31:37', 'admin', '2023-08-07 19:31:37', 'admin', '2024-01-05 18:29:55', '测试员');
+INSERT INTO `sys_user` VALUES (1, 100, 'admin', '启航', '00', '280645618@qq.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2025-07-19 22:10:50', 'admin', '2023-08-07 19:31:37', '', '2025-07-19 22:10:49', '管理员');
+INSERT INTO `sys_user` VALUES (2, 101, 'qihang', 'qihang', '00', 'qihang@qq.com', '15666666666', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2025-07-19 22:10:36', 'admin', '2023-08-07 19:31:37', 'admin', '2025-07-19 22:10:35', '测试员');
 INSERT INTO `sys_user` VALUES (100, NULL, 'admin11', 'aa', '00', '', '', '1', '', '$2a$10$VD49q2rn1ATpQDZJJrmJjuG52b4EkOTTZ0MPbRRmcqEYLmB5mAMsG', '0', '2', '', NULL, 'admin', '2024-04-24 11:06:27', '', NULL, NULL);
 
 -- ----------------------------
