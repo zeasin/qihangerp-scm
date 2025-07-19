@@ -20,6 +20,7 @@
     <modules>
         <module>oms-api</module>
         <module>mms-api</module>
+        <module>vms-api</module>
     </modules>
     <dependencies>
 

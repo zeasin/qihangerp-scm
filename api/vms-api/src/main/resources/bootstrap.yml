@@ -1,0 +1,25 @@
+# nacos配置
+server:
+  port: 7004
+
+spring:
+  application:
+    name: vms-api
+  cloud:
+    nacos:
+      discovery:
+#        server-addr: 172.31.7.116:8848
+#        server-addr: 10.0.2.22:8848
+#        server-addr: 127.0.0.1:8848
+        server-addr: 172.17.62.227:8848
+#        username: nacos
+#        password: nacos
+#      config:
+#        server-addr: 127.0.0.1:8848
+#        username: nacos
+#        password: nacos
+#        file-extension: yaml
+#        shared-configs[0]:
+#            data-id: qihangerp.yaml
+#            group: DEFAULT_GROUP
+#            refresh: true
