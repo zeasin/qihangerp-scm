@@ -20,7 +20,7 @@ server:
 
 mybatis-plus:
   mapper-locations: classpath*:mapper/*Mapper.xml
-  type-aliases-package: cn.qihangerp.oms.domain;
+  type-aliases-package: cn.qihangerp.domain;
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 开启sql日志
 
