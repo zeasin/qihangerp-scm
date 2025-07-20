@@ -1,8 +1,8 @@
 package cn.qihangerp.api.controller.tenant;
 
-import cn.qihangerp.api.domain.OmsTenant;
-import cn.qihangerp.api.domain.bo.TenantBo;
-import cn.qihangerp.api.service.OmsTenantService;
+import cn.qihangerp.model.shop.domain.OmsMerchant;
+import cn.qihangerp.model.shop.bo.TenantBo;
+import cn.qihangerp.model.shop.service.OmsMerchantService;
 import cn.qihangerp.common.*;
 import cn.qihangerp.common.utils.SecurityUtils;
 import lombok.AllArgsConstructor;
@@ -11,15 +11,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Date;
 
 @AllArgsConstructor
-@RequestMapping("/tenant")
+@RequestMapping("/merchant")
 @RestController
-public class TenantController extends BaseController {
-    private final OmsTenantService tenantService;
+public class MerchantController extends BaseController {
+    private final OmsMerchantService tenantService;
 
     @GetMapping("/list")
     public TableDataInfo list(TenantBo bo, PageQuery pageQuery)
     {
-        PageResult<OmsTenant> pageResult = tenantService.queryPageList(bo, pageQuery);
+        PageResult<OmsMerchant> pageResult = tenantService.queryPageList(bo, pageQuery);
         //
         return getDataTable(pageResult);
     }
@@ -37,9 +37,9 @@ public class TenantController extends BaseController {
      * 新增
      */
     @PostMapping()
-    public AjaxResult add(@RequestBody OmsTenant tenant)
+    public AjaxResult add(@RequestBody OmsMerchant tenant)
     {
-        OmsTenant scmDistributor = tenantService.selectTenantByUserName(tenant.getUserName());
+        OmsMerchant scmDistributor = tenantService.selectTenantByUserName(tenant.getUserName());
         if(scmDistributor!=null){
             return AjaxResult.error("登录账号已存在");
         }
@@ -53,7 +53,7 @@ public class TenantController extends BaseController {
      * 修改
      */
     @PutMapping()
-    public AjaxResult edit(@RequestBody OmsTenant shop)
+    public AjaxResult edit(@RequestBody OmsMerchant shop)
     {
         shop.setUpdateTime(new Date());
         return toAjax(tenantService.updateById(shop));

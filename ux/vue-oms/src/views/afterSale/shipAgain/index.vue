@@ -236,7 +236,7 @@
 
 <script>
 import {list, addShipAgain, shipAgainComplete} from "@/api/afterSale/shipAgain";
-import {listShop} from "@/api/channel/tenant";
+import {listShop} from "@/api/channel/merchant";
 
 export default {
   name: "ShipAgainAfter",

@@ -300,7 +300,7 @@
 
 <script>
 import { listOrder, getOrder, delOrder, addOrder, updateOrder } from "@/api/ship/order";
-import { listDistributor } from "@/api/channel/tenant";
+import { listDistributor } from "@/api/channel/merchant";
 export default {
   name: "Order",
   data() {

@@ -5,10 +5,10 @@ import cn.qihangerp.common.utils.SecurityUtils;
 import cn.qihangerp.model.order.bo.OrderQuery;
 import cn.qihangerp.model.order.domain.ScmOrder;
 import cn.qihangerp.model.order.domain.ScmOrderItem;
-import cn.qihangerp.model.shop.domain.OmsTenantShop;
+import cn.qihangerp.model.shop.domain.OmsMerchantShop;
 import cn.qihangerp.model.shop.domain.OmsTenantShopGoodsSku;
 import cn.qihangerp.model.shop.service.OmsTenantShopGoodsSkuService;
-import cn.qihangerp.model.shop.service.OmsTenantShopService;
+import cn.qihangerp.model.shop.service.OmsMerchantShopService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +27,7 @@ public class OrderController extends BaseController
 {
 
     @Autowired
-    private OmsTenantShopService shopService;
+    private OmsMerchantShopService shopService;
     @Autowired
     private OmsTenantShopGoodsSkuService goodsSkuService;
 
@@ -60,7 +60,7 @@ public class OrderController extends BaseController
     public AjaxResult add(@RequestBody ScmOrder order)
     {
         if(order.getShopId()==null) return AjaxResult.error("请选择店铺");
-        OmsTenantShop shop = shopService.getById(order.getShopId());
+        OmsMerchantShop shop = shopService.getById(order.getShopId());
         if(shop==null) return AjaxResult.error("店铺不存在");
 
         if(order.getItemList() == null || order.getItemList().size() == 0) return AjaxResult.error("请添加订单商品");

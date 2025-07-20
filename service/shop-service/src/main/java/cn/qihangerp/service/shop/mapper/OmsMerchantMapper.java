@@ -1,6 +1,6 @@
-package cn.qihangerp.api.mapper;
+package cn.qihangerp.service.shop.mapper;
 
-import cn.qihangerp.api.domain.OmsTenant;
+import cn.qihangerp.model.shop.domain.OmsMerchant;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @createDate 2024-06-24 14:04:25
 * @Entity cn.qihangerp.api.domain.OmsTenant
 */
-public interface OmsTenantMapper extends BaseMapper<OmsTenant> {
+public interface OmsMerchantMapper extends BaseMapper<OmsMerchant> {
 
 }
 

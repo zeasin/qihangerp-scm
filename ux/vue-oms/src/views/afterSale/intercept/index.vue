@@ -207,7 +207,7 @@
 
 <script>
 import {listReturned, addExchange, shipAgainComplete} from "@/api/afterSale/intercept";
-import {listShop} from "@/api/channel/tenant";
+import {listShop} from "@/api/channel/merchant";
 
 export default {
   name: "InterceptAfter",

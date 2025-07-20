@@ -1,8 +1,5 @@
 package cn.qihangerp.api.controller.tenant;
 
-import cn.qihangerp.api.domain.OmsTenant;
-import cn.qihangerp.api.domain.bo.TenantBo;
-import cn.qihangerp.api.service.OmsTenantService;
 import cn.qihangerp.common.*;
 import cn.qihangerp.common.utils.SecurityUtils;
 import cn.qihangerp.domain.SysUser;

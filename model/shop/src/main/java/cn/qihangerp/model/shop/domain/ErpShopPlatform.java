@@ -59,5 +59,7 @@ public class ErpShopPlatform implements Serializable {
      */
     private Date updateTime;
 
+    private Integer status;
+
     private static final long serialVersionUID = 1L;
 }

@@ -3,8 +3,8 @@ package cn.qihangerp.mms.controller;
 import cn.qihangerp.common.*;
 import cn.qihangerp.common.utils.SecurityUtils;
 import cn.qihangerp.model.shop.service.ErpShopPlatformService;
-import cn.qihangerp.model.shop.domain.OmsTenantShop;
-import cn.qihangerp.model.shop.service.OmsTenantShopService;
+import cn.qihangerp.model.shop.domain.OmsMerchantShop;
+import cn.qihangerp.model.shop.service.OmsMerchantShopService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,16 +17,16 @@ import java.util.List;
 @RequestMapping("/tenant")
 public class TenantShopController extends BaseController {
     @Autowired
-    private OmsTenantShopService shopService;
+    private OmsMerchantShopService shopService;
     @Autowired
     private ErpShopPlatformService platformService;
 
     @GetMapping("/shop/list")
     public TableDataInfo list()
     {
-        List<OmsTenantShop> list = shopService.list(new LambdaQueryWrapper<OmsTenantShop>()
-                .eq(OmsTenantShop::getTenantId, SecurityUtils.getUserId())
-                .eq(OmsTenantShop::getIsDelete,0)
+        List<OmsMerchantShop> list = shopService.list(new LambdaQueryWrapper<OmsMerchantShop>()
+                .eq(OmsMerchantShop::getTenantId, SecurityUtils.getUserId())
+                .eq(OmsMerchantShop::getIsDelete,0)
         );
 
         return getDataTable(list);
@@ -45,7 +45,7 @@ public class TenantShopController extends BaseController {
      * 新增店铺
      */
     @PostMapping("/shop")
-    public AjaxResult add(@RequestBody OmsTenantShop shop)
+    public AjaxResult add(@RequestBody OmsMerchantShop shop)
     {
         shop.setTenantId(SecurityUtils.getUserId());
         shop.setCreateTime(new Date());
@@ -56,7 +56,7 @@ public class TenantShopController extends BaseController {
      * 修改店铺
      */
     @PutMapping("/shop")
-    public AjaxResult edit(@RequestBody OmsTenantShop shop)
+    public AjaxResult edit(@RequestBody OmsMerchantShop shop)
     {
         shop.setUpdateTime(new Date());
         return toAjax(shopService.updateById(shop));
@@ -68,10 +68,10 @@ public class TenantShopController extends BaseController {
     @DeleteMapping("/shop/{ids}")
     public AjaxResult remove(@PathVariable Long[] ids)
     {
-        List<OmsTenantShop> list = new ArrayList<>();
+        List<OmsMerchantShop> list = new ArrayList<>();
         if(ids!=null && ids.length>0) {
             for (var id:ids) {
-                OmsTenantShop shop = new OmsTenantShop();
+                OmsMerchantShop shop = new OmsMerchantShop();
                 shop.setId(id);
                 shop.setUpdateTime(new Date());
                 shop.setIsDelete(1);

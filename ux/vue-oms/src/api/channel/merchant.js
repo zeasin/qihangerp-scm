@@ -1,35 +1,35 @@
 import request from '@/utils/request'
 
 // 查询店铺列表
-export function listDistributor(query) {
+export function listMerchant(query) {
   return request({
-    url: '/scm-oms-api/tenant/list',
+    url: '/scm-oms-api/merchant/list',
     method: 'get',
     params: query
   })
 }
 
 // 查询店铺详细
-export function getDistributor(id) {
+export function getMerchant(id) {
   return request({
-    url: '/scm-oms-api/tenant/' + id,
+    url: '/scm-oms-api/merchant/' + id,
     method: 'get'
   })
 }
 
 // 新增店铺
-export function addDistributor(data) {
+export function addMerchant(data) {
   return request({
-    url: '/scm-oms-api/tenant',
+    url: '/scm-oms-api/merchant',
     method: 'post',
     data: data
   })
 }
 
 // 修改店铺
-export function updateDistributor(data) {
+export function updateMerchant(data) {
   return request({
-    url: '/scm-oms-api/tenant',
+    url: '/scm-oms-api/merchant',
     method: 'put',
     data: data
   })

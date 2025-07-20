@@ -121,11 +121,11 @@
 
 <script>
 import {
-  listDistributor,
-  getDistributor,
-  addDistributor,
-  updateDistributor
-} from "@/api/channel/tenant";
+  listMerchant,
+  getMerchant,
+  addMerchant,
+  updateMerchant
+} from "@/api/channel/merchant";
 
 export default {
   name: "Shop",
@@ -175,7 +175,7 @@ export default {
     /** 查询店铺列表 */
     getList() {
       this.loading = true;
-      listDistributor(this.queryParams).then(response => {
+      listMerchant(this.queryParams).then(response => {
         this.shopList = response.rows;
         this.total = response.total;
         this.loading = false;
@@ -219,7 +219,7 @@ export default {
     handleUpdate(row) {
       this.reset();
       const id = row.id || this.ids
-      getDistributor(id).then(response => {
+      getMerchant(id).then(response => {
         this.form = response.data;
         this.$nextTick(()=>{
           this.form.status = response.data.status+'';
@@ -234,14 +234,14 @@ export default {
       this.$refs["form"].validate(valid => {
         if (valid) {
           if (this.form.userId != null) {
-            updateDistributor(this.form).then(response => {
+            updateMerchant(this.form).then(response => {
               this.$modal.msgSuccess("修改成功");
               this.open = false;
               this.apiOpen = false
               this.getList();
             });
           } else {
-            addDistributor(this.form).then(response => {
+            addMerchant(this.form).then(response => {
               this.$modal.msgSuccess("新增成功");
               this.open = false;
               this.getList();

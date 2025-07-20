@@ -259,7 +259,7 @@
 
 <script>
 // import { listReturned, getReturned, delReturned, addReturned, updateReturned } from "@/api/api/returned";
-import {listShop} from "@/api/channel/tenant";
+import {listShop} from "@/api/channel/merchant";
 export default {
   name: "Returned",
   data() {

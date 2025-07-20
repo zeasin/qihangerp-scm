@@ -1,4 +1,4 @@
-package cn.qihangerp.api.domain;
+package cn.qihangerp.model.shop.domain;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -9,7 +9,7 @@ import lombok.Data;
  * @TableName oms_tenant
  */
 @Data
-public class OmsTenant implements Serializable {
+public class OmsMerchant implements Serializable {
     /**
      * 用户ID(tenantId)
      */

@@ -12,7 +12,7 @@ import lombok.Data;
  * @TableName oms_tenant_shop
  */
 @Data
-public class OmsTenantShop implements Serializable {
+public class OmsMerchantShop implements Serializable {
     /**
      * 主键
      */
@@ -47,7 +47,8 @@ public class OmsTenantShop implements Serializable {
     /**
      * 是否删除0否1是
      */
-    private Integer isDelete;
+    private Integer status;
+    private Integer apiStatus;
 
 
     /**
@@ -113,7 +114,7 @@ public class OmsTenantShop implements Serializable {
     /**
      * 租户ID（distributor）
      */
-    private Long tenantId;
+    private Long merchantId;
 
     /**
      * 创建时间

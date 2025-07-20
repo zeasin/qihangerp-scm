@@ -2,16 +2,17 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.qihangerp.service.shop.mapper.OmsTenantShopMapper">
+<mapper namespace="cn.qihangerp.service.shop.mapper.OmsMerchantShopMapper">
 
-    <resultMap id="BaseResultMap" type="cn.qihangerp.model.shop.domain.OmsTenantShop">
+    <resultMap id="BaseResultMap" type="cn.qihangerp.model.shop.domain.OmsMerchantShop">
             <id property="id" column="id" jdbcType="INTEGER"/>
             <result property="name" column="name" jdbcType="VARCHAR"/>
             <result property="nickName" column="nick_name" jdbcType="VARCHAR"/>
             <result property="company" column="company" jdbcType="VARCHAR"/>
             <result property="type" column="type" jdbcType="INTEGER"/>
             <result property="url" column="url" jdbcType="VARCHAR"/>
-            <result property="isDelete" column="is_delete" jdbcType="INTEGER"/>
+            <result property="status" column="status" jdbcType="INTEGER"/>
+            <result property="apiStatus" column="api_status" jdbcType="INTEGER"/>
 
             <result property="remark" column="remark" jdbcType="VARCHAR"/>
             <result property="sellerUserId" column="seller_user_id" jdbcType="BIGINT"/>
@@ -25,7 +26,7 @@
             <result property="refreshTokenTimeout" column="refresh_token_timeout" jdbcType="BIGINT"/>
             <result property="serverUrl" column="server_url" jdbcType="VARCHAR"/>
             <result property="callbackUrl" column="callback_url" jdbcType="VARCHAR"/>
-            <result property="tenantId" column="tenant_id" jdbcType="BIGINT"/>
+            <result property="merchantId" column="merchant_id" jdbcType="BIGINT"/>
             <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
             <result property="createBy" column="create_by" jdbcType="VARCHAR"/>
             <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
@@ -33,14 +34,11 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,name,nick_name,
-        company,type,url,
-        is_delete,remark,
+        id,name,nick_name,company,type,url,remark,
         seller_user_id,seller_user_id_str,appkey,
         app_sercet,access_token,access_expires_in,
         access_token_begin,refresh_token,refresh_token_timeout,
-        server_url,callback_url,tenant_id,
-        create_time,create_by,update_time,
-        update_by
+        server_url,callback_url,merchant_id,status,api_status,
+        create_time,create_by,update_time,update_by
     </sql>
 </mapper>

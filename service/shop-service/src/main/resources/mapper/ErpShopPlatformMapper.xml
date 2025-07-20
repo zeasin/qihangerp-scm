@@ -14,11 +14,12 @@
             <result property="redirectUrl" column="redirect_url" jdbcType="VARCHAR"/>
             <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
             <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="status" column="status" jdbcType="INTEGER"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         id,name,app_key,
         app_secret,remark,server_url,
-        redirect_url,create_time,update_time
+        redirect_url,create_time,update_time,status
     </sql>
 </mapper>
