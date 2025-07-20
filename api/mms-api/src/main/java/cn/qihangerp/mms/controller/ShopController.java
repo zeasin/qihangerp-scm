@@ -14,14 +14,14 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/tenant")
-public class MerchantShopController extends BaseController {
+@RequestMapping("/shop")
+public class ShopController extends BaseController {
     @Autowired
     private OmsMerchantShopService shopService;
     @Autowired
     private ErpShopPlatformService platformService;
 
-    @GetMapping("/shop/list")
+    @GetMapping("/list")
     public TableDataInfo list()
     {
         Integer userIdentity = SecurityUtils.getLoginUser().getUserIdentity();
@@ -45,7 +45,7 @@ public class MerchantShopController extends BaseController {
     /**
      * 获取店铺详细信息
      */
-    @GetMapping(value = "/shop/{id}")
+    @GetMapping(value = "/{id}")
     public AjaxResult getInfo(@PathVariable("id") Long id)
     {
         return success(shopService.getById(id));
@@ -54,7 +54,7 @@ public class MerchantShopController extends BaseController {
     /**
      * 新增店铺
      */
-    @PostMapping("/shop")
+    @PostMapping("")
     public AjaxResult add(@RequestBody OmsMerchantShop shop)
     {
         Integer userIdentity = SecurityUtils.getLoginUser().getUserIdentity();
@@ -66,6 +66,8 @@ public class MerchantShopController extends BaseController {
         }else{
             merchantId = -1L;
         }
+        shop.setStatus(0);
+        shop.setApiStatus(0);
         shop.setMerchantId(merchantId);
         shop.setCreateTime(new Date());
         return toAjax(shopService.save(shop));
@@ -74,7 +76,7 @@ public class MerchantShopController extends BaseController {
     /**
      * 修改店铺
      */
-    @PutMapping("/shop")
+    @PutMapping("")
     public AjaxResult edit(@RequestBody OmsMerchantShop shop)
     {
         shop.setUpdateTime(new Date());
@@ -84,7 +86,7 @@ public class MerchantShopController extends BaseController {
     /**
      * 删除店铺
      */
-    @DeleteMapping("/shop/{ids}")
+    @DeleteMapping("/{ids}")
     public AjaxResult remove(@PathVariable Long[] ids)
     {
         List<OmsMerchantShop> list = new ArrayList<>();

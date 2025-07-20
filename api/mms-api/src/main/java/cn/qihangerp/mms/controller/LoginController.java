@@ -2,28 +2,24 @@ package cn.qihangerp.mms.controller;
 
 import cn.qihangerp.common.AjaxResult;
 import cn.qihangerp.common.constant.Constants;
-import cn.qihangerp.common.exception.ServiceException;
 import cn.qihangerp.common.redis.RedisCache;
 import cn.qihangerp.common.utils.SecurityUtils;
 import cn.qihangerp.domain.LoginBody;
 import cn.qihangerp.domain.SysUser;
 import cn.qihangerp.domain.vo.RouterVo;
 import cn.qihangerp.domain.vo.UserVo;
-import cn.qihangerp.mms.domain.OmsMenu;
 import cn.qihangerp.mms.service.LoginService;
-import cn.qihangerp.mms.service.OmsMenuService;
+import cn.qihangerp.model.sys.domain.SysMenuMms;
+import cn.qihangerp.model.sys.service.SysMenuMmsService;
 import cn.qihangerp.service.ISysUserService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.RedisConnectionFailureException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Set;
 
 /**
  * 登录验证
@@ -36,7 +32,7 @@ import java.util.Set;
 public class LoginController
 {
     private final LoginService loginService;
-    private final OmsMenuService menuService;
+    private final SysMenuMmsService menuService;
     private final RedisCache redisCache;
     private final ISysUserService userService;
 //    private final OmsTenantService tenantService;
@@ -126,7 +122,7 @@ public class LoginController
     public AjaxResult getRouters()
     {
         Long userId = SecurityUtils.getUserId();
-        List<OmsMenu> menus = menuService.selectMenuAll();
+        List<SysMenuMms> menus = menuService.selectMenuAll();
         List<RouterVo> routerVos = menuService.buildMenus(menus);
         return AjaxResult.success(routerVos);
     }

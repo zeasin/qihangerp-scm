@@ -1,22 +1,15 @@
 <template>
   <div class="app-container">
     <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
-      <el-form-item label="订单编号" prop="orderNum">
+      <el-form-item label="订单号" prop="orderNum">
         <el-input
           v-model="queryParams.orderNum"
-          placeholder="请输入订单编号"
+          placeholder="请输入订单号"
           clearable
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="快递单号" prop="shippingNumber">
-        <el-input
-          v-model="queryParams.shippingNumber"
-          placeholder="请输入快递单号"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
+
       <el-form-item label="店铺" prop="shopId">
         <el-select v-model="queryParams.shopId" placeholder="请选择店铺" clearable @change="handleQuery">
          <el-option
@@ -353,7 +346,7 @@
 
 <script>
 import { listOrder, getOrder, delOrder, addOrder, updateOrder } from "@/api/order/order";
-import {listShop} from "../../api/shop/shop";
+import {listShop} from "@/api/shop/shop";
 
 export default {
   name: "Order",
