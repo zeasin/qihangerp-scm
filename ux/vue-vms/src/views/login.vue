@@ -104,7 +104,7 @@
 <script>
 import Cookies from "js-cookie";
 import { encrypt, decrypt } from '@/utils/jsencrypt'
-import {getConfig} from "@/api/system/config";
+
 
 export default {
   name: "Login",
@@ -175,11 +175,6 @@ export default {
     }
   },
   created() {
-    getConfig('sys.name.vms').then(resp=>{
-      if(resp.data){
-        this.title = resp.data.configValue
-      }
-    })
     this.getCookie();
   },
   directives: {

@@ -1,12 +1,13 @@
-//package cn.qihangerp.api.service;
+//package cn.qihangerp.vms.service;
 //
 //import cn.qihangerp.common.constant.UserConstants;
+//import cn.qihangerp.common.exception.ServiceException;
 //import cn.qihangerp.common.exception.UserNotExistsException;
-//import cn.qihangerp.common.utils.DateUtils;
-//import cn.qihangerp.domain.SysUser;
 //import cn.qihangerp.common.redis.RedisCache;
+//import cn.qihangerp.common.utils.DateUtils;
 //import cn.qihangerp.common.utils.IpUtils;
 //import cn.qihangerp.common.utils.StringUtils;
+//import cn.qihangerp.domain.SysUser;
 //import cn.qihangerp.security.AuthenticationContextHolder;
 //import cn.qihangerp.security.LoginUser;
 //import cn.qihangerp.security.TokenService;
@@ -27,7 +28,7 @@
 // * @author qihang
 // */
 //@Component
-//public class SysLoginService
+//public class LoginService
 //{
 //    @Autowired
 //    private TokenService tokenService;
@@ -39,9 +40,6 @@
 //    private RedisCache redisCache;
 //    @Autowired
 //    private ISysUserService userService;
-//
-////    @Autowired
-////    private ISysConfigService configService;
 //
 //    /**
 //     * 登录验证
@@ -73,11 +71,12 @@
 //            {
 ////                AsyncManager.me().execute(AsyncFactory.recordLogininfor(username, Constants.LOGIN_FAIL, MessageUtils.message("user.password.not.match")));
 //                throw new UserPasswordNotMatchException();
-//            }
-//            else
+//            } else if (e instanceof UserPasswordNotMatchException) {
+//                throw new UserPasswordNotMatchException();
+//            } else
 //            {
 ////                AsyncManager.me().execute(AsyncFactory.recordLogininfor(username, Constants.LOGIN_FAIL, e.getMessage()));
-////                throw new ServiceException(e.getMessage());
+//                throw new ServiceException(e.getMessage());
 //            }
 //        }
 //        finally

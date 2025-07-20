@@ -8,10 +8,11 @@ import cn.qihangerp.domain.LoginBody;
 import cn.qihangerp.domain.SysUser;
 import cn.qihangerp.domain.vo.RouterVo;
 import cn.qihangerp.domain.vo.UserVo;
-import cn.qihangerp.mms.service.LoginService;
+
 import cn.qihangerp.model.sys.domain.SysMenuMms;
 import cn.qihangerp.model.sys.service.SysMenuMmsService;
 import cn.qihangerp.service.ISysUserService;
+import cn.qihangerp.service.SysLoginService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,7 +32,7 @@ import java.util.List;
 @RestController
 public class LoginController
 {
-    private final LoginService loginService;
+    private final SysLoginService loginService;
     private final SysMenuMmsService menuService;
     private final RedisCache redisCache;
     private final ISysUserService userService;

@@ -1,6 +1,5 @@
 package cn.qihangerp.api.controller.system;
 
-import cn.qihangerp.api.service.SysLoginService;
 import cn.qihangerp.api.service.SysPermissionService;
 import cn.qihangerp.common.AjaxResult;
 import cn.qihangerp.common.ResultVo;
@@ -19,6 +18,7 @@ import cn.qihangerp.model.sys.service.ISysMenuService;
 import cn.qihangerp.model.sys.service.SysMenuMmsService;
 import cn.qihangerp.model.sys.service.SysMenuVmsService;
 import cn.qihangerp.service.ISysUserService;
+import cn.qihangerp.service.SysLoginService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
