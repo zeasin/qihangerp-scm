@@ -1,14 +1,11 @@
 <template>
   <div class="app-container">
     <el-tabs v-model="activeName" @tab-click="handleClick">
-      <el-tab-pane label="淘宝天猫" name="taoOrder">
-        <tao-refund></tao-refund>
+      <el-tab-pane label="微信小店" name="weiRefund" lazy>
+        <refund-wei></refund-wei>
       </el-tab-pane>
-      <el-tab-pane label="抖店" name="douOrder" lazy>
-        <dou-refund></dou-refund>
-      </el-tab-pane>
-      <el-tab-pane label="拼多多" name="pddOrder" lazy>
-        <pdd-refund></pdd-refund>
+      <el-tab-pane label="其他" name="qt" lazy>
+        <refund-qt></refund-qt>
       </el-tab-pane>
     </el-tabs>
 
@@ -16,16 +13,16 @@
 </template>
 
 <script>
-import TaoRefund  from "@/views/tao/refund/index";
-import DouRefund from "@/views/dou/refund/index.vue";
-import PddRefund from "@/views/pdd/refund/index.vue";
+import RefundWei  from "@/views/shop/refund/wei.vue";
+import RefundQt from "@/views/shop/refund/qt.vue";
+
 
 export default {
   name: "refund",
-  components:{PddRefund, DouRefund, TaoRefund},
+  components:{RefundWei, RefundQt},
   data() {
     return {
-      activeName: 'taoOrder'
+      activeName: 'weiRefund'
     };
   },
   created() {

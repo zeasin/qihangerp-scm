@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.qihangerp.service.order.mapper.ShopOrderMapper">
+
+    <resultMap id="BaseResultMap" type="cn.qihangerp.model.order.domain.ShopOrder">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="merchantId" column="merchant_id" jdbcType="BIGINT"/>
+            <result property="shopId" column="shop_id" jdbcType="BIGINT"/>
+            <result property="shopType" column="shop_type" jdbcType="INTEGER"/>
+            <result property="orderId" column="order_id" jdbcType="VARCHAR"/>
+            <result property="orderTime" column="order_time" jdbcType="BIGINT"/>
+            <result property="updateTime" column="update_time" jdbcType="BIGINT"/>
+            <result property="orderStatus" column="order_status" jdbcType="INTEGER"/>
+            <result property="refundStatus" column="refund_status" jdbcType="INTEGER"/>
+            <result property="goodsAmount" column="goods_amount" jdbcType="INTEGER"/>
+            <result property="orderAmount" column="order_amount" jdbcType="INTEGER"/>
+            <result property="freight" column="freight" jdbcType="INTEGER"/>
+            <result property="paymentAmount" column="payment_amount" jdbcType="INTEGER"/>
+            <result property="discountAmount" column="discount_amount" jdbcType="INTEGER"/>
+            <result property="sellerDiscount" column="seller_discount" jdbcType="INTEGER"/>
+            <result property="platformDiscount" column="platform_discount" jdbcType="INTEGER"/>
+            <result property="buyerMemo" column="buyer_memo" jdbcType="VARCHAR"/>
+            <result property="sellerMemo" column="seller_memo" jdbcType="VARCHAR"/>
+            <result property="remark" column="remark" jdbcType="VARCHAR"/>
+            <result property="province" column="province" jdbcType="VARCHAR"/>
+            <result property="city" column="city" jdbcType="VARCHAR"/>
+            <result property="county" column="county" jdbcType="VARCHAR"/>
+            <result property="town" column="town" jdbcType="VARCHAR"/>
+            <result property="address" column="address" jdbcType="VARCHAR"/>
+            <result property="receiverName" column="receiver_name" jdbcType="VARCHAR"/>
+            <result property="receiverPhone" column="receiver_phone" jdbcType="VARCHAR"/>
+            <result property="virtualOrderTelNumber" column="virtual_order_tel_number" jdbcType="VARCHAR"/>
+            <result property="shipDoneTime" column="ship_done_time" jdbcType="INTEGER"/>
+            <result property="ewaybillOrderCode" column="ewaybill_order_code" jdbcType="VARCHAR"/>
+            <result property="confirmStatus" column="confirm_status" jdbcType="INTEGER"/>
+            <result property="confirmTime" column="confirm_time" jdbcType="TIMESTAMP"/>
+            <result property="erpShipStatus" column="erp_ship_status" jdbcType="INTEGER"/>
+            <result property="erpShipTime" column="erp_ship_time" jdbcType="TIMESTAMP"/>
+            <result property="createOn" column="create_on" jdbcType="TIMESTAMP"/>
+            <result property="updateOn" column="update_on" jdbcType="TIMESTAMP"/>
+            <result property="shopMemberId" column="shop_member_id" jdbcType="BIGINT"/>
+            <result property="platformUserId" column="platform_user_id" jdbcType="BIGINT"/>
+            <result property="platformAccount" column="platform_account" jdbcType="VARCHAR"/>
+            <result property="platformOrderStatus" column="platform_order_status" jdbcType="VARCHAR"/>
+            <result property="platformOrderStatusText" column="platform_order_status_text" jdbcType="VARCHAR"/>
+            <result property="deliverMethod" column="deliver_method" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,merchant_id,shop_id,
+        shop_type,order_id,order_time,
+        update_time,order_status,refund_status,
+        goods_amount,order_amount,freight,
+        payment_amount,discount_amount,seller_discount,
+        platform_discount,buyer_memo,seller_memo,
+        remark,province,city,
+        county,town,address,
+        receiver_name,receiver_phone,virtual_order_tel_number,
+        ship_done_time,ewaybill_order_code,confirm_status,
+        confirm_time,erp_ship_status,erp_ship_time,
+        create_on,update_on,shop_member_id,
+        platform_user_id,platform_account,platform_order_status,
+        platform_order_status_text,deliver_method
+    </sql>
+</mapper>

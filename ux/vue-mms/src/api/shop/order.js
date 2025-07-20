@@ -1,9 +1,9 @@
 import request from '@/utils/request'
 
 // 查询店铺订单列表
-export function listOrder(query) {
+export function listShopOrder(query) {
   return request({
-    url: '/order/list',
+    url: '/scm-mms-api/shop/order/list',
     method: 'get',
     params: query
   })
