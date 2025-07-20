@@ -5,6 +5,7 @@ import cn.qihangerp.common.BaseController;
 import cn.qihangerp.common.TableDataInfo;
 import cn.qihangerp.model.shop.domain.ErpShopPlatform;
 import cn.qihangerp.model.shop.service.ErpShopPlatformService;
+import cn.qihangerp.model.shop.service.OmsMerchantShopService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/shop")
 public class ShopPlatformController extends BaseController {
-    private final OShopService shopService;
+    private final OmsMerchantShopService shopService;
     private final ErpShopPlatformService shopPlatformService;
 
     @GetMapping("/platformList")

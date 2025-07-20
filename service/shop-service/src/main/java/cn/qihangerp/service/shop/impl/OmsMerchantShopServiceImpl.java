@@ -25,14 +25,14 @@ public class OmsMerchantShopServiceImpl extends ServiceImpl<OmsMerchantShopMappe
 
     @Override
     public PageResult<OmsMerchantShop> queryPageList(OmsMerchantShop bo, PageQuery pageQuery) {
-        LambdaQueryWrapper<OShop> queryWrapper = new LambdaQueryWrapper<OShop>()
-                .likeRight(StringUtils.hasText(bo.getName()), OShop::getName, bo.getName())
-                .eq(bo.getMerchantId() != null, OShop::getMerchantId, bo.getMerchantId())
-                .eq(bo.getStatus()!=null, OShop::getStatus, bo.getStatus())
-                .eq(bo.getType()!=null, OShop::getType, bo.getType())
-                .eq(bo.getRegionId() != null, OShop::getRegionId, bo.getRegionId());
+        LambdaQueryWrapper<OmsMerchantShop> queryWrapper = new LambdaQueryWrapper<OmsMerchantShop>()
+                .likeRight(StringUtils.hasText(bo.getName()), OmsMerchantShop::getName, bo.getName())
+                .eq(bo.getMerchantId() != null, OmsMerchantShop::getMerchantId, bo.getMerchantId())
+                .eq(bo.getStatus()!=null, OmsMerchantShop::getStatus, bo.getStatus())
+                .eq(bo.getType()!=null, OmsMerchantShop::getType, bo.getType())
+                .eq(bo.getApiStatus() != null, OmsMerchantShop::getApiStatus, bo.getApiStatus());
 
-        Page<OShop> pages = mapper.selectPage(pageQuery.build(), queryWrapper);
+        Page<OmsMerchantShop> pages = this.baseMapper.selectPage(pageQuery.build(), queryWrapper);
         return PageResult.build(pages);
     }
 
@@ -41,11 +41,10 @@ public class OmsMerchantShopServiceImpl extends ServiceImpl<OmsMerchantShopMappe
         LambdaQueryWrapper<OmsMerchantShop> qw = new LambdaQueryWrapper<OmsMerchantShop>()
                 .eq(shop.getMerchantId() != null, OmsMerchantShop::getMerchantId, shop.getMerchantId())
                 .eq(OmsMerchantShop::getStatus,1)
-                .eq(shop.getType()!=null, OShop::getType,shop.getType())
-                .eq(shop.getShopGroupId()!=null, OShop::getShopGroupId,shop.getShopGroupId())
-                .eq(shop.getManageUserId()!=null&&shop.getManageUserId()!=1,OShop::getManageUserId,shop.getManageUserId())
+                .eq(shop.getType()!=null, OmsMerchantShop::getType,shop.getType())
+                .eq(shop.getApiStatus()!=null, OmsMerchantShop::getApiStatus,shop.getApiStatus())
                 ;
-        return mapper.selectList(qw);
+        return this.baseMapper.selectList(qw);
     }
 }
 
