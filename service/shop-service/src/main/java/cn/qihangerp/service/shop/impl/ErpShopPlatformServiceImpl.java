@@ -1,8 +1,8 @@
-package cn.qihangerp.service.ship.impl;
+package cn.qihangerp.service.shop.impl;
 
 import cn.qihangerp.model.shop.domain.ErpShopPlatform;
 import cn.qihangerp.model.shop.service.ErpShopPlatformService;
-import cn.qihangerp.service.ship.mapper.ErpShopPlatformMapper;
+import cn.qihangerp.service.shop.mapper.ErpShopPlatformMapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
 

@@ -3,7 +3,7 @@ import request from '@/utils/request'
 // 查询店铺列表
 export function listDistributor(query) {
   return request({
-    url: '/tenant/list',
+    url: '/scm-oms-api/tenant/list',
     method: 'get',
     params: query
   })
@@ -12,7 +12,7 @@ export function listDistributor(query) {
 // 查询店铺详细
 export function getDistributor(id) {
   return request({
-    url: '/tenant/' + id,
+    url: '/scm-oms-api/tenant/' + id,
     method: 'get'
   })
 }
@@ -20,7 +20,7 @@ export function getDistributor(id) {
 // 新增店铺
 export function addDistributor(data) {
   return request({
-    url: '/tenant',
+    url: '/scm-oms-api/tenant',
     method: 'post',
     data: data
   })
@@ -29,7 +29,7 @@ export function addDistributor(data) {
 // 修改店铺
 export function updateDistributor(data) {
   return request({
-    url: '/tenant',
+    url: '/scm-oms-api/tenant',
     method: 'put',
     data: data
   })

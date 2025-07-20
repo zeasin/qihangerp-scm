@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.qihangerp.service.ship.mapper.ErpShopPlatformMapper">
+<mapper namespace="cn.qihangerp.service.shop.mapper.ErpShopPlatformMapper">
 
     <resultMap id="BaseResultMap" type="cn.qihangerp.model.shop.domain.ErpShopPlatform">
             <id property="id" column="id" jdbcType="INTEGER"/>

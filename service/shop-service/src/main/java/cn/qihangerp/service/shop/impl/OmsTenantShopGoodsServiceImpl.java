@@ -1,4 +1,4 @@
-package cn.qihangerp.service.ship.impl;
+package cn.qihangerp.service.shop.impl;
 
 import cn.qihangerp.common.PageQuery;
 import cn.qihangerp.common.PageResult;
@@ -8,8 +8,8 @@ import cn.qihangerp.model.shop.bo.ShopGoodsQuery;
 import cn.qihangerp.model.shop.domain.OmsTenantShopGoods;
 import cn.qihangerp.model.shop.domain.OmsTenantShopGoodsSku;
 import cn.qihangerp.model.shop.service.OmsTenantShopGoodsService;
-import cn.qihangerp.service.ship.mapper.OmsTenantShopGoodsMapper;
-import cn.qihangerp.service.ship.mapper.OmsTenantShopGoodsSkuMapper;
+import cn.qihangerp.service.shop.mapper.OmsTenantShopGoodsMapper;
+import cn.qihangerp.service.shop.mapper.OmsTenantShopGoodsSkuMapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;

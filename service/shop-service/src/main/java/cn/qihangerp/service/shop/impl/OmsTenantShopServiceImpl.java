@@ -1,8 +1,8 @@
-package cn.qihangerp.service.ship.impl;
+package cn.qihangerp.service.shop.impl;
 
 import cn.qihangerp.model.shop.domain.OmsTenantShop;
 import cn.qihangerp.model.shop.service.OmsTenantShopService;
-import cn.qihangerp.service.ship.mapper.OmsTenantShopMapper;
+import cn.qihangerp.service.shop.mapper.OmsTenantShopMapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
 import org.springframework.stereotype.Service;

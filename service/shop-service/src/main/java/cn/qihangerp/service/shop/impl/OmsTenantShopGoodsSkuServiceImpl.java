@@ -1,10 +1,10 @@
-package cn.qihangerp.service.ship.impl;
+package cn.qihangerp.service.shop.impl;
 
 
 import cn.qihangerp.model.shop.domain.OmsTenantShopGoodsSku;
 import cn.qihangerp.model.shop.service.OmsTenantShopGoodsSkuService;
 import cn.qihangerp.model.shop.vo.ShopGoodsSpecListVo;
-import cn.qihangerp.service.ship.mapper.OmsTenantShopGoodsSkuMapper;
+import cn.qihangerp.service.shop.mapper.OmsTenantShopGoodsSkuMapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
 import lombok.AllArgsConstructor;

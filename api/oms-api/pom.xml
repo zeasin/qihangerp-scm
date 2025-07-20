@@ -130,11 +130,12 @@
             <artifactId>sys-service</artifactId>
             <version>0.5.1</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>cn.qihangerp.model</groupId>-->
-<!--            <artifactId>goods</artifactId>-->
-<!--            <version>0.5.1</version>-->
-<!--        </dependency>-->
+
+        <dependency>
+            <groupId>cn.qihangerp.service</groupId>
+            <artifactId>shop-service</artifactId>
+            <version>0.5.1</version>
+        </dependency>
         <dependency>
             <groupId>cn.qihangerp.service</groupId>
             <artifactId>goods-service</artifactId>
@@ -165,6 +166,12 @@
             <artifactId>lombok</artifactId>
             <version>1.18.30</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>cn.qihangerp.model</groupId>
+            <artifactId>shop</artifactId>
+            <version>0.5.1</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 </project>
