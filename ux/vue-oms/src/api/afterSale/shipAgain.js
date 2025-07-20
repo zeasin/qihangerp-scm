@@ -1,9 +1,9 @@
 import request from '@/utils/request'
 
 // 查询列表
-export function list(query) {
+export function shipAgainList(query) {
   return request({
-    url: '/afterSale/ship_again_list',
+    url: '/scm-oms-api/afterSale/ship_again_list',
     method: 'get',
     params: query
   })

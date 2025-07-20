@@ -1,64 +1,26 @@
 <template>
   <div class="app-container">
     <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
-      <el-form-item label="退货单号" prop="afterSaleOrderId">
-        <el-input
-          v-model="queryParams.afterSaleOrderId"
-          placeholder="请输入退货单号"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="源订单号" prop="orderId">
+
+      <el-form-item label="订单号" prop="orderId">
         <el-input
           v-model="queryParams.orderId"
-          placeholder="请输入源订单号"
+          placeholder="请输入订单号"
           clearable
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="店铺" prop="shopId">
-        <el-select v-model="queryParams.shopId" placeholder="请选择店铺" clearable @change="handleQuery">
+      <el-form-item label="商户" prop="merchantId">
+        <el-select v-model="queryParams.merchantId" placeholder="请选择商户" clearable @change="handleQuery">
           <el-option
-            v-for="item in shopList"
+            v-for="item in merchantList"
             :key="item.id"
-            :label="item.name"
+            :label="item.nickName"
             :value="item.id">
-            <span style="float: left">{{ item.name }}</span>
-            <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 1">淘宝天猫</span>
-            <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 2">京东</span>
-            <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 3">抖店</span>
-            <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 4">拼多多</span>
-            <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 5">视频号小店</span>
+
           </el-option>
         </el-select>
       </el-form-item>
-
-      <el-form-item label="商品id" prop="goodsId">
-        <el-input
-          v-model="queryParams.goodsId"
-          placeholder="请输入商品id"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="sku编码" prop="skuCode">
-        <el-input
-          v-model="queryParams.skuCode"
-          placeholder="请输入sku编码"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-
-<!--      <el-form-item label="物流单号" prop="logisticsCode">-->
-<!--        <el-input-->
-<!--          v-model="queryParams.logisticsCode"-->
-<!--          placeholder="请输入物流单号"-->
-<!--          clearable-->
-<!--          @keyup.enter.native="handleQuery"-->
-<!--        />-->
-<!--      </el-form-item>-->
 
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
@@ -206,8 +168,8 @@
 </template>
 
 <script>
-import {listReturned, addExchange, shipAgainComplete} from "@/api/afterSale/intercept";
-import {listShop} from "@/api/channel/merchant";
+import {listIntercept} from "@/api/afterSale/intercept";
+import {listMerchant} from "@/api/channel/merchant";
 
 export default {
   name: "InterceptAfter",
@@ -227,7 +189,7 @@ export default {
       total: 0,
       // 表格数据
       dataList: [],
-      shopList: [],
+      merchantList: [],
       // 弹出层标题
       title: "",
       // 是否显示弹出层
@@ -263,8 +225,8 @@ export default {
     };
   },
   created() {
-    listShop({}).then(response => {
-      this.shopList = response.rows;
+    listMerchant({}).then(response => {
+      this.merchantList = response.rows;
     });
     this.getList();
   },
@@ -272,7 +234,7 @@ export default {
     /** 查询退换货列表 */
     getList() {
       this.loading = true;
-      listReturned(this.queryParams).then(response => {
+      listIntercept(this.queryParams).then(response => {
         this.dataList = response.rows;
         this.total = response.total;
         this.loading = false;

@@ -1,4 +1,4 @@
-package cn.qihangerp.api.controller.ship;
+package cn.qihangerp.api.controller.order;
 
 import cn.qihangerp.common.*;
 import cn.qihangerp.model.ship.domain.ErpShipLogistics;

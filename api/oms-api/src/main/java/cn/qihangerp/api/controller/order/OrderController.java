@@ -1,4 +1,4 @@
-package cn.qihangerp.api.controller.ship;
+package cn.qihangerp.api.controller.order;
 
 import cn.qihangerp.common.*;
 import cn.qihangerp.model.order.bo.OrderQuery;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 @RestController
-@RequestMapping("/ship/order")
+@RequestMapping("/order")
 public class OrderController extends BaseController {
 
     private ScmOrderService orderService;

@@ -9,12 +9,23 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="分销终端" prop="tenantId">
-        <el-select v-model="queryParams.tenantId" placeholder="请选择分销终端" clearable @change="handleQuery">
+
+      <el-form-item label="商户" prop="merchantId">
+        <el-select v-model="queryParams.merchantId" placeholder="请选择" clearable @change="handleQuery">
          <el-option
-            v-for="item in tenantList"
+            v-for="item in merchantList"
             :key="item.id"
             :label="item.nickName"
+            :value="item.id">
+          </el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item label="供应商" prop="vendorId">
+        <el-select v-model="queryParams.vendorId" placeholder="请选择" clearable @change="handleQuery">
+          <el-option
+            v-for="item in vendorList"
+            :key="item.id"
+            :label="item.name"
             :value="item.id">
           </el-option>
         </el-select>
@@ -29,22 +40,22 @@
         />
       </el-form-item>
       -->
-      <el-form-item label="收件人" prop="receiverName">
-        <el-input
-          v-model="queryParams.receiverName"
-          placeholder="请输入收件人"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="手机号" prop="receiverPhone">
-        <el-input
-          v-model="queryParams.receiverPhone"
-          placeholder="请输入手机号"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
+<!--      <el-form-item label="收件人" prop="receiverName">-->
+<!--        <el-input-->
+<!--          v-model="queryParams.receiverName"-->
+<!--          placeholder="请输入收件人"-->
+<!--          clearable-->
+<!--          @keyup.enter.native="handleQuery"-->
+<!--        />-->
+<!--      </el-form-item>-->
+<!--      <el-form-item label="手机号" prop="receiverPhone">-->
+<!--        <el-input-->
+<!--          v-model="queryParams.receiverPhone"-->
+<!--          placeholder="请输入手机号"-->
+<!--          clearable-->
+<!--          @keyup.enter.native="handleQuery"-->
+<!--        />-->
+<!--      </el-form-item>-->
 
      <!--  <el-form-item label="城市" prop="city">
         <el-input
@@ -63,14 +74,14 @@
         />
       </el-form-item> -->
 
-      <el-form-item label="快递单号" prop="shippingNumber">
-        <el-input
-          v-model="queryParams.shippingNumber"
-          placeholder="请输入快递单号"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
+<!--      <el-form-item label="快递单号" prop="shippingNumber">-->
+<!--        <el-input-->
+<!--          v-model="queryParams.shippingNumber"-->
+<!--          placeholder="请输入快递单号"-->
+<!--          clearable-->
+<!--          @keyup.enter.native="handleQuery"-->
+<!--        />-->
+<!--      </el-form-item>-->
 
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
@@ -78,27 +89,15 @@
       </el-form-item>
     </el-form>
 
-    <el-row :gutter="10" class="mb8">
-      <el-col :span="1.5">
-        <el-button
-          type="primary"
-          plain
-          icon="el-icon-plus"
-          size="mini"
-          @click="handleAdd"
-          v-hasPermi="['shop:order:add']"
-        >手动创建订单</el-button>
-      </el-col>
-      <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
-    </el-row>
+
 
     <el-table v-loading="loading" :data="orderList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
       <el-table-column label="订单ID" align="center" prop="id" />
       <el-table-column label="订单编号" align="center" prop="orderNum" />
-      <el-table-column label="店铺ID" align="center" prop="shopId" >
+      <el-table-column label="商户" align="center" prop="shopId" >
         <template slot-scope="scope">
-          <span>{{ tenantList.find(x=>x.id === scope.row.tenantId).name  }}</span>
+          <span>{{ merchantList.find(x=>x.id === scope.row.merchantList).name  }}</span>
         </template>
       </el-table-column>
 
@@ -190,8 +189,8 @@
         <el-descriptions title="订单信息">
             <el-descriptions-item label="ID">{{form.id}}</el-descriptions-item>
             <el-descriptions-item label="订单号">{{form.orderNum}}</el-descriptions-item>
-            <el-descriptions-item label="店铺">
-              {{ tenantList.find(x=>x.id === form.shopId)?tenantList.find(x=>x.id === form.tenantId).name:'' }}
+            <el-descriptions-item label="商户">
+              {{ merchantList.find(x=>x.id === form.merchantId)?merchantList.find(x=>x.id === form.merchantId).name:'' }}
             </el-descriptions-item>
 
 
@@ -285,7 +284,7 @@
 
 <script>
 import { listOrder, getOrder} from "@/api/ship/order";
-import { listDistributor } from "@/api/channel/merchant";
+import { listMerchant } from "@/api/channel/merchant";
 export default {
   name: "Order",
   data() {
@@ -308,7 +307,9 @@ export default {
       orderList: [],
       // ${subTable.functionName}表格数据
       sShopOrderItemList: [],
-      tenantList:[],
+      shopList:[],
+      merchantList:[],
+      vendorList:[],
       // 弹出层标题
       detailTitle:'订单详情',
       detailOpen:false,
@@ -319,7 +320,8 @@ export default {
         pageSize: 10,
         orderNum: null,
         shopId: null,
-        tag: null,
+        vendorId: null,
+        merchantId: null,
         refundStatus: null,
         orderStatus: null,
         payTime: null,
@@ -340,8 +342,8 @@ export default {
     };
   },
   created() {
-    listDistributor({}).then(response => {
-        this.tenantList = response.rows;
+    listMerchant({}).then(response => {
+        this.merchantList = response.rows;
       });
     this.getList();
   },
@@ -371,10 +373,7 @@ export default {
       this.single = selection.length!==1
       this.multiple = !selection.length
     },
-    /** 新增按钮操作 */
-    handleAdd() {
-      this.$router.push('/sale/order/create');
-    },
+
     /** 导出按钮操作 */
     handleExport() {
       this.download('api/order/export', {

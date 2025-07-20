@@ -9,48 +9,24 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="源订单号" prop="orderNum">
+      <el-form-item label="订单号" prop="orderNum">
         <el-input
           v-model="queryParams.orderNum"
-          placeholder="请输入源订单号"
+          placeholder="请输入订单号"
           clearable
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
+      <el-form-item label="商户" prop="merchantId">
+        <el-select v-model="queryParams.merchantId" placeholder="请选择商户" clearable @change="handleQuery">
+          <el-option
+            v-for="item in merchantList"
+            :key="item.id"
+            :label="item.nickName"
+            :value="item.id">
 
-      <el-form-item label="商品id" prop="goodsId">
-        <el-input
-          v-model="queryParams.goodsId"
-          placeholder="请输入商品id"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-
-      <el-form-item label="商品编码" prop="goodsNum">
-        <el-input
-          v-model="queryParams.goodsNum"
-          placeholder="请输入商品编码"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="规格编码" prop="specNum">
-        <el-input
-          v-model="queryParams.specNum"
-          placeholder="请输入规格编码"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-
-      <el-form-item label="物流单号" prop="logisticsCode">
-        <el-input
-          v-model="queryParams.logisticsCode"
-          placeholder="请输入物流单号"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
+          </el-option>
+        </el-select>
       </el-form-item>
 
       <el-form-item>
@@ -258,8 +234,8 @@
 </template>
 
 <script>
-// import { listReturned, getReturned, delReturned, addReturned, updateReturned } from "@/api/api/returned";
-import {listShop} from "@/api/channel/merchant";
+import { listReturned, getAfterSale } from "@/api/afterSale/returned";
+import {listMerchant} from "@/api/channel/merchant";
 export default {
   name: "Returned",
   data() {
@@ -278,6 +254,7 @@ export default {
       total: 0,
       // 退换货表格数据
       returnedList: [],
+      merchantList: [],
       // 弹出层标题
       title: "",
       // 是否显示弹出层
@@ -335,7 +312,11 @@ export default {
     };
   },
   created() {
-    this.getList();
+    listMerchant({}).then(response => {
+      this.merchantList = response.rows;
+      this.getList();
+    });
+
   },
   methods: {
     /** 查询退换货列表 */

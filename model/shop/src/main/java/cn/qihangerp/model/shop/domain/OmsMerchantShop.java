@@ -49,6 +49,7 @@ public class OmsMerchantShop implements Serializable {
      */
     private Integer status;
     private Integer apiStatus;
+    private Integer sort;
 
 
     /**

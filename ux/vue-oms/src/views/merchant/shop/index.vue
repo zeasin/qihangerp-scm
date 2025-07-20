@@ -14,7 +14,7 @@
           <el-option
             v-for="item in merchantList"
             :key="item.id"
-            :label="item.name"
+            :label="item.nickName"
             :value="item.id">
           </el-option>
         </el-select>
@@ -203,16 +203,6 @@
 
            <el-option
               v-for="item in typeList"
-              :key="item.id"
-              :label="item.name"
-              :value="item.id">
-            </el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="国家/地区" prop="regionId">
-          <el-select v-model="form.regionId" placeholder="请选择国家/地区">
-            <el-option
-              v-for="item in regionList"
               :key="item.id"
               :label="item.name"
               :value="item.id">
@@ -450,8 +440,8 @@ export default {
       listMerchant({pageNum: 1, pageSize: 100}).then(resp => {
         this.merchantList = resp.rows
         if (this.merchantList && this.merchantList.length > 0) {
-          this.queryParams.merchantId = this.merchantList[0].id
-          this.form.merchantId = this.merchantList[0].id
+          this.queryParams.merchantId = this.merchantList[0].id+''
+          this.form.merchantId = this.merchantList[0].id+''
         }
         this.getList()
       })

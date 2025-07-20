@@ -17,48 +17,18 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="店铺" prop="shopId">
-        <el-select v-model="queryParams.shopId" placeholder="请选择店铺" clearable @change="handleQuery">
+      <el-form-item label="商户" prop="merchantId">
+        <el-select v-model="queryParams.merchantId" placeholder="请选择商户" clearable @change="handleQuery">
           <el-option
-            v-for="item in shopList"
+            v-for="item in merchantList"
             :key="item.id"
-            :label="item.name"
+            :label="item.nickName"
             :value="item.id">
-            <span style="float: left">{{ item.name }}</span>
-            <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 1">淘宝天猫</span>
-            <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 2">京东</span>
-            <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 3">抖店</span>
-            <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 4">拼多多</span>
-            <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 5">视频号小店</span>
+
           </el-option>
         </el-select>
       </el-form-item>
 
-      <el-form-item label="商品id" prop="goodsId">
-        <el-input
-          v-model="queryParams.goodsId"
-          placeholder="请输入商品id"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="sku编码" prop="skuCode">
-        <el-input
-          v-model="queryParams.skuCode"
-          placeholder="请输入sku编码"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-
-<!--      <el-form-item label="物流单号" prop="logisticsCode">-->
-<!--        <el-input-->
-<!--          v-model="queryParams.logisticsCode"-->
-<!--          placeholder="请输入物流单号"-->
-<!--          clearable-->
-<!--          @keyup.enter.native="handleQuery"-->
-<!--        />-->
-<!--      </el-form-item>-->
 
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
@@ -67,15 +37,15 @@
     </el-form>
 
     <el-row :gutter="10" class="mb8">
-      <el-col :span="1.5">
-        <el-button
-          type="primary"
-          plain
-          icon="el-icon-plus"
-          size="mini"
-          @click="handleAdd"
-        >新增</el-button>
-      </el-col>
+<!--      <el-col :span="1.5">-->
+<!--        <el-button-->
+<!--          type="primary"-->
+<!--          plain-->
+<!--          icon="el-icon-plus"-->
+<!--          size="mini"-->
+<!--          @click="handleAdd"-->
+<!--        >新增</el-button>-->
+<!--      </el-col>-->
       <!-- <el-col :span="1.5">
         <el-button
           type="success"
@@ -116,7 +86,7 @@
       <el-table-column label="源订单号" align="center" prop="orderId" />
        <el-table-column label="店铺" align="center" prop="shopId" >
          <template slot-scope="scope">
-           <span>{{ shopList.find(x=>x.id === scope.row.shopId).name  }}</span>
+           <span>{{ merchantList.find(x=>x.id === scope.row.merchantId).nickName  }}</span>
          </template>
        </el-table-column>
        <el-table-column label="订单id" align="center" prop="orderId" />
@@ -160,83 +130,13 @@
     />
 
     <!-- 添加或修改退换货对话框 -->
-    <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
-      <el-form ref="form" :model="form" :rules="rules" label-width="120px">
-        <el-form-item label="店铺" prop="shopId">
-          <el-select v-model="form.shopId" filterable r placeholder="搜索店铺" >
-            <el-option v-for="item in shopList" :key="item.id" :label="item.name" :value="item.id">
-              <span style="float: left">{{ item.name }}</span>
-              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 1">淘宝天猫</span>
-              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 2">京东</span>
-              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 3">抖店</span>
-              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 4">拼多多</span>
-              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 5">视频号小店</span>
-            </el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="退货单号" prop="afterSaleOrderId">
-          <el-input v-model="form.afterSaleOrderId" placeholder="请输入退货单号" />
-        </el-form-item>
-        <el-form-item label="源订单号" prop="orderId">
-          <el-input v-model="form.orderId" placeholder="请输入源订单号" />
-        </el-form-item>
-        <el-form-item label="子订单id" prop="subOrderId">
-          <el-input v-model="form.subOrderId" placeholder="请输入订单id" />
-        </el-form-item>
-        <el-form-item label="平台商品id" prop="productId">
-          <el-input v-model="form.productId" placeholder="请输入平台商品id" />
-        </el-form-item>
-        <el-form-item label="平台skuId" prop="skuId">
-          <el-input v-model="form.skuId" placeholder="请输入平台skuId" />
-        </el-form-item>
-        <el-form-item label="Sku编码" prop="skuCode">
-          <el-input v-model="form.skuCode" placeholder="请输入Sku编码" />
-        </el-form-item>
-        <el-form-item label="ERP商品id" prop="erpGoodsId">
-          <el-input v-model="form.erpGoodsId" placeholder="请输入ERP商品id" />
-        </el-form-item>
-        <el-form-item label="ERP商品skuId" prop="erpSkuId">
-          <el-input v-model="form.erpSkuId" placeholder="请输入ERP商品skuId" />
-        </el-form-item>
-        <el-form-item label="商品名称" prop="title">
-          <el-input v-model="form.title" placeholder="请输入商品名称" />
-        </el-form-item>
-        <el-form-item label="商品SKU信息" prop="skuInfo">
-          <el-input v-model="form.skuInfo" placeholder="请输入商品SKU信息" />
-        </el-form-item>
-        <el-form-item label="数量" prop="count">
-          <el-input v-model="form.count" placeholder="请输入数量" />
-        </el-form-item>
-        <el-form-item label="发货物流公司" prop="shipCompany">
-          <el-input v-model="form.shipCompany" placeholder="请输入发货物流公司" />
-        </el-form-item>
-        <el-form-item label="发货物流单号" prop="shipWaybillCode">
-          <el-input v-model="form.shipWaybillCode" placeholder="请输入发货物流单号" />
-        </el-form-item>
-        <el-form-item label="收货人" prop="receiverName">
-          <el-input v-model="form.receiverName" placeholder="请输入收货人" />
-        </el-form-item>
-        <el-form-item label="收货人手机号" prop="receiverTel">
-          <el-input v-model="form.receiverTel" placeholder="请输入收货人手机号" />
-        </el-form-item>
-        <el-form-item label="收货地址" prop="receiverAddress">
-          <el-input v-model="form.receiverAddress" placeholder="请输入收货地址" />
-        </el-form-item>
-        <el-form-item label="备注" prop="remark">
-          <el-input v-model="form.remark" placeholder="请输入备注" />
-        </el-form-item>
-      </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="submitForm">确 定</el-button>
-        <el-button @click="cancel">取 消</el-button>
-      </div>
-    </el-dialog>
+
   </div>
 </template>
 
 <script>
 import {list, addExchange, shipAgainComplete} from "@/api/afterSale/exchange";
-import {listShop} from "@/api/channel/merchant";
+import {listMerchant} from "@/api/channel/merchant";
 
 export default {
   name: "ExchangeAfter",
@@ -256,7 +156,7 @@ export default {
       total: 0,
       // 表格数据
       dataList: [],
-      shopList: [],
+      merchantList: [],
       // 弹出层标题
       title: "",
       // 是否显示弹出层
@@ -292,8 +192,8 @@ export default {
     };
   },
   created() {
-    listShop({}).then(response => {
-      this.shopList = response.rows;
+    listMerchant({}).then(response => {
+      this.merchantList = response.rows;
     });
     this.getList();
   },

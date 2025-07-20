@@ -13,6 +13,7 @@
             <result property="url" column="url" jdbcType="VARCHAR"/>
             <result property="status" column="status" jdbcType="INTEGER"/>
             <result property="apiStatus" column="api_status" jdbcType="INTEGER"/>
+            <result property="sort" column="sort" jdbcType="INTEGER"/>
 
             <result property="remark" column="remark" jdbcType="VARCHAR"/>
             <result property="sellerUserId" column="seller_user_id" jdbcType="BIGINT"/>
@@ -39,6 +40,6 @@
         app_sercet,access_token,access_expires_in,
         access_token_begin,refresh_token,refresh_token_timeout,
         server_url,callback_url,merchant_id,status,api_status,
-        create_time,create_by,update_time,update_by
+        create_time,create_by,update_time,update_by,sort
     </sql>
 </mapper>
