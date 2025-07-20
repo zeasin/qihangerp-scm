@@ -3,7 +3,7 @@
     <div class="layout">
       <div class="bgLeft"></div>
       <div class="bgRight"></div>
-      <h3 class="title">启航电商SCM供应链系统</h3>
+      <h3 class="title">启航供应链电商SCM系统</h3>
       <div class="login-form">
         <div class="zhuce"  v-if="n !==3">供应链后台登录</div>
         <!--        <div class="tabs" v-if="n !==3">-->

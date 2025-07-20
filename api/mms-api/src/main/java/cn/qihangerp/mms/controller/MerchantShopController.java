@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/tenant")
-public class TenantShopController extends BaseController {
+public class MerchantShopController extends BaseController {
     @Autowired
     private OmsMerchantShopService shopService;
     @Autowired
@@ -24,9 +24,19 @@ public class TenantShopController extends BaseController {
     @GetMapping("/shop/list")
     public TableDataInfo list()
     {
+        Integer userIdentity = SecurityUtils.getLoginUser().getUserIdentity();
+        Long merchantId = null;
+        if(userIdentity == null||userIdentity==0){
+            merchantId = 0L;
+        }else if(userIdentity==20){
+            merchantId = SecurityUtils.getDeptId();
+        }else{
+            merchantId = -1L;
+        }
+
         List<OmsMerchantShop> list = shopService.list(new LambdaQueryWrapper<OmsMerchantShop>()
-                .eq(OmsMerchantShop::getTenantId, SecurityUtils.getUserId())
-                .eq(OmsMerchantShop::getIsDelete,0)
+                .eq(OmsMerchantShop::getMerchantId, merchantId)
+                .eq(OmsMerchantShop::getStatus,0)
         );
 
         return getDataTable(list);
@@ -47,7 +57,16 @@ public class TenantShopController extends BaseController {
     @PostMapping("/shop")
     public AjaxResult add(@RequestBody OmsMerchantShop shop)
     {
-        shop.setTenantId(SecurityUtils.getUserId());
+        Integer userIdentity = SecurityUtils.getLoginUser().getUserIdentity();
+        Long merchantId = null;
+        if(userIdentity == null||userIdentity==0){
+            merchantId = 0L;
+        }else if(userIdentity==20){
+            merchantId = SecurityUtils.getDeptId();
+        }else{
+            merchantId = -1L;
+        }
+        shop.setMerchantId(merchantId);
         shop.setCreateTime(new Date());
         return toAjax(shopService.save(shop));
     }
@@ -74,7 +93,7 @@ public class TenantShopController extends BaseController {
                 OmsMerchantShop shop = new OmsMerchantShop();
                 shop.setId(id);
                 shop.setUpdateTime(new Date());
-                shop.setIsDelete(1);
+                shop.setStatus(1);
                 list.add(shop);
             }
         }

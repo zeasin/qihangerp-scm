@@ -1,4 +1,4 @@
-package cn.qihangerp.api.controller.tenant;
+package cn.qihangerp.api.controller.merchant;
 
 import cn.qihangerp.common.AjaxResult;
 import cn.qihangerp.common.BaseController;

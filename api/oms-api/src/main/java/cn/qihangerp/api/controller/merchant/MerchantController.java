@@ -1,4 +1,4 @@
-package cn.qihangerp.api.controller.tenant;
+package cn.qihangerp.api.controller.merchant;
 
 import cn.qihangerp.model.shop.domain.OmsMerchant;
 import cn.qihangerp.model.shop.bo.TenantBo;
