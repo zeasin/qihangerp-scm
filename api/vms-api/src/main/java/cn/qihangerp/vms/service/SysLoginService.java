@@ -1,23 +1,17 @@
 //package cn.qihangerp.vms.service;
 //
-//
-//import cn.qihangerp.common.ServiceException;
-//import cn.qihangerp.common.config.RedisCache;
-//import cn.qihangerp.common.constant.CacheConstants;
 //import cn.qihangerp.common.constant.UserConstants;
-//import cn.qihangerp.common.exception.CaptchaException;
-//import cn.qihangerp.common.exception.CaptchaExpireException;
 //import cn.qihangerp.common.exception.UserNotExistsException;
-//import cn.qihangerp.module.domain.SysUser;
-//import cn.qihangerp.module.service.ISysUserService;
-//import cn.qihangerp.module.service.SysConfigService;
+//import cn.qihangerp.common.redis.RedisCache;
+//import cn.qihangerp.common.utils.DateUtils;
+//import cn.qihangerp.common.utils.IpUtils;
+//import cn.qihangerp.common.utils.StringUtils;
+//import cn.qihangerp.domain.SysUser;
 //import cn.qihangerp.security.AuthenticationContextHolder;
 //import cn.qihangerp.security.LoginUser;
 //import cn.qihangerp.security.TokenService;
 //import cn.qihangerp.security.UserPasswordNotMatchException;
-//import cn.qihangerp.security.utils.IpUtils;
-//import cn.qihangerp.utils.DateUtils;
-//import cn.qihangerp.utils.StringUtils;
+//import cn.qihangerp.service.ISysUserService;
 //import jakarta.annotation.Resource;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.authentication.AuthenticationManager;
@@ -43,12 +37,11 @@
 //
 //    @Autowired
 //    private RedisCache redisCache;
-//
 //    @Autowired
 //    private ISysUserService userService;
 //
-//    @Autowired
-//    private SysConfigService configService;
+////    @Autowired
+////    private ISysConfigService configService;
 //
 //    /**
 //     * 登录验证
@@ -62,7 +55,7 @@
 //    public String login(String username, String password, String code, String uuid)
 //    {
 //        // 验证码校验
-//        validateCaptcha(username, code, uuid);
+////        validateCaptcha(username, code, uuid);
 //        // 登录前置校验
 //        loginPreCheck(username, password);
 //        // 用户验证
@@ -84,7 +77,7 @@
 //            else
 //            {
 ////                AsyncManager.me().execute(AsyncFactory.recordLogininfor(username, Constants.LOGIN_FAIL, e.getMessage()));
-//                throw new ServiceException(e.getMessage());
+////                throw new ServiceException(e.getMessage());
 //            }
 //        }
 //        finally
@@ -134,39 +127,6 @@
 ////            AsyncManager.me().execute(AsyncFactory.recordLogininfor(username, Constants.LOGIN_FAIL, MessageUtils.message("login.blocked")));
 ////            throw new BlackListException();
 ////        }
-//    }
-//
-//    /**
-//     * 校验验证码
-//     *
-//     * @param username 用户名
-//     * @param code 验证码
-//     * @param uuid 唯一标识
-//     * @return 结果
-//     */
-//    public void validateCaptcha(String username, String code, String uuid)
-//    {
-//        boolean captchaEnabled = configService.selectCaptchaEnabled();
-////        boolean captchaEnabled = true;
-//        if (captchaEnabled)
-//        {
-//            String verifyKey = CacheConstants.CAPTCHA_CODE_KEY + StringUtils.nvl(uuid, "");
-//            String captcha = redisCache.getCacheObject(verifyKey);
-////            String captcha = (String) CaffeineUtil.get(verifyKey);
-//
-//            redisCache.deleteObject(verifyKey);
-////            CaffeineUtil.remove(verifyKey);
-//            if (captcha == null)
-//            {
-////                AsyncManager.me().execute(AsyncFactory.recordLogininfor(username, Constants.LOGIN_FAIL, MessageUtils.message("user.jcaptcha.expire")));
-//                throw new CaptchaExpireException();
-//            }
-//            if (!code.equalsIgnoreCase(captcha))
-//            {
-////                AsyncManager.me().execute(AsyncFactory.recordLogininfor(username, Constants.LOGIN_FAIL, MessageUtils.message("user.jcaptcha.error")));
-//                throw new CaptchaException();
-//            }
-//        }
 //    }
 //
 //    /**

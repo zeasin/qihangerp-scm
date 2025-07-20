@@ -12,7 +12,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <jwt.version>0.9.1</jwt.version>
+        <jwt.version>0.11.5</jwt.version>
         <fastjson.version>2.0.34</fastjson.version>
     </properties>
 
@@ -24,11 +24,11 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-        <groupId>jakarta.servlet</groupId>
-        <artifactId>jakarta.servlet-api</artifactId>
-        <version>5.0.0</version> <!-- 选择适当的版本号 -->
-        <scope>provided</scope> <!-- 这个scope表明这个依赖在运行时由Servlet容器提供 -->
-    </dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <version>5.0.0</version> <!-- 选择适当的版本号 -->
+            <scope>provided</scope> <!-- 这个scope表明这个依赖在运行时由Servlet容器提供 -->
+        </dependency>
         <!-- redis 缓存操作 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -49,7 +49,7 @@
         <!-- Token生成与解析-->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt</artifactId>
+            <artifactId>jjwt-api</artifactId>
             <version>${jwt.version}</version>
         </dependency>
         <!--常用工具类 -->
@@ -80,6 +80,9 @@
             <artifactId>UserAgentUtils</artifactId>
             <version>1.21</version>
         </dependency>
+
+
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>

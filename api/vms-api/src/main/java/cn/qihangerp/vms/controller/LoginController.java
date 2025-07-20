@@ -53,7 +53,7 @@ public class LoginController extends BaseController {
     @PostMapping("/login")
     public AjaxResult login(@RequestBody LoginBody loginBody) {
         SysUser sysUser = userService.selectUserByUserName(loginBody.getUsername());
-        if (sysUser != null && sysUser.getUserType().equals("10")) {
+        if (sysUser != null ) {
             log.info("==========登录用户{}={}=====", sysUser.getUserName(), sysUser.getUserType());
             if (sysUser.getStatus().equals("1")) {
                 return AjaxResult.error("用户已锁定，请联系管理员解锁!");
