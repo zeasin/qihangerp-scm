@@ -11,7 +11,7 @@
  Target Server Version : 80036
  File Encoding         : 65001
 
- Date: 20/07/2025 14:35:23
+ Date: 20/07/2025 16:20:24
 */
 
 SET NAMES utf8mb4;
@@ -2807,6 +2807,7 @@ INSERT INTO `oms_merchant_shop` VALUES (22, '梦小妮牛仔裤', '抖音-梦小
 INSERT INTO `oms_merchant_shop` VALUES (23, '孟小妮牛仔裤专营店', 'add', NULL, 3, NULL, 0, 0, 0, NULL, 12, '12', 'aaaa', 'aaaaa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2024-06-23 11:55:35', NULL, '2024-06-23 15:46:51', NULL);
 INSERT INTO `oms_merchant_shop` VALUES (24, 'BBB', 'BB', NULL, 2, NULL, 0, 0, 0, NULL, 12580, '12580', 'AA22', '6555', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2024-06-23 13:52:46', NULL, NULL, NULL);
 INSERT INTO `oms_merchant_shop` VALUES (25, 'aabvb', '1a', NULL, 5, NULL, 1, 0, 0, NULL, 22, '22', 'avc', 'a', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 101, '2025-07-20 14:19:57', NULL, '2025-07-20 14:20:21', NULL);
+INSERT INTO `oms_merchant_shop` VALUES (26, 'AAAAA', 'aaa', NULL, 5, NULL, 0, 0, 0, NULL, 0, '12', '12', '12', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 101, '2025-07-20 14:44:11', NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for oms_shop_goods
@@ -5910,6 +5911,63 @@ INSERT INTO `sys_menu_mms` VALUES (402, '商品SKU查询', 4, 1, 'sku_list', 'go
 INSERT INTO `sys_menu_mms` VALUES (405, '商品上架管理', 4, 2, 'shop_goods', 'goods/shopGoods/index', NULL, 1, 0, 'C', '0', '0', '', 'shopping', 'admin', '2024-03-28 10:29:59', 'admin', '2024-03-28 10:30:59', '');
 
 -- ----------------------------
+-- Table structure for sys_menu_vms
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_menu_vms`;
+CREATE TABLE `sys_menu_vms`  (
+  `menu_id` bigint NOT NULL AUTO_INCREMENT COMMENT '菜单ID',
+  `menu_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '菜单名称',
+  `parent_id` bigint NULL DEFAULT 0 COMMENT '父菜单ID',
+  `order_num` int NULL DEFAULT 0 COMMENT '显示顺序',
+  `path` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '路由地址',
+  `component` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '组件路径',
+  `query` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '路由参数',
+  `is_frame` int NULL DEFAULT 1 COMMENT '是否为外链（0是 1否）',
+  `is_cache` int NULL DEFAULT 0 COMMENT '是否缓存（0缓存 1不缓存）',
+  `menu_type` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '菜单类型（M目录 C菜单 F按钮）',
+  `visible` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '菜单状态（0显示 1隐藏）',
+  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '菜单状态（0正常 1停用）',
+  `perms` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '权限标识',
+  `icon` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '#' COMMENT '菜单图标',
+  `create_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '创建者',
+  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '更新者',
+  `update_time` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '更新时间',
+  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '备注',
+  PRIMARY KEY (`menu_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2129 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '菜单权限表' ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of sys_menu_vms
+-- ----------------------------
+INSERT INTO `sys_menu_vms` VALUES (1, '订单管理', 0, 10, '/order', 'Layout', '', 1, 0, 'M', '0', '0', '', 'shopping', 'admin', '2023-12-27 15:00:27', 'admin', '2024-08-25 15:45:43', '系统管理目录');
+INSERT INTO `sys_menu_vms` VALUES (2, '售后管理', 0, 30, '/refund', 'Layout', '', 1, 0, 'M', '0', '0', '', 'monitor', 'admin', '2023-12-27 15:00:27', 'admin', '2024-08-25 15:45:54', '至简官网地址');
+INSERT INTO `sys_menu_vms` VALUES (4, '商品管理', 0, 1, '/goods', 'Layout', '', 1, 0, 'M', '0', '0', '', 'international', 'admin', '2023-12-29 16:53:03', 'admin', '2024-09-07 15:44:10', '');
+INSERT INTO `sys_menu_vms` VALUES (5, '发货管理', 0, 20, '/ship', NULL, NULL, 1, 0, 'M', '0', '0', '', 'guide', 'admin', '2024-03-30 17:36:10', 'admin', '2024-08-25 15:45:48', '');
+INSERT INTO `sys_menu_vms` VALUES (6, '库存管理', 0, 80, '/stock', NULL, NULL, 1, 0, 'M', '0', '0', '', 'stock', 'admin', '2024-03-30 17:36:10', 'admin', '2024-08-25 15:45:48', '');
+INSERT INTO `sys_menu_vms` VALUES (100, '订单中心', 1, 1, 'order_list', 'vms/order/index', '', 1, 0, 'C', '0', '0', '', 'shopping', 'admin', '2023-12-27 15:00:27', 'admin', '2024-09-15 16:57:59', '用户管理菜单');
+INSERT INTO `sys_menu_vms` VALUES (101, '订单明细', 1, 2, 'order_item_list', 'vms/order/item_list', NULL, 1, 0, 'C', '0', '0', NULL, 'chart', 'admin', '2024-04-06 18:58:06', '', NULL, '');
+INSERT INTO `sys_menu_vms` VALUES (201, '售后中心', 2, 1, 'refund_list', 'vms/refund/index', '', 1, 0, 'C', '0', '0', '', 'tree', 'admin', '2023-12-27 15:00:27', 'admin', '2024-09-15 18:58:16', '岗位管理菜单');
+INSERT INTO `sys_menu_vms` VALUES (202, '售后处理记录', 2, 5, 'after_sale_record', 'vms/refund/processRecordList', NULL, 1, 0, 'C', '0', '0', '', 'documentation', 'admin', '2024-04-06 17:27:03', 'admin', '2024-07-28 18:59:41', '');
+INSERT INTO `sys_menu_vms` VALUES (203, '物流跟踪', 5, 5, 'logistics', 'shipping/logistics/logistics', NULL, 1, 0, 'C', '0', '1', '', 'list', 'admin', '2024-07-20 11:54:18', 'admin', '2024-07-30 23:10:13', '');
+INSERT INTO `sys_menu_vms` VALUES (401, '我供应的商品', 4, 0, 'goods_list', 'vms/goods/index', NULL, 1, 0, 'C', '0', '0', 'goods', 'example', 'admin', '2024-08-25 14:35:54', 'admin', '2024-09-08 16:14:12', '');
+INSERT INTO `sys_menu_vms` VALUES (402, '添加ERP商品', 4, 99, 'create', 'vms/goods/create', NULL, 1, 0, 'C', '1', '0', '', 'checkbox', 'admin', '2024-03-18 07:59:57', 'admin', '2024-09-07 16:41:46', '');
+INSERT INTO `sys_menu_vms` VALUES (403, '在仓商品SKU', 4, 10, 'stored_goods_sku', 'vms/goods/stored_goods_sku', NULL, 1, 0, 'C', '0', '0', 'goods', 'shopping', 'admin', '2024-08-25 14:35:54', 'admin', '2024-09-08 16:14:12', '');
+INSERT INTO `sys_menu_vms` VALUES (404, '商户管理', 4, 30, 'merchant_list', 'vms/merchant/index', NULL, 1, 0, 'C', '0', '0', 'goods', 'peoples', 'admin', '2024-08-25 14:35:54', 'admin', '2024-09-08 16:14:12', '');
+INSERT INTO `sys_menu_vms` VALUES (501, '手动发货', 5, 0, 'manual_ship', 'vms/shipping/manual_ship/index', NULL, 1, 0, 'C', '0', '0', '', 'clipboard', 'admin', '2025-02-18 08:42:31', 'admin', '2025-02-18 08:43:37', '');
+INSERT INTO `sys_menu_vms` VALUES (502, '打单发货', 5, 1, 'print_ship', 'vms/shipping/ewaybillPrint/index', NULL, 1, 0, 'C', '0', '0', '', 'edit', 'admin', '2024-07-20 11:04:54', 'admin', '2024-07-28 18:46:09', '');
+INSERT INTO `sys_menu_vms` VALUES (504, '备货出库', 5, 2, 'stockup', 'vms/shipping/stockup', NULL, 1, 0, 'C', '0', '0', '', 'email', 'admin', '2024-07-20 11:53:24', 'admin', '2024-07-28 20:44:10', '');
+INSERT INTO `sys_menu_vms` VALUES (506, '发货记录', 5, 3, 'record', 'vms/shipping/record/index', NULL, 1, 0, 'C', '0', '0', '', 'guide', 'admin', '2024-03-30 17:37:42', 'admin', '2024-07-28 18:56:02', '');
+INSERT INTO `sys_menu_vms` VALUES (515, '发货设置', 5, 9, 'ship_setting', 'vms/shipping/setting/index', NULL, 1, 0, 'C', '0', '0', '', 'system', 'admin', '2024-03-30 17:37:01', 'admin', '2024-12-08 16:19:02', '');
+INSERT INTO `sys_menu_vms` VALUES (2110, '商品库存管理', 6, 0, 'goods_inventory', 'vms/wms/goodsInventory/index.vue', NULL, 1, 0, 'C', '0', '0', '', 'chart', 'admin', '2024-09-21 20:43:00', 'admin', '2024-10-05 16:30:35', '');
+INSERT INTO `sys_menu_vms` VALUES (2113, '商品入库管理', 6, 10, 'stock_in', 'vms/wms/stockIn/index.vue', NULL, 1, 0, 'C', '0', '0', '', 'download', 'admin', '2024-08-25 15:56:04', 'admin', '2024-09-22 14:52:26', '');
+INSERT INTO `sys_menu_vms` VALUES (2116, '商品出库管理', 6, 20, 'stock_out', 'vms/wms/stockOut/index', NULL, 1, 0, 'C', '0', '0', '', 'guide', 'admin', '2024-09-21 20:44:46', 'admin', '2024-09-22 14:52:37', '');
+INSERT INTO `sys_menu_vms` VALUES (2117, '仓位管理', 6, 91, 'position', 'vms/wms/warehouse/position', NULL, 1, 0, 'C', '1', '0', '', '404', 'admin', '2024-09-22 11:52:18', 'admin', '2024-09-22 14:48:21', '');
+INSERT INTO `sys_menu_vms` VALUES (2118, '新建商品入库单', 6, 11, 'stock_in/create', 'vms/wms/stockIn/create.vue', NULL, 1, 0, 'C', '1', '0', '', '404', 'admin', '2024-09-22 14:49:40', 'admin', '2024-09-22 15:30:10', '');
+INSERT INTO `sys_menu_vms` VALUES (2119, '仓库仓位设置', 6, 90, 'warehouse', 'vms/wms/warehouse/index.vue', NULL, 1, 0, 'C', '0', '0', '', 'cascader', 'admin', '2024-09-21 20:07:26', 'admin', '2024-09-22 11:51:25', '');
+INSERT INTO `sys_menu_vms` VALUES (2128, '新建商品出库单', 6, 21, 'stock_out/create', 'vms/wms/stockOut/create', NULL, 1, 0, 'C', '1', '0', '', 'color', 'admin', '2025-02-15 21:03:45', 'admin', '2025-02-15 21:04:07', '');
+
+-- ----------------------------
 -- Table structure for sys_oper_log
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_oper_log`;
@@ -6085,7 +6143,7 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 INSERT INTO `sys_user` VALUES (1, 100, 'admin', '启航', '00', '280645618@qq.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2025-07-20 09:42:52', 'admin', '2023-08-07 19:31:37', '', '2025-07-20 09:42:52', '管理员');
 INSERT INTO `sys_user` VALUES (2, 101, 'qihang', 'qihang', '20', 'qihang@qq.com', '15666666666', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2025-07-20 13:54:14', 'admin', '2023-08-07 19:31:37', 'admin', '2025-07-20 13:54:14', '测试员');
-INSERT INTO `sys_user` VALUES (100, NULL, 'admin11', 'aa', '00', '', '', '1', '', '$2a$10$VD49q2rn1ATpQDZJJrmJjuG52b4EkOTTZ0MPbRRmcqEYLmB5mAMsG', '0', '2', '', NULL, 'admin', '2024-04-24 11:06:27', '', NULL, NULL);
+INSERT INTO `sys_user` VALUES (100, 1, 'qihangvms', 'aa', '10', '', '', '1', '', '$2a$10$VD49q2rn1ATpQDZJJrmJjuG52b4EkOTTZ0MPbRRmcqEYLmB5mAMsG', '0', '0', '127.0.0.1', '2025-07-20 16:17:09', 'admin', '2024-04-24 11:06:27', '', '2025-07-20 16:17:09', NULL);
 
 -- ----------------------------
 -- Table structure for sys_user_post
