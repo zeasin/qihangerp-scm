@@ -3,7 +3,7 @@
     <el-form ref="form" :model="form" :rules="rules" label-width="108px">
 
         <el-form-item label="商品分类" prop="categoryId">
-          <treeselect :options="dataList" placeholder="请选择上级菜单" v-model="form.categoryId" style="width:220px"  @select="categoryChange"/>
+          <treeselect :options="dataList" placeholder="请选择上级菜单" v-model="form.categoryId" style="width:220px" />
         </el-form-item>
         <el-form-item :label="$t('system.vendor.title')" prop="supplierId">
           <!-- <el-input v-model="form.supplierId" placeholder="请输入供应商id" /> -->
@@ -207,7 +207,8 @@
 import Treeselect from '@riophae/vue-treeselect'
 import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 
-import { addGoods } from "@/api/vms/goods/goods";
+import {  addGoods } from "@/api/vms/goods/goods";
+import {listCategory } from "@/api/vms/goods/category";
 import { getToken } from "@/utils/auth";
 import {
   provinceAndCityData,
@@ -280,9 +281,7 @@ export default {
   },
   created() {
     this.getCategoryList()
-    listSupplier({pageNum: 1, pageSize: 100}).then(resp=>{
-      this.supplierList = resp.rows
-    })
+
 
   },
   methods: {
