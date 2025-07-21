@@ -28,6 +28,7 @@ public class ErpGoodsServiceImpl extends ServiceImpl<ErpGoodsMapper, ErpGoods>
     public PageResult<ErpGoods> queryPageList(ErpGoods goods, PageQuery pageQuery) {
         LambdaQueryWrapper<ErpGoods> queryWrapper = new LambdaQueryWrapper<ErpGoods>()
                 .eq(goods.getStatus()!=null,ErpGoods::getStatus,goods.getStatus())
+                .eq(goods.getSupplierId()!=null,ErpGoods::getSupplierId,goods.getSupplierId())
                 .eq(goods.getCategoryId()!=null,ErpGoods::getCategoryId,goods.getCategoryId())
                 .likeLeft(StringUtils.hasText(goods.getNumber()),ErpGoods::getNumber,goods.getNumber())
                 .like(StringUtils.hasText(goods.getName()),ErpGoods::getName,goods.getName())

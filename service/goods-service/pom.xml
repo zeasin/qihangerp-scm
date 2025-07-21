@@ -26,7 +26,6 @@
             <groupId>cn.qihangerp.model</groupId>
             <artifactId>goods</artifactId>
             <version>0.5.1</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
 </project>

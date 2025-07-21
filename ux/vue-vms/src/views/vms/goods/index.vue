@@ -38,7 +38,6 @@
           icon="el-icon-plus"
           size="mini"
           @click="handleAdd"
-          v-hasPermi="['goods:goods:add']"
         >添加商品</el-button>
       </el-col>
 <!--      <el-col :span="1.5">-->

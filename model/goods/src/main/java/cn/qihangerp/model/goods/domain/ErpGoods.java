@@ -130,7 +130,7 @@ public class ErpGoods implements Serializable {
     /**
      * 供应商id
      */
-    private Integer supplierId;
+    private Long supplierId;
 
     /**
      * 品牌id

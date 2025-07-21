@@ -3,7 +3,7 @@ import request from '@/utils/request'
 // 查询商品管理列表
 export function listGoods(query) {
   return request({
-    url: '/api/vms-api/goods/list',
+    url: '/scm-vms-api/goods/list',
     method: 'get',
     params: query
   })
@@ -25,5 +25,31 @@ export function searchSku(query) {
     url: '/api/vms-api/goods/searchSku',
     method: 'get',
     params: query
+  })
+}
+
+// 新增商品管理
+export function addGoods(data) {
+  return request({
+    url: '/scm-oms-api/goods/goods',
+    method: 'post',
+    data: data
+  })
+}
+
+// 修改商品管理
+export function updateGoods(data) {
+  return request({
+    url: '/scm-oms-api/goods/goods',
+    method: 'put',
+    data: data
+  })
+}
+
+// 删除商品管理
+export function delGoods(id) {
+  return request({
+    url: '/scm-oms-api/goods/goods/' + id,
+    method: 'delete'
   })
 }
