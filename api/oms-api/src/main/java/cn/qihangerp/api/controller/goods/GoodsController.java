@@ -26,7 +26,7 @@ public class GoodsController extends BaseController {
     /**
      * 新增商品管理
      */
-    @PostMapping("/add")
+    @PostMapping()
     public AjaxResult add(@RequestBody GoodsAddBo goods)
     {
         Integer userIdentity = SecurityUtils.getLoginUser().getUserIdentity();

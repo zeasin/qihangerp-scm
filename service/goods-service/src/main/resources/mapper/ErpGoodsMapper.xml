@@ -5,56 +5,56 @@
 <mapper namespace="cn.qihangerp.service.goods.mapper.ErpGoodsMapper">
 
     <resultMap id="BaseResultMap" type="cn.qihangerp.model.goods.domain.ErpGoods">
-            <id property="id" column="id" jdbcType="BIGINT"/>
-            <result property="name" column="name" jdbcType="VARCHAR"/>
-            <result property="image" column="image" jdbcType="VARCHAR"/>
-            <result property="number" column="number" jdbcType="VARCHAR"/>
-            <result property="unitName" column="unit_name" jdbcType="VARCHAR"/>
-            <result property="categoryId" column="category_id" jdbcType="INTEGER"/>
-            <result property="barCode" column="bar_code" jdbcType="VARCHAR"/>
-            <result property="remark" column="remark" jdbcType="VARCHAR"/>
-            <result property="status" column="status" jdbcType="TINYINT"/>
-            <result property="length" column="length" jdbcType="FLOAT"/>
-            <result property="height" column="height" jdbcType="FLOAT"/>
-            <result property="width" column="width" jdbcType="FLOAT"/>
-            <result property="width1" column="width1" jdbcType="FLOAT"/>
-            <result property="width2" column="width2" jdbcType="FLOAT"/>
-            <result property="width3" column="width3" jdbcType="FLOAT"/>
-            <result property="weight" column="weight" jdbcType="FLOAT"/>
-            <result property="disable" column="disable" jdbcType="TINYINT"/>
-            <result property="period" column="period" jdbcType="VARCHAR"/>
-            <result property="purPrice" column="pur_price" jdbcType="DECIMAL"/>
-            <result property="wholePrice" column="whole_price" jdbcType="DECIMAL"/>
-            <result property="retailPrice" column="retail_price" jdbcType="DECIMAL"/>
-            <result property="unitCost" column="unit_cost" jdbcType="DECIMAL"/>
-            <result property="supplierId" column="supplier_id" jdbcType="INTEGER"/>
-            <result property="brandId" column="brand_id" jdbcType="INTEGER"/>
-            <result property="attr1" column="attr1" jdbcType="VARCHAR"/>
-            <result property="attr2" column="attr2" jdbcType="VARCHAR"/>
-            <result property="attr3" column="attr3" jdbcType="VARCHAR"/>
-            <result property="attr4" column="attr4" jdbcType="VARCHAR"/>
-            <result property="attr5" column="attr5" jdbcType="VARCHAR"/>
-            <result property="linkUrl" column="link_url" jdbcType="VARCHAR"/>
-            <result property="lowQty" column="low_qty" jdbcType="INTEGER"/>
-            <result property="highQty" column="high_qty" jdbcType="INTEGER"/>
-            <result property="createBy" column="create_by" jdbcType="VARCHAR"/>
-            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
-            <result property="updateBy" column="update_by" jdbcType="VARCHAR"/>
-            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <id property="id" column="id" />
+            <result property="name" column="name" />
+            <result property="image" column="image" />
+            <result property="number" column="number" />
+            <result property="unitName" column="unit_name" />
+            <result property="categoryId" column="category_id" />
+            <result property="barCode" column="bar_code" />
+            <result property="remark" column="remark" />
+            <result property="status" column="status" />
+            <result property="length" column="length" />
+            <result property="height" column="height" />
+            <result property="width" column="width" />
+            <result property="width1" column="width1" />
+            <result property="width2" column="width2" />
+            <result property="width3" column="width3" />
+            <result property="weight" column="weight" />
+            <result property="disable" column="disable" />
+            <result property="period" column="period" />
+            <result property="purPrice" column="pur_price" />
+            <result property="wholePrice" column="whole_price" />
+            <result property="retailPrice" column="retail_price" />
+            <result property="unitCost" column="unit_cost" />
+            <result property="supplierId" column="supplier_id" />
+            <result property="brandId" column="brand_id" />
+            <result property="attr1" column="attr1" />
+            <result property="attr2" column="attr2" />
+            <result property="attr3" column="attr3" />
+            <result property="attr4" column="attr4" />
+            <result property="attr5" column="attr5" />
+            <result property="linkUrl" column="link_url" />
+            <result property="lowQty" column="low_qty" />
+            <result property="highQty" column="high_qty" />
+            <result property="createBy" column="create_by" />
+            <result property="createTime" column="create_time" />
+            <result property="updateBy" column="update_by" />
+            <result property="updateTime" column="update_time" />
+            <result property="province" column="province" />
+            <result property="city" column="city" />
+            <result property="town" column="town" />
+            <result property="shipType" column="ship_type" />
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,name,image,
-        number,unit_name,category_id,
-        bar_code,remark,status,
-        length,height,width,
-        width1,width2,width3,
-        weight,disable,period,
-        pur_price,whole_price,retail_price,
-        unit_cost,supplier_id,brand_id,
-        attr1,attr2,attr3,
-        attr4,attr5,link_url,
-        low_qty,high_qty,create_by,
-        create_time,update_by,update_time
+        id,name,image,number,unit_name,category_id,
+        bar_code,remark,status,length,height,
+        width,width1,width2,width3,weight,
+        disable,period,pur_price,whole_price,retail_price,
+        unit_cost,supplier_id,brand_id,attr1,attr2,
+        attr3,attr4,attr5,link_url,low_qty,
+        high_qty,create_by,create_time,update_by,update_time,
+        province,city,town,ship_type
     </sql>
 </mapper>

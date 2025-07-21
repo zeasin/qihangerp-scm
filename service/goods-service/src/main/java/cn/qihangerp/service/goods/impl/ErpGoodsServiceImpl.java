@@ -5,6 +5,7 @@ import cn.qihangerp.model.goods.bo.GoodsAddBo;
 import cn.qihangerp.model.goods.bo.GoodsAddSkuBo;
 import cn.qihangerp.model.goods.domain.ErpGoodsSpec;
 import cn.qihangerp.service.goods.mapper.ErpGoodsMapper;
+import cn.qihangerp.service.goods.mapper.ErpGoodsSpecMapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -32,6 +33,7 @@ import java.util.List;
 public class ErpGoodsServiceImpl extends ServiceImpl<ErpGoodsMapper, ErpGoods>
     implements ErpGoodsService{
     private final ErpGoodsMapper mapper;
+    private final ErpGoodsSpecMapper specMapper;
     @Override
     public PageResult<ErpGoods> queryPageList(ErpGoods goods, PageQuery pageQuery) {
         LambdaQueryWrapper<ErpGoods> queryWrapper = new LambdaQueryWrapper<ErpGoods>()
@@ -100,7 +102,7 @@ public class ErpGoodsServiceImpl extends ServiceImpl<ErpGoodsMapper, ErpGoods>
         // 2、添加规格表erp_goods_spec
         for (GoodsAddSkuBo skuBo:bo.getSpecList()) {
             ErpGoodsSpec spec = new ErpGoodsSpec();
-            spec.setMerchantId(goods.getMerchantId());
+            spec.setSupplierId(goods.getSupplierId());
             spec.setGoodsId(goods.getId());
             spec.setOuterErpGoodsId(bo.getOuterErpGoodsId());
             spec.setOuterErpSkuId(skuBo.getOuterErpSkuId());
@@ -114,8 +116,8 @@ public class ErpGoodsServiceImpl extends ServiceImpl<ErpGoodsMapper, ErpGoods>
             if(StringUtils.hasText(skuBo.getStyleValue()))
                 skuName+= " "+ skuBo.getStyleValue();
 
-            spec.setSkuName(skuName);
-            spec.setSkuCode(skuBo.getSpecNum());
+            spec.setSpecName(skuName);
+            spec.setSpecNum(skuBo.getSpecNum());
             spec.setColorId(skuBo.getColorId());
             spec.setColorValue(skuBo.getColorValue());
             if(StringUtils.hasText(skuBo.getImage())){
@@ -141,23 +143,23 @@ public class ErpGoodsServiceImpl extends ServiceImpl<ErpGoodsMapper, ErpGoods>
             spec.setHeight(skuBo.getHeight() ==null?0.0:skuBo.getHeight().doubleValue());
             spec.setLength(skuBo.getLength()==null?0.0:skuBo.getLength().doubleValue());
             spec.setWidth(skuBo.getWidth()==null?0.0:skuBo.getWidth().doubleValue());
-            skuMapper.insert(spec);
+            specMapper.insert(spec);
 
             // 添加商品库存表
-            OGoodsInventory inventory = new OGoodsInventory();
-            inventory.setMerchantId(goods.getMerchantId());
-            inventory.setSkuId(spec.getId());
-            inventory.setGoodsId(goods.getId());
-            inventory.setGoodsNum(bo.getNumber());
-            inventory.setSkuCode(skuBo.getSpecNum());
-            inventory.setGoodsName(goods.getName());
-            inventory.setGoodsImg(spec.getColorImage());
-            inventory.setSkuName(spec.getSkuName());
-            inventory.setQuantity(0);
-            inventory.setIsDelete(0);
-            inventory.setCreateTime(new Date());
-            inventory.setCreateBy("添加商品");
-            inventoryMapper.insert(inventory);
+//            OGoodsInventory inventory = new OGoodsInventory();
+//            inventory.setMerchantId(goods.getMerchantId());
+//            inventory.setSkuId(spec.getId());
+//            inventory.setGoodsId(goods.getId());
+//            inventory.setGoodsNum(bo.getNumber());
+//            inventory.setSkuCode(skuBo.getSpecNum());
+//            inventory.setGoodsName(goods.getName());
+//            inventory.setGoodsImg(spec.getColorImage());
+//            inventory.setSkuName(spec.getSkuName());
+//            inventory.setQuantity(0);
+//            inventory.setIsDelete(0);
+//            inventory.setCreateTime(new Date());
+//            inventory.setCreateBy("添加商品");
+//            inventoryMapper.insert(inventory);
         }
 
         // 3、添加规格属性表erp_goods_spec_attr
@@ -198,7 +200,7 @@ public class ErpGoodsServiceImpl extends ServiceImpl<ErpGoodsMapper, ErpGoods>
 //
 //        }
 //        TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-        return ResultVo.success(Long.parseLong(goods.getId()));
+        return ResultVo.success(goods.getId());
     }
 }
 

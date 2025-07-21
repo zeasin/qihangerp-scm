@@ -1,25 +1,24 @@
 package cn.qihangerp.model.goods.domain;
 
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import java.math.BigDecimal;
 import java.util.Date;
-
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
-import org.springframework.stereotype.Component;
 
 /**
  * 商品库存管理
  * @TableName erp_goods
  */
-
+@TableName(value ="erp_goods")
 @Data
-public class ErpGoods implements Serializable {
+public class ErpGoods {
     /**
      * 主键id
      */
-    @TableId(value = "id", type = IdType.AUTO)
+    @TableId(type = IdType.AUTO)
     private Long id;
 
     /**
@@ -197,5 +196,23 @@ public class ErpGoods implements Serializable {
      */
     private Date updateTime;
 
-    private static final long serialVersionUID = 1L;
+    /**
+     * 发货地省
+     */
+    private String province;
+
+    /**
+     * 发货地市
+     */
+    private String city;
+
+    /**
+     * 发货地区
+     */
+    private String town;
+
+    /**
+     * 发货类型10自营发货20供应商发货
+     */
+    private Integer shipType;
 }

@@ -1,22 +1,23 @@
 package cn.qihangerp.model.goods.domain;
 
-import java.io.Serializable;
-import java.math.BigDecimal;
-
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import java.math.BigDecimal;
 import lombok.Data;
 
 /**
  * 商品规格库存管理
  * @TableName erp_goods_spec
  */
+@TableName(value ="erp_goods_spec")
 @Data
-public class ErpGoodsSpec implements Serializable {
+public class ErpGoodsSpec {
     /**
      * 主键id
      */
-    @TableId(value = "id", type = IdType.AUTO)
+    @TableId(type = IdType.AUTO)
     private Long id;
 
     /**
@@ -37,7 +38,7 @@ public class ErpGoodsSpec implements Serializable {
     /**
      * 颜色id
      */
-    private Integer colorId;
+    private Long colorId;
 
     /**
      * 颜色值
@@ -52,7 +53,7 @@ public class ErpGoodsSpec implements Serializable {
     /**
      * 尺码id
      */
-    private Integer sizeId;
+    private Long sizeId;
 
     /**
      * 尺码值
@@ -62,7 +63,7 @@ public class ErpGoodsSpec implements Serializable {
     /**
      * 款式id
      */
-    private Integer styleId;
+    private Long styleId;
 
     /**
      * 款式值
@@ -80,19 +81,9 @@ public class ErpGoodsSpec implements Serializable {
     private BigDecimal purPrice;
 
     /**
-     * 建议批发价
-     */
-    private BigDecimal wholePrice;
-
-    /**
      * 建议零售价
      */
     private BigDecimal retailPrice;
-
-    /**
-     * 单位成本
-     */
-    private BigDecimal unitCost;
 
     /**
      * 备注
@@ -119,5 +110,58 @@ public class ErpGoodsSpec implements Serializable {
      */
     private Integer disable;
 
-    private static final long serialVersionUID = 1L;
+    /**
+     * 供应商id
+     */
+    private Long supplierId;
+
+    /**
+     * 外部erp系统商品id
+     */
+    private String outerErpGoodsId;
+
+    /**
+     * 外部erp系统skuId(唯一)
+     */
+    private String outerErpSkuId;
+
+    /**
+     * 商品名
+     */
+    private String goodsName;
+
+    /**
+     * 商品编码
+     */
+    private String goodsNum;
+
+    /**
+     * 发货类型10自营发货20供应商发货
+     */
+    private Integer shipType;
+
+    /**
+     * 商品体积
+     */
+    private String volume;
+
+    /**
+     * 衣长
+     */
+    private Double length;
+
+    /**
+     * 高度
+     */
+    private Double height;
+
+    /**
+     * 宽度
+     */
+    private Double width;
+
+    /**
+     * 重量
+     */
+    private Double weight;
 }
