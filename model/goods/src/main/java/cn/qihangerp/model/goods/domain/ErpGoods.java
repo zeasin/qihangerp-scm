@@ -45,7 +45,7 @@ public class ErpGoods implements Serializable {
     /**
      * 商品分类ID
      */
-    private Integer categoryId;
+    private Long categoryId;
 
     /**
      * 条码
@@ -135,7 +135,7 @@ public class ErpGoods implements Serializable {
     /**
      * 品牌id
      */
-    private Integer brandId;
+    private Long brandId;
 
     /**
      * 属性1：季节

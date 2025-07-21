@@ -3,6 +3,8 @@ package cn.qihangerp.model.goods.service;
 
 import cn.qihangerp.common.PageQuery;
 import cn.qihangerp.common.PageResult;
+import cn.qihangerp.common.ResultVo;
+import cn.qihangerp.model.goods.bo.GoodsAddBo;
 import cn.qihangerp.model.goods.domain.ErpGoods;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -13,4 +15,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface ErpGoodsService extends IService<ErpGoods> {
     PageResult<ErpGoods> queryPageList(ErpGoods goods, PageQuery pageQuery);
+    /**
+     * 新增商品管理
+     *
+     * @param goods 商品管理
+     * @return 结果
+     */
+     ResultVo<Long> insertGoods(String userName , GoodsAddBo goods);
 }

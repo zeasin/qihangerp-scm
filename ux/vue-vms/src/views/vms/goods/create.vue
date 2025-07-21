@@ -5,18 +5,11 @@
         <el-form-item label="商品分类" prop="categoryId">
           <treeselect :options="dataList" placeholder="请选择上级菜单" v-model="form.categoryId" style="width:220px" />
         </el-form-item>
-        <el-form-item :label="$t('system.vendor.title')" prop="supplierId">
-          <!-- <el-input v-model="form.supplierId" placeholder="请输入供应商id" /> -->
-          <el-select v-model="form.supplierId" filterable  :placeholder="$t('system.vendor.select')">
-<!--            <el-option label="自营" value="0"></el-option>-->
-            <el-option v-for="item in supplierList" :key="item.id" :label="item.name" :value="item.id">
-          </el-option>
-        </el-select>
-        </el-form-item>
+
       <el-form-item label="发货方式" prop="shipType">
         <el-select v-model="form.shipType" filterable  placeholder="请选择发货方式">
-          <el-option label="自营发货" value="10"></el-option>
-          <el-option label="供应商发货" value="20"></el-option>
+          <el-option label="商家自行发货" value="10"></el-option>
+          <el-option label="供应商代发货" value="20"></el-option>
         </el-select>
       </el-form-item>
         <el-form-item label="商品名称" prop="name">
@@ -28,7 +21,6 @@
         </el-form-item>
         <el-form-item label="商品编号" prop="number" >
           <el-input v-model="form.number" placeholder="请输入商品编号" style="width:220px"/>
-          <el-button type="primary" size="mini" @click="generateGoodsNumber">生成商品编码</el-button>
         </el-form-item>
          <el-form-item label="预计采购价" prop="purPrice">
           <el-input type="number" v-model.number="form.purPrice" placeholder="请输入预计采购价格" style="width:220px"/>
@@ -285,17 +277,6 @@ export default {
 
   },
   methods: {
-    generateGoodsNumber(){
-      console.log('========生成商品编码========')
-      if(this.form.categoryId){
-        generateGoodsNumber(this.form).then(resp=>{
-          this.form.number = resp.data
-        })
-      }else {
-        this.$modal.msg("请先选择分类")
-      }
-    },
-
     // 上传前loading加载
     handleBeforeUpload(file) {
       let isImg = false;
