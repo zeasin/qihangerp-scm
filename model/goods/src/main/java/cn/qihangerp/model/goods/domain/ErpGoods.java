@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
+
 import lombok.Data;
 
 /**
@@ -215,4 +217,6 @@ public class ErpGoods {
      * 发货类型10自营发货20供应商发货
      */
     private Integer shipType;
+    @TableField(exist = false)
+    private List<ErpGoodsSpec> skuList;
 }
