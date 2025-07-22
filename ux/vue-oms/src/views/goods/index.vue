@@ -17,7 +17,12 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-
+      <el-form-item label="供应商" prop="supplierId">
+        <el-select v-model="queryParams.supplierId" filterable clearable placeholder="请选择供应商" @change="handleQuery">
+          <el-option v-for="item in supplierList" :key="item.id" :label="item.name" :value="item.id">
+          </el-option>
+        </el-select>
+      </el-form-item>
       <el-form-item label="商品分类" prop="categoryId">
         <treeselect :options="categoryTree" placeholder="请选择商品分类" v-model="queryParams.categoryId" style="width: 230px;"/>
       </el-form-item>
@@ -230,7 +235,7 @@ import { listGoods, getGoods, delGoods, addGoods, updateGoods } from "@/api/good
 import Treeselect from '@riophae/vue-treeselect'
 import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 import { listCategory } from "@/api/goods/category";
-// import { listSupplier } from "@/api/scm/supplier";
+import { listVendor } from "@/api/channel/vendor";
 export default {
   name: "Goods",
   components: { Treeselect },
@@ -272,6 +277,7 @@ export default {
       },
       // 表单参数
       form: {},
+      supplierList: [],
       categoryList: [],
       categoryTree: [],
       // 表单校验
@@ -308,6 +314,9 @@ export default {
         this.categoryList = response.rows
         this.categoryTree = this.buildTree(response.rows,0)
       });
+    listVendor({}).then(response => {
+      this.supplierList = response.rows;
+    });
     this.getList();
   },
   methods: {

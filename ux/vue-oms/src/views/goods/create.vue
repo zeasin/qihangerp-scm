@@ -214,7 +214,7 @@
 import Treeselect from '@riophae/vue-treeselect'
 import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 import { listCategory } from "@/api/goods/category";
-// import { listSupplier } from "@/api/scm/supplier";
+import { listVendor } from "@/api/channel/vendor";
 import { listCategoryAttributeValue } from "@/api/goods/categoryAttributeValue";
 import { addGoods } from "@/api/goods/goods";
 import { getToken } from "@/utils/auth";
@@ -282,7 +282,7 @@ export default {
   },
   created() {
     this.getCategoryList()
-    listSupplier({}).then(response => {
+    listVendor({}).then(response => {
       this.supplierList = response.rows;
       // this.supplierLoading = false;
     });
