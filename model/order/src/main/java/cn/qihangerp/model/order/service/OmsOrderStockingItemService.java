@@ -1,5 +1,8 @@
 package cn.qihangerp.model.order.service;
 
+import cn.qihangerp.common.PageQuery;
+import cn.qihangerp.common.PageResult;
+import cn.qihangerp.model.order.bo.SupplierShipOrderItemListBo;
 import cn.qihangerp.model.order.domain.OmsOrderStockingItem;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -9,5 +12,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
 * @createDate 2025-07-23 08:50:40
 */
 public interface OmsOrderStockingItemService extends IService<OmsOrderStockingItem> {
-
+    /**
+     * 查询供应商备货清单
+     * @param bo
+     * @param pageQuery
+     * @return
+     */
+    PageResult<OmsOrderStockingItem> queryVendorStockingPageList(SupplierShipOrderItemListBo bo, PageQuery pageQuery);
 }

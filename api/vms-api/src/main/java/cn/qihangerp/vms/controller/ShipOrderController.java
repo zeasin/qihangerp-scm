@@ -2,6 +2,7 @@ package cn.qihangerp.vms.controller;
 
 import cn.qihangerp.common.*;
 import cn.qihangerp.common.utils.SecurityUtils;
+import cn.qihangerp.model.order.bo.SupplierShipOrderItemListBo;
 import cn.qihangerp.model.order.bo.VendorShipOrderQuery;
 import cn.qihangerp.model.order.service.OmsOrderStockingItemService;
 import cn.qihangerp.model.order.service.OmsOrderStockingService;
@@ -54,16 +55,16 @@ public class ShipOrderController extends BaseController
 //        var pageList = shipOrderService.queryBudadanPageList(userId,bo.getOrderNum(),bo.getPlatformId(),pageQuery);
 //        return getDataTable(pageList);
 //    }
-//
-//    @GetMapping("/item_list")
-//    public TableDataInfo list(SupplierShipOrderItemListBo bo, PageQuery pageQuery, HttpServletRequest request)
-//    {
-////        Long userIdFromToken = JwtUtils.getUserIdFromToken(request);
-//        Long userId = SecurityUtils.getLoginUser().getDeptId();
-//        bo.setSupplierId(userId);
-//        var pageList = shipOrderItemService.queryVendorStockingPageList(bo,pageQuery);
-//        return getDataTable(pageList);
-//    }
+
+    @GetMapping("/item_list")
+    public TableDataInfo list(SupplierShipOrderItemListBo bo, PageQuery pageQuery, HttpServletRequest request)
+    {
+//        Long userIdFromToken = JwtUtils.getUserIdFromToken(request);
+        Long userId = SecurityUtils.getLoginUser().getDeptId();
+        bo.setSupplierId(userId);
+        var pageList = shipOrderItemService.queryVendorStockingPageList(bo,pageQuery);
+        return getDataTable(pageList);
+    }
 //
 //    /**
 //     * 获取店铺订单详细信息
