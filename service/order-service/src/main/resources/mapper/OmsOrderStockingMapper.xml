@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.qihangerp.service.order.mapper.OmsOrderStockingMapper">
+
+    <resultMap id="BaseResultMap" type="cn.qihangerp.model.order.domain.OmsOrderStocking">
+            <id property="id" column="id" />
+            <result property="supplierId" column="supplier_id" />
+            <result property="oOrderId" column="o_order_id" />
+            <result property="orderNum" column="order_num" />
+            <result property="orderTime" column="order_time" />
+            <result property="shopType" column="shop_type" />
+            <result property="shopId" column="shop_id" />
+            <result property="remark" column="remark" />
+            <result property="buyerMemo" column="buyer_memo" />
+            <result property="sellerMemo" column="seller_memo" />
+            <result property="sendStatus" column="send_status" />
+            <result property="shippingTime" column="shipping_time" />
+            <result property="shippingNumber" column="shipping_number" />
+            <result property="shippingCompany" column="shipping_company" />
+            <result property="shippingMan" column="shipping_man" />
+            <result property="shippingCost" column="shipping_cost" />
+            <result property="createTime" column="create_time" />
+            <result property="createBy" column="create_by" />
+            <result property="updateTime" column="update_time" />
+            <result property="updateBy" column="update_by" />
+            <result property="province" column="province" />
+            <result property="city" column="city" />
+            <result property="town" column="town" />
+            <result property="waybillCode" column="waybill_code" />
+            <result property="waybillStatus" column="waybill_status" />
+            <result property="waybillCompany" column="waybill_company" />
+            <result property="orderStatus" column="order_status" />
+            <result property="stockingStatus" column="stocking_status" />
+            <result property="merchantId" column="merchant_id" />
+            <result property="warehouseType" column="warehouse_type" />
+            <result property="warehouseId" column="warehouse_id" />
+            <result property="warehouseName" column="warehouse_name" />
+            <result property="erpPushStatus" column="erp_push_status" />
+            <result property="erpPushResult" column="erp_push_result" />
+            <result property="erpPushParam1" column="erp_push_param1" />
+            <result property="erpPushParam2" column="erp_push_param2" />
+            <result property="erpPushParam3" column="erp_push_param3" />
+            <result property="warehouseNo" column="warehouse_no" />
+            <result property="shipperNo" column="shipper_no" />
+            <result property="shopNo" column="shop_no" />
+            <result property="platformNo" column="platform_no" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,supplier_id,o_order_id,order_num,order_time,shop_type,
+        shop_id,remark,buyer_memo,seller_memo,send_status,
+        shipping_time,shipping_number,shipping_company,shipping_man,shipping_cost,
+        create_time,create_by,update_time,update_by,province,
+        city,town,waybill_code,waybill_status,waybill_company,
+        order_status,stocking_status,merchant_id,warehouse_type,warehouse_id,
+        warehouse_name,erp_push_status,erp_push_result,erp_push_param1,erp_push_param2,
+        erp_push_param3,warehouse_no,shipper_no,shop_no,platform_no
+    </sql>
+</mapper>

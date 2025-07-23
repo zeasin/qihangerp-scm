@@ -1,62 +1,53 @@
-//package cn.qihangerp.vms.controller;
-//
-//import cn.qihangerp.common.AjaxResult;
-//import cn.qihangerp.common.PageQuery;
-//import cn.qihangerp.common.ResultVo;
-//import cn.qihangerp.common.TableDataInfo;
-//import cn.qihangerp.module.order.domain.OOrderStockingItem;
-//import cn.qihangerp.module.order.domain.bo.SupplierShipOrderItemListBo;
-//import cn.qihangerp.module.order.service.OOrderShipWaybillService;
-//import cn.qihangerp.module.order.service.OOrderStockingItemService;
-//import cn.qihangerp.module.order.service.OOrderStockingService;
-//import cn.qihangerp.request.SupplierShipOrderSearchRequest;
-//import cn.qihangerp.security.common.BaseController;
-//import cn.qihangerp.security.utils.SecurityUtils;
-//import cn.qihangerp.utils.DateUtils;
-//import cn.qihangerp.utils.poi.ExcelUtil;
-//import com.alibaba.fastjson2.JSONArray;
-//import jakarta.servlet.http.HttpServletRequest;
-//import jakarta.servlet.http.HttpServletResponse;
-//import lombok.AllArgsConstructor;
-//import org.springframework.web.bind.annotation.*;
-//
-///**
-// * 店铺订单Controller
-// *
-// * @author qihang
-// * @date 2023-12-31
-// */
-//@AllArgsConstructor
-//@RestController
-//@RequestMapping("/ship/order")
-//public class ShipOrderController extends BaseController
-//{
-//    private final OOrderStockingService shipOrderService;
-//    private final OOrderStockingItemService shipOrderItemService;
+package cn.qihangerp.vms.controller;
+
+import cn.qihangerp.common.*;
+import cn.qihangerp.common.utils.SecurityUtils;
+import cn.qihangerp.model.order.bo.VendorShipOrderQuery;
+import cn.qihangerp.model.order.service.OmsOrderStockingItemService;
+import cn.qihangerp.model.order.service.OmsOrderStockingService;
+import com.alibaba.fastjson2.JSONArray;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+
+/**
+ * 店铺订单Controller
+ *
+ * @author qihang
+ * @date 2023-12-31
+ */
+@AllArgsConstructor
+@RestController
+@RequestMapping("/ship/order")
+public class ShipOrderController extends BaseController
+{
+    private final OmsOrderStockingService shipOrderService;
+    private final OmsOrderStockingItemService shipOrderItemService;
 //    private final OOrderShipWaybillService shipWaybillService;
-//
-//    /**
-//     * 查询订单列表
-//     */
-//    @GetMapping("/list")
-//    public TableDataInfo list(SupplierShipOrderSearchRequest bo, PageQuery pageQuery, HttpServletRequest request)
-//    {
-////        Long userIdFromToken = JwtUtils.getUserIdFromToken(request);
-//        Long userId = SecurityUtils.getLoginUser().getDeptId();
-//        bo.setSupplierId(userId);
-//        var pageList = shipOrderService.queryPageList(bo,pageQuery);
-//        return getDataTable(pageList);
-//    }
-//
-//    /**
-//     * 查询补单订单列表
-//     * @param bo
-//     * @param pageQuery
-//     * @param request
-//     * @return
-//     */
+
+    /**
+     * 查询订单列表
+     */
+    @GetMapping("/list")
+    public TableDataInfo list(VendorShipOrderQuery bo, PageQuery pageQuery, HttpServletRequest request)
+    {
+//        Long userIdFromToken = JwtUtils.getUserIdFromToken(request);
+        Long userId = SecurityUtils.getLoginUser().getDeptId();
+        bo.setSupplierId(userId);
+        var pageList = shipOrderService.queryPageList(bo,pageQuery);
+        return getDataTable(pageList);
+    }
+
+    /**
+     * 查询补单订单列表
+     * @param bo
+     * @param pageQuery
+     * @param request
+     * @return
+     */
 //    @GetMapping("/budadanList")
-//    public TableDataInfo budadanList(SupplierShipOrderSearchRequest bo, PageQuery pageQuery, HttpServletRequest request)
+//    public TableDataInfo budadanList(VendorShipOrderQuery bo, PageQuery pageQuery, HttpServletRequest request)
 //    {
 ////        Long userId = JwtUtils.getUserIdFromToken(request);
 //        Long userId = SecurityUtils.getLoginUser().getDeptId();
@@ -98,22 +89,22 @@
 //        }
 //        return AjaxResult.success();
 //    }
-//
-////    /**
-////     * 订单发货
-////     * @param order
-////     * @return
-////     */
-////    @Log(title = "店铺订单", businessType = BusinessType.UPDATE)
-////    @PostMapping("/ship")
-////    public AjaxResult ship(@RequestBody ErpOrder order)
-////    {
-////        order.setUpdateBy(getUsername());
-////        int result = orderService.shipErpOrder(order);
-////        if(result == -1) return new AjaxResult(501,"订单不存在！");
-////        else if(result == -2) return new AjaxResult(502,"订单号已存在！");
-////        return toAjax(result);
-////    }
+
+//    /**
+//     * 订单发货
+//     * @param order
+//     * @return
+//     */
+//    @Log(title = "店铺订单", businessType = BusinessType.UPDATE)
+//    @PostMapping("/ship")
+//    public AjaxResult ship(@RequestBody ErpOrder order)
+//    {
+//        order.setUpdateBy(getUsername());
+//        int result = orderService.shipErpOrder(order);
+//        if(result == -1) return new AjaxResult(501,"订单不存在！");
+//        else if(result == -2) return new AjaxResult(502,"订单号已存在！");
+//        return toAjax(result);
+//    }
 //    @PostMapping("/item_export")
 //    public void export(HttpServletResponse response, SupplierShipOrderItemListBo bo,HttpServletRequest request)
 //    {
@@ -156,4 +147,4 @@
 //        ExcelUtil<OOrderStockingItem> util = new ExcelUtil<OOrderStockingItem>(OOrderStockingItem.class);
 //        util.exportExcel(response, list, "订单明细");
 //    }
-//}
+}

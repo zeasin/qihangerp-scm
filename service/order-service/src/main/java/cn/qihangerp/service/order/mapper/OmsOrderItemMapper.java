@@ -1,6 +1,6 @@
 package cn.qihangerp.service.order.mapper;
 
-import cn.qihangerp.model.order.domain.ScmOrderItem;
+import cn.qihangerp.model.order.domain.OmsOrderItem;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @createDate 2024-06-23 09:36:46
 * @Entity cn.qihangerp.interfaces.order.domain.ScmOrderItem
 */
-public interface ScmOrderItemMapper extends BaseMapper<ScmOrderItem> {
+public interface OmsOrderItemMapper extends BaseMapper<OmsOrderItem> {
 
 }
 

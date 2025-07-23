@@ -1,9 +1,9 @@
 package cn.qihangerp.service.order.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import cn.qihangerp.model.order.domain.ScmOrderItem;
-import cn.qihangerp.model.order.service.ScmOrderItemService;
-import cn.qihangerp.service.order.mapper.ScmOrderItemMapper;
+import cn.qihangerp.model.order.domain.OmsOrderItem;
+import cn.qihangerp.model.order.service.OmsOrderItemService;
+import cn.qihangerp.service.order.mapper.OmsOrderItemMapper;
 
 import org.springframework.stereotype.Service;
 
@@ -14,8 +14,8 @@ import org.springframework.stereotype.Service;
 */
 
 @Service
-public class ScmOrderItemServiceImpl extends ServiceImpl<ScmOrderItemMapper, ScmOrderItem>
-    implements ScmOrderItemService{
+public class OmsOrderItemServiceImpl extends ServiceImpl<OmsOrderItemMapper, OmsOrderItem>
+    implements OmsOrderItemService {
 
 }
 

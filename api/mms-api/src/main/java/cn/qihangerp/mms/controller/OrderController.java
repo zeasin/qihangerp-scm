@@ -3,8 +3,8 @@ package cn.qihangerp.mms.controller;
 import cn.qihangerp.common.*;
 import cn.qihangerp.common.utils.SecurityUtils;
 import cn.qihangerp.model.order.bo.OrderQuery;
-import cn.qihangerp.model.order.domain.ScmOrder;
-import cn.qihangerp.model.order.domain.ScmOrderItem;
+import cn.qihangerp.model.order.domain.OmsOrder;
+import cn.qihangerp.model.order.domain.OmsOrderItem;
 import cn.qihangerp.model.shop.domain.OmsMerchantShop;
 import cn.qihangerp.model.shop.domain.OmsTenantShopGoodsSku;
 import cn.qihangerp.model.shop.service.OmsTenantShopGoodsSkuService;
@@ -57,7 +57,7 @@ public class OrderController extends BaseController
      * 新增店铺订单
      */
     @PostMapping
-    public AjaxResult add(@RequestBody ScmOrder order)
+    public AjaxResult add(@RequestBody OmsOrder order)
     {
         if(order.getShopId()==null) return AjaxResult.error("请选择店铺");
         OmsMerchantShop shop = shopService.getById(order.getShopId());
@@ -66,7 +66,7 @@ public class OrderController extends BaseController
         if(order.getItemList() == null || order.getItemList().size() == 0) return AjaxResult.error("请添加订单商品");
         else{
             // 循环查找是否缺少skuId
-            for (ScmOrderItem orderItem : order.getItemList())
+            for (OmsOrderItem orderItem : order.getItemList())
             {
                 if(orderItem.getSkuId()==null || orderItem.getSkuId()<=0) return AjaxResult.error("请选择订单商品规格");
                 orderItem.setPlatformSkuId(orderItem.getSkuId());

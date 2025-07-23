@@ -2,8 +2,6 @@ package cn.qihangerp.service.order.impl;
 
 import cn.qihangerp.common.PageQuery;
 import cn.qihangerp.common.PageResult;
-import cn.qihangerp.model.order.domain.ScmOrder;
-import cn.qihangerp.model.order.domain.ScmOrderItem;
 import cn.qihangerp.service.order.mapper.AfterSaleMapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;

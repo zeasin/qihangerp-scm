@@ -12,7 +12,7 @@ import lombok.Data;
  * @TableName scm_order_item
  */
 @Data
-public class ScmOrderItem implements Serializable {
+public class OmsOrderItem implements Serializable {
     /**
      * id，自增
      */

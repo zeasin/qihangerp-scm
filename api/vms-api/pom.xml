@@ -105,6 +105,18 @@
             <scope>compile</scope>
         </dependency>
 
+        <dependency>
+            <groupId>cn.qihangerp.model</groupId>
+            <artifactId>order</artifactId>
+            <version>0.5.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>cn.qihangerp.service</groupId>
+            <artifactId>order-service</artifactId>
+            <version>0.5.1</version>
+        </dependency>
+
 
     </dependencies>
     <build>

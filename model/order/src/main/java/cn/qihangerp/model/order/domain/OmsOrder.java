@@ -15,7 +15,7 @@ import lombok.Data;
  * @TableName scm_order
  */
 @Data
-public class ScmOrder implements Serializable {
+public class OmsOrder implements Serializable {
     /**
      * 订单id，自增
      */
@@ -213,6 +213,6 @@ public class ScmOrder implements Serializable {
     private Double weight;
 
     @TableField(exist = false)
-    List<ScmOrderItem> itemList;
+    List<OmsOrderItem> itemList;
     private static final long serialVersionUID = 1L;
 }

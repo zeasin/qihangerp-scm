@@ -4,14 +4,14 @@ import cn.qihangerp.common.PageQuery;
 import cn.qihangerp.common.PageResult;
 import cn.qihangerp.common.utils.DateUtils;
 import cn.qihangerp.model.order.bo.OrderQuery;
-import cn.qihangerp.model.order.domain.ScmOrderItem;
-import cn.qihangerp.service.order.mapper.ScmOrderItemMapper;
+import cn.qihangerp.model.order.domain.OmsOrderItem;
+import cn.qihangerp.service.order.mapper.OmsOrderItemMapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import cn.qihangerp.model.order.domain.ScmOrder;
-import cn.qihangerp.model.order.service.ScmOrderService;
-import cn.qihangerp.service.order.mapper.ScmOrderMapper;
+import cn.qihangerp.model.order.domain.OmsOrder;
+import cn.qihangerp.model.order.service.OmsOrderService;
+import cn.qihangerp.service.order.mapper.OmsOrderMapper;
 import lombok.AllArgsConstructor;
 
 import org.springframework.stereotype.Service;
@@ -29,24 +29,24 @@ import java.util.List;
 
 @AllArgsConstructor
 @Service
-public class ScmOrderServiceImpl extends ServiceImpl<ScmOrderMapper, ScmOrder>
-    implements ScmOrderService{
-    private final ScmOrderMapper orderMapper;
-    private final ScmOrderItemMapper orderItemMapper;
+public class OmsOrderServiceImpl extends ServiceImpl<OmsOrderMapper, OmsOrder>
+    implements OmsOrderService {
+    private final OmsOrderMapper orderMapper;
+    private final OmsOrderItemMapper orderItemMapper;
     @Override
-    public PageResult<ScmOrder> queryPageList(OrderQuery bo, PageQuery pageQuery) {
-        LambdaQueryWrapper<ScmOrder> queryWrapper = new LambdaQueryWrapper<ScmOrder>()
-                .eq(bo.getTenantId()!=null,ScmOrder::getTenantId,bo.getTenantId())
-                .eq(bo.getShopId()!=null,ScmOrder::getShopId,bo.getShopId())
-                .eq(bo.getStatus()!=null,ScmOrder::getOrderStatus,bo.getStatus())
-                .eq(StringUtils.hasText(bo.getOrderNum()),ScmOrder::getOrderNum,bo.getOrderNum())
+    public PageResult<OmsOrder> queryPageList(OrderQuery bo, PageQuery pageQuery) {
+        LambdaQueryWrapper<OmsOrder> queryWrapper = new LambdaQueryWrapper<OmsOrder>()
+                .eq(bo.getTenantId()!=null, OmsOrder::getTenantId,bo.getTenantId())
+                .eq(bo.getShopId()!=null, OmsOrder::getShopId,bo.getShopId())
+                .eq(bo.getStatus()!=null, OmsOrder::getOrderStatus,bo.getStatus())
+                .eq(StringUtils.hasText(bo.getOrderNum()), OmsOrder::getOrderNum,bo.getOrderNum())
                 ;
-        Page<ScmOrder> pages = orderMapper.selectPage(pageQuery.build(), queryWrapper);
+        Page<OmsOrder> pages = orderMapper.selectPage(pageQuery.build(), queryWrapper);
 
         // 查询子订单
         if(pages.getRecords()!=null){
             for (var order:pages.getRecords()) {
-                order.setItemList(orderItemMapper.selectList(new LambdaQueryWrapper<ScmOrderItem>().eq(ScmOrderItem::getOrderId, order.getId())));
+                order.setItemList(orderItemMapper.selectList(new LambdaQueryWrapper<OmsOrderItem>().eq(OmsOrderItem::getOrderId, order.getId())));
             }
         }
 
@@ -54,22 +54,22 @@ public class ScmOrderServiceImpl extends ServiceImpl<ScmOrderMapper, ScmOrder>
     }
 
     @Override
-    public ScmOrder queryDetailById(Long id) {
-        ScmOrder order = orderMapper.selectById(id);
+    public OmsOrder queryDetailById(Long id) {
+        OmsOrder order = orderMapper.selectById(id);
         if(order==null) return null;
         else{
-            order.setItemList(orderItemMapper.selectList(new LambdaQueryWrapper<ScmOrderItem>().eq(ScmOrderItem::getOrderId, order.getId())));
+            order.setItemList(orderItemMapper.selectList(new LambdaQueryWrapper<OmsOrderItem>().eq(OmsOrderItem::getOrderId, order.getId())));
             return order;
         }
     }
 
     @Transactional
     @Override
-    public int insertOrder(ScmOrder order)
+    public int insertOrder(OmsOrder order)
     {
         if(order.getShopId()==null)return -6;
         if(order.getShopType()==null) return -6;
-        List<ScmOrder> orders = orderMapper.selectList(new LambdaQueryWrapper<ScmOrder>().eq(ScmOrder::getOrderNum, order.getOrderNum()));
+        List<OmsOrder> orders = orderMapper.selectList(new LambdaQueryWrapper<OmsOrder>().eq(OmsOrder::getOrderNum, order.getOrderNum()));
 
         if (orders!=null&& orders.size()>0) return -1;// 订单号已存在
 //        erpOrder.setCreateTime(DateUtils.getNowDate());
@@ -79,7 +79,7 @@ public class ScmOrderServiceImpl extends ServiceImpl<ScmOrderMapper, ScmOrder>
         if(order.getItemList() == null || order.getItemList().size() == 0) return -2;
         else{
             // 循环查找是否缺少skuId
-            for (ScmOrderItem orderItem : order.getItemList())
+            for (OmsOrderItem orderItem : order.getItemList())
             {
                 if(orderItem.getPlatformSkuId()==null || orderItem.getPlatformSkuId()<=0) return -3;
                 if(orderItem.getErpGoodsId()==null || orderItem.getErpGoodsId()<=0) return -11;

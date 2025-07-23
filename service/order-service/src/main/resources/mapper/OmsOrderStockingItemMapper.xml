@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.qihangerp.service.order.mapper.OmsOrderStockingItemMapper">
+
+    <resultMap id="BaseResultMap" type="cn.qihangerp.model.order.domain.OmsOrderStockingItem">
+            <id property="id" column="id" />
+            <result property="shipOrderId" column="ship_order_id" />
+            <result property="orderNum" column="order_num" />
+            <result property="subOrderNum" column="sub_order_num" />
+            <result property="oOrderId" column="o_order_id" />
+            <result property="oOrderItemId" column="o_order_item_id" />
+            <result property="supplierId" column="supplier_id" />
+            <result property="productId" column="product_id" />
+            <result property="skuId" column="sku_id" />
+            <result property="goodsId" column="goods_id" />
+            <result property="goodsSkuId" column="goods_sku_id" />
+            <result property="goodsName" column="goods_name" />
+            <result property="goodsImg" column="goods_img" />
+            <result property="goodsNum" column="goods_num" />
+            <result property="skuName" column="sku_name" />
+            <result property="skuCode" column="sku_code" />
+            <result property="quantity" column="quantity" />
+            <result property="remark" column="remark" />
+            <result property="sendStatus" column="send_status" />
+            <result property="createTime" column="create_time" />
+            <result property="createBy" column="create_by" />
+            <result property="updateTime" column="update_time" />
+            <result property="updateBy" column="update_by" />
+            <result property="waybillCode" column="waybill_code" />
+            <result property="waybillStatus" column="waybill_status" />
+            <result property="refundStatus" column="refund_status" />
+            <result property="orderTime" column="order_time" />
+            <result property="stockingStatus" column="stocking_status" />
+            <result property="merchantId" column="merchant_id" />
+            <result property="warehouseType" column="warehouse_type" />
+            <result property="warehouseId" column="warehouse_id" />
+            <result property="warehouseName" column="warehouse_name" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,ship_order_id,order_num,sub_order_num,o_order_id,o_order_item_id,
+        supplier_id,product_id,sku_id,goods_id,goods_sku_id,
+        goods_name,goods_img,goods_num,sku_name,sku_code,
+        quantity,remark,send_status,create_time,create_by,
+        update_time,update_by,waybill_code,waybill_status,refund_status,
+        order_time,stocking_status,merchant_id,warehouse_type,warehouse_id,
+        warehouse_name
+    </sql>
+</mapper>
