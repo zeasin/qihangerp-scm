@@ -11,7 +11,7 @@
  Target Server Version : 80036 (8.0.36)
  File Encoding         : 65001
 
- Date: 24/07/2025 20:08:09
+ Date: 24/07/2025 21:26:36
 */
 
 SET NAMES utf8mb4;
@@ -2828,7 +2828,7 @@ INSERT INTO `oms_merchant_shop` VALUES (23, '孟小妮牛仔裤专营店', 'add'
 INSERT INTO `oms_merchant_shop` VALUES (24, 'BBB', 'BB', NULL, 2, NULL, 0, 0, 0, NULL, 12580, '12580', 'AA22', '6555', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2024-06-23 13:52:46', NULL, NULL, NULL);
 INSERT INTO `oms_merchant_shop` VALUES (25, 'aabvb', '1a', NULL, 5, NULL, 1, 0, 0, NULL, 22, '22', 'avc', 'a', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 101, '2025-07-20 14:19:57', NULL, '2025-07-20 14:20:21', NULL);
 INSERT INTO `oms_merchant_shop` VALUES (26, 'AAAAA', 'aaa', NULL, 500, NULL, 0, 0, 0, NULL, 0, '12', '12', '12', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 101, '2025-07-20 14:44:11', NULL, NULL, NULL);
-INSERT INTO `oms_merchant_shop` VALUES (27, '爱顾家的小店', NULL, NULL, 300, NULL, 0, 0, 0, NULL, 745839216, '745839216', 'dc953bcf16d24b27abf3e64a59e1ecd1', '89c639b1ceaf8e5260acc73b2bdbb5c529cf23a4', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 101, '2025-07-24 20:07:18', NULL, NULL, NULL);
+INSERT INTO `oms_merchant_shop` VALUES (27, '爱顾家的小店', NULL, NULL, 300, NULL, 0, 0, 0, NULL, 745839216, '745839216', 'dc953bcf16d24b27abf3e64a59e1ecd1', '89c639b1ceaf8e5260acc73b2bdbb5c529cf23a4', '8f5b168634044416878813e48192242f63ba3b85', NULL, NULL, '1e71b8c282f64187b8792d8ce06b911e6e3c1223', NULL, NULL, 'http://qihangerp.cn', 101, '2025-07-24 20:07:18', NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for oms_order
@@ -6260,7 +6260,7 @@ CREATE TABLE `sys_user`  (
 -- Records of sys_user
 -- ----------------------------
 INSERT INTO `sys_user` VALUES (1, 100, 'admin', '启航', '00', '280645618@qq.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2025-07-22 09:05:34', 'admin', '2023-08-07 19:31:37', '', '2025-07-22 09:05:35', '管理员');
-INSERT INTO `sys_user` VALUES (2, 101, 'qihang', 'qihang', '20', 'qihang@qq.com', '15666666666', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2025-07-24 18:55:54', 'admin', '2023-08-07 19:31:37', 'admin', '2025-07-24 18:55:55', '测试员');
+INSERT INTO `sys_user` VALUES (2, 101, 'qihang', 'qihang', '20', 'qihang@qq.com', '15666666666', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2025-07-24 21:04:52', 'admin', '2023-08-07 19:31:37', 'admin', '2025-07-24 21:04:52', '测试员');
 INSERT INTO `sys_user` VALUES (100, 1, 'qihangvms', 'aa', '10', '', '', '1', '', '$2a$10$VD49q2rn1ATpQDZJJrmJjuG52b4EkOTTZ0MPbRRmcqEYLmB5mAMsG', '0', '0', '127.0.0.1', '2025-07-23 11:54:04', 'admin', '2024-04-24 11:06:27', '', '2025-07-23 11:54:05', NULL);
 
 -- ----------------------------

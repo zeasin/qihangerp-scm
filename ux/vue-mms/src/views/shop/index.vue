@@ -174,7 +174,7 @@
         <el-button @click="cancel">取 消</el-button>
       </div>
     </el-dialog>
-    <el-dialog :title="title" :visible.sync="authOpen" width="500px" append-to-body>
+    <el-dialog :title="title" :visible.sync="authOpen" width="500px" append-to-body :close-on-click-modal="false">
       <el-form ref="tokenForm" :model="tokenForm"  :rules="rules" label-width="100px">
         <el-descriptions >
           <el-descriptions-item label="授权URL："> {{ tokenForm.url }}</el-descriptions-item>
@@ -206,7 +206,7 @@
 
 <script>
 import { listShop, getShop, delShop, addShop, updateShop,listPlatform } from "@/api/shop/shop";
-import {getPddOAuthUrl} from "@/api/shop/pdd/shopApi";
+import {getPddOAuthUrl,getPddToken} from "@/api/shop/pdd/shopApi";
 
 export default {
   name: "Shop",
@@ -416,6 +416,35 @@ export default {
       }
 
     },
+    getTokenSubmit(){
+      this.$refs["tokenForm"].validate(valid => {
+        if (valid) {
+          console.log("=====更新token=====",this.tokenForm)
+          if(this.tokenForm.shopType == 100){
+            saveSessionKey(this.tokenForm).then(resp=>{
+              this.authOpen = false
+              this.$modal.msgSuccess("SessionKey保存成功");
+              this.getList()
+            });
+          } else if(this.tokenForm.shopType == 200 || this.tokenForm.shopType === 280){
+            getJdToken(this.tokenForm).then(response => {
+              this.authOpen = false
+              this.$modal.msgSuccess("授权成功");
+              this.getList()
+            });
+          }else if(this.tokenForm.shopType == 300){
+            getPddToken(this.tokenForm).then(response => {
+              this.authOpen = false
+              this.$modal.msgSuccess("授权成功");
+              this.getList()
+            });
+          }
+        }
+      })
+    },
+
+
+
   }
 };
 </script>
