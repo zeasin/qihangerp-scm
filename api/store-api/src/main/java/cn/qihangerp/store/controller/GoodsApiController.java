@@ -7,6 +7,7 @@ import cn.qihangerp.common.enums.EnumShopType;
 import cn.qihangerp.common.utils.SecurityUtils;
 import cn.qihangerp.model.goods.domain.ShopGoods;
 import cn.qihangerp.model.goods.domain.ShopGoodsSku;
+import cn.qihangerp.model.goods.service.ShopGoodsService;
 import cn.qihangerp.model.shop.domain.OmsMerchantShop;
 import cn.qihangerp.model.shop.domain.OmsShopPullLogs;
 import cn.qihangerp.model.shop.service.OmsMerchantShopService;
@@ -34,7 +35,7 @@ import java.util.*;
 @RestController
 @AllArgsConstructor
 public class GoodsApiController extends BaseController {
-
+    private final ShopGoodsService shopGoodsService;
     private final OmsMerchantShopService shopService;
     private final WeiGoodsApiService goodsApiService;
     private final OmsShopPullLogsService pullLogsService;
@@ -102,19 +103,21 @@ public class GoodsApiController extends BaseController {
                 goods.setMerchantId(merchantId);
                 goods.setShopId(params.getShopId());
                 goods.setShopType(shop.getType());
-                goods.setProductId(g.getGoodsId().toString());
+                goods.setPlatformProductId(g.getGoodsId().toString());
                 goods.setTitle(g.getGoodsName());
                 goods.setSubTitle("");
-                goods.setHeadImg(g.getThumbUrl());
-                goods.setHeadImgs("");
+                goods.setImg(g.getThumbUrl());
+                goods.setImgs("");
                 goods.setDescInfo("");
                 goods.setAttrs("");
                 goods.setStatus(g.getIsOnsale());
-                goods.setEditStatus(0);
+                goods.setStatus(0);
                 goods.setMinPrice(0);
-
-                goods.setProductType(1);
-                goods.setEditTime(g.getCreatedAt()+"");
+                goods.setQuantity(g.getGoodsQuantity());
+                goods.setDeliverMethod(0);
+                goods.setAddTime(g.getCreatedAt());
+                goods.setEditTime(g.getCreatedAt());
+                goods.setErpGoodsId(0L);
                 String outerGoodsId="";
                 List<ShopGoodsSku> skuList = new ArrayList<>();
                 for (var sku : g.getSkuList()) {
@@ -122,23 +125,24 @@ public class GoodsApiController extends BaseController {
                     goodsSku.setMerchantId(goods.getMerchantId());
                     goodsSku.setShopId(goods.getShopId());
                     goodsSku.setShopType(shop.getType());
-                    goodsSku.setSkuId(sku.getSkuId().toString());
-                    goodsSku.setProductId(goods.getProductId());
-                    goodsSku.setOutSkuId(sku.getOuterId());
-                    goodsSku.setThumbImg(goods.getHeadImg());
+                    goodsSku.setPlatformSkuId(sku.getSkuId().toString());
+                    goodsSku.setPlatformProductId(goods.getPlatformProductId());
+                    goodsSku.setOuterSkuId(sku.getOuterId());
+                    goodsSku.setImg(goods.getImg());
                     goodsSku.setSkuCode(sku.getOuterId());
                     outerGoodsId = sku.getOuterGoodsId();
                     goodsSku.setSkuAttrs(sku.getSpec_details());
-                    goodsSku.setSalePrice(0);
+                    goodsSku.setPrice(0);
                     goodsSku.setSkuName(sku.getSpec());
                     goodsSku.setStockNum(sku.getSkuQuantity());
                     goodsSku.setStatus(goods.getStatus());
-                    goodsSku.setSkuDeliverInfo("");
-                    goodsSku.setQuantity(sku.getSkuQuantity());
+                    goodsSku.setAddTime(goods.getAddTime());
+                    goodsSku.setErpGoodsId(0L);
+                    goodsSku.setErpGoodsSkuId(0L);
                     skuList.add(goodsSku);
                 }
                 goods.setSpuCode(outerGoodsId);
-                goods.setOutProductId(outerGoodsId);
+                goods.setOuterProductId(outerGoodsId);
                 goods.setSkus(skuList);
 
                 var result = shopGoodsService.saveAndUpdateGoods(params.getShopId(), goods);
@@ -150,116 +154,6 @@ public class GoodsApiController extends BaseController {
                 } else {
                     log.error("拉取更新商品错误{}",result.getMsg());
                     fail++;
-                }
-            }
-
-        }else if (shop.getType()==4) {
-            // 抖店
-            var checkResult = douApiCommon.checkBefore(params.getShopId());
-            if (checkResult.getCode() != ResultVoEnum.SUCCESS.getIndex()) {
-//            return AjaxResult.error(checkResult.getCode(), checkResult.getMsg(), checkResult.getData());
-                ErpShopPullLogs logs = new ErpShopPullLogs();
-                logs.setTenantId(getUserId());
-                logs.setShopType(EnumShopType.PDD.getIndex());
-                logs.setShopId(params.getShopId());
-                logs.setPullType("GOODS");
-                logs.setPullWay("主动拉取");
-                logs.setPullParams("{}");
-                logs.setPullResult("{insert:0,update:0,fail:0}");
-                logs.setPullTime(currDateTime);
-                logs.setDuration(System.currentTimeMillis() - beginTime);
-                pullLogsService.save(logs);
-                return AjaxResult.error(1401,checkResult.getMsg());
-            }
-            String accessToken = checkResult.getData().getAccessToken();
-//            String serverUrl = checkResult.getData().getServerUrl();
-            String appKey = checkResult.getData().getAppKey();
-            String appSecret = checkResult.getData().getAppSecret();
-
-            var resultVo = DouGoodsApiHelper.getGoodsList(appKey,appSecret,accessToken,1,20);
-//            if(resultVo.getCode() == 10019) return AjaxResult.error(HttpStatus.UNAUTHORIZED,"Token已过期");
-            if(resultVo.getCode() !=0 ){
-                ErpShopPullLogs logs = new ErpShopPullLogs();
-                logs.setTenantId(getUserId());
-                logs.setShopType(EnumShopType.PDD.getIndex());
-                logs.setShopId(params.getShopId());
-                logs.setPullType("GOODS");
-                logs.setPullWay("主动拉取");
-                logs.setPullParams("{}");
-                logs.setPullResult("{insert:0,update:0,fail:0}");
-                logs.setPullTime(currDateTime);
-                logs.setDuration(System.currentTimeMillis() - beginTime);
-                pullLogsService.save(logs);
-                return AjaxResult.error("接口拉取错误："+resultVo.getMsg());
-            }
-            for (var g : resultVo.getData().getGoodsList()) {
-                total++;
-                ShopGoods goods = new ShopGoods();
-                goods.setTenantId(getUserId());
-                goods.setShopId(params.getShopId());
-                goods.setShopType(shop.getType());
-                goods.setProductId(g.getProductId().toString());
-                goods.setTitle(g.getName());
-                goods.setSubTitle("");
-                goods.setHeadImg(g.getImg());
-                goods.setHeadImgs("");
-                goods.setDescInfo(g.getDescription());
-                goods.setAttrs(JSONObject.toJSONString(g.getExtra()));
-                goods.setStatus(g.getStatus());
-                goods.setEditStatus(g.getCheckStatus());
-                goods.setMinPrice(g.getDiscountPrice());
-                goods.setMarketPrice(g.getMarketPrice());
-                goods.setProductType(g.getProductType());
-                goods.setEditTime(g.getUpdateTime()+"");
-                goods.setCreateTime(g.getCreateTime()+"");
-                goods.setCreateOn(new Date());
-                goods.setOutProductId(g.getOuterProductId());
-
-                List<ShopGoodsSku> skuList = new ArrayList<>();
-                for (var sku : g.getSkuList()) {
-                    ShopGoodsSku goodsSku = new ShopGoodsSku();
-                    goodsSku.setTenantId(goods.getTenantId());
-                    goodsSku.setShopId(goods.getShopId());
-                    goodsSku.setShopType(shop.getType());
-                    goodsSku.setSkuId(sku.getId().toString());
-                    goodsSku.setProductId(goods.getProductId());
-                    goodsSku.setOutProductId(goods.getOutProductId());
-                    goodsSku.setOutSkuId(sku.getCode());
-//                    goodsSku.setThumbImg(goods.getHeadImg());
-                    goodsSku.setSkuCode(sku.getCode());
-                    goodsSku.setCreateTime(sku.getCreateTime());
-                    goodsSku.setSkuAttrs(JSONObject.toJSONString(sku.getSellProperties()));
-                    goodsSku.setSalePrice(sku.getPrice());
-                    String skuName = "";
-                    if(org.springframework.util.StringUtils.hasText(sku.getSpecDetailName1())){
-                        skuName+=sku.getSpecDetailName1();
-                    }
-                    if(org.springframework.util.StringUtils.hasText(sku.getSpecDetailName2())){
-                        skuName+=sku.getSpecDetailName2();
-                    }
-                    if(org.springframework.util.StringUtils.hasText(sku.getSpecDetailName3())){
-                        skuName+=sku.getSpecDetailName3();
-                    }
-                    goodsSku.setSkuName(skuName);
-                    goodsSku.setStockNum(sku.getStockNum());
-                    goodsSku.setStatus(sku.isSkuStatus()?1:0);
-//                    goodsSku.setSkuDeliverInfo("");
-//                    goodsSku.setQuantity(sku.getSkuQuantity());
-                    skuList.add(goodsSku);
-                }
-//                goods.setSpuCode(outerGoodsId);
-                goods.setSkus(skuList);
-//
-                var result = shopGoodsService.saveAndUpdateGoods(params.getShopId(), goods);
-                if (result.getCode() == 0) {
-                    insert++;
-                    log.info("====添加DOU商品=====insert");
-                } else if (result.getCode() == ResultVoEnum.UPDATE_SUCCESS.getIndex()) {
-                    update++;
-                    log.info("====更新DOU商品=====update");
-                } else {
-                    fail++;
-                    log.info("====拉取DOU商品=====fail");
                 }
             }
 

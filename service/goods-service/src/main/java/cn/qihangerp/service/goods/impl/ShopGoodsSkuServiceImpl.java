@@ -33,10 +33,10 @@ public class ShopGoodsSkuServiceImpl extends ServiceImpl<ShopGoodsSkuMapper, Sho
     @Override
     public PageResult<ShopGoodsSku> queryPageList(ShopGoodsSkuBo bo, PageQuery pageQuery) {
         LambdaQueryWrapper<ShopGoodsSku> queryWrapper = new LambdaQueryWrapper<ShopGoodsSku>()
-                .eq(StringUtils.hasText(bo.getProductId()),ShopGoodsSku::getProductId,bo.getProductId())
+                .eq(StringUtils.hasText(bo.getProductId()),ShopGoodsSku::getPlatformProductId,bo.getProductId())
                 .eq(StringUtils.hasText(bo.getOuterProductId()),ShopGoodsSku::getOuterProductId,bo.getOuterProductId())
                 .eq(StringUtils.hasText(bo.getOuterSkuId()),ShopGoodsSku::getOuterSkuId,bo.getOuterSkuId())
-                .eq(StringUtils.hasText(bo.getSkuId()),ShopGoodsSku::getSkuId,bo.getSkuId())
+                .eq(StringUtils.hasText(bo.getSkuId()),ShopGoodsSku::getPlatformSkuId,bo.getSkuId())
                 .eq(bo.getShopId()!=null,ShopGoodsSku::getShopId,bo.getShopId())
                 .eq(bo.getShopType()!=null,ShopGoodsSku::getShopType,bo.getShopType())
                 .eq(bo.getMerchantId()!=null,ShopGoodsSku::getMerchantId,bo.getMerchantId())

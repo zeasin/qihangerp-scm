@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -16,7 +15,7 @@ import lombok.Data;
  */
 @TableName(value ="oms_shop_goods")
 @Data
-public class ShopGoods implements Serializable {
+public class ShopGoods {
     /**
      * 
      */
@@ -41,7 +40,7 @@ public class ShopGoods implements Serializable {
     /**
      * 平台商品id
      */
-    private String productId;
+    private String platformProductId;
 
     /**
      * 商家编码id
@@ -132,8 +131,7 @@ public class ShopGoods implements Serializable {
      * 商品发货方式，0：普通物流，1：虚拟发货，
      */
     private Integer deliverMethod;
+
     @TableField(exist = false)
-    private List<ShopGoodsSku> skuList;
-    @TableField(exist = false)
-    private static final long serialVersionUID = 1L;
+    private List<ShopGoodsSku> skus;
 }

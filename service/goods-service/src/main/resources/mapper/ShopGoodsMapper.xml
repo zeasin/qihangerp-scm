@@ -5,39 +5,36 @@
 <mapper namespace="cn.qihangerp.service.goods.mapper.ShopGoodsMapper">
 
     <resultMap id="BaseResultMap" type="cn.qihangerp.model.goods.domain.ShopGoods">
-            <id property="id" column="id" jdbcType="BIGINT"/>
-            <result property="shopId" column="shop_id" jdbcType="BIGINT"/>
-            <result property="shopType" column="shop_type" jdbcType="INTEGER"/>
-            <result property="merchantId" column="merchant_id" jdbcType="BIGINT"/>
-            <result property="productId" column="product_id" jdbcType="VARCHAR"/>
-            <result property="outerProductId" column="outer_product_id" jdbcType="VARCHAR"/>
-            <result property="title" column="title" jdbcType="VARCHAR"/>
-            <result property="subTitle" column="sub_title" jdbcType="VARCHAR"/>
-            <result property="imgs" column="imgs" jdbcType="VARCHAR"/>
-            <result property="img" column="img" jdbcType="VARCHAR"/>
-            <result property="descInfo" column="desc_info" jdbcType="VARCHAR"/>
-            <result property="attrs" column="attrs" jdbcType="VARCHAR"/>
-            <result property="status" column="status" jdbcType="INTEGER"/>
-            <result property="minPrice" column="min_price" jdbcType="INTEGER"/>
-            <result property="marketPrice" column="market_price" jdbcType="INTEGER"/>
-            <result property="spuCode" column="spu_code" jdbcType="VARCHAR"/>
-            <result property="addTime" column="add_time" jdbcType="INTEGER"/>
-            <result property="editTime" column="edit_time" jdbcType="INTEGER"/>
-            <result property="erpGoodsId" column="erp_goods_id" jdbcType="BIGINT"/>
-            <result property="quantity" column="quantity" jdbcType="INTEGER"/>
-            <result property="createOn" column="create_on" jdbcType="TIMESTAMP"/>
-            <result property="updateOn" column="update_on" jdbcType="TIMESTAMP"/>
-            <result property="deliverMethod" column="deliver_method" jdbcType="INTEGER"/>
+            <id property="id" column="id" />
+            <result property="shopId" column="shop_id" />
+            <result property="shopType" column="shop_type" />
+            <result property="merchantId" column="merchant_id" />
+            <result property="platformProductId" column="platform_product_id" />
+            <result property="outerProductId" column="outer_product_id" />
+            <result property="title" column="title" />
+            <result property="subTitle" column="sub_title" />
+            <result property="imgs" column="imgs" />
+            <result property="img" column="img" />
+            <result property="descInfo" column="desc_info" />
+            <result property="attrs" column="attrs" />
+            <result property="status" column="status" />
+            <result property="minPrice" column="min_price" />
+            <result property="marketPrice" column="market_price" />
+            <result property="spuCode" column="spu_code" />
+            <result property="addTime" column="add_time" />
+            <result property="editTime" column="edit_time" />
+            <result property="erpGoodsId" column="erp_goods_id" />
+            <result property="quantity" column="quantity" />
+            <result property="createOn" column="create_on" />
+            <result property="updateOn" column="update_on" />
+            <result property="deliverMethod" column="deliver_method" />
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,shop_id,shop_type,
-        merchant_id,product_id,outer_product_id,
-        title,sub_title,imgs,
-        img,desc_info,attrs,
-        status,min_price,market_price,
-        spu_code,add_time,edit_time,
-        erp_goods_id,quantity,create_on,
+        id,shop_id,shop_type,merchant_id,platform_product_id,outer_product_id,
+        title,sub_title,imgs,img,desc_info,
+        attrs,status,min_price,market_price,spu_code,
+        add_time,edit_time,erp_goods_id,quantity,create_on,
         update_on,deliver_method
     </sql>
 </mapper>

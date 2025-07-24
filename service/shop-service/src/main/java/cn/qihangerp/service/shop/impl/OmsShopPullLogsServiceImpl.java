@@ -3,7 +3,7 @@ package cn.qihangerp.service.shop.impl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import cn.qihangerp.model.shop.domain.OmsShopPullLogs;
 import cn.qihangerp.model.shop.service.OmsShopPullLogsService;
-import cn.qihangerp.model.shop.mapper.OmsShopPullLogsMapper;
+import cn.qihangerp.service.shop.mapper.OmsShopPullLogsMapper;
 import org.springframework.stereotype.Service;
 
 /**

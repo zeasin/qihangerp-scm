@@ -44,7 +44,13 @@ public class ResultVo<T> implements Serializable {
 //        this.msg = result.getName();
 //        this.data = data;
 //    }
-
+    public static <T> ResultVo<T> updateSuccess()
+    {
+        ResultVo<T> result = new ResultVo<>();
+        result.setCode(ResultVoEnum.UPDATE_SUCCESS.getIndex());
+        result.setMsg(ResultVoEnum.UPDATE_SUCCESS.getName());
+        return result;
+    }
 
     public static <T> ResultVo<T> success(int totalRecords , List<T> list){
         ResultVo<T> result = new ResultVo<>();

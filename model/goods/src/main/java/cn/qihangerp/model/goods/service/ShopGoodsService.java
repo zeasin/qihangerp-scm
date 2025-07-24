@@ -2,6 +2,7 @@ package cn.qihangerp.model.goods.service;
 
 import cn.qihangerp.common.PageQuery;
 import cn.qihangerp.common.PageResult;
+import cn.qihangerp.common.ResultVo;
 import cn.qihangerp.model.goods.domain.ShopGoods;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -12,4 +13,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface ShopGoodsService extends IService<ShopGoods> {
     PageResult<ShopGoods> queryPageList(ShopGoods bo, PageQuery pageQuery);
+    ResultVo saveAndUpdateGoods(Long shopId, ShopGoods goods);
 }
