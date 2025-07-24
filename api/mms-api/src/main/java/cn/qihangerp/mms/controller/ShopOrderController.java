@@ -60,7 +60,7 @@ public class ShopOrderController extends BaseController {
         // TODO:需要优化消息格式
         if(bo!=null && bo.getIds()!=null) {
             for(Long shopOrderId: bo.getIds()) {
-                mqUtils.sendApiMessage(MqMessage.build(EnumShopType.QT, MqType.ORDER_MESSAGE,shopOrderId.toString()));
+                mqUtils.sendApiMessage(MqMessage.build(EnumShopType.SHOP, MqType.ORDER_MESSAGE,shopOrderId.toString()));
             }
         }
         return success();

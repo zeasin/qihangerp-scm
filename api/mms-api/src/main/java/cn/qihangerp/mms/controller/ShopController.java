@@ -2,11 +2,13 @@ package cn.qihangerp.mms.controller;
 
 import cn.qihangerp.common.*;
 import cn.qihangerp.common.utils.SecurityUtils;
+import cn.qihangerp.model.shop.domain.ErpShopPlatform;
 import cn.qihangerp.model.shop.service.ErpShopPlatformService;
 import cn.qihangerp.model.shop.domain.OmsMerchantShop;
 import cn.qihangerp.model.shop.service.OmsMerchantShopService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,7 +24,7 @@ public class ShopController extends BaseController {
     private ErpShopPlatformService platformService;
 
     @GetMapping("/list")
-    public TableDataInfo list()
+    public TableDataInfo list(OmsMerchantShop bo)
     {
         Integer userIdentity = SecurityUtils.getLoginUser().getUserIdentity();
         Long merchantId = null;
@@ -36,6 +38,8 @@ public class ShopController extends BaseController {
 
         List<OmsMerchantShop> list = shopService.list(new LambdaQueryWrapper<OmsMerchantShop>()
                 .eq(OmsMerchantShop::getMerchantId, merchantId)
+                        .eq(bo.getType()!=null,OmsMerchantShop::getType,bo.getType())
+                        .like(StringUtils.hasText(bo.getName()),OmsMerchantShop::getName,bo.getName())
                 .eq(OmsMerchantShop::getStatus,0)
         );
 
@@ -106,6 +110,6 @@ public class ShopController extends BaseController {
     @GetMapping("/platform/list")
     public TableDataInfo platformList()
     {
-        return getDataTable(platformService.list());
+        return getDataTable(platformService.list(new LambdaQueryWrapper<ErpShopPlatform>().eq(ErpShopPlatform::getStatus,0)));
     }
 }

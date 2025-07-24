@@ -8,10 +8,17 @@ package cn.qihangerp.common.enums;
  * @date 2019-09-18 19:44
  */
 public enum EnumShopType {
-
-    WEI("微信小店", 5),
-
-    QT("其他", 99)
+    TAO("淘宝天猫", 100),
+    JD("京东POP", 200),
+    JDVC("京东自营", 280),
+    PDD("拼多多", 300),
+    DOU("抖店", 400),
+    WEI("微信小店", 500),
+    KWAI("快手小店", 600),
+    XHS("小红书", 700),
+    WEI_DIAN("微店", 901),
+    OFFLINE("线下其他", 999),
+    SHOP("其他", 0)
     ;
     private String name;
     private int index;

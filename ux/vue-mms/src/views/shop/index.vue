@@ -16,7 +16,7 @@
           clearable
           @keyup.enter.native="handleQuery"
         /> -->
-        <el-select v-model="queryParams.type" placeholder="请选择平台" clearable>
+        <el-select v-model="queryParams.type" placeholder="请选择平台" clearable @change="handleQuery">
          <el-option
             v-for="item in platformList"
             :key="item.id"

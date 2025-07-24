@@ -307,6 +307,11 @@
 </template>
 
 <script>
+// 建议：确保已安装 Volar（Vue 3）或 Vetur（Vue 2）插件，并重启 VSCode
+// 建议：项目根目录添加 jsconfig.json 或 tsconfig.json，示例见下方注释
+// 建议：保持 <template>、<script>、<style> 标签顺序规范
+// 建议：方法、参数命名规范，避免语法错误
+
 import {listOrder, getOrder, updateSendStatus} from "@/api/vms/order";
 import {listPlatform} from "@/api/vms/shop";
 
@@ -461,4 +466,28 @@ export default {
   }
 };
 </script>
+
+<!-- 建议：在项目根目录添加 jsconfig.json（如果用 JS）或 tsconfig.json（如果用 TS） -->
+<!-- 例如 jsconfig.json: -->
+<!--
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  "exclude": ["node_modules", "dist"]
+}
+-->
+<!-- 添加后重启 VSCode 并等待索引完成 -->
+
+<!-- 如仍无法跳转，请确认依赖已安装（npm install），并检查插件是否启用 -->
+
+<!-- 已安装 Vetur 并配置 jsconfig.json，通常已支持跳转。
+如仍无法跳转：
+1. 重启 VSCode。
+2. 确认依赖已安装（npm install）。
+3. 检查是否有语法错误。
+4. 等待 Vetur 索引完成。 -->
 

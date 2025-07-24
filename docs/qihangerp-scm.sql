@@ -1,17 +1,17 @@
 /*
- Navicat Premium Data Transfer
+ Navicat Premium Dump SQL
 
  Source Server         : rm-wz95h4f7996784subvo.mysql.rds.aliyuncs.com
  Source Server Type    : MySQL
- Source Server Version : 80036
+ Source Server Version : 80036 (8.0.36)
  Source Host           : rm-wz95h4f7996784subvo.mysql.rds.aliyuncs.com:3306
  Source Schema         : qihangerp-scm
 
  Target Server Type    : MySQL
- Target Server Version : 80036
+ Target Server Version : 80036 (8.0.36)
  File Encoding         : 65001
 
- Date: 23/07/2025 09:21:43
+ Date: 24/07/2025 20:08:09
 */
 
 SET NAMES utf8mb4;
@@ -63,8 +63,8 @@ CREATE TABLE `erp_goods`  (
   `town` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '发货地区',
   `ship_type` int NOT NULL COMMENT '发货类型10自营发货20供应商发货',
   PRIMARY KEY (`id`) USING BTREE,
-  INDEX `number`(`number`) USING BTREE,
-  INDEX `id`(`id`) USING BTREE
+  INDEX `number`(`number` ASC) USING BTREE,
+  INDEX `id`(`id` ASC) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 10011 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '商品库存管理' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
@@ -416,8 +416,8 @@ CREATE TABLE `erp_goods_spec`  (
   `width` float NOT NULL DEFAULT 0 COMMENT '宽度',
   `weight` float NOT NULL DEFAULT 0 COMMENT '重量',
   PRIMARY KEY (`id`) USING BTREE,
-  INDEX `id`(`id`) USING BTREE,
-  INDEX `number`(`spec_num`) USING BTREE
+  INDEX `id`(`id` ASC) USING BTREE,
+  INDEX `number`(`spec_num` ASC) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1373 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '商品规格库存管理' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
@@ -2524,8 +2524,13 @@ CREATE TABLE `erp_shop_platform`  (
 -- ----------------------------
 -- Records of erp_shop_platform
 -- ----------------------------
-INSERT INTO `erp_shop_platform` VALUES (5, '微信小店', ' ', ' ', '微信小店开放平台', 'https://api.weixin.qq.com/', 'http://qihangerp.cn', '2024-06-04 11:10:58', '2024-06-04 11:10:58', 0, 0);
-INSERT INTO `erp_shop_platform` VALUES (99, '其他渠道', '', '', '其他线下渠道', NULL, 'http://qihangerp.cn', '2024-06-04 11:10:58', '2024-06-04 11:10:58', 0, 0);
+INSERT INTO `erp_shop_platform` VALUES (100, '淘宝天猫', 'TMALL', '', NULL, 'http://www.qihangerp.cn:88/home', 'http://gw.api.taobao.com/router/rest', '2025-07-24 19:11:02', '2025-07-24 19:10:57', 0, 0);
+INSERT INTO `erp_shop_platform` VALUES (200, '京东POP', 'JD-POP', '', NULL, 'http://www.qihangerp.cn:88/home', 'https://api.jd.com/routerjson', '2025-07-24 19:18:25', '2025-07-24 19:18:29', 0, 0);
+INSERT INTO `erp_shop_platform` VALUES (280, '京东自营', 'JD-VC', '', NULL, 'http://www.qihangerp.cn:88/home', 'https://api.jd.com/routerjson', '2025-07-24 19:19:02', '2025-07-24 19:19:05', 1, 0);
+INSERT INTO `erp_shop_platform` VALUES (300, '拼多多', 'PDD', '', NULL, 'http://www.qihangerp.cn:88/home', 'https://gw-api.pinduoduo.com/api/router', '2025-07-24 19:19:22', '2025-07-24 19:19:26', 0, 0);
+INSERT INTO `erp_shop_platform` VALUES (400, '抖店', 'DOUDIAN', '7467085634558019081', '4a38cc73-5918-46ea-bb91-657aea0bcde2', 'http://www.qihangerp.cn:88/home', 'https://openapi-fxg.jinritemai.com/', '2025-07-24 19:19:47', '2025-07-24 19:19:51', 0, 0);
+INSERT INTO `erp_shop_platform` VALUES (500, '微信小店', 'WEISHOP', '', NULL, 'http://www.qihangerp.cn:88/home', 'https://api.weixin.qq.com', '2025-07-24 19:20:08', '2025-07-24 19:20:13', 0, 0);
+INSERT INTO `erp_shop_platform` VALUES (999, '其他渠道', 'OFFLINE', ' ', NULL, 'http://www.qihangerp.cn:88/home', NULL, '2025-07-24 19:21:57', '2025-07-24 19:22:00', 0, 0);
 
 -- ----------------------------
 -- Table structure for oms_jd_after_sale
@@ -2806,7 +2811,7 @@ CREATE TABLE `oms_merchant_shop`  (
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   `update_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '更新人',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 27 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '租户店铺表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 28 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '租户店铺表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of oms_merchant_shop
@@ -2822,7 +2827,8 @@ INSERT INTO `oms_merchant_shop` VALUES (22, '梦小妮牛仔裤', '抖音-梦小
 INSERT INTO `oms_merchant_shop` VALUES (23, '孟小妮牛仔裤专营店', 'add', NULL, 3, NULL, 0, 0, 0, NULL, 12, '12', 'aaaa', 'aaaaa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2024-06-23 11:55:35', NULL, '2024-06-23 15:46:51', NULL);
 INSERT INTO `oms_merchant_shop` VALUES (24, 'BBB', 'BB', NULL, 2, NULL, 0, 0, 0, NULL, 12580, '12580', 'AA22', '6555', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2024-06-23 13:52:46', NULL, NULL, NULL);
 INSERT INTO `oms_merchant_shop` VALUES (25, 'aabvb', '1a', NULL, 5, NULL, 1, 0, 0, NULL, 22, '22', 'avc', 'a', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 101, '2025-07-20 14:19:57', NULL, '2025-07-20 14:20:21', NULL);
-INSERT INTO `oms_merchant_shop` VALUES (26, 'AAAAA', 'aaa', NULL, 5, NULL, 0, 0, 0, NULL, 0, '12', '12', '12', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 101, '2025-07-20 14:44:11', NULL, NULL, NULL);
+INSERT INTO `oms_merchant_shop` VALUES (26, 'AAAAA', 'aaa', NULL, 500, NULL, 0, 0, 0, NULL, 0, '12', '12', '12', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 101, '2025-07-20 14:44:11', NULL, NULL, NULL);
+INSERT INTO `oms_merchant_shop` VALUES (27, '爱顾家的小店', NULL, NULL, 300, NULL, 0, 0, 0, NULL, 745839216, '745839216', 'dc953bcf16d24b27abf3e64a59e1ecd1', '89c639b1ceaf8e5260acc73b2bdbb5c529cf23a4', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 101, '2025-07-24 20:07:18', NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for oms_order
@@ -2869,8 +2875,8 @@ CREATE TABLE `oms_order`  (
   `height` float NULL DEFAULT 0 COMMENT '高',
   `weight` float NULL DEFAULT NULL COMMENT '重量',
   PRIMARY KEY (`id`) USING BTREE,
-  UNIQUE INDEX `order_sn_index`(`order_num`) USING BTREE,
-  INDEX `shopid_index`(`shop_id`) USING BTREE
+  UNIQUE INDEX `order_sn_index`(`order_num` ASC) USING BTREE,
+  INDEX `shopid_index`(`shop_id` ASC) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 44 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '订单表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
@@ -2904,8 +2910,8 @@ CREATE TABLE `oms_order_item`  (
   `order_status` int NULL DEFAULT NULL COMMENT '订单状态',
   `tenant_id` bigint NOT NULL COMMENT '租户ID（distributor）',
   PRIMARY KEY (`id`) USING BTREE,
-  INDEX `goodId_index`(`erp_goods_id`) USING BTREE,
-  INDEX `order_id`(`order_id`) USING BTREE
+  INDEX `goodId_index`(`erp_goods_id` ASC) USING BTREE,
+  INDEX `order_id`(`order_id` ASC) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '订单明细表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
@@ -2960,7 +2966,7 @@ CREATE TABLE `oms_order_stocking`  (
   `shop_no` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '京东云仓店铺编码',
   `platform_no` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '订单来源平台编码',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '供应商发货订单' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '供应商发货订单' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of oms_order_stocking
@@ -3004,7 +3010,7 @@ CREATE TABLE `oms_order_stocking_item`  (
   `warehouse_id` bigint NOT NULL DEFAULT 0 COMMENT '发货仓库ID(自有仓库或外部云仓id)',
   `warehouse_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '发货仓库名',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of oms_order_stocking_item
@@ -5728,7 +5734,7 @@ CREATE TABLE `scm_vendor`  (
   `bank_account_name` varchar(35) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '账户名称',
   `bank_account` varchar(35) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '银行账户',
   PRIMARY KEY (`id`) USING BTREE,
-  INDEX `id`(`id`) USING BTREE
+  INDEX `id`(`id` ASC) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
@@ -5842,7 +5848,7 @@ CREATE TABLE `sys_dict_type`  (
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`dict_id`) USING BTREE,
-  UNIQUE INDEX `dict_type`(`dict_type`) USING BTREE
+  UNIQUE INDEX `dict_type`(`dict_type` ASC) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 100 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '字典类型表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
@@ -5874,8 +5880,8 @@ CREATE TABLE `sys_logininfor`  (
   `msg` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '提示消息',
   `login_time` datetime NULL DEFAULT NULL COMMENT '访问时间',
   PRIMARY KEY (`info_id`) USING BTREE,
-  INDEX `idx_sys_logininfor_s`(`status`) USING BTREE,
-  INDEX `idx_sys_logininfor_lt`(`login_time`) USING BTREE
+  INDEX `idx_sys_logininfor_s`(`status` ASC) USING BTREE,
+  INDEX `idx_sys_logininfor_lt`(`login_time` ASC) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 257 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统访问记录' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
@@ -6102,9 +6108,9 @@ CREATE TABLE `sys_oper_log`  (
   `oper_time` datetime NULL DEFAULT NULL COMMENT '操作时间',
   `cost_time` bigint NULL DEFAULT 0 COMMENT '消耗时间',
   PRIMARY KEY (`oper_id`) USING BTREE,
-  INDEX `idx_sys_oper_log_bt`(`business_type`) USING BTREE,
-  INDEX `idx_sys_oper_log_s`(`status`) USING BTREE,
-  INDEX `idx_sys_oper_log_ot`(`oper_time`) USING BTREE
+  INDEX `idx_sys_oper_log_bt`(`business_type` ASC) USING BTREE,
+  INDEX `idx_sys_oper_log_s`(`status` ASC) USING BTREE,
+  INDEX `idx_sys_oper_log_ot`(`oper_time` ASC) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 416 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '操作日志记录' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
@@ -6254,8 +6260,8 @@ CREATE TABLE `sys_user`  (
 -- Records of sys_user
 -- ----------------------------
 INSERT INTO `sys_user` VALUES (1, 100, 'admin', '启航', '00', '280645618@qq.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2025-07-22 09:05:34', 'admin', '2023-08-07 19:31:37', '', '2025-07-22 09:05:35', '管理员');
-INSERT INTO `sys_user` VALUES (2, 101, 'qihang', 'qihang', '20', 'qihang@qq.com', '15666666666', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2025-07-20 13:54:14', 'admin', '2023-08-07 19:31:37', 'admin', '2025-07-20 13:54:14', '测试员');
-INSERT INTO `sys_user` VALUES (100, 1, 'qihangvms', 'aa', '10', '', '', '1', '', '$2a$10$VD49q2rn1ATpQDZJJrmJjuG52b4EkOTTZ0MPbRRmcqEYLmB5mAMsG', '0', '0', '127.0.0.1', '2025-07-23 09:15:29', 'admin', '2024-04-24 11:06:27', '', '2025-07-23 09:15:29', NULL);
+INSERT INTO `sys_user` VALUES (2, 101, 'qihang', 'qihang', '20', 'qihang@qq.com', '15666666666', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2025-07-24 18:55:54', 'admin', '2023-08-07 19:31:37', 'admin', '2025-07-24 18:55:55', '测试员');
+INSERT INTO `sys_user` VALUES (100, 1, 'qihangvms', 'aa', '10', '', '', '1', '', '$2a$10$VD49q2rn1ATpQDZJJrmJjuG52b4EkOTTZ0MPbRRmcqEYLmB5mAMsG', '0', '0', '127.0.0.1', '2025-07-23 11:54:04', 'admin', '2024-04-24 11:06:27', '', '2025-07-23 11:54:05', NULL);
 
 -- ----------------------------
 -- Table structure for sys_user_post
