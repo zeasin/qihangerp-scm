@@ -12,7 +12,7 @@ import lombok.Data;
  * @TableName oms_tenant_shop_pull_lasttime
  */
 @Data
-public class OmsTenantShopPullLasttime implements Serializable {
+public class OmsShopPullLasttime implements Serializable {
     /**
      * 
      */

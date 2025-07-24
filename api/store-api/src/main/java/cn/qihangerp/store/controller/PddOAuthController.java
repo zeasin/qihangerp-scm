@@ -22,8 +22,8 @@ import java.net.URLEncoder;
 @RequestMapping("/pdd")
 @RestController
 public class PddOAuthController {
-    @Autowired
-    private OmsMerchantShopService shopService;
+
+    private final OmsMerchantShopService shopService;
 //    private final OShopPlatformService platformService;
 //    @Autowired
 //    private IShopService shopService;

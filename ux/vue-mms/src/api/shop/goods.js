@@ -9,6 +9,15 @@ export function listGoods(query) {
   })
 }
 
+// 查询店铺商品列表
+export function pullGoodsList(query) {
+  return request({
+    url: '/api/store-api/goods/pull_goods',
+    method: 'get',
+    params: query
+  })
+}
+
 
 // 新增店铺商品
 export function addGoods(data) {

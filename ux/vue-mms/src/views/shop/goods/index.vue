@@ -270,7 +270,7 @@
 </template>
 
 <script>
-import { listGoods, delGoods, addGoods } from "@/api/shop/goods";
+import { listGoods, delGoods, addGoods,pullGoodsList } from "@/api/shop/goods";
 import {listShop} from "@/api/shop/shop";
 
 export default {

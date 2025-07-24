@@ -135,6 +135,14 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/libs/open-sdk-1.6.2.jar</systemPath>
         </dependency>
+
+        <dependency>
+            <groupId>cn.qihangerp.service</groupId>
+            <artifactId>goods-service</artifactId>
+            <version>0.5.1</version>
+        </dependency>
+
+
     </dependencies>
     <dependencyManagement>
         <dependencies>
