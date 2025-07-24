@@ -24,6 +24,7 @@
         <module>oms-api</module>
         <module>mms-api</module>
         <module>vms-api</module>
+        <module>store-api</module>
     </modules>
     <dependencies>
         <!-- Token生成与解析-->

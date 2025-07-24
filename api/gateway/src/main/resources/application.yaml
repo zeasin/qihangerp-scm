@@ -50,3 +50,10 @@ spring:
             - Path=/scm-vms-api/**
           filters:
             - StripPrefix=1
+
+        - id: store-api-route
+          uri: lb://store-api
+          predicates:
+            - Path=/api/store-api/**
+          filters:
+            - StripPrefix=2

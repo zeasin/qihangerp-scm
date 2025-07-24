@@ -68,6 +68,7 @@ public class TokenService
             }
             catch (Exception e)
             {
+                System.out.println("====token解析错误："+e.getMessage());
             }
         }
         return null;

@@ -30,7 +30,7 @@ public class OmsOrder implements Serializable {
     /**
      * 店铺类型
      */
-    private String shopType;
+    private Integer shopType;
 
     /**
      * 店铺ID

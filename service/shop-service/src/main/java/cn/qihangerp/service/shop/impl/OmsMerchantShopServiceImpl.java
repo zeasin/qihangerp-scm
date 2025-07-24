@@ -46,6 +46,15 @@ public class OmsMerchantShopServiceImpl extends ServiceImpl<OmsMerchantShopMappe
                 ;
         return this.baseMapper.selectList(qw);
     }
+
+    @Override
+    public void updateSessionKey(Long shopId, String token, String refreshToken) {
+        OmsMerchantShop shop = new OmsMerchantShop();
+        shop.setId(shopId);
+        shop.setAccessToken(token);
+        shop.setRefreshToken(refreshToken);
+        this.baseMapper.updateById(shop);
+    }
 }
 
 

@@ -15,4 +15,5 @@ import java.util.List;
 public interface OmsMerchantShopService extends IService<OmsMerchantShop> {
     PageResult<OmsMerchantShop> queryPageList(OmsMerchantShop bo, PageQuery pageQuery);
     List<OmsMerchantShop> selectShopList(OmsMerchantShop shop);
+    void updateSessionKey(Long shopId,String token,String refreshToken);
 }

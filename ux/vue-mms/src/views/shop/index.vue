@@ -84,7 +84,14 @@
               icon="el-icon-edit"
               @click="handleApiSetting(scope.row)"
             >API参数设置</el-button>
-
+          <el-button
+            v-if="scope.row.type==100 || scope.row.type==200 || scope.row.type==280 || scope.row.type==300"
+            type="success"
+            plain
+            icon="el-icon-refresh"
+            size="mini"
+            @click="handleUpdateToken(scope.row)"
+          >更新AccessToken</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -167,12 +174,39 @@
         <el-button @click="cancel">取 消</el-button>
       </div>
     </el-dialog>
+    <el-dialog :title="title" :visible.sync="authOpen" width="500px" append-to-body>
+      <el-form ref="tokenForm" :model="tokenForm"  :rules="rules" label-width="100px">
+        <el-descriptions >
+          <el-descriptions-item label="授权URL："> {{ tokenForm.url }}</el-descriptions-item>
+        </el-descriptions>
+        <el-descriptions v-if="tokenForm.shopType === 100">
+          <el-descriptions-item label="请设置淘宝开放平台回调URL"> http://ip:8088/api/store-api/tao/code_callback</el-descriptions-item>
+        </el-descriptions>
+
+        <div slot="footer" class="dialog-footer">
+          请手动复制上面的URL到浏览器中访问
+        </div>
+        <el-form-item label="top_session" prop="code" v-if="tokenForm.shopType===100">
+          <el-input type="textarea" v-model="tokenForm.code" placeholder="请复制淘宝授权后跳转页面的top_session参数值到这里" />
+        </el-form-item>
+        <el-form-item label="code" prop="code" v-if="tokenForm.shopType!==100">
+          <el-input type="textarea" v-model="tokenForm.code" placeholder="请把授权后的code复制到这里" />
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="getTokenSubmit">确 定</el-button>
+        <el-button @click="cancel">取 消</el-button>
+      </div>
+      <!--      <div slot="footer" class="dialog-footer">-->
+      <!--        请手动复制上面的URL到浏览器中访问-->
+      <!--      </div>-->
+    </el-dialog>
   </div>
 </template>
 
 <script>
 import { listShop, getShop, delShop, addShop, updateShop,listPlatform } from "@/api/shop/shop";
-// import {listPlatform} from "../../api/shop/shop";
+import {getPddOAuthUrl} from "@/api/shop/pdd/shopApi";
 
 export default {
   name: "Shop",
@@ -198,6 +232,7 @@ export default {
       // 是否显示弹出层
       open: false,
       apiOpen: false,
+      authOpen: false,
       // 查询参数
       queryParams: {
         pageNum: 1,
@@ -208,6 +243,11 @@ export default {
       // 表单参数
       form: {
         type:null
+      },
+      tokenForm:{
+        shopId: null,
+        shopType: null,
+        code:null
       },
       // 表单校验
       rules: {
@@ -344,12 +384,38 @@ export default {
         this.$modal.msgSuccess("删除成功");
       }).catch(() => {});
     },
-    /** 导出按钮操作 */
-    handleExport() {
-      this.download('shop/shop/export', {
-        ...this.queryParams
-      }, `shop_${new Date().getTime()}.xlsx`)
-    }
+    handleUpdateToken(row){
+      console.log("获取token",row)
+      if(row.type == 200 || row.type == 280){
+        getJdOAuthUrl({shopId:row.id}).then(response => {
+          console.log("获取token=====jd ",response)
+          this.authOpen = true;
+          this.title = "更新店铺授权";
+          this.tokenForm.url = response.data
+          this.tokenForm.shopId = row.id
+          this.tokenForm.shopType = row.type
+        })
+      }else if(row.type ==100){
+        getTaoOAuthUrl({shopId:row.id}).then(response => {
+          console.log("获取token=====tao ",response)
+          this.authOpen = true;
+          this.title = "更新店铺授权";
+          this.tokenForm.url = response.data
+          this.tokenForm.shopId = row.id
+          this.tokenForm.shopType = row.type
+        })
+      }else if(row.type ==300){
+        getPddOAuthUrl({shopId:row.id}).then(response => {
+          console.log("获取token=====pdd ",response)
+          this.authOpen = true;
+          this.title = "更新店铺授权";
+          this.tokenForm.url = response.data
+          this.tokenForm.shopId = row.id
+          this.tokenForm.shopType = row.type
+        })
+      }
+
+    },
   }
 };
 </script>
