@@ -30,7 +30,7 @@ export function pullOrder(data) {
 
 export function pullOrderDetail(data) {
   return request({
-    url: '/wei/order/pull_order_detail',
+    url: '/api/store-api/order/pull_order_detail',
     method: 'post',
     data: data
   })

@@ -74,9 +74,10 @@
           plain
           icon="el-icon-refresh"
           size="mini"
+          :loading="pullLoading"
           :disabled="multiple"
           @click="handlePushOms"
-        >重新推送选中订单到订单库</el-button>
+        >更新订单</el-button>
       </el-col>
 
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
@@ -202,7 +203,6 @@
             type="text"
             icon="el-icon-view"
             @click="handleDetail(scope.row)"
-            v-hasPermi="['xhs:order:remove']"
           >详情</el-button>
         </template>
       </el-table-column>
@@ -473,9 +473,10 @@ export default {
       // this.$modal.msgSuccess("请先配置API");
     },
     handlePullUpdate(row) {
+      const ids = [row.orderId]
       // 接口拉取订单并更新
       this.pullLoading = true
-      pullOrderDetail({shopId:row.shopId,orderId:row.orderId}).then(response => {
+      pullOrderDetail({shopId:row.shopId,orderIds:ids}).then(response => {
         console.log('拉取订单详情返回接口返回=====',response)
         this.$modal.msgSuccess(JSON.stringify(response));
         this.pullLoading = false
@@ -493,13 +494,17 @@ export default {
       });
     },
     handlePushOms(row) {
+      if(!this.queryParams.shopId){
+        this.$modal.msgError("请选择店铺");
+        return;
+      }
       const ids = row.id || this.ids;
-      this.$modal.confirm('是否批量重新推送订单？').then(function() {
-        return pushOms({ids:ids});
-      }).then(() => {
-        // this.getList();
-        this.$modal.msgSuccess("推送成功");
-      }).catch(() => {});
+      this.pullLoading = true
+      pullOrderDetail({shopId:this.queryParams.shopId,orderIds:ids}).then(response => {
+        console.log('拉取订单详情返回接口返回=====',response)
+        this.$modal.msgSuccess(JSON.stringify(response));
+        this.pullLoading = false
+      })
     },
 
 
