@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
 import java.util.Date;
 import lombok.Data;
 
@@ -14,7 +13,7 @@ import lombok.Data;
  */
 @TableName(value ="oms_shop_order_item")
 @Data
-public class ShopOrderItem implements Serializable {
+public class ShopOrderItem {
     /**
      * 
      */
@@ -181,7 +180,4 @@ public class ShopOrderItem implements Serializable {
      * 退款金额
      */
     private Integer refundAmount;
-
-    @TableField(exist = false)
-    private static final long serialVersionUID = 1L;
 }

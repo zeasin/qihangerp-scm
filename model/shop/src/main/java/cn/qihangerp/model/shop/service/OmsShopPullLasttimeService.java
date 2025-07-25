@@ -9,5 +9,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 * @createDate 2024-06-23 11:10:08
 */
 public interface OmsShopPullLasttimeService extends IService<OmsShopPullLasttime> {
-    OmsShopPullLasttime getLasttimeByShop(Long merchantId, Long shopId,Integer shopType, String pullType);
+    OmsShopPullLasttime getLasttimeByShop(Long shopId, String pullType);
 }

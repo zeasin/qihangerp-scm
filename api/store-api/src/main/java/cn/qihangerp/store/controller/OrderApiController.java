@@ -2,9 +2,13 @@ package cn.qihangerp.store.controller;
 
 import cn.qihangerp.common.AjaxResult;
 import cn.qihangerp.common.BaseController;
+import cn.qihangerp.common.ResultVo;
+import cn.qihangerp.common.ResultVoEnum;
 import cn.qihangerp.common.enums.EnumShopType;
 import cn.qihangerp.common.utils.SecurityUtils;
+import cn.qihangerp.store.utils.ShopOrderDataConverter;
 import cn.qihangerp.model.order.domain.ShopOrder;
+import cn.qihangerp.model.order.service.ShopOrderService;
 import cn.qihangerp.model.shop.domain.OmsMerchantShop;
 import cn.qihangerp.model.shop.domain.OmsShopPullLasttime;
 import cn.qihangerp.model.shop.domain.OmsShopPullLogs;
@@ -12,17 +16,12 @@ import cn.qihangerp.model.shop.service.OmsMerchantShopService;
 import cn.qihangerp.model.shop.service.OmsShopPullLasttimeService;
 import cn.qihangerp.model.shop.service.OmsShopPullLogsService;
 import cn.qihangerp.open.common.ApiResultVo;
-import cn.qihangerp.open.dou.DouOrderApiHelper;
 import cn.qihangerp.open.pdd.PddOrderApiHelper;
 import cn.qihangerp.open.pdd.model.OrderListResultVo;
-import cn.qihangerp.open.wei.WeiOrderApiHelper;
-import cn.qihangerp.open.wei.model.Order;
-import cn.qihangerp.open.wei.model.OrderDetailDeliverInfoAddress;
 import cn.qihangerp.sdk.pdd.PullRequest;
 import com.alibaba.fastjson2.JSONObject;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -43,7 +42,6 @@ public class OrderApiController extends BaseController {
 
     private final OmsMerchantShopService shopService;
     private final ShopOrderService orderService;
-    private final ShopOrderService weiOrderService;
     private final OmsShopPullLogsService pullLogsService;
     private final OmsShopPullLasttimeService pullLasttimeService;
     /**
@@ -86,7 +84,7 @@ public class OrderApiController extends BaseController {
         // 获取最后更新时间
         LocalDateTime startTime = null;
         LocalDateTime endTime = null;
-        OmsShopPullLasttime lasttime = pullLasttimeService.getLasttimeByShop(getUserId(), params.getShopId(), "ORDER");
+        OmsShopPullLasttime lasttime = pullLasttimeService.getLasttimeByShop(params.getShopId(), "ORDER");
         if (lasttime == null) {
             endTime = LocalDateTime.now(zoneId);
             startTime = endTime.minusDays(1);
@@ -133,101 +131,22 @@ public class OrderApiController extends BaseController {
                 // 拉取成功
                 //循环插入订单数据到数据库
                 for (var trade : upResult.getData().getOrderList()) {
-                    ShopOrder order = new ShopOrder();
-                    order.setTenantId(shop.getTenantId());
-                    order.setShopId(params.getShopId());
-                    order.setShopType(shop.getType());
-                    order.setOrderId(trade.getOrderSn());
-                    order.setOpenid(trade.getOpen_address_id());
-                    // 转换时间
-                    // 将时间字符串转换为 LocalDateTime
-                    LocalDateTime orderTime = LocalDateTime.parse(trade.getCreatedTime(), formatter);
-                    // 将 LocalDateTime 转换为中国时区的 ZonedDateTime
-                    Long orderTimeSec = orderTime.atZone(ZoneId.of("Asia/Shanghai")).toInstant().getEpochSecond();
-                    LocalDateTime orderUpdateTime = LocalDateTime.parse(trade.getUpdatedAt(), formatter);
-                    Long orderUpdateTimeSec = orderUpdateTime.atZone(ZoneId.of("Asia/Shanghai")).toInstant().getEpochSecond();
-                    order.setCreateTime(orderTimeSec.intValue());
-                    order.setUpdateTime(orderUpdateTimeSec.intValue());
-                    //状态10	待付款；20	待发货；21	部分发货；30	待收货；100	完成；200	全部商品售后之后，订单取消；250	未付款用户主动取消或超时未付款订单自动取消；
-                    //发货状态，枚举值：1：待发货，2：已发货待签收，3：已签收
-                    if(trade.getOrderStatus()==1){
-                        order.setStatus(20);
-                    }else if(trade.getOrderStatus()==2){
-                        order.setStatus(30);
-                    } else if (trade.getOrderStatus()==3) {
-                        order.setStatus(100);
-                    }
-                    //退款状态，枚举值：1：无售后或售后关闭，2：售后处理中，3：退款中，4： 退款成功
-                    if(trade.getRefundStatus()!=1){
-                        order.setStatus(200);
-                    }
-                    order.setRefundStatus(trade.getRefundStatus());
-                    order.setProductPrice(BigDecimal.valueOf(trade.getGoodsAmount()*100).intValue());
-                    order.setFreight(BigDecimal.valueOf(trade.getPostage()*100).intValue());
-                    //优惠金额
-                    order.setDiscountedPrice(BigDecimal.valueOf(trade.getDiscountAmount()*100).intValue());
-                    order.setPlatformDiscount(BigDecimal.valueOf(trade.getPlatformDiscount()*100).intValue());
-                    order.setSellerDiscount(BigDecimal.valueOf(trade.getSellerDiscount()*100).intValue());
-                    order.setPayAmount(BigDecimal.valueOf(trade.getPayAmount()*100).intValue());
-                    Integer orderAmount = order.getProductPrice()+order.getFreight()-order.getSellerDiscount();
-                    order.setOrderPrice(orderAmount);
-                    order.setReceiverName(trade.getReceiverName());
-                    order.setReceiverAddress(trade.getReceiverAddress());
-                    order.setReceiverPhone(trade.getReceiverPhone());
-                    order.setUserName(trade.getReceiverNameMask());
-                    order.setTelNumber(trade.getReceiverPhoneMask());
-                    order.setProvinceName(trade.getProvince());
-                    order.setCityName(trade.getCity());
-                    order.setCountyName(trade.getTown());
-                    order.setDetailInfo(trade.getReceiverAddressMask());
+                    ShopOrder shopOrder = ShopOrderDataConverter.AssemblePddOrderData(trade, shop);;
 
-                    order.setConfirmStatus(1);
-                    order.setConfirmTime(DateUtils.parseDate(trade.getConfirmTime()));
-                    order.setErpSendStatus(0);
-                    order.setCreateOn(new Date());
-                    order.setBuyerMemo(trade.getBuyerMemo());
-                    order.setRemark(trade.getRemark());
-                    List<ShopOrderItem> itemList = new ArrayList<>();
-                    for (var item:trade.getItemList()) {
-                        ShopOrderItem oi = new ShopOrderItem();
-                        oi.setTenantId(order.getTenantId());
-                        oi.setOrderId(order.getOrderId());
-                        oi.setShopId(Long.parseLong(shop.getId()));
-                        oi.setShopType(shop.getType());
-                        oi.setProductId(item.getGoodsId()+"");
-                        oi.setSkuId(item.getSkuId()+"");
-                        oi.setThumbImg(item.getGoodsImg());
-                        oi.setSkuCnt(item.getGoodsCount());
-                        oi.setSalePrice(BigDecimal.valueOf(item.getGoodsPrice()*100).intValue());
-                        oi.setTitle(item.getGoods_name());
-                        oi.setOnAftersaleSkuCnt(0);
-                        oi.setFinishAftersaleSkuCnt(0);
-                        oi.setSkuCode(item.getOuterId());
-                        oi.setSkuAttrs(item.getGoodsSpec());
-                        oi.setOutSkuId(item.getOuterId());
-                        oi.setOutProductId(item.getOuterGoodsId());
-                        oi.setMarketPrice(BigDecimal.valueOf(item.getGoodsPrice()*100).intValue());
-                        oi.setRealPrice(BigDecimal.valueOf(item.getGoodsPrice()*100).intValue());
-                        oi.setIsDiscounted("false");
-                        oi.setEstimatePrice(BigDecimal.valueOf(item.getGoodsPrice()*100).intValue());
-                        oi.setIsChangePrice("false");
-                        oi.setChangePrice(BigDecimal.valueOf(item.getGoodsPrice()*100).intValue());
-
-                        itemList.add(oi);
-                    }
-                    order.setItems(itemList);
-                    var result = weiOrderService.saveOrder(params.getShopId(), order);
+                    var result = orderService.saveOrder(params.getShopId(), shopOrder);
                     if (result.getCode() == ResultVoEnum.DataExist.getIndex()) {
                         //已经存在
                         hasExistOrder++;
-                        String[] ids = new String[]{result.getData().toString()};
-                        ResultVo<Integer> resultVo = orderService.orderConfirm(ids);
-                        log.info("======店铺订单同步更新OMS订单库====={}", JSONObject.toJSONString(resultVo));
+                        log.info("======店铺订单保存=====已存在，更新");
+//                        String[] ids = new String[]{result.getData().toString()};
+//                        ResultVo<Integer> resultVo = orderService.orderConfirm(ids);
+//                        log.info("======店铺订单同步更新OMS订单库====={}", JSONObject.toJSONString(resultVo));
                     } else if (result.getCode() == ResultVoEnum.SUCCESS.getIndex()) {
                         insertSuccess++;
-                        String[] ids = new String[]{result.getData().toString()};
-                        ResultVo<Integer> resultVo = orderService.orderConfirm(ids);
-                        log.info("======店铺订单新增到OMS订单库====={}", JSONObject.toJSONString(resultVo));
+                        log.info("======店铺订单保存=====新增成功");
+//                        String[] ids = new String[]{result.getData().toString()};
+//                        ResultVo<Integer> resultVo = orderService.orderConfirm(ids);
+//                        log.info("======店铺订单新增到OMS订单库====={}", JSONObject.toJSONString(resultVo));
                     } else {
                         totalError++;
                     }

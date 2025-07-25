@@ -5,8 +5,11 @@ import cn.qihangerp.common.utils.SecurityUtils;
 import cn.qihangerp.model.goods.domain.ShopGoodsSku;
 import cn.qihangerp.model.goods.service.ShopGoodsSkuService;
 import cn.qihangerp.model.order.bo.OrderQuery;
+import cn.qihangerp.model.order.bo.ShopOrderQueryBo;
 import cn.qihangerp.model.order.domain.OmsOrder;
 import cn.qihangerp.model.order.domain.OmsOrderItem;
+import cn.qihangerp.model.order.domain.ShopOrder;
+import cn.qihangerp.model.order.service.ShopOrderService;
 import cn.qihangerp.model.shop.domain.OmsMerchantShop;
 import cn.qihangerp.model.shop.service.OmsMerchantShopService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -27,18 +30,29 @@ import java.util.List;
 public class OrderController extends BaseController
 {
     private final ShopGoodsSkuService shopGoodsSkuService;
-    private OmsMerchantShopService shopService;
+    private final OmsMerchantShopService shopService;
+    private final ShopOrderService shopOrderService;
 
 
     /**
      * 查询店铺订单列表
      */
     @GetMapping("/list")
-    public TableDataInfo list(OrderQuery query, PageQuery pageQuery)
+    public TableDataInfo list(ShopOrderQueryBo query, PageQuery pageQuery)
     {
+        Integer userIdentity = SecurityUtils.getLoginUser().getUserIdentity();
+        Long merchantId = 0l;
+        if(userIdentity == null||userIdentity==0){
+            merchantId = 0l;
+        }else if(userIdentity==20){
+            merchantId = SecurityUtils.getDeptId();
+        }else{
+            merchantId = -1L;
+        }
+        query.setMerchantId(merchantId);
 //        query.setTenantId(SecurityUtils.getUserId());
-//        PageResult<ScmOrder> pageResult = orderService.queryPageList(query,pageQuery);
-        return getDataTable(new ArrayList<>());
+        PageResult<ShopOrder> pageResult = shopOrderService.queryOrderPageList(query,pageQuery);
+        return getDataTable(pageResult);
     }
 
 

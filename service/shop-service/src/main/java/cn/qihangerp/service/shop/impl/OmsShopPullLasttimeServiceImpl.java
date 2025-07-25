@@ -20,12 +20,10 @@ public class OmsShopPullLasttimeServiceImpl extends ServiceImpl<OmsShopPullLastt
     implements OmsShopPullLasttimeService {
 
     @Override
-    public OmsShopPullLasttime getLasttimeByShop(Long merchantId, Long shopId,Integer shopType, String pullType) {
+    public OmsShopPullLasttime getLasttimeByShop(Long shopId,String pullType) {
         List<OmsShopPullLasttime> sysShopPullLasttimes = this.baseMapper.selectList(
                 new LambdaQueryWrapper<OmsShopPullLasttime>()
-                        .eq(merchantId!=null,OmsShopPullLasttime::getMerchantId,merchantId)
                         .eq(shopId!=null,OmsShopPullLasttime::getShopId, shopId)
-                        .eq(shopType!=null,OmsShopPullLasttime::getShopType, shopType)
                         .eq(OmsShopPullLasttime::getPullType, pullType)
         );
         if(sysShopPullLasttimes != null && !sysShopPullLasttimes.isEmpty()) return sysShopPullLasttimes.get(0);

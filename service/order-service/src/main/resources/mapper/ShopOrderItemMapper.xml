@@ -5,52 +5,48 @@
 <mapper namespace="cn.qihangerp.service.order.mapper.ShopOrderItemMapper">
 
     <resultMap id="BaseResultMap" type="cn.qihangerp.model.order.domain.ShopOrderItem">
-            <id property="id" column="id" jdbcType="BIGINT"/>
-            <result property="merchantId" column="merchant_id" jdbcType="BIGINT"/>
-            <result property="shopId" column="shop_id" jdbcType="BIGINT"/>
-            <result property="shopType" column="shop_type" jdbcType="INTEGER"/>
-            <result property="shopOrderId" column="shop_order_id" jdbcType="BIGINT"/>
-            <result property="productId" column="product_id" jdbcType="VARCHAR"/>
-            <result property="skuId" column="sku_id" jdbcType="VARCHAR"/>
-            <result property="img" column="img" jdbcType="VARCHAR"/>
-            <result property="quantity" column="quantity" jdbcType="INTEGER"/>
-            <result property="salePrice" column="sale_price" jdbcType="INTEGER"/>
-            <result property="title" column="title" jdbcType="VARCHAR"/>
-            <result property="onAftersaleSkuCnt" column="on_aftersale_sku_cnt" jdbcType="INTEGER"/>
-            <result property="finishAftersaleSkuCnt" column="finish_aftersale_sku_cnt" jdbcType="INTEGER"/>
-            <result property="skuCode" column="sku_code" jdbcType="VARCHAR"/>
-            <result property="marketPrice" column="market_price" jdbcType="INTEGER"/>
-            <result property="skuName" column="sku_name" jdbcType="VARCHAR"/>
-            <result property="realPrice" column="real_price" jdbcType="INTEGER"/>
-            <result property="outerProductId" column="outer_product_id" jdbcType="VARCHAR"/>
-            <result property="outerSkuId" column="outer_sku_id" jdbcType="VARCHAR"/>
-            <result property="isDiscounted" column="is_discounted" jdbcType="VARCHAR"/>
-            <result property="itemAmount" column="item_amount" jdbcType="INTEGER"/>
-            <result property="isChangePrice" column="is_change_price" jdbcType="VARCHAR"/>
-            <result property="changePrice" column="change_price" jdbcType="INTEGER"/>
-            <result property="outWarehouseId" column="out_warehouse_id" jdbcType="VARCHAR"/>
-            <result property="discountAmount" column="discount_amount" jdbcType="INTEGER"/>
-            <result property="erpGoodsId" column="erp_goods_id" jdbcType="BIGINT"/>
-            <result property="erpGoodsSkuId" column="erp_goods_sku_id" jdbcType="BIGINT"/>
-            <result property="orderId" column="order_id" jdbcType="VARCHAR"/>
-            <result property="orderTime" column="order_time" jdbcType="BIGINT"/>
-            <result property="createOn" column="create_on" jdbcType="TIMESTAMP"/>
-            <result property="updateOn" column="update_on" jdbcType="TIMESTAMP"/>
-            <result property="refundStatus" column="refund_status" jdbcType="INTEGER"/>
-            <result property="refundAmount" column="refund_amount" jdbcType="INTEGER"/>
+            <id property="id" column="id" />
+            <result property="merchantId" column="merchant_id" />
+            <result property="shopId" column="shop_id" />
+            <result property="shopType" column="shop_type" />
+            <result property="shopOrderId" column="shop_order_id" />
+            <result property="productId" column="product_id" />
+            <result property="skuId" column="sku_id" />
+            <result property="img" column="img" />
+            <result property="quantity" column="quantity" />
+            <result property="salePrice" column="sale_price" />
+            <result property="title" column="title" />
+            <result property="onAftersaleSkuCnt" column="on_aftersale_sku_cnt" />
+            <result property="finishAftersaleSkuCnt" column="finish_aftersale_sku_cnt" />
+            <result property="skuCode" column="sku_code" />
+            <result property="marketPrice" column="market_price" />
+            <result property="skuName" column="sku_name" />
+            <result property="realPrice" column="real_price" />
+            <result property="outerProductId" column="outer_product_id" />
+            <result property="outerSkuId" column="outer_sku_id" />
+            <result property="isDiscounted" column="is_discounted" />
+            <result property="itemAmount" column="item_amount" />
+            <result property="isChangePrice" column="is_change_price" />
+            <result property="changePrice" column="change_price" />
+            <result property="outWarehouseId" column="out_warehouse_id" />
+            <result property="discountAmount" column="discount_amount" />
+            <result property="erpGoodsId" column="erp_goods_id" />
+            <result property="erpGoodsSkuId" column="erp_goods_sku_id" />
+            <result property="orderId" column="order_id" />
+            <result property="orderTime" column="order_time" />
+            <result property="createOn" column="create_on" />
+            <result property="updateOn" column="update_on" />
+            <result property="refundStatus" column="refund_status" />
+            <result property="refundAmount" column="refund_amount" />
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,merchant_id,shop_id,
-        shop_type,shop_order_id,product_id,
-        sku_id,img,quantity,
-        sale_price,title,on_aftersale_sku_cnt,
-        finish_aftersale_sku_cnt,sku_code,market_price,
-        sku_name,real_price,outer_product_id,
-        outer_sku_id,is_discounted,item_amount,
-        is_change_price,change_price,out_warehouse_id,
-        discount_amount,erp_goods_id,erp_goods_sku_id,
-        order_id,order_time,create_on,
-        update_on,refund_status,refund_amount
+        id,merchant_id,shop_id,shop_type,shop_order_id,product_id,
+        sku_id,img,quantity,sale_price,title,
+        on_aftersale_sku_cnt,finish_aftersale_sku_cnt,sku_code,market_price,sku_name,
+        real_price,outer_product_id,outer_sku_id,is_discounted,item_amount,
+        is_change_price,change_price,out_warehouse_id,discount_amount,erp_goods_id,
+        erp_goods_sku_id,order_id,order_time,create_on,update_on,
+        refund_status,refund_amount
     </sql>
 </mapper>

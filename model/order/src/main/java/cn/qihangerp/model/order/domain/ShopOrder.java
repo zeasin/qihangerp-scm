@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -16,7 +15,7 @@ import lombok.Data;
  */
 @TableName(value ="oms_shop_order")
 @Data
-public class ShopOrder implements Serializable {
+public class ShopOrder {
     /**
      * 
      */
@@ -62,6 +61,10 @@ public class ShopOrder implements Serializable {
      * 售后状态 1：无售后或售后关闭，2：售后处理中，3：退款中，4： 退款成功
      */
     private Integer refundStatus;
+    /**
+     * 售后状态 0：无售后 2：买家申请退款，待商家处理 3：退货退款，待商家处理 4：商家同意退款，退款中 5：平台同意退款，退款中 6：驳回退款，待买家处理 7：已同意退货退款,待用户发货 8：平台处理中 9：平台拒绝退款，退款关闭 10：退款成功 11：买家撤销 12：买家逾期未处理，退款失败 13：买家逾期，超过有效期 14：换货补寄待商家处理 15：换货补寄待用户处理 16：换货补寄成功 17：换货补寄失败 18：换货补寄待用户确认完成 21：待商家同意维修 22：待用户确认发货 24：维修关闭 25：维修成功 27：待用户确认收货 31：已同意拒收退款，待用户拒收 32：补寄待商家发货 33：同意召回后退款，待商家召回
+     */
+    private Integer afterSalesStatus;
 
     /**
      * 商品总价，单位为分
@@ -97,6 +100,7 @@ public class ShopOrder implements Serializable {
      * 平台优惠金额，单位：分
      */
     private Integer platformDiscount;
+    private Integer orderChangeAmount;
 
     /**
      * 买家留言信息
@@ -134,19 +138,34 @@ public class ShopOrder implements Serializable {
     private String town;
 
     /**
-     * 收件人地址，不拼接省市区。加密
+     * 收件人地址。加密；
      */
-    private String address;
+    private String receiverAddress;
 
     /**
-     * 收件人姓名。订单状态为待发货状态，且订单未在审核中的情况下返回密文数据；
+     * 收件人姓名。加密；
      */
     private String receiverName;
 
     /**
-     * 收件人电话。订单状态为待发货状态，且订单未在审核中的情况下返回密文数据；
+     * 收件人电话。加密；
      */
     private String receiverPhone;
+
+    /**
+     * 收件人手机号（打码）
+     */
+    private String receiverPhoneMask;
+
+    /**
+     * 收件人姓名（打码）
+     */
+    private String receiverNameMask;
+
+    /**
+     * 收件人地址（打码）
+     */
+    private String receiverAddressMask;
 
     /**
      * 虚拟发货订单联系方式(deliver_method=1时返回)
@@ -224,9 +243,16 @@ public class ShopOrder implements Serializable {
      */
     private Integer deliverMethod;
 
-    @TableField(exist = false)
-    private List<ShopOrderItem> items;
+    /**
+     * 平台订单创建时间
+     */
+    private String orderTimeText;
+
+    /**
+     * 平台订单更新时间
+     */
+    private String updateTimeText;
 
     @TableField(exist = false)
-    private static final long serialVersionUID = 1L;
+    private List<ShopOrderItem> items;
 }

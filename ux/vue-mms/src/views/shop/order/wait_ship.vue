@@ -16,6 +16,14 @@
             :key="item.id"
             :label="item.name"
             :value="item.id">
+           <span style="float: left">{{ item.name }}</span>
+           <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 500">微信小店</span>
+           <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 200">京东POP</span>
+           <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 280">京东自营</span>
+           <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 100">淘宝天猫</span>
+           <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 300">拼多多</span>
+           <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 400">抖店</span>
+           <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 999">线下渠道</span>
           </el-option>
         </el-select>
       </el-form-item>
@@ -76,29 +84,8 @@
 
     <el-table v-loading="loading" :data="orderList" @selection-change="handleSelectionChange" >
       <el-table-column type="selection" width="55" align="center" :selectable="isRowSelectable" />
-<!--      <el-table-column label="订单号" align="center" prop="orderId" />-->
-<!--      <el-table-column label="店铺" align="center" prop="shopId" >-->
-<!--        <template slot-scope="scope">-->
-<!--          <span>{{ shopList.find(x=>x.id === form.shopId) ? shopList.find(x=>x.id === scope.row.shopId).name : ''}}</span>-->
-<!--        </template>-->
-<!--      </el-table-column>-->
-<!--      <el-table-column label="商品" width="350">-->
-<!--          <template slot-scope="scope">-->
-<!--            <el-row v-for="item in scope.row.items" :key="item.id" :gutter="20">-->
 
-<!--            <div style="float: left;display: flex;align-items: center;" >-->
-<!--              <el-image  style="width: 70px; height: 70px;" :src="item.thumbImg"></el-image>-->
-<!--              <div style="margin-left:10px">-->
-<!--              <p>{{item.title}}</p>-->
-<!--              <p>{{item.skuAttrs}}&nbsp;</p>-->
-<!--                <p>-->
-<!--                <el-tag size="small">数量： {{item.skuCnt}}</el-tag>-->
-<!--                </p>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--            </el-row>-->
-<!--          </template>-->
-<!--      </el-table-column>-->
+
       <el-table-column label="订单号" align="left" prop="tid" width="220px">
         <template slot-scope="scope">
           <el-button
@@ -113,66 +100,41 @@
           <el-tag type="info">{{ shopList.find(x=>x.id === scope.row.shopId) ? shopList.find(x=>x.id === scope.row.shopId).name : '' }}</el-tag>
         </template>
       </el-table-column>
-      <el-table-column label="商品明细" align="center" width="900px" >
-        <template slot="header">
-          <table>
-            <th>
-              <td width="50px">图片</td>
-              <td width="250px" align="left">标题</td>
-              <td width="150" align="left">规格</td>
-              <td width="200" align="left">Sku编码</td>
-              <td width="150" align="left">电商平台SKUID</td>
-              <td width="50" align="left">数量</td>
-            </th>
-          </table>
-        </template>
-        <template slot-scope="scope" >
-          <el-table :data="scope.row.items" :show-header="false" :cell-style="{border:0 + 'px' }"  :row-style="{border:0 + 'px' }" >
-            <el-table-column label="商品图片" width="50px">
-              <template slot-scope="scope">
-                <image-preview :src="scope.row.thumbImg" :width="40" :height="40"/>
-              </template>
-            </el-table-column>
-            <el-table-column label="商品名" align="left" width="240px" prop="title" >
-              <template slot-scope="scope">
-                {{scope.row.title}}
-<!--                <el-tag size="small" v-if="scope.row.refundStatus === 1">无售后或售后关闭</el-tag>-->
-                <el-tag size="small" v-if="scope.row.refundStatus === 2">售后处理中</el-tag>
-                <el-tag size="small" v-if="scope.row.refundStatus === 3">退款中</el-tag>
-                <el-tag size="small" v-if="scope.row.refundStatus === 4">退款成功</el-tag>
-                <el-tag size="small" v-if="scope.row.refundStatus === 11">已取消</el-tag>
-              </template>
-            </el-table-column>
-            <el-table-column label="规格" align="left" prop="skuAttrs" width="150"  :show-overflow-tooltip="true">
-              <template slot-scope="scope">
-                {{ getSkuValues(scope.row.skuAttrs)}}
-              </template>
-            </el-table-column>
-            <el-table-column label="Sku编码" align="left" prop="outerSkuId" width="200"/>
-            <el-table-column label="电商平台SKUID" align="left" prop="skuId" width="150"/>
-            <el-table-column label="商品数量" align="center" prop="skuCnt" width="60px">
-              <template slot-scope="scope">
-                <el-tag type="danger">{{scope.row.skuCnt}}</el-tag>
-              </template>
-            </el-table-column>
-          </el-table>
+      <el-table-column label="商品" width="350">
+        <template slot-scope="scope">
+          <el-row v-for="item in scope.row.items" :key="item.id" :gutter="20">
+
+            <div style="float: left;display: flex;align-items: center;" >
+              <span>
+              <image-preview :src="item.img" :width="50" :height="50"/>
+                </span>
+              <div style="margin-left:10px">
+                <div>{{item.title}}</div>
+                <div><el-tag type="info" size="small">{{item.skuName}}</el-tag></div>
+                <div><span v-if="item.skuId">平台ID：{{item.skuId}}</span>
+                  <el-tag size="small">数量： {{item.quantity}}</el-tag>
+                </div>
+              </div>
+            </div>
+          </el-row>
         </template>
       </el-table-column>
       <el-table-column label="订单金额" align="center" prop="orderPrice" :formatter="amountFormatter">
         <template slot-scope="scope">
-          <span>{{ amountFormatter(null,null,scope.row.orderPrice/100,null) }}</span>
+          <span>{{ amountFormatter(null,null,scope.row.orderAmount/100,null) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="订单创建时间" align="center" prop="createTime" width="180">
+      <el-table-column label="下单时间" align="center" prop="createTime" width="180">
         <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.createTime, '{y}-{m}-{d} {h}:{m}:{s}') }}</span>
+<!--          <span>{{ parseTime(scope.row.createTime, '{y}-{m}-{d} {h}:{m}:{s}') }}</span>-->
+          {{scope.row.orderTimeText}}
         </template>
       </el-table-column>
 
       <el-table-column label="收件人信息" align="left" prop="userName" >
         <template slot-scope="scope">
-          <span>{{scope.row.userName}}</span><br />
-          <span> {{scope.row.provinceName}} {{scope.row.cityName}} {{scope.row.countyName}}
+          <span>{{scope.row.receiverNameMask}}</span><br />
+          <span> {{scope.row.province}} {{scope.row.city}} {{scope.row.county}}
             </span>
           <p>
           {{scope.row.detailInfo}}
@@ -181,17 +143,47 @@
       </el-table-column>
 
       <el-table-column label="订单状态" align="center" prop="status" >
+        <!--订单状态0：新订单，1：待发货，2：已发货，3：已完成，11已取消；12退款中；21待付款；22锁定，29删除，101部分发货-->
+        <!--售后状态 0：无售后 2：买家申请退款，待商家处理 3：退货退款，待商家处理 4：商家同意退款，退款中 5：平台同意退款，退款中 6：驳回退款，待买家处理 7：已同意退货退款,待用户发货
+        8：平台处理中 9：平台拒绝退款，退款关闭 10：退款成功 11：买家撤销 12：买家逾期未处理，退款失败 13：买家逾期，超过有效期 14：换货补寄待商家处理 15：换货补寄待用户处理
+        16：换货补寄成功 17：换货补寄失败 18：换货补寄待用户确认完成 21：待商家同意维修 22：待用户确认发货 24：维修关闭 25：维修成功 27：待用户确认收货
+        31：已同意拒收退款，待用户拒收 32：补寄待商家发货 33：同意召回后退款，待商家召回-->
+
         <template slot-scope="scope">
-          <el-tag v-if="scope.row.status === 10 " size="small">待付款</el-tag>
-          <el-tag v-if="scope.row.status === 12 " size="small">礼物待收下</el-tag>
-          <el-tag v-if="scope.row.status === 20 " size="small">待发货</el-tag>
-          <el-tag v-if="scope.row.status === 21 " size="small">部分发货</el-tag>
-          <el-tag v-if="scope.row.status === 30 " size="small">待收货</el-tag>
-          <el-tag v-if="scope.row.status === 100 " size="small">完成</el-tag>
-          <el-tag v-if="scope.row.status === 200 " size="small">售后完成订单取消</el-tag>
-          <el-tag v-if="scope.row.status === 250 " size="small">订单取消</el-tag>
-          <br/>
-<!--          <el-tag style="margin-top: 5px" type="warning" v-if="!scope.row.confirmStatus || scope.row.confirmStatus === 0 " size="small">待确认</el-tag>-->
+          <span v-if="scope.row.afterSalesStatus === 0">
+            <el-tag v-if="scope.row.orderStatus === 1 " size="small">待发货</el-tag>
+            <el-tag v-if="scope.row.orderStatus === 2 " size="small">已发货</el-tag>
+            <el-tag v-if="scope.row.orderStatus === 3 " size="small">已完成</el-tag>
+
+          </span>
+          <span v-else>
+            <el-tag v-if="scope.row.afterSalesStatus === 2 " size="small">买家申请退款，待商家处理</el-tag>
+            <el-tag v-if="scope.row.afterSalesStatus === 3 " size="small">退货退款，待商家处理</el-tag>
+            <el-tag v-if="scope.row.afterSalesStatus === 4 " size="small">商家同意退款，退款中</el-tag>
+            <el-tag v-if="scope.row.afterSalesStatus === 5 " size="small">平台同意退款，退款中</el-tag>
+            <el-tag v-if="scope.row.afterSalesStatus === 6 " size="small">驳回退款，待买家处理</el-tag>
+            <el-tag v-if="scope.row.afterSalesStatus === 7 " size="small">已同意退货退款,待用户发货</el-tag>
+            <el-tag v-if="scope.row.afterSalesStatus === 8 " size="small">平台处理中</el-tag>
+            <el-tag v-if="scope.row.afterSalesStatus === 9 " size="small">平台拒绝退款，退款关闭</el-tag>
+            <el-tag v-if="scope.row.afterSalesStatus === 10 " size="small">已退款</el-tag>
+            <el-tag v-if="scope.row.afterSalesStatus === 11 " size="small">买家撤销</el-tag>
+            <el-tag v-if="scope.row.afterSalesStatus === 12 " size="small">买家逾期未处理，退款失败</el-tag>
+            <el-tag v-if="scope.row.afterSalesStatus === 13 " size="small">买家逾期，超过有效期</el-tag>
+            <el-tag v-if="scope.row.afterSalesStatus === 14 " size="small">换货补寄待商家处理</el-tag>
+            <el-tag v-if="scope.row.afterSalesStatus === 15 " size="small">换货补寄待用户处理</el-tag>
+            <el-tag v-if="scope.row.afterSalesStatus === 16 " size="small">换货补寄成功</el-tag>
+            <el-tag v-if="scope.row.afterSalesStatus === 17 " size="small">换货补寄失败</el-tag>
+            <el-tag v-if="scope.row.afterSalesStatus === 18 " size="small">换货补寄待用户确认完成</el-tag>
+            <el-tag v-if="scope.row.afterSalesStatus === 21 " size="small">待商家同意维修</el-tag>
+            <el-tag v-if="scope.row.afterSalesStatus === 22 " size="small">待用户确认发货</el-tag>
+            <el-tag v-if="scope.row.afterSalesStatus === 24 " size="small">维修关闭</el-tag>
+            <el-tag v-if="scope.row.afterSalesStatus === 25 " size="small">维修成功</el-tag>
+            <el-tag v-if="scope.row.afterSalesStatus === 27 " size="small">待用户确认收货</el-tag>
+            <el-tag v-if="scope.row.afterSalesStatus === 31 " size="small">已同意拒收退款，待用户拒收</el-tag>
+            <el-tag v-if="scope.row.afterSalesStatus === 32 " size="small">补寄待商家发货</el-tag>
+            <el-tag v-if="scope.row.afterSalesStatus === 33 " size="small">同意召回后退款，待商家召回</el-tag>
+          </span>
+
         </template>
       </el-table-column>
 <!--      <el-table-column label="快递单号" align="center" prop="logisticsCode" />-->
@@ -376,10 +368,10 @@ export default {
     };
   },
   created() {
-    listShop({type: 500}).then(response => {
+    listShop({}).then(response => {
       this.shopList = response.rows;
       if (this.shopList && this.shopList.length > 0) {
-        this.queryParams.shopId = this.shopList[0].id
+        // this.queryParams.shopId = this.shopList[0].id
       }
       this.getList();
     });

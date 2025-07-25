@@ -11,7 +11,7 @@
  Target Server Version : 80036 (8.0.36)
  File Encoding         : 65001
 
- Date: 24/07/2025 22:47:28
+ Date: 25/07/2025 17:12:12
 */
 
 SET NAMES utf8mb4;
@@ -3045,7 +3045,7 @@ CREATE TABLE `oms_shop_goods`  (
   `update_on` datetime NULL DEFAULT NULL COMMENT '系统更新时间',
   `deliver_method` int NOT NULL DEFAULT 0 COMMENT '商品发货方式，0：普通物流，1：虚拟发货，',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 235 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '其他渠道店铺商品' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 245 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '其他渠道店铺商品' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of oms_shop_goods
@@ -3284,6 +3284,16 @@ INSERT INTO `oms_shop_goods` VALUES (231, 3, 911, 0, '75998', NULL, '三伏贴�
 INSERT INTO `oms_shop_goods` VALUES (232, 3, 911, 0, '75999', NULL, '三伏贴（基础版本30贴）', NULL, NULL, NULL, NULL, NULL, 1, 17900, 17900, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:32', '2025-07-18 11:07:48', 1);
 INSERT INTO `oms_shop_goods` VALUES (233, 3, 911, 0, '76002', NULL, '良年111', NULL, NULL, NULL, NULL, NULL, 1, 19900, 19900, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:32', '2025-07-18 11:07:48', 1);
 INSERT INTO `oms_shop_goods` VALUES (234, 3, 911, 0, '76028', NULL, '良年测试', NULL, NULL, NULL, NULL, NULL, 1, 19900, 19900, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:32', '2025-07-18 11:07:48', 1);
+INSERT INTO `oms_shop_goods` VALUES (235, 27, 300, 101, '753794079556', 'LEDDP001', '雷士照明超亮LED节能灯E27大功率强光均匀三色可选一级能效护眼', '', '', 'https://img.pddpic.com/gaudit-image/2025-05-28/048a06e3b11fe5e8ce5ab00e1828d77f.jpeg', '', '', 0, 0, NULL, 'LEDDP001', 1748374876, 1748374876, 0, 23, '2025-07-25 09:13:14', NULL, 0);
+INSERT INTO `oms_shop_goods` VALUES (236, 27, 300, 101, '754380133868', 'LEDDX001', '雷士照明LED光源灯芯正品保障客厅卧室餐厅书房吸顶灯LED灯板替换', '', '', 'https://img.pddpic.com/gaudit-image/2025-05-29/1a92b78dc9240b794790f686d5186398.jpeg', '', '', 0, 0, NULL, 'LEDDX001', 1748497225, 1748497225, 0, 45, '2025-07-25 09:13:14', NULL, 0);
+INSERT INTO `oms_shop_goods` VALUES (237, 27, 300, 101, '755310184807', '448700666150_1748700757', '艾瑞泽工具箱三层折叠多层多功能收纳箱汽车用家用电工五金收纳箱', '', '', 'https://img.pddpic.com/gaudit-image/2025-05-31/8378221ca34955ad167b22c921234f14.jpeg', '', '', 0, 0, NULL, '448700666150_1748700757', 1748700771, 1748700771, 0, 3651, '2025-07-25 09:13:14', NULL, 0);
+INSERT INTO `oms_shop_goods` VALUES (238, 27, 300, 101, '755635245980', '', '雷士照明led灯泡节能E27螺口球泡飞碟灯夜市地摊工矿大功率厂房灯', '', '', 'https://img.pddpic.com/gaudit-image/2025-06-01/c59032e87cd4a8aa1d6615eb3770bddb.jpeg', '', '', 0, 0, NULL, '', 1748770918, 1748770918, 0, 300, '2025-07-25 09:13:14', NULL, 0);
+INSERT INTO `oms_shop_goods` VALUES (239, 27, 300, 101, '756679247197', '', '雷士照明LED灯泡高亮E27螺口节能灯泡吊灯光源大功率护眼LED球泡', '', '', 'https://img.pddpic.com/gaudit-image/2025-06-03/1f92d0247e00defa30fe23ccc15be4fe.jpeg', '', '', 0, 0, NULL, '', 1748965226, 1748965226, 0, 300, '2025-07-25 09:13:14', NULL, 0);
+INSERT INTO `oms_shop_goods` VALUES (240, 27, 300, 101, '756684220589', '', '雷士照明led吸顶灯灯条客厅卧室灯板磁吸灯条长条形灯芯家用节能', '', '', 'https://img.pddpic.com/gaudit-image/2025-06-03/8079acdcba55f2fb96b57b775b87c002.jpeg', '', '', 0, 0, NULL, '', 1748965956, 1748965956, 0, 10, '2025-07-25 09:13:15', NULL, 0);
+INSERT INTO `oms_shop_goods` VALUES (241, 27, 300, 101, '762810718533', '', '雷士照明应急灯户外露营充电灯泡地摊照明灯超亮节能家用应急灯', '', '', 'https://img.pddpic.com/gaudit-image/2025-06-15/d74171a6b86b15ddf9d2adc6632a6185.jpeg', '', '', 0, 0, NULL, '', 1749996455, 1749996455, 0, 200, '2025-07-25 09:13:15', NULL, 0);
+INSERT INTO `oms_shop_goods` VALUES (242, 27, 300, 101, '770936903345', '', '雷士照明LED集成吊顶灯无边框防水厨房卫生间厕所全面发光平板灯', '', '', 'https://img.pddpic.com/gaudit-image/2025-06-30/3a3e4097cfebbbc95462edc234c8e488.jpeg', '', '', 0, 0, NULL, '', 1751280371, 1751280371, 0, 100, '2025-07-25 09:13:15', NULL, 0);
+INSERT INTO `oms_shop_goods` VALUES (243, 27, 300, 101, '770940543534', '', '雷士照明led集成吊顶灯平板灯厨房浴室300*300厕所灯卫生间厨房灯', '', '', 'https://img.pddpic.com/gaudit-image/2025-06-30/b6e35e30732ce30a849d2ad0d6c061e7.jpeg', '', '', 0, 0, NULL, '', 1751280678, 1751280678, 0, 400, '2025-07-25 09:13:15', NULL, 0);
+INSERT INTO `oms_shop_goods` VALUES (244, 27, 300, 101, '774317814352', '', '雷士led灯芯吸顶磁吸节能灯板改装光源模组圆形三色模组家用环形', '', '', 'https://img.pddpic.com/gaudit-image/2025-07-06/64eeaa77c1d01bb91bea649e7615bd3c.jpeg', '', '', 0, 0, NULL, '', 1751768141, 1751768141, 0, 399, '2025-07-25 09:13:15', NULL, 0);
 
 -- ----------------------------
 -- Table structure for oms_shop_goods_sku
@@ -3313,7 +3323,7 @@ CREATE TABLE `oms_shop_goods_sku`  (
   `create_on` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `update_on` datetime NULL DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 27 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '其他渠道店铺商品SKU' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 62 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '其他渠道店铺商品SKU' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of oms_shop_goods_sku
@@ -3344,6 +3354,41 @@ INSERT INTO `oms_shop_goods_sku` VALUES (23, 4, 100, 15, 3, '752100283103', '雷
 INSERT INTO `oms_shop_goods_sku` VALUES (24, 4, 100, 15, 3, '752100283103', '雷士照明LED光源吸顶灯芯灯板改装圆形节能灯珠灯泡光源家用灯盘', '', '1739134129017', '', 'https://img.pddpic.com/gaudit-image/2025-05-24/3567002e99ef6979aebedbf698dd9425.jpeg', 0, 100, '', '36W白光', 1, NULL, '[{\"parent_name\":\"颜色\",\"parent_id\":27205,\"spec_id\":30789190,\"spec_name\":\"36W白光\"}]', 4, 24, '2025-05-24 19:32:23', NULL);
 INSERT INTO `oms_shop_goods_sku` VALUES (25, 4, 100, 15, 3, '752100283103', '雷士照明LED光源吸顶灯芯灯板改装圆形节能灯珠灯泡光源家用灯盘', '', '1739134129015', '', 'https://img.pddpic.com/gaudit-image/2025-05-24/3567002e99ef6979aebedbf698dd9425.jpeg', 0, 99, '', '18W白光', 1, NULL, '[{\"parent_name\":\"颜色\",\"parent_id\":27205,\"spec_id\":4933454,\"spec_name\":\"18W白光\"}]', 4, 25, '2025-05-24 19:32:23', NULL);
 INSERT INTO `oms_shop_goods_sku` VALUES (26, 4, 100, 15, 3, '752100283103', '雷士照明LED光源吸顶灯芯灯板改装圆形节能灯珠灯泡光源家用灯盘', '', '1739134129016', '', 'https://img.pddpic.com/gaudit-image/2025-05-24/3567002e99ef6979aebedbf698dd9425.jpeg', 0, 100, '', '24W白光', 1, NULL, '[{\"parent_name\":\"颜色\",\"parent_id\":27205,\"spec_id\":12376922,\"spec_name\":\"24W白光\"}]', 4, 26, '2025-05-24 19:32:23', NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (27, 235, 101, 27, 300, '753794079556', '雷士照明超亮LED节能灯E27大功率强光均匀三色可选一级能效护眼', 'LEDDP001', '1742373848729', 'LEDDP00101', 'https://img.pddpic.com/gaudit-image/2025-05-28/048a06e3b11fe5e8ce5ab00e1828d77f.jpeg', 0, 5, 'LEDDP00101', 'E27螺口 3瓦白光 1级能效', 0, 1748374876, '[{\"parent_name\":\"型号\",\"parent_id\":1473,\"spec_id\":27417657573,\"spec_name\":\"E27螺口 3瓦白光 1级能效\"}]', 0, 0, '2025-07-25 09:13:14', NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (28, 235, 101, 27, 300, '753794079556', '雷士照明超亮LED节能灯E27大功率强光均匀三色可选一级能效护眼', 'LEDDP001', '1742373848730', 'LEDDP00102', 'https://img.pddpic.com/gaudit-image/2025-05-28/048a06e3b11fe5e8ce5ab00e1828d77f.jpeg', 0, 5, 'LEDDP00102', 'E27螺口 5瓦白光 1级能效', 0, 1748374876, '[{\"parent_name\":\"型号\",\"parent_id\":1473,\"spec_id\":27417657589,\"spec_name\":\"E27螺口 5瓦白光 1级能效\"}]', 0, 0, '2025-07-25 09:13:14', NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (29, 235, 101, 27, 300, '753794079556', '雷士照明超亮LED节能灯E27大功率强光均匀三色可选一级能效护眼', 'LEDDP001', '1742374330747', 'LEDDP00106', 'https://img.pddpic.com/gaudit-image/2025-05-28/048a06e3b11fe5e8ce5ab00e1828d77f.jpeg', 0, 2, 'LEDDP00106', 'E27螺口 24瓦白光 1级能效', 0, 1748374876, '[{\"parent_name\":\"型号\",\"parent_id\":1473,\"spec_id\":27376583865,\"spec_name\":\"E27螺口 24瓦白光 1级能效\"}]', 0, 0, '2025-07-25 09:13:14', NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (30, 235, 101, 27, 300, '753794079556', '雷士照明超亮LED节能灯E27大功率强光均匀三色可选一级能效护眼', 'LEDDP001', '1740677623153', 'LEDDP00103', 'https://img.pddpic.com/gaudit-image/2025-05-28/048a06e3b11fe5e8ce5ab00e1828d77f.jpeg', 0, 4, 'LEDDP00103', 'E27螺口 7瓦白光 1级能效', 0, 1748374876, '[{\"parent_name\":\"型号\",\"parent_id\":1473,\"spec_id\":27376603059,\"spec_name\":\"E27螺口 7瓦白光 1级能效\"}]', 0, 0, '2025-07-25 09:13:14', NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (31, 235, 101, 27, 300, '753794079556', '雷士照明超亮LED节能灯E27大功率强光均匀三色可选一级能效护眼', 'LEDDP001', '1742374330748', 'LEDDP00107', 'https://img.pddpic.com/gaudit-image/2025-05-28/048a06e3b11fe5e8ce5ab00e1828d77f.jpeg', 0, 2, 'LEDDP00107', 'E27螺口 30瓦白光 1级能效', 0, 1748374876, '[{\"parent_name\":\"型号\",\"parent_id\":1473,\"spec_id\":27417694216,\"spec_name\":\"E27螺口 30瓦白光 1级能效\"}]', 0, 0, '2025-07-25 09:13:14', NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (32, 235, 101, 27, 300, '753794079556', '雷士照明超亮LED节能灯E27大功率强光均匀三色可选一级能效护眼', 'LEDDP001', '1740677623154', 'LEDDP00104', 'https://img.pddpic.com/gaudit-image/2025-05-28/048a06e3b11fe5e8ce5ab00e1828d77f.jpeg', 0, 3, 'LEDDP00104', 'E27螺口 12瓦白光 1级能效', 0, 1748374876, '[{\"parent_name\":\"型号\",\"parent_id\":1473,\"spec_id\":27376598250,\"spec_name\":\"E27螺口 12瓦白光 1级能效\"}]', 0, 0, '2025-07-25 09:13:14', NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (33, 235, 101, 27, 300, '753794079556', '雷士照明超亮LED节能灯E27大功率强光均匀三色可选一级能效护眼', 'LEDDP001', '1740677623155', 'LEDDP00105', 'https://img.pddpic.com/gaudit-image/2025-05-28/048a06e3b11fe5e8ce5ab00e1828d77f.jpeg', 0, 2, 'LEDDP00105', 'E27螺口 18瓦白光 1级能效', 0, 1748374876, '[{\"parent_name\":\"型号\",\"parent_id\":1473,\"spec_id\":27376601278,\"spec_name\":\"E27螺口 18瓦白光 1级能效\"}]', 0, 0, '2025-07-25 09:13:14', NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (34, 236, 101, 27, 300, '754380133868', '雷士照明LED光源灯芯正品保障客厅卧室餐厅书房吸顶灯LED灯板替换', 'LEDDX001', '1742164849115', 'LEDDX00101', 'https://img.pddpic.com/gaudit-image/2025-05-29/1a92b78dc9240b794790f686d5186398.jpeg', 0, 13, 'LEDDX00101', '12W白光-135mm', 0, 1748497225, '[{\"parent_name\":\"颜色\",\"parent_id\":27205,\"spec_id\":27414634466,\"spec_name\":\"12W白光-135mm\"}]', 0, 0, '2025-07-25 09:13:14', NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (35, 236, 101, 27, 300, '754380133868', '雷士照明LED光源灯芯正品保障客厅卧室餐厅书房吸顶灯LED灯板替换', 'LEDDX001', '1742164849120', 'LEDDX00106', 'https://img.pddpic.com/gaudit-image/2025-05-29/1a92b78dc9240b794790f686d5186398.jpeg', 0, 0, 'LEDDX00106', '60W三色变光-360mm', 0, 1748497225, '[{\"parent_name\":\"颜色\",\"parent_id\":27205,\"spec_id\":27414630763,\"spec_name\":\"60W三色变光-360mm\"}]', 0, 0, '2025-07-25 09:13:14', NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (36, 236, 101, 27, 300, '754380133868', '雷士照明LED光源灯芯正品保障客厅卧室餐厅书房吸顶灯LED灯板替换', 'LEDDX001', '1742164849118', 'LEDDX00104', 'https://img.pddpic.com/gaudit-image/2025-05-29/1a92b78dc9240b794790f686d5186398.jpeg', 0, 0, 'LEDDX00104', '36W三色变光-300mm', 0, 1748497225, '[{\"parent_name\":\"颜色\",\"parent_id\":27205,\"spec_id\":27414644244,\"spec_name\":\"36W三色变光-300mm\"}]', 0, 0, '2025-07-25 09:13:14', NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (37, 236, 101, 27, 300, '754380133868', '雷士照明LED光源灯芯正品保障客厅卧室餐厅书房吸顶灯LED灯板替换', 'LEDDX001', '1742164849117', 'LEDDX00103', 'https://img.pddpic.com/gaudit-image/2025-05-29/1a92b78dc9240b794790f686d5186398.jpeg', 0, 18, 'LEDDX00103', '24W白光-215mm', 0, 1748497225, '[{\"parent_name\":\"颜色\",\"parent_id\":27205,\"spec_id\":27414648145,\"spec_name\":\"24W白光-215mm\"}]', 0, 0, '2025-07-25 09:13:14', NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (38, 236, 101, 27, 300, '754380133868', '雷士照明LED光源灯芯正品保障客厅卧室餐厅书房吸顶灯LED灯板替换', 'LEDDX001', '1742164849119', 'LEDDX00105', 'https://img.pddpic.com/gaudit-image/2025-05-29/1a92b78dc9240b794790f686d5186398.jpeg', 0, 0, 'LEDDX00105', '48W三色变光-330mm', 0, 1748497225, '[{\"parent_name\":\"颜色\",\"parent_id\":27205,\"spec_id\":27414628742,\"spec_name\":\"48W三色变光-330mm\"}]', 0, 0, '2025-07-25 09:13:14', NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (39, 236, 101, 27, 300, '754380133868', '雷士照明LED光源灯芯正品保障客厅卧室餐厅书房吸顶灯LED灯板替换', 'LEDDX001', '1742164849116', 'LEDDX00102', 'https://img.pddpic.com/gaudit-image/2025-05-29/1a92b78dc9240b794790f686d5186398.jpeg', 0, 14, 'LEDDX00102', '18W白光-175mm', 0, 1748497225, '[{\"parent_name\":\"颜色\",\"parent_id\":27205,\"spec_id\":27414629679,\"spec_name\":\"18W白光-175mm\"}]', 0, 0, '2025-07-25 09:13:14', NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (40, 237, 101, 27, 300, '755310184807', '艾瑞泽工具箱三层折叠多层多功能收纳箱汽车用家用电工五金收纳箱', '448700666150_1748700757', '1741926779985', '648700666529451', 'https://img.pddpic.com/gaudit-image/2025-05-31/8378221ca34955ad167b22c921234f14.jpeg', 0, 933, '648700666529451', '21寸三层折叠工具箱精工款', 0, 1748700771, '[{\"parent_name\":\"规格型号\",\"parent_id\":132554,\"spec_id\":26604524692,\"spec_name\":\"21寸三层折叠工具箱精工款\"}]', 0, 0, '2025-07-25 09:13:14', NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (41, 237, 101, 27, 300, '755310184807', '艾瑞泽工具箱三层折叠多层多功能收纳箱汽车用家用电工五金收纳箱', '448700666150_1748700757', '1741926779986', '648700666529452', 'https://img.pddpic.com/gaudit-image/2025-05-31/8378221ca34955ad167b22c921234f14.jpeg', 0, 924, '648700666529452', '19寸黑金刚加强筋骨抗砸耐摔旗舰款', 0, 1748700771, '[{\"parent_name\":\"规格型号\",\"parent_id\":132554,\"spec_id\":26604535116,\"spec_name\":\"19寸黑金刚加强筋骨抗砸耐摔旗舰款\"}]', 0, 0, '2025-07-25 09:13:14', NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (42, 237, 101, 27, 300, '755310184807', '艾瑞泽工具箱三层折叠多层多功能收纳箱汽车用家用电工五金收纳箱', '448700666150_1748700757', '1741926779987', '648700666529453', 'https://img.pddpic.com/gaudit-image/2025-05-31/8378221ca34955ad167b22c921234f14.jpeg', 0, 856, '648700666529453', '22寸黑金刚加强筋骨抗砸耐摔旗舰款', 0, 1748700771, '[{\"parent_name\":\"规格型号\",\"parent_id\":132554,\"spec_id\":26604515947,\"spec_name\":\"22寸黑金刚加强筋骨抗砸耐摔旗舰款\"}]', 0, 0, '2025-07-25 09:13:14', NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (43, 237, 101, 27, 300, '755310184807', '艾瑞泽工具箱三层折叠多层多功能收纳箱汽车用家用电工五金收纳箱', '448700666150_1748700757', '1741926779984', '648700666529450', 'https://img.pddpic.com/gaudit-image/2025-05-31/8378221ca34955ad167b22c921234f14.jpeg', 0, 938, '648700666529450', '17寸三层折叠工具箱精工款', 0, 1748700771, '[{\"parent_name\":\"规格型号\",\"parent_id\":132554,\"spec_id\":26604523730,\"spec_name\":\"17寸三层折叠工具箱精工款\"}]', 0, 0, '2025-07-25 09:13:14', NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (44, 238, 101, 27, 300, '755635245980', '雷士照明led灯泡节能E27螺口球泡飞碟灯夜市地摊工矿大功率厂房灯', '', '1742372682345', '', 'https://img.pddpic.com/gaudit-image/2025-06-01/c59032e87cd4a8aa1d6615eb3770bddb.jpeg', 0, 100, '', '白色款18W白光 其它', 0, 1748770918, '[{\"parent_name\":\"颜色\",\"parent_id\":1215,\"spec_id\":1979453614,\"spec_name\":\"白色款18W白光\"},{\"parent_name\":\"尺寸\",\"parent_id\":1216,\"spec_id\":551416,\"spec_name\":\"其它\"}]', 0, 0, '2025-07-25 09:13:14', NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (45, 238, 101, 27, 300, '755635245980', '雷士照明led灯泡节能E27螺口球泡飞碟灯夜市地摊工矿大功率厂房灯', '', '1742148962887', '', 'https://img.pddpic.com/gaudit-image/2025-06-01/c59032e87cd4a8aa1d6615eb3770bddb.jpeg', 0, 100, '', '白色款24W白光 其它', 0, 1748770918, '[{\"parent_name\":\"颜色\",\"parent_id\":1215,\"spec_id\":1137153023,\"spec_name\":\"白色款24W白光\"},{\"parent_name\":\"尺寸\",\"parent_id\":1216,\"spec_id\":551416,\"spec_name\":\"其它\"}]', 0, 0, '2025-07-25 09:13:14', NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (46, 238, 101, 27, 300, '755635245980', '雷士照明led灯泡节能E27螺口球泡飞碟灯夜市地摊工矿大功率厂房灯', '', '1742148962888', '', 'https://img.pddpic.com/gaudit-image/2025-06-01/c59032e87cd4a8aa1d6615eb3770bddb.jpeg', 0, 100, '', '白色款30W白光 其它', 0, 1748770918, '[{\"parent_name\":\"颜色\",\"parent_id\":1215,\"spec_id\":1203506569,\"spec_name\":\"白色款30W白光\"},{\"parent_name\":\"尺寸\",\"parent_id\":1216,\"spec_id\":551416,\"spec_name\":\"其它\"}]', 0, 0, '2025-07-25 09:13:14', NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (47, 239, 101, 27, 300, '756679247197', '雷士照明LED灯泡高亮E27螺口节能灯泡吊灯光源大功率护眼LED球泡', '', '1743027340569', '', 'https://img.pddpic.com/gaudit-image/2025-06-03/1f92d0247e00defa30fe23ccc15be4fe.jpeg', 0, 100, '', '【五只装】E27 30W 正白光', 0, 1748965226, '[{\"parent_name\":\"款式\",\"parent_id\":1218,\"spec_id\":26485467995,\"spec_name\":\"【五只装】E27 30W 正白光\"}]', 0, 0, '2025-07-25 09:13:14', NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (48, 239, 101, 27, 300, '756679247197', '雷士照明LED灯泡高亮E27螺口节能灯泡吊灯光源大功率护眼LED球泡', '', '1743027340567', '', 'https://img.pddpic.com/gaudit-image/2025-06-03/1f92d0247e00defa30fe23ccc15be4fe.jpeg', 0, 100, '', '【五只装】E27 24W 正白光', 0, 1748965226, '[{\"parent_name\":\"款式\",\"parent_id\":1218,\"spec_id\":26485465944,\"spec_name\":\"【五只装】E27 24W 正白光\"}]', 0, 0, '2025-07-25 09:13:14', NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (49, 239, 101, 27, 300, '756679247197', '雷士照明LED灯泡高亮E27螺口节能灯泡吊灯光源大功率护眼LED球泡', '', '1743027340565', '', 'https://img.pddpic.com/gaudit-image/2025-06-03/1f92d0247e00defa30fe23ccc15be4fe.jpeg', 0, 100, '', '【五只装】E27 18W 正白光', 0, 1748965226, '[{\"parent_name\":\"款式\",\"parent_id\":1218,\"spec_id\":26485478183,\"spec_name\":\"【五只装】E27 18W 正白光\"}]', 0, 0, '2025-07-25 09:13:15', NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (50, 240, 101, 27, 300, '756684220589', '雷士照明led吸顶灯灯条客厅卧室灯板磁吸灯条长条形灯芯家用节能', '', '1749116485132', '', 'https://img.pddpic.com/gaudit-image/2025-06-03/8079acdcba55f2fb96b57b775b87c002.jpeg', 0, 10, '', '48W白光【一拖四】 【磁铁吸附 快捷替换】', 0, 1748965956, '[{\"parent_name\":\"尺寸\",\"parent_id\":1216,\"spec_id\":27553546665,\"spec_name\":\"48W白光【一拖四】\"},{\"parent_name\":\"组合\",\"parent_id\":2774,\"spec_id\":25900060163,\"spec_name\":\"【磁铁吸附 快捷替换】\"}]', 0, 0, '2025-07-25 09:13:15', NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (51, 241, 101, 27, 300, '762810718533', '雷士照明应急灯户外露营充电灯泡地摊照明灯超亮节能家用应急灯', '', '1748010394260', '', 'https://img.pddpic.com/gaudit-image/2025-06-15/d74171a6b86b15ddf9d2adc6632a6185.jpeg', 0, 100, '', '4W USB充电式灯泡', 0, 1749996455, '[{\"parent_name\":\"型号\",\"parent_id\":1473,\"spec_id\":17512154875,\"spec_name\":\"4W USB充电式灯泡\"}]', 0, 0, '2025-07-25 09:13:15', NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (52, 241, 101, 27, 300, '762810718533', '雷士照明应急灯户外露营充电灯泡地摊照明灯超亮节能家用应急灯', '', '1748010394261', '', 'https://img.pddpic.com/gaudit-image/2025-06-15/d74171a6b86b15ddf9d2adc6632a6185.jpeg', 0, 100, '', '7W USB充电式灯泡', 0, 1749996455, '[{\"parent_name\":\"型号\",\"parent_id\":1473,\"spec_id\":17512163458,\"spec_name\":\"7W USB充电式灯泡\"}]', 0, 0, '2025-07-25 09:13:15', NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (53, 242, 101, 27, 300, '770936903345', '雷士照明LED集成吊顶灯无边框防水厨房卫生间厕所全面发光平板灯', '', '1754155826431', '', 'https://img.pddpic.com/gaudit-image/2025-06-30/3a3e4097cfebbbc95462edc234c8e488.jpeg', 0, 100, '', '30X30【24W悬浮曲面照明】', 0, 1751280371, '[{\"parent_name\":\"颜色\",\"parent_id\":1215,\"spec_id\":26320863681,\"spec_name\":\"30X30【24W悬浮曲面照明】\"}]', 0, 0, '2025-07-25 09:13:15', NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (54, 243, 101, 27, 300, '770940543534', '雷士照明led集成吊顶灯平板灯厨房浴室300*300厕所灯卫生间厨房灯', '', '1754157954614', '', 'https://img.pddpic.com/gaudit-image/2025-06-30/b6e35e30732ce30a849d2ad0d6c061e7.jpeg', 0, 100, '', '300*300 18W雾银集成款', 0, 1751280678, '[{\"parent_name\":\"尺寸\",\"parent_id\":1216,\"spec_id\":25991495333,\"spec_name\":\"300*300 18W雾银集成款\"}]', 0, 0, '2025-07-25 09:13:15', NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (55, 243, 101, 27, 300, '770940543534', '雷士照明led集成吊顶灯平板灯厨房浴室300*300厕所灯卫生间厨房灯', '', '1754157954615', '', 'https://img.pddpic.com/gaudit-image/2025-06-30/b6e35e30732ce30a849d2ad0d6c061e7.jpeg', 0, 100, '', '300*300 18W珍珠白集成款', 0, 1751280678, '[{\"parent_name\":\"尺寸\",\"parent_id\":1216,\"spec_id\":25991502117,\"spec_name\":\"300*300 18W珍珠白集成款\"}]', 0, 0, '2025-07-25 09:13:15', NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (56, 243, 101, 27, 300, '770940543534', '雷士照明led集成吊顶灯平板灯厨房浴室300*300厕所灯卫生间厨房灯', '', '1754157954616', '', 'https://img.pddpic.com/gaudit-image/2025-06-30/b6e35e30732ce30a849d2ad0d6c061e7.jpeg', 0, 100, '', '300*600 24W雾银集成款', 0, 1751280678, '[{\"parent_name\":\"尺寸\",\"parent_id\":1216,\"spec_id\":25991507793,\"spec_name\":\"300*600 24W雾银集成款\"}]', 0, 0, '2025-07-25 09:13:15', NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (57, 243, 101, 27, 300, '770940543534', '雷士照明led集成吊顶灯平板灯厨房浴室300*300厕所灯卫生间厨房灯', '', '1754157954617', '', 'https://img.pddpic.com/gaudit-image/2025-06-30/b6e35e30732ce30a849d2ad0d6c061e7.jpeg', 0, 100, '', '300*600 24W珍珠白集成款', 0, 1751280678, '[{\"parent_name\":\"尺寸\",\"parent_id\":1216,\"spec_id\":25991520200,\"spec_name\":\"300*600 24W珍珠白集成款\"}]', 0, 0, '2025-07-25 09:13:15', NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (58, 244, 101, 27, 300, '774317814352', '雷士led灯芯吸顶磁吸节能灯板改装光源模组圆形三色模组家用环形', '', '1756354078309', 'LEDDX00103', 'https://img.pddpic.com/gaudit-image/2025-07-06/64eeaa77c1d01bb91bea649e7615bd3c.jpeg', 0, 100, 'LEDDX00103', '白光24W 直径22CM', 0, 1751768141, '[{\"parent_name\":\"型号\",\"parent_id\":1473,\"spec_id\":27697890540,\"spec_name\":\"白光24W 直径22CM\"}]', 0, 0, '2025-07-25 09:13:15', NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (59, 244, 101, 27, 300, '774317814352', '雷士led灯芯吸顶磁吸节能灯板改装光源模组圆形三色模组家用环形', '', '1756355886271', 'LEDDX00104', 'https://img.pddpic.com/gaudit-image/2025-07-06/64eeaa77c1d01bb91bea649e7615bd3c.jpeg', 0, 99, 'LEDDX00104', '三色模组36W 直径23CM', 0, 1751768141, '[{\"parent_name\":\"型号\",\"parent_id\":1473,\"spec_id\":27697938333,\"spec_name\":\"三色模组36W 直径23CM\"}]', 0, 0, '2025-07-25 09:13:15', NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (60, 244, 101, 27, 300, '774317814352', '雷士led灯芯吸顶磁吸节能灯板改装光源模组圆形三色模组家用环形', '', '1756355886273', 'LEDDX00106', 'https://img.pddpic.com/gaudit-image/2025-07-06/64eeaa77c1d01bb91bea649e7615bd3c.jpeg', 0, 100, 'LEDDX00106', '三色模组60W 直径30CM', 0, 1751768141, '[{\"parent_name\":\"型号\",\"parent_id\":1473,\"spec_id\":27697928607,\"spec_name\":\"三色模组60W 直径30CM\"}]', 0, 0, '2025-07-25 09:13:15', NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (61, 244, 101, 27, 300, '774317814352', '雷士led灯芯吸顶磁吸节能灯板改装光源模组圆形三色模组家用环形', '', '1756355886272', 'LEDDX00105', 'https://img.pddpic.com/gaudit-image/2025-07-06/64eeaa77c1d01bb91bea649e7615bd3c.jpeg', 0, 100, 'LEDDX00105', '三色模组48W 直径30CM', 0, 1751768141, '[{\"parent_name\":\"型号\",\"parent_id\":1473,\"spec_id\":27697923775,\"spec_name\":\"三色模组48W 直径30CM\"}]', 0, 0, '2025-07-25 09:13:15', NULL);
 
 -- ----------------------------
 -- Table structure for oms_shop_order
@@ -3357,8 +3402,9 @@ CREATE TABLE `oms_shop_order`  (
   `order_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '平台订单id',
   `order_time` bigint NULL DEFAULT NULL COMMENT '平台订单创建时间，秒级时间戳',
   `update_time` bigint NULL DEFAULT NULL COMMENT '平台订单更新时间，秒级时间戳',
-  `order_status` int NULL DEFAULT NULL COMMENT '订单状态0：新订单，1：待发货，2：已发货，3：已完成，11已取消；12退款中；21待付款；22锁定，29删除，101部分发货',
-  `refund_status` int NOT NULL DEFAULT 1 COMMENT '售后状态 1：无售后或售后关闭，2：售后处理中，3：退款中，4： 退款成功',
+  `order_status` int NOT NULL COMMENT '订单状态0：新订单，1：待发货，2：已发货，3：已完成，11已取消；12退款中；21待付款；22锁定，29删除，101部分发货',
+  `refund_status` int NOT NULL DEFAULT 1 COMMENT '退款状态 1：无售后或售后关闭，2：售后处理中，3：退款中，4： 退款成功',
+  `after_sales_status` int NOT NULL COMMENT '售后状态 0：无售后 2：买家申请退款，待商家处理 3：退货退款，待商家处理 4：商家同意退款，退款中 5：平台同意退款，退款中 6：驳回退款，待买家处理 7：已同意退货退款,待用户发货 8：平台处理中 9：平台拒绝退款，退款关闭 10：退款成功 11：买家撤销 12：买家逾期未处理，退款失败 13：买家逾期，超过有效期 14：换货补寄待商家处理 15：换货补寄待用户处理 16：换货补寄成功 17：换货补寄失败 18：换货补寄待用户确认完成 21：待商家同意维修 22：待用户确认发货 24：维修关闭 25：维修成功 27：待用户确认收货 31：已同意拒收退款，待用户拒收 32：补寄待商家发货 33：同意召回后退款，待商家召回',
   `goods_amount` int NULL DEFAULT NULL COMMENT '商品总价，单位为分',
   `order_amount` int NULL DEFAULT NULL COMMENT '订单金额，单位为分，order_price=original_order_price-discounted_price-deduction_price-change_down_price',
   `freight` int NULL DEFAULT NULL COMMENT '运费，单位为分',
@@ -3366,6 +3412,7 @@ CREATE TABLE `oms_shop_order`  (
   `discount_amount` int NULL DEFAULT NULL COMMENT '优惠金额，单位为分',
   `seller_discount` int NOT NULL DEFAULT 0 COMMENT '商家优惠金额，单位：分',
   `platform_discount` int NOT NULL DEFAULT 0 COMMENT '平台优惠金额，单位：分',
+  `order_change_amount` int NOT NULL COMMENT '订单改价折扣金额',
   `buyer_memo` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '买家留言信息',
   `seller_memo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '卖家留言信息',
   `remark` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '订单备注',
@@ -3373,9 +3420,12 @@ CREATE TABLE `oms_shop_order`  (
   `city` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '城市',
   `county` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '区',
   `town` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '街道',
-  `address` varchar(350) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '收件人地址，不拼接省市区。加密',
-  `receiver_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '收件人姓名。订单状态为待发货状态，且订单未在审核中的情况下返回密文数据；',
-  `receiver_phone` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '收件人电话。订单状态为待发货状态，且订单未在审核中的情况下返回密文数据；',
+  `receiver_address` varchar(350) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '收件人地址。加密；',
+  `receiver_name` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '收件人姓名。加密；',
+  `receiver_phone` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '收件人电话。加密；',
+  `receiver_phone_mask` varchar(55) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '收件人手机号（打码）',
+  `receiver_name_mask` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '收件人姓名（打码）',
+  `receiver_address_mask` varchar(55) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '收件人地址（打码）',
   `virtual_order_tel_number` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '虚拟发货订单联系方式(deliver_method=1时返回)',
   `ship_done_time` int NULL DEFAULT NULL COMMENT '发货完成时间，秒级时间戳',
   `ewaybill_order_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '电子面单代发时的订单密文\r\n',
@@ -3391,39 +3441,17 @@ CREATE TABLE `oms_shop_order`  (
   `platform_order_status` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '平台订单状态',
   `platform_order_status_text` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '平台订单状态文本',
   `deliver_method` int NOT NULL DEFAULT 0 COMMENT '订单发货方式，0：普通物流，1：虚拟发货，',
+  `order_time_text` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '平台订单创建时间',
+  `update_time_text` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '平台订单更新时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 29 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of oms_shop_order
 -- ----------------------------
-INSERT INTO `oms_shop_order` VALUES (2, 0, 3, 911, '1953489', 1752744960, 1752745200, 1, 1, 300000, 300000, 0, 300000, 0, 0, 0, NULL, NULL, '课程费3000＋证书2000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, '2025-07-18 17:13:45', NULL, 0, 2023102, '13418816505', 'ORDER_STATUS_PAID', '已支付', 1);
-INSERT INTO `oms_shop_order` VALUES (3, 0, 3, 911, '1953498', 1752745340, 1752745500, 1, 1, 200000, 200000, 0, 200000, 0, 0, 0, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, '2025-07-18 17:13:47', NULL, 0, 2023102, '13418816505', 'ORDER_STATUS_PAID', '已支付', 1);
-INSERT INTO `oms_shop_order` VALUES (4, 0, 3, 911, '1953538', 1752746207, 1752747001, 1, 1, 200000, 200000, 0, 200000, 0, 0, 0, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, '2025-07-18 17:13:47', NULL, 0, 2023148, '13823340881', 'ORDER_STATUS_PAID', '已支付', 1);
-INSERT INTO `oms_shop_order` VALUES (5, 0, 3, 911, '1952486', 1752662614, 1752747301, 1, 1, 588000, 588000, 0, 588000, 0, 0, 0, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, '2025-07-18 17:13:47', NULL, 0, 2022214, '15975800181', 'ORDER_STATUS_PAID', '已支付', 1);
-INSERT INTO `oms_shop_order` VALUES (6, 0, 3, 911, '1953420', 1752743961, 1752747901, 1, 1, 230000, 230000, 0, 230000, 0, 0, 0, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, '2025-07-18 17:13:47', NULL, 0, 1733711, '13302490813', 'ORDER_STATUS_PAID', '已支付', 1);
-INSERT INTO `oms_shop_order` VALUES (7, 0, 3, 911, '1952999', 1752725557, 1752748800, 11, 4, 199800, 199800, 0, 199800, 0, 0, 0, NULL, NULL, '4200002837202507159404274475    4200002816202507152601684695   企微收款三次，两个账号一共支付了1998元。', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, '2025-07-18 17:13:47', NULL, 0, 2022682, '15723266629', 'ORDER_INVALID', '已作废', 1);
-INSERT INTO `oms_shop_order` VALUES (8, 0, 3, 911, '1953006', 1752726119, 1752748800, 11, 4, 199800, 199800, 0, 199800, 0, 0, 0, NULL, NULL, '4200002816202507152601684695   4200002807202507153991852222    客户有两个微信一共支付了三笔，共计1998元', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, '2025-07-18 17:13:47', NULL, 0, 2022682, '15723266629', 'ORDER_INVALID', '已作废', 1);
-INSERT INTO `oms_shop_order` VALUES (9, 0, 3, 911, '1954376', 1752800787, 1752800792, 1, 1, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, '2025-07-18 17:13:48', NULL, 0, 2023971, '13419492651', 'ORDER_STATUS_PAID', '已支付', 1);
-INSERT INTO `oms_shop_order` VALUES (10, 0, 3, 911, '1950470', 1752544838, 1752801300, 11, 4, 400000, 400000, 0, 400000, 0, 0, 0, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, '2025-07-18 17:13:48', NULL, 0, 2020427, '13594928586', 'ORDER_INVALID', '已作废', 1);
-INSERT INTO `oms_shop_order` VALUES (11, 0, 3, 911, '1954377', 1752801155, 1752803400, 1, 1, 400000, 400000, 0, 400000, 0, 0, 0, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, '2025-07-18 17:13:48', NULL, 0, 2020427, '13594928586', 'ORDER_STATUS_PAID', '已支付', 1);
-INSERT INTO `oms_shop_order` VALUES (12, 0, 3, 911, '1951079', 1752571164, 1752804000, 11, 4, 350000, 350000, 0, 350000, 0, 0, 0, NULL, NULL, '学员李玲报名《中医高级推拿班》学费3500元', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, '2025-07-18 17:13:48', NULL, 0, 2004848, '15288578999', 'ORDER_INVALID', '已作废', 1);
-INSERT INTO `oms_shop_order` VALUES (13, 0, 3, 911, '1954406', 1752803788, 1752804000, 1, 1, 350000, 350000, 0, 350000, 0, 0, 0, NULL, NULL, '学员李玲报名《中医高级推拿班》报名费3500元', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, '2025-07-18 17:13:48', NULL, 0, 2004848, '15288578999', 'ORDER_STATUS_PAID', '已支付', 1);
-INSERT INTO `oms_shop_order` VALUES (14, 0, 3, 911, '1954417', 1752804003, 1752804900, 1, 1, 220000, 220000, 0, 220000, 0, 0, 0, NULL, NULL, '学员分4笔支付共2200元', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, '2025-07-18 17:13:48', NULL, 0, 2002420, '19225651599', 'ORDER_STATUS_PAID', '已支付', 1);
-INSERT INTO `oms_shop_order` VALUES (15, 0, 3, 911, '1951295', 1752577523, 1752806560, 11, 4, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, '2025-07-18 17:13:48', NULL, 0, 2021155, '13532373943', 'ORDER_INVALID', '已作废', 1);
-INSERT INTO `oms_shop_order` VALUES (16, 0, 3, 911, '1954508', 1752806630, 1752806703, 1, 1, 200000, 200000, 0, 200000, 0, 0, 0, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, '2025-07-18 17:13:48', NULL, 0, 2021155, '13532373943', 'ORDER_STATUS_PAID', '已支付', 1);
-INSERT INTO `oms_shop_order` VALUES (17, 0, 3, 911, '1954576', 1752723483, 1752810004, 1, 1, 280000, 280000, 0, 280000, 0, 0, 0, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, '2025-07-18 17:13:48', NULL, 0, 2024150, '13533520031', 'ORDER_STATUS_PAID', '已支付', 1);
-INSERT INTO `oms_shop_order` VALUES (18, 0, 3, 911, '1954611', 1752810673, 1752810903, 1, 1, 698000, 698000, 0, 698000, 0, 0, 0, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, '2025-07-18 17:13:48', NULL, 0, 2024181, '19915519959', 'ORDER_STATUS_PAID', '已支付', 1);
-INSERT INTO `oms_shop_order` VALUES (19, 0, 3, 911, '1954635', 1752809937, 1752811500, 1, 1, 250000, 250000, 0, 250000, 0, 0, 0, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, '2025-07-18 17:13:48', NULL, 0, 2024193, '15828488133', 'ORDER_STATUS_PAID', '已支付', 1);
-INSERT INTO `oms_shop_order` VALUES (20, 0, 3, 911, '1954531', 1752808173, 1752813601, 1, 1, 980000, 980000, 0, 980000, 0, 0, 0, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, '2025-07-18 17:13:49', NULL, 0, 2024108, '15694664953', 'ORDER_STATUS_PAID', '已支付', 1);
-INSERT INTO `oms_shop_order` VALUES (21, 0, 3, 911, '1954958', 1752818101, 1752818400, 1, 1, 200000, 200000, 0, 200000, 0, 0, 0, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, '2025-07-18 17:13:49', NULL, 0, 1945173, '13710959684', 'ORDER_STATUS_PAID', '已支付', 1);
-INSERT INTO `oms_shop_order` VALUES (22, 0, 3, 911, '1954960', 1752818248, 1752818400, 1, 1, 198000, 198000, 0, 198000, 0, 0, 0, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, '2025-07-18 17:13:49', NULL, 0, 2024500, '13313293968', 'ORDER_STATUS_PAID', '已支付', 1);
-INSERT INTO `oms_shop_order` VALUES (23, 0, 3, 911, '1954970', 1752819215, 1752819221, 1, 1, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, '奈晚', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, '2025-07-18 17:13:49', NULL, 0, 2024522, '19561376542', 'ORDER_STATUS_PAID', '已支付', 1);
-INSERT INTO `oms_shop_order` VALUES (24, 0, 3, 911, '1954994', 1752820113, 1752820502, 1, 1, 100000, 100000, 0, 100000, 0, 0, 0, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, '2025-07-18 17:13:49', NULL, 0, 1998959, '18865059758', 'ORDER_STATUS_PAID', '已支付', 1);
-INSERT INTO `oms_shop_order` VALUES (25, 0, 3, 911, '1955131', 1752823781, 1752824102, 1, 1, 200000, 200000, 0, 200000, 0, 0, 0, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, '2025-07-18 17:13:49', NULL, 0, 2024662, '15382356185', 'ORDER_STATUS_PAID', '已支付', 1);
-INSERT INTO `oms_shop_order` VALUES (26, 0, 3, 911, '1955149', 1752824274, 1752824702, 1, 1, 180000, 180000, 0, 180000, 0, 0, 0, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, '2025-07-18 17:13:49', NULL, 0, 2024678, '13629755419', 'ORDER_STATUS_PAID', '已支付', 1);
-INSERT INTO `oms_shop_order` VALUES (27, 0, 3, 911, '1955176', 1752825364, 1752825368, 1, 1, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2025-07-18 23:34:32', 0, NULL, '2025-07-18 17:13:49', '2025-07-18 23:34:32', 0, 2024711, '15878962027', 'ORDER_STATUS_PAID', '已支付', 1);
-INSERT INTO `oms_shop_order` VALUES (28, 0, 3, 911, '1955176', 1752852872, 1752852872, 1, 1, 1800, 1800, 0, 0, 0, 0, 0, NULL, NULL, '', '辽宁省', '本溪市', '南芬区', NULL, 'asdfa', 'aa', 'dfs', NULL, NULL, NULL, 1, '2025-07-18 23:34:32', 0, NULL, '2025-07-18 23:34:32', NULL, 28, 2024711, '15878962027', NULL, NULL, 0);
+INSERT INTO `oms_shop_order` VALUES (1, 101, 27, 300, '250701-108134418063687', 1751372958, 1752313546, 3, 1, 0, 6935, 6935, 0, 6935, 0, 0, 0, 0, '', '', '', '', '', '', NULL, '', '', '', '', '', '', NULL, NULL, 'JT5391874653562', 0, NULL, 0, NULL, '2025-07-25 16:42:36', NULL, 0, 0, '', '3', '已签收', 0, '2025-07-01 20:29:18', '2025-07-12 17:45:46');
+INSERT INTO `oms_shop_order` VALUES (2, 101, 27, 300, '250701-170126262622450', 1751381339, 1751382228, 1, 4, 10, 2084, 2084, 0, 2084, 0, 0, 0, 0, '', '', '', '', '', '', NULL, '', '', '', '', '', '', NULL, NULL, '', 0, NULL, 0, NULL, '2025-07-25 16:42:36', NULL, 0, 0, '', '1', '待发货', 0, '2025-07-01 22:48:59', '2025-07-01 23:03:48');
+INSERT INTO `oms_shop_order` VALUES (3, 101, 27, 300, '250702-297575421511662', 1751428245, 1751936935, 3, 1, 0, 2919, 2423, 0, 2423, 496, 0, 496, 0, '', '', '', '', '', '', NULL, '', '', '', '', '', '', NULL, NULL, 'JT5391874712067', 0, NULL, 0, NULL, '2025-07-25 16:42:37', NULL, 0, 0, '', '3', '已签收', 0, '2025-07-02 11:50:45', '2025-07-08 09:08:55');
 
 -- ----------------------------
 -- Table structure for oms_shop_order_item
@@ -3464,62 +3492,39 @@ CREATE TABLE `oms_shop_order_item`  (
   `refund_status` int NULL DEFAULT NULL COMMENT '售后状态 1：无售后或售后关闭，2：售后处理中，3：退款中，4： 退款成功',
   `refund_amount` int NULL DEFAULT NULL COMMENT '退款金额',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 30 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of oms_shop_order_item
 -- ----------------------------
-INSERT INTO `oms_shop_order_item` VALUES (1, 0, 3, 911, 2, '73451', NULL, NULL, 1, 398000, '中医高级推拿班V5.0', 0, 0, NULL, 398000, NULL, 398000, NULL, NULL, 'false', 398000, 'false', NULL, NULL, NULL, 0, 0, '1953489', 1752744960, NULL, NULL, 1, 0);
-INSERT INTO `oms_shop_order_item` VALUES (2, 0, 3, 911, 3, '72155', NULL, NULL, 1, 380000, '重庆卫健委鉴定;中医康复理疗师(服务费)', 0, 0, NULL, 380000, NULL, 380000, NULL, NULL, 'false', 380000, 'false', NULL, NULL, NULL, 0, 0, '1953498', 1752745340, NULL, NULL, 1, 0);
-INSERT INTO `oms_shop_order_item` VALUES (3, 0, 3, 911, 4, '71750', NULL, NULL, 1, 380000, '中科院中医药合作中心;中医针灸技术(服务费)', 0, 0, NULL, 380000, NULL, 380000, NULL, NULL, 'false', 380000, 'false', NULL, NULL, NULL, 0, 0, '1953538', 1752746207, NULL, NULL, 1, 0);
-INSERT INTO `oms_shop_order_item` VALUES (4, 0, 3, 911, 5, '73454', NULL, NULL, 1, 498000, '中医针灸技术应用班V5.0', 0, 0, NULL, 498000, NULL, 498000, NULL, NULL, 'false', 498000, 'false', NULL, NULL, NULL, 0, 0, '1952486', 1752662614, NULL, NULL, 1, 0);
-INSERT INTO `oms_shop_order_item` VALUES (5, 0, 3, 911, 5, '73450', NULL, NULL, 1, 698000, '中医理疗王牌实战班V5.0', 0, 0, NULL, 698000, NULL, 698000, NULL, NULL, 'false', 698000, 'false', NULL, NULL, NULL, 0, 0, '1952486', 1752662614, NULL, NULL, 1, 0);
-INSERT INTO `oms_shop_order_item` VALUES (6, 0, 3, 911, 6, '71761', NULL, NULL, 1, 380000, '中科院中医药合作中心;康复理疗技术(服务费)', 0, 0, NULL, 380000, NULL, 380000, NULL, NULL, 'false', 380000, 'false', NULL, NULL, NULL, 0, 0, '1953420', 1752743961, NULL, NULL, 1, 0);
-INSERT INTO `oms_shop_order_item` VALUES (7, 0, 3, 911, 7, '71841', NULL, NULL, 1, 598000, '王氏五行方阵中医', 0, 0, NULL, 598000, NULL, 598000, NULL, NULL, 'false', 598000, 'false', NULL, NULL, NULL, 0, 0, '1952999', 1752725557, NULL, NULL, 4, 0);
-INSERT INTO `oms_shop_order_item` VALUES (8, 0, 3, 911, 8, '71841', NULL, NULL, 1, 598000, '王氏五行方阵中医', 0, 0, NULL, 598000, NULL, 598000, NULL, NULL, 'false', 598000, 'false', NULL, NULL, NULL, 0, 0, '1953006', 1752726119, NULL, NULL, 4, 0);
-INSERT INTO `oms_shop_order_item` VALUES (9, 0, 3, 911, 9, '75119', NULL, NULL, 1, 198000, '奈晚推拿定制就业班', 0, 0, NULL, 198000, NULL, 198000, NULL, NULL, 'false', 198000, 'false', NULL, NULL, NULL, 0, 0, '1954376', 1752800787, NULL, NULL, 1, 0);
-INSERT INTO `oms_shop_order_item` VALUES (10, 0, 3, 911, 10, '73455', NULL, NULL, 1, 498000, '中医推拿正骨技术班V5.0', 0, 0, NULL, 498000, NULL, 498000, NULL, NULL, 'false', 498000, 'false', NULL, NULL, NULL, 0, 0, '1950470', 1752544838, NULL, NULL, 4, 0);
-INSERT INTO `oms_shop_order_item` VALUES (11, 0, 3, 911, 11, '73455', NULL, NULL, 1, 498000, '中医推拿正骨技术班V5.0', 0, 0, NULL, 498000, NULL, 498000, NULL, NULL, 'false', 498000, 'false', NULL, NULL, NULL, 0, 0, '1954377', 1752801155, NULL, NULL, 1, 0);
-INSERT INTO `oms_shop_order_item` VALUES (12, 0, 3, 911, 12, '73451', NULL, NULL, 1, 398000, '中医高级推拿班V5.0', 0, 0, NULL, 398000, NULL, 398000, NULL, NULL, 'false', 398000, 'false', NULL, NULL, NULL, 0, 0, '1951079', 1752571164, NULL, NULL, 4, 0);
-INSERT INTO `oms_shop_order_item` VALUES (13, 0, 3, 911, 13, '73451', NULL, NULL, 1, 398000, '中医高级推拿班V5.0', 0, 0, NULL, 398000, NULL, 398000, NULL, NULL, 'false', 398000, 'false', NULL, NULL, NULL, 0, 0, '1954406', 1752803788, NULL, NULL, 1, 0);
-INSERT INTO `oms_shop_order_item` VALUES (14, 0, 3, 911, 14, '72155', NULL, NULL, 1, 380000, '重庆卫健委鉴定;中医康复理疗师(服务费)', 0, 0, NULL, 380000, NULL, 380000, NULL, NULL, 'false', 380000, 'false', NULL, NULL, NULL, 0, 0, '1954417', 1752804003, NULL, NULL, 1, 0);
-INSERT INTO `oms_shop_order_item` VALUES (15, 0, 3, 911, 15, '75119', NULL, NULL, 1, 198000, '奈晚推拿定制就业班', 0, 0, NULL, 198000, NULL, 198000, NULL, NULL, 'false', 198000, 'false', NULL, NULL, NULL, 0, 0, '1951295', 1752577523, NULL, NULL, 4, 0);
-INSERT INTO `oms_shop_order_item` VALUES (16, 0, 3, 911, 16, '71750', NULL, NULL, 1, 380000, '中科院中医药合作中心;中医针灸技术(服务费)', 0, 0, NULL, 380000, NULL, 380000, NULL, NULL, 'false', 380000, 'false', NULL, NULL, NULL, 0, 0, '1954508', 1752806630, NULL, NULL, 1, 0);
-INSERT INTO `oms_shop_order_item` VALUES (17, 0, 3, 911, 17, '71750', NULL, NULL, 1, 380000, '中科院中医药合作中心;中医针灸技术(服务费)', 0, 0, NULL, 380000, NULL, 380000, NULL, NULL, 'false', 380000, 'false', NULL, NULL, NULL, 0, 0, '1954576', 1752723483, NULL, NULL, 1, 0);
-INSERT INTO `oms_shop_order_item` VALUES (18, 0, 3, 911, 18, '71750', NULL, NULL, 1, 380000, '中科院中医药合作中心;中医针灸技术(服务费)', 0, 0, NULL, 380000, NULL, 380000, NULL, NULL, 'false', 380000, 'false', NULL, NULL, NULL, 0, 0, '1954611', 1752810673, NULL, NULL, 1, 0);
-INSERT INTO `oms_shop_order_item` VALUES (19, 0, 3, 911, 18, '73454', NULL, NULL, 1, 498000, '中医针灸技术应用班V5.0', 0, 0, NULL, 498000, NULL, 498000, NULL, NULL, 'false', 498000, 'false', NULL, NULL, NULL, 0, 0, '1954611', 1752810673, NULL, NULL, 1, 0);
-INSERT INTO `oms_shop_order_item` VALUES (20, 0, 3, 911, 19, '72155', NULL, NULL, 1, 380000, '重庆卫健委鉴定;中医康复理疗师(服务费)', 0, 0, NULL, 380000, NULL, 380000, NULL, NULL, 'false', 380000, 'false', NULL, NULL, NULL, 0, 0, '1954635', 1752809937, NULL, NULL, 1, 0);
-INSERT INTO `oms_shop_order_item` VALUES (21, 0, 3, 911, 20, '73457', NULL, NULL, 1, 980000, '中医特色调理全科班V5.0（理疗+针灸）', 0, 0, NULL, 980000, NULL, 980000, NULL, NULL, 'false', 980000, 'false', NULL, NULL, NULL, 0, 0, '1954531', 1752808173, NULL, NULL, 1, 0);
-INSERT INTO `oms_shop_order_item` VALUES (22, 0, 3, 911, 21, '71750', NULL, NULL, 1, 380000, '中科院中医药合作中心;中医针灸技术(服务费)', 0, 0, NULL, 380000, NULL, 380000, NULL, NULL, 'false', 380000, 'false', NULL, NULL, NULL, 0, 0, '1954958', 1752818101, NULL, NULL, 1, 0);
-INSERT INTO `oms_shop_order_item` VALUES (23, 0, 3, 911, 22, '71841', NULL, NULL, 1, 598000, '王氏五行方阵中医', 0, 0, NULL, 598000, NULL, 598000, NULL, NULL, 'false', 598000, 'false', NULL, NULL, NULL, 0, 0, '1954960', 1752818248, NULL, NULL, 1, 0);
-INSERT INTO `oms_shop_order_item` VALUES (24, 0, 3, 911, 23, '75119', NULL, NULL, 1, 198000, '奈晚推拿定制就业班', 0, 0, NULL, 198000, NULL, 198000, NULL, NULL, 'false', 198000, 'false', NULL, NULL, NULL, 0, 0, '1954970', 1752819215, NULL, NULL, 1, 0);
-INSERT INTO `oms_shop_order_item` VALUES (25, 0, 3, 911, 24, '75119', NULL, NULL, 1, 198000, '奈晚推拿定制就业班', 0, 0, NULL, 198000, NULL, 198000, NULL, NULL, 'false', 198000, 'false', NULL, NULL, NULL, 0, 0, '1954994', 1752820113, NULL, NULL, 1, 0);
-INSERT INTO `oms_shop_order_item` VALUES (26, 0, 3, 911, 25, '71750', NULL, NULL, 1, 380000, '中科院中医药合作中心;中医针灸技术(服务费)', 0, 0, NULL, 380000, NULL, 380000, NULL, NULL, 'false', 380000, 'false', NULL, NULL, NULL, 0, 0, '1955131', 1752823781, NULL, NULL, 1, 0);
-INSERT INTO `oms_shop_order_item` VALUES (27, 0, 3, 911, 26, '73452', NULL, NULL, 1, 200000, '中医初级推拿班V5.0', 0, 0, NULL, 200000, NULL, 200000, NULL, NULL, 'false', 200000, 'false', NULL, NULL, NULL, 0, 0, '1955149', 1752824274, NULL, NULL, 1, 0);
-INSERT INTO `oms_shop_order_item` VALUES (28, 0, 3, 911, 27, '75119', NULL, NULL, 1, 198000, '奈晚推拿定制就业班', 0, 0, NULL, 198000, NULL, 198000, NULL, NULL, 'false', 198000, 'false', NULL, NULL, NULL, 0, 0, '1955176', 1752825364, NULL, NULL, 1, 0);
-INSERT INTO `oms_shop_order_item` VALUES (29, 0, 3, 911, 28, '', '', 'https://img.pddpic.com/mms-material-img/2023-09-26/9ac03687-dae2-4039-826c-29c1255c54ea.jpeg', 1, 1800, '雷士照明超亮LED节能灯', 0, 0, 'LEDDP00107', 0, '30瓦白光', 0, NULL, NULL, 'false', 0, 'false', NULL, NULL, 0, 2, 13, '1955176', 1752852872, '2025-07-18 23:34:32', NULL, 1, 0);
+INSERT INTO `oms_shop_order_item` VALUES (1, 101, 27, 300, 1, '754380133868', '1742164849119', 'https://img.pddpic.com/mms-material-img/2025-05-27/16a4d092-80a4-4b3b-a117-93955bb630fd.jpeg', 1, 6935, '雷士照明LED光源灯芯正品保障客厅卧室餐厅书房吸顶灯LED灯板替换', 0, 0, NULL, 6935, '48W三色变光-330mm', 6935, 'LEDDX001', 'LEDDX00105', 'false', 6935, 'false', 0, NULL, 0, 0, 0, '250701-108134418063687', 1751372958, '2025-07-25 16:42:36', NULL, 1, 0);
+INSERT INTO `oms_shop_order_item` VALUES (2, 101, 27, 300, 2, '754380133868', '1742164849115', 'https://img.pddpic.com/mms-material-img/2025-05-29/a3e7e689-5c30-495c-b5e0-90e38bd352b5.jpeg.a.jpeg', 1, 2084, '雷士照明LED光源灯芯正品保障客厅卧室餐厅书房吸顶灯LED灯板替换', 0, 0, NULL, 2084, '12W白光-135mm', 2084, 'LEDDX001', 'LEDDX00101', 'false', 2084, 'false', 0, NULL, 0, 0, 0, '250701-170126262622450', 1751381339, '2025-07-25 16:42:36', NULL, 4, 0);
+INSERT INTO `oms_shop_order_item` VALUES (3, 101, 27, 300, 3, '754380133868', '1742164849117', 'https://img.pddpic.com/mms-material-img/2025-05-29/70732144-21a8-423c-90df-553c3ea4fe36.jpeg.a.jpeg', 1, 2919, '雷士照明LED光源灯芯正品保障客厅卧室餐厅书房吸顶灯LED灯板替换', 0, 0, NULL, 2919, '24W白光-215mm', 2919, 'LEDDX001', 'LEDDX00103', 'false', 2919, 'false', 0, NULL, 0, 0, 0, '250702-297575421511662', 1751428245, '2025-07-25 16:42:37', NULL, 1, 0);
 
 -- ----------------------------
 -- Table structure for oms_shop_pull_lasttime
 -- ----------------------------
 DROP TABLE IF EXISTS `oms_shop_pull_lasttime`;
 CREATE TABLE `oms_shop_pull_lasttime`  (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `shop_id` int NULL DEFAULT NULL COMMENT '店铺id',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `shop_id` bigint NOT NULL COMMENT '店铺id',
+  `shop_type` int NOT NULL,
+  `merchant_id` bigint NOT NULL COMMENT '商户id',
   `pull_type` enum('ORDER','REFUND') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '类型（ORDER:订单，REFUND:退款）',
   `lasttime` datetime NULL DEFAULT NULL COMMENT '最后更新时间',
   `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '租户店铺更新最后时间记录' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '租户店铺更新最后时间记录' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of oms_shop_pull_lasttime
 -- ----------------------------
-INSERT INTO `oms_shop_pull_lasttime` VALUES (1, 1, 'ORDER', '2024-04-09 16:23:00', '2024-03-23 15:56:13', '2024-04-09 16:23:00');
-INSERT INTO `oms_shop_pull_lasttime` VALUES (2, 1, 'REFUND', '2024-04-09 17:43:00', '2024-03-24 13:03:54', '2024-04-09 17:43:00');
-INSERT INTO `oms_shop_pull_lasttime` VALUES (3, 2, 'ORDER', '2024-04-09 19:44:00', '2024-03-10 13:00:07', '2024-04-09 19:44:00');
-INSERT INTO `oms_shop_pull_lasttime` VALUES (4, 2, 'REFUND', '2024-04-10 23:35:56', '2024-03-24 13:50:24', '2024-04-11 11:35:58');
+INSERT INTO `oms_shop_pull_lasttime` VALUES (1, 1, 0, 0, 'ORDER', '2024-04-09 16:23:00', '2024-03-23 15:56:13', '2024-04-09 16:23:00');
+INSERT INTO `oms_shop_pull_lasttime` VALUES (2, 1, 0, 0, 'REFUND', '2024-04-09 17:43:00', '2024-03-24 13:03:54', '2024-04-09 17:43:00');
+INSERT INTO `oms_shop_pull_lasttime` VALUES (3, 2, 0, 0, 'ORDER', '2024-04-09 19:44:00', '2024-03-10 13:00:07', '2024-04-09 19:44:00');
+INSERT INTO `oms_shop_pull_lasttime` VALUES (4, 2, 0, 0, 'REFUND', '2024-04-10 23:35:56', '2024-03-24 13:50:24', '2024-04-11 11:35:58');
+INSERT INTO `oms_shop_pull_lasttime` VALUES (5, 27, 300, 101, 'ORDER', '2025-07-02 15:39:00', '2025-07-25 16:39:01', '2025-07-25 16:42:37');
 
 -- ----------------------------
 -- Table structure for oms_shop_pull_logs
@@ -3537,11 +3542,14 @@ CREATE TABLE `oms_shop_pull_logs`  (
   `pull_time` datetime NULL DEFAULT NULL COMMENT '拉取时间',
   `duration` bigint NULL DEFAULT NULL COMMENT '耗时（毫秒）',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1312 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '店铺更新日志表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1315 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '店铺更新日志表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of oms_shop_pull_logs
 -- ----------------------------
+INSERT INTO `oms_shop_pull_logs` VALUES (1312, 27, 300, 101, 'ORDER', '主动拉取', '{startTime:2025-07-24T16:39:00.210835600,endTime:2025-07-25T16:39:00.210835600}', '{insert:0,update:0,fail:0}', '2025-07-25 16:39:00', 575);
+INSERT INTO `oms_shop_pull_logs` VALUES (1313, 27, 300, 101, 'ORDER', '主动拉取', '{startTime:2025-07-24T16:39:29.167926300,endTime:2025-07-25T16:39:29.167926300}', '{insert:0,update:0,fail:0}', '2025-07-25 16:39:29', 129);
+INSERT INTO `oms_shop_pull_logs` VALUES (1314, 27, 300, 101, 'ORDER', '主动拉取', '{startTime:2025-07-01T15:39,endTime:2025-07-02T15:39}', '{insert:3,update:0,fail:0}', '2025-07-25 16:42:36', 929);
 
 -- ----------------------------
 -- Table structure for oms_shop_refund
@@ -6033,17 +6041,17 @@ CREATE TABLE `sys_menu_mms`  (
 -- ----------------------------
 -- Records of sys_menu_mms
 -- ----------------------------
-INSERT INTO `sys_menu_mms` VALUES (1, '订单管理', 0, 1, '/order', 'Layout', '', 1, 0, 'M', '0', '0', '', 'shopping', 'admin', '2023-12-27 15:00:27', 'admin', '2024-03-30 17:44:37', '系统管理目录');
+INSERT INTO `sys_menu_mms` VALUES (1, '发货管理', 0, 1, '/order', 'Layout', '', 1, 0, 'M', '0', '0', '', 'guide', 'admin', '2023-12-27 15:00:27', 'admin', '2024-03-30 17:44:37', '系统管理目录');
 INSERT INTO `sys_menu_mms` VALUES (2, '售后管理', 0, 3, '/afterSale', 'Layout', '', 1, 0, 'M', '0', '0', '', 'monitor', 'admin', '2023-12-27 15:00:27', 'admin', '2024-04-06 14:49:33', '至简官网地址');
-INSERT INTO `sys_menu_mms` VALUES (3, '店铺管理', 0, 5, '/shop', 'Layout', '', 1, 0, 'M', '0', '0', '', 'dict', 'admin', '2023-12-29 13:29:44', 'admin', '2024-03-30 17:43:35', '');
+INSERT INTO `sys_menu_mms` VALUES (3, '店铺管理', 0, 0, '/shop', 'Layout', '', 1, 0, 'M', '0', '0', '', 'dict', 'admin', '2023-12-29 13:29:44', 'admin', '2024-03-30 17:43:35', '');
 INSERT INTO `sys_menu_mms` VALUES (4, '商品库', 0, 4, '/goods', 'Layout', '', 1, 0, 'M', '0', '0', '', 'build', 'admin', '2023-12-29 16:53:03', 'admin', '2024-03-30 17:43:57', '');
 INSERT INTO `sys_menu_mms` VALUES (101, '发货订单管理', 1, 0, 'order_list', 'order/index', '', 1, 0, 'C', '0', '0', '', 'monitor', 'admin', '2023-12-27 15:00:27', 'admin', '2024-04-06 11:18:00', '菜单管理菜单');
-INSERT INTO `sys_menu_mms` VALUES (102, '店铺订单管理', 1, 0, 'shop_order_list', 'shop/order/index', '', 1, 0, 'C', '0', '0', '', 'monitor', 'admin', '2023-12-27 15:00:27', 'admin', '2024-04-06 11:18:00', '菜单管理菜单');
+INSERT INTO `sys_menu_mms` VALUES (102, '店铺订单管理', 3, 0, 'shop_order_list', 'shop/order/index', '', 1, 0, 'C', '0', '0', '', 'monitor', 'admin', '2023-12-27 15:00:27', 'admin', '2024-04-06 11:18:00', '菜单管理菜单');
 INSERT INTO `sys_menu_mms` VALUES (103, '手动创建订单', 1, 0, 'create', 'order/create', '', 1, 0, 'C', '1', '0', '', 'monitor', 'admin', '2023-12-27 15:00:27', 'admin', '2024-04-06 11:18:00', '菜单管理菜单');
 INSERT INTO `sys_menu_mms` VALUES (105, '发货物流跟踪', 1, 2, 'ship', 'ship/index', NULL, 1, 0, 'C', '0', '0', '', 'guide', 'admin', '2024-03-30 17:37:42', 'admin', '2024-04-06 14:49:59', '');
 INSERT INTO `sys_menu_mms` VALUES (201, '店铺售后管理', 2, 2, 'shop_refund_list', 'shop/refund/index', '', 1, 0, 'C', '0', '0', '', 'edit', 'admin', '2023-12-27 15:00:27', 'admin', '2024-04-06 15:48:21', '参数设置菜单');
 INSERT INTO `sys_menu_mms` VALUES (204, '售后处理查询', 2, 0, 'processing', 'afterSale/index', NULL, 1, 0, 'C', '0', '0', '', 'documentation', 'admin', '2024-04-06 17:27:03', 'admin', '2024-04-06 17:31:12', '');
-INSERT INTO `sys_menu_mms` VALUES (301, '店铺管理', 3, 9, 'shop_list', 'shop/index', '', 1, 0, 'C', '0', '0', '', 'tree', 'admin', '2023-12-29 09:14:02', 'admin', '2024-03-21 17:01:52', '');
+INSERT INTO `sys_menu_mms` VALUES (301, '店铺管理', 3, 99, 'shop_list', 'shop/index', '', 1, 0, 'C', '0', '0', '', 'tree', 'admin', '2023-12-29 09:14:02', 'admin', '2024-03-21 17:01:52', '');
 INSERT INTO `sys_menu_mms` VALUES (305, '店铺商品管理', 3, 88, 'goods_list', 'shop/goods/index', '', 1, 0, 'C', '0', '0', '', 'shopping', 'admin', '2023-12-29 13:32:41', 'admin', '2024-03-21 13:46:05', '');
 INSERT INTO `sys_menu_mms` VALUES (401, '商品库', 4, 1, 'goods_list', 'goods/index', '', 1, 0, 'C', '0', '0', '', 'tree', 'admin', '2023-12-29 16:35:55', 'admin', '2024-03-21 11:40:29', '');
 INSERT INTO `sys_menu_mms` VALUES (402, '商品SKU查询', 4, 1, 'sku_list', 'goods/spec/index', '', 1, 0, 'C', '0', '0', '', 'tree', 'admin', '2023-12-29 16:35:55', 'admin', '2024-03-21 11:40:29', '');
@@ -6281,7 +6289,7 @@ CREATE TABLE `sys_user`  (
 -- Records of sys_user
 -- ----------------------------
 INSERT INTO `sys_user` VALUES (1, 100, 'admin', '启航', '00', '280645618@qq.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2025-07-22 09:05:34', 'admin', '2023-08-07 19:31:37', '', '2025-07-22 09:05:35', '管理员');
-INSERT INTO `sys_user` VALUES (2, 101, 'qihang', 'qihang', '20', 'qihang@qq.com', '15666666666', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2025-07-24 21:04:52', 'admin', '2023-08-07 19:31:37', 'admin', '2025-07-24 21:04:52', '测试员');
+INSERT INTO `sys_user` VALUES (2, 101, 'qihang', 'qihang', '20', 'qihang@qq.com', '15666666666', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2025-07-25 16:37:14', 'admin', '2023-08-07 19:31:37', 'admin', '2025-07-25 16:37:13', '测试员');
 INSERT INTO `sys_user` VALUES (100, 1, 'qihangvms', 'aa', '10', '', '', '1', '', '$2a$10$VD49q2rn1ATpQDZJJrmJjuG52b4EkOTTZ0MPbRRmcqEYLmB5mAMsG', '0', '0', '127.0.0.1', '2025-07-23 11:54:04', 'admin', '2024-04-24 11:06:27', '', '2025-07-23 11:54:05', NULL);
 
 -- ----------------------------
