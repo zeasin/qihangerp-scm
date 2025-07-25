@@ -11,7 +11,7 @@
  Target Server Version : 80036 (8.0.36)
  File Encoding         : 65001
 
- Date: 24/07/2025 21:26:36
+ Date: 24/07/2025 22:47:28
 */
 
 SET NAMES utf8mb4;
@@ -3022,10 +3022,10 @@ CREATE TABLE `oms_order_stocking_item`  (
 DROP TABLE IF EXISTS `oms_shop_goods`;
 CREATE TABLE `oms_shop_goods`  (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `shop_id` bigint NULL DEFAULT NULL COMMENT '店铺id',
+  `shop_id` bigint NOT NULL COMMENT '店铺id',
   `shop_type` int NOT NULL COMMENT '店铺类型',
-  `merchant_id` bigint NULL DEFAULT NULL COMMENT '商户id',
-  `product_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '平台商品id',
+  `merchant_id` bigint NOT NULL COMMENT '商户id',
+  `platform_product_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '平台商品id',
   `outer_product_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '商家编码id',
   `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '商品标题',
   `sub_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
@@ -3292,13 +3292,13 @@ DROP TABLE IF EXISTS `oms_shop_goods_sku`;
 CREATE TABLE `oms_shop_goods_sku`  (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `shop_goods_id` bigint NOT NULL COMMENT '外键id',
-  `merchant_id` bigint NULL DEFAULT NULL COMMENT '商户id',
+  `merchant_id` bigint NOT NULL COMMENT '商户id',
   `shop_id` bigint NOT NULL COMMENT '店铺id',
   `shop_type` int NOT NULL COMMENT '店铺类型',
-  `product_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '平台商品id',
+  `platform_product_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '平台商品id',
   `product_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '商品名',
   `outer_product_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '商家商品编码',
-  `sku_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'skuID',
+  `platform_sku_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '平台skuID',
   `outer_sku_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '商家自定义skuID。如果添加时没录入，回包可能不包含该字段',
   `img` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'sku小图',
   `price` int NULL DEFAULT NULL COMMENT '售卖价格，以分为单位',
@@ -3308,7 +3308,6 @@ CREATE TABLE `oms_shop_goods_sku`  (
   `status` int NULL DEFAULT NULL COMMENT 'sku状态',
   `add_time` int NULL DEFAULT NULL COMMENT '创建时间',
   `sku_attrs` varchar(2550) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'sku_attrs',
-  `stock` int NOT NULL DEFAULT 0 COMMENT 'sku库存',
   `erp_goods_id` bigint NOT NULL DEFAULT 0 COMMENT 'erp系统商品id',
   `erp_goods_sku_id` bigint NOT NULL DEFAULT 0 COMMENT 'erp系统商品skuid',
   `create_on` datetime NULL DEFAULT NULL COMMENT '创建时间',
@@ -3319,32 +3318,32 @@ CREATE TABLE `oms_shop_goods_sku`  (
 -- ----------------------------
 -- Records of oms_shop_goods_sku
 -- ----------------------------
-INSERT INTO `oms_shop_goods_sku` VALUES (1, 1, 100, 6, 5, '10000226806665', NULL, NULL, '3386273694', '', 'https://mmecimage.cn/p/wx82dd65f284dd6ee3/HBviRG_AELkO2KG1mE7Yy6nq6h9mhp51zPAKIU34tQ', 9900, 9, 'A00111', NULL, 5, NULL, '[{\"attr_key\":\"颜色\",\"attr_value\":\"黑色\"},{\"attr_key\":\"尺码\",\"attr_value\":\"S\"}]', 0, 2, 6, NULL, NULL);
-INSERT INTO `oms_shop_goods_sku` VALUES (2, 1, 100, 6, 5, '10000226806665', NULL, NULL, '3386353837', '', 'https://mmecimage.cn/p/wx82dd65f284dd6ee3/HBviRG_AELkO2KG1mE7Yy6nq6h9mhp51zPAKIU34tQ', 9900, 9, 'A00112', NULL, 5, NULL, '[{\"attr_key\":\"颜色\",\"attr_value\":\"黑色\"},{\"attr_key\":\"尺码\",\"attr_value\":\"M\"}]', 0, 2, 7, NULL, NULL);
-INSERT INTO `oms_shop_goods_sku` VALUES (3, 1, 100, 6, 5, '10000226806665', NULL, NULL, '3386254387', '', 'https://mmecimage.cn/p/wx82dd65f284dd6ee3/HBviRG_AELkO2KG1mE7Yy6nq6h9mhp51zPAKIU34tQ', 9900, 9, 'A00113', NULL, 5, NULL, '[{\"attr_key\":\"颜色\",\"attr_value\":\"黑色\"},{\"attr_key\":\"尺码\",\"attr_value\":\"L\"}]', 0, 2, 8, NULL, NULL);
-INSERT INTO `oms_shop_goods_sku` VALUES (4, 1, 100, 6, 5, '10000226806665', NULL, NULL, '3386346869', '', 'https://mmecimage.cn/p/wx82dd65f284dd6ee3/HBviRG_AELkO2KG1mE7Yy6nq6h9mhp51zPAKIU34tQ', 9900, 9, 'A00114', NULL, 5, NULL, '[{\"attr_key\":\"颜色\",\"attr_value\":\"黑色\"},{\"attr_key\":\"尺码\",\"attr_value\":\"XL\"}]', 0, 2, 9, NULL, NULL);
-INSERT INTO `oms_shop_goods_sku` VALUES (5, 1, 100, 6, 5, '10000226806665', NULL, NULL, '3386289149', '', 'https://mmecimage.cn/p/wx82dd65f284dd6ee3/HEHGX3o_N2LjMf2Een41P9r3AR2d0eTtyi9F9CDLpA', 9900, 9, 'A00121', NULL, 5, NULL, '[{\"attr_key\":\"颜色\",\"attr_value\":\"黑灰\"},{\"attr_key\":\"尺码\",\"attr_value\":\"S\"}]', 0, 2, 10, NULL, NULL);
-INSERT INTO `oms_shop_goods_sku` VALUES (6, 1, 100, 6, 5, '10000226806665', NULL, NULL, '3386355827', '', 'https://mmecimage.cn/p/wx82dd65f284dd6ee3/HEHGX3o_N2LjMf2Een41P9r3AR2d0eTtyi9F9CDLpA', 9900, 9, 'A00122', NULL, 5, NULL, '[{\"attr_key\":\"颜色\",\"attr_value\":\"黑灰\"},{\"attr_key\":\"尺码\",\"attr_value\":\"M\"}]', 0, 2, 11, NULL, NULL);
-INSERT INTO `oms_shop_goods_sku` VALUES (7, 1, 100, 6, 5, '10000226806665', NULL, NULL, '3386307232', '', 'https://mmecimage.cn/p/wx82dd65f284dd6ee3/HEHGX3o_N2LjMf2Een41P9r3AR2d0eTtyi9F9CDLpA', 9900, 9, 'A00123', NULL, 5, NULL, '[{\"attr_key\":\"颜色\",\"attr_value\":\"黑灰\"},{\"attr_key\":\"尺码\",\"attr_value\":\"L\"}]', 0, 2, 12, NULL, NULL);
-INSERT INTO `oms_shop_goods_sku` VALUES (8, 1, 100, 6, 5, '10000226806665', NULL, NULL, '3386283916', '', 'https://mmecimage.cn/p/wx82dd65f284dd6ee3/HEHGX3o_N2LjMf2Een41P9r3AR2d0eTtyi9F9CDLpA', 9900, 9, 'A00124', NULL, 5, NULL, '[{\"attr_key\":\"颜色\",\"attr_value\":\"黑灰\"},{\"attr_key\":\"尺码\",\"attr_value\":\"XL\"}]', 0, 2, 13, NULL, NULL);
-INSERT INTO `oms_shop_goods_sku` VALUES (9, 1, 100, 6, 5, '10000226806665', NULL, NULL, '3386440065', '', 'https://mmecimage.cn/p/wx82dd65f284dd6ee3/HIYiX-phXBu7QyEA3kYEXvMR67rApf_led1cIzWXfQ', 9900, 9, 'A00131', NULL, 5, NULL, '[{\"attr_key\":\"颜色\",\"attr_value\":\"浅蓝\"},{\"attr_key\":\"尺码\",\"attr_value\":\"S\"}]', 0, 2, 14, NULL, NULL);
-INSERT INTO `oms_shop_goods_sku` VALUES (10, 1, 100, 6, 5, '10000226806665', NULL, NULL, '3386484403', '', 'https://mmecimage.cn/p/wx82dd65f284dd6ee3/HIYiX-phXBu7QyEA3kYEXvMR67rApf_led1cIzWXfQ', 9900, 9, 'A00132', NULL, 5, NULL, '[{\"attr_key\":\"颜色\",\"attr_value\":\"浅蓝\"},{\"attr_key\":\"尺码\",\"attr_value\":\"M\"}]', 0, 2, 15, NULL, NULL);
-INSERT INTO `oms_shop_goods_sku` VALUES (11, 1, 100, 6, 5, '10000226806665', NULL, NULL, '3386302555', '', 'https://mmecimage.cn/p/wx82dd65f284dd6ee3/HIYiX-phXBu7QyEA3kYEXvMR67rApf_led1cIzWXfQ', 9900, 9, 'A00133', NULL, 5, NULL, '[{\"attr_key\":\"颜色\",\"attr_value\":\"浅蓝\"},{\"attr_key\":\"尺码\",\"attr_value\":\"L\"}]', 0, 2, 16, NULL, NULL);
-INSERT INTO `oms_shop_goods_sku` VALUES (12, 1, 100, 6, 5, '10000226806665', NULL, NULL, '3386484402', '', 'https://mmecimage.cn/p/wx82dd65f284dd6ee3/HIYiX-phXBu7QyEA3kYEXvMR67rApf_led1cIzWXfQ', 9900, 9, 'A00134', NULL, 5, NULL, '[{\"attr_key\":\"颜色\",\"attr_value\":\"浅蓝\"},{\"attr_key\":\"尺码\",\"attr_value\":\"XL\"}]', 0, 2, 17, NULL, NULL);
-INSERT INTO `oms_shop_goods_sku` VALUES (13, 1, 100, 6, 5, '10000226806665', NULL, NULL, '3386365666', '', 'https://mmecimage.cn/p/wx82dd65f284dd6ee3/HEyF1uUGZf1uXwm2u-Rb2bViQ8kl7wxwPr8OMyEx6Q', 9900, 9, 'A00141', NULL, 5, NULL, '[{\"attr_key\":\"颜色\",\"attr_value\":\"深蓝\"},{\"attr_key\":\"尺码\",\"attr_value\":\"S\"}]', 0, 2, 18, NULL, NULL);
-INSERT INTO `oms_shop_goods_sku` VALUES (14, 1, 100, 6, 5, '10000226806665', NULL, NULL, '3386365667', '', 'https://mmecimage.cn/p/wx82dd65f284dd6ee3/HEyF1uUGZf1uXwm2u-Rb2bViQ8kl7wxwPr8OMyEx6Q', 9900, 9, 'A00142', NULL, 5, NULL, '[{\"attr_key\":\"颜色\",\"attr_value\":\"深蓝\"},{\"attr_key\":\"尺码\",\"attr_value\":\"M\"}]', 0, 2, 19, NULL, NULL);
-INSERT INTO `oms_shop_goods_sku` VALUES (15, 1, 100, 6, 5, '10000226806665', NULL, NULL, '3386437870', '', 'https://mmecimage.cn/p/wx82dd65f284dd6ee3/HEyF1uUGZf1uXwm2u-Rb2bViQ8kl7wxwPr8OMyEx6Q', 9900, 9, 'A00143', NULL, 5, NULL, '[{\"attr_key\":\"颜色\",\"attr_value\":\"深蓝\"},{\"attr_key\":\"尺码\",\"attr_value\":\"L\"}]', 0, 2, 20, NULL, NULL);
-INSERT INTO `oms_shop_goods_sku` VALUES (16, 1, 100, 6, 5, '10000226806665', NULL, NULL, '3386302556', '', 'https://mmecimage.cn/p/wx82dd65f284dd6ee3/HEyF1uUGZf1uXwm2u-Rb2bViQ8kl7wxwPr8OMyEx6Q', 9900, 9, 'A00144', NULL, 5, NULL, '[{\"attr_key\":\"颜色\",\"attr_value\":\"深蓝\"},{\"attr_key\":\"尺码\",\"attr_value\":\"XL\"}]', 0, 2, 21, NULL, NULL);
-INSERT INTO `oms_shop_goods_sku` VALUES (17, 2, 100, 6, 5, '10000227212454', NULL, NULL, '3387757956', '', 'https://mmecimage.cn/p/wx82dd65f284dd6ee3/HBkkngG4j2Utl9HiMhfCsrBNvSN2MJFnzJR9oJH8PQ', 8900, 10, 'A20701', NULL, 5, NULL, '[{\"attr_key\":\"尺码\",\"attr_value\":\"S\"}]', 0, 1, 1, NULL, NULL);
-INSERT INTO `oms_shop_goods_sku` VALUES (18, 2, 100, 6, 5, '10000227212454', NULL, NULL, '3387796494', '', 'https://mmecimage.cn/p/wx82dd65f284dd6ee3/HBkkngG4j2Utl9HiMhfCsrBNvSN2MJFnzJR9oJH8PQ', 8900, 10, 'A20702', NULL, 5, NULL, '[{\"attr_key\":\"尺码\",\"attr_value\":\"M\"}]', 0, 1, 2, NULL, NULL);
-INSERT INTO `oms_shop_goods_sku` VALUES (19, 2, 100, 6, 5, '10000227212454', NULL, NULL, '3387719364', '', 'https://mmecimage.cn/p/wx82dd65f284dd6ee3/HBkkngG4j2Utl9HiMhfCsrBNvSN2MJFnzJR9oJH8PQ', 8900, 10, 'A20703', NULL, 5, NULL, '[{\"attr_key\":\"尺码\",\"attr_value\":\"L\"}]', 0, 1, 3, NULL, NULL);
-INSERT INTO `oms_shop_goods_sku` VALUES (20, 2, 100, 6, 5, '10000227212454', NULL, NULL, '3387885524', '', 'https://mmecimage.cn/p/wx82dd65f284dd6ee3/HBkkngG4j2Utl9HiMhfCsrBNvSN2MJFnzJR9oJH8PQ', 8900, 10, 'A20704', NULL, 5, NULL, '[{\"attr_key\":\"尺码\",\"attr_value\":\"XL\"}]', 0, 1, 4, NULL, NULL);
-INSERT INTO `oms_shop_goods_sku` VALUES (21, 2, 100, 6, 5, '10000227212454', NULL, NULL, '3387753301', '', 'https://mmecimage.cn/p/wx82dd65f284dd6ee3/HBkkngG4j2Utl9HiMhfCsrBNvSN2MJFnzJR9oJH8PQ', 8900, 10, 'A20705', NULL, 5, NULL, '[{\"attr_key\":\"尺码\",\"attr_value\":\"2XL\"}]', 0, 1, 5, NULL, NULL);
-INSERT INTO `oms_shop_goods_sku` VALUES (22, 3, 100, 15, 3, '750805294208', '吸顶灯中性光卧室吸顶灯led吸顶灯阳台卧室卫生间防水防潮三防', '', '1737906457824', 'XDDA00101', 'https://img.pddpic.com/gaudit-image/2025-05-21/59da3f18489f24524859b4f45b4ecb96.jpeg', 0, 100, 'XDDA00101', '18W-25CM（白边框）', 1, NULL, '[{\"parent_name\":\"款式\",\"parent_id\":1218,\"spec_id\":24411532460,\"spec_name\":\"18W-25CM（白边框）\"}]', 100, 3, 22, '2025-05-21 19:02:51', '2025-05-24 19:32:22');
-INSERT INTO `oms_shop_goods_sku` VALUES (23, 4, 100, 15, 3, '752100283103', '雷士照明LED光源吸顶灯芯灯板改装圆形节能灯珠灯泡光源家用灯盘', '', '1739134129014', '', 'https://img.pddpic.com/gaudit-image/2025-05-24/3567002e99ef6979aebedbf698dd9425.jpeg', 0, 0, '', '12W白光', 1, NULL, '[{\"parent_name\":\"颜色\",\"parent_id\":27205,\"spec_id\":1673454,\"spec_name\":\"12W白光\"}]', 0, 4, 23, '2025-05-24 19:32:23', NULL);
-INSERT INTO `oms_shop_goods_sku` VALUES (24, 4, 100, 15, 3, '752100283103', '雷士照明LED光源吸顶灯芯灯板改装圆形节能灯珠灯泡光源家用灯盘', '', '1739134129017', '', 'https://img.pddpic.com/gaudit-image/2025-05-24/3567002e99ef6979aebedbf698dd9425.jpeg', 0, 100, '', '36W白光', 1, NULL, '[{\"parent_name\":\"颜色\",\"parent_id\":27205,\"spec_id\":30789190,\"spec_name\":\"36W白光\"}]', 100, 4, 24, '2025-05-24 19:32:23', NULL);
-INSERT INTO `oms_shop_goods_sku` VALUES (25, 4, 100, 15, 3, '752100283103', '雷士照明LED光源吸顶灯芯灯板改装圆形节能灯珠灯泡光源家用灯盘', '', '1739134129015', '', 'https://img.pddpic.com/gaudit-image/2025-05-24/3567002e99ef6979aebedbf698dd9425.jpeg', 0, 99, '', '18W白光', 1, NULL, '[{\"parent_name\":\"颜色\",\"parent_id\":27205,\"spec_id\":4933454,\"spec_name\":\"18W白光\"}]', 99, 4, 25, '2025-05-24 19:32:23', NULL);
-INSERT INTO `oms_shop_goods_sku` VALUES (26, 4, 100, 15, 3, '752100283103', '雷士照明LED光源吸顶灯芯灯板改装圆形节能灯珠灯泡光源家用灯盘', '', '1739134129016', '', 'https://img.pddpic.com/gaudit-image/2025-05-24/3567002e99ef6979aebedbf698dd9425.jpeg', 0, 100, '', '24W白光', 1, NULL, '[{\"parent_name\":\"颜色\",\"parent_id\":27205,\"spec_id\":12376922,\"spec_name\":\"24W白光\"}]', 100, 4, 26, '2025-05-24 19:32:23', NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (1, 1, 100, 6, 5, '10000226806665', NULL, NULL, '3386273694', '', 'https://mmecimage.cn/p/wx82dd65f284dd6ee3/HBviRG_AELkO2KG1mE7Yy6nq6h9mhp51zPAKIU34tQ', 9900, 9, 'A00111', NULL, 5, NULL, '[{\"attr_key\":\"颜色\",\"attr_value\":\"黑色\"},{\"attr_key\":\"尺码\",\"attr_value\":\"S\"}]', 2, 6, NULL, NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (2, 1, 100, 6, 5, '10000226806665', NULL, NULL, '3386353837', '', 'https://mmecimage.cn/p/wx82dd65f284dd6ee3/HBviRG_AELkO2KG1mE7Yy6nq6h9mhp51zPAKIU34tQ', 9900, 9, 'A00112', NULL, 5, NULL, '[{\"attr_key\":\"颜色\",\"attr_value\":\"黑色\"},{\"attr_key\":\"尺码\",\"attr_value\":\"M\"}]', 2, 7, NULL, NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (3, 1, 100, 6, 5, '10000226806665', NULL, NULL, '3386254387', '', 'https://mmecimage.cn/p/wx82dd65f284dd6ee3/HBviRG_AELkO2KG1mE7Yy6nq6h9mhp51zPAKIU34tQ', 9900, 9, 'A00113', NULL, 5, NULL, '[{\"attr_key\":\"颜色\",\"attr_value\":\"黑色\"},{\"attr_key\":\"尺码\",\"attr_value\":\"L\"}]', 2, 8, NULL, NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (4, 1, 100, 6, 5, '10000226806665', NULL, NULL, '3386346869', '', 'https://mmecimage.cn/p/wx82dd65f284dd6ee3/HBviRG_AELkO2KG1mE7Yy6nq6h9mhp51zPAKIU34tQ', 9900, 9, 'A00114', NULL, 5, NULL, '[{\"attr_key\":\"颜色\",\"attr_value\":\"黑色\"},{\"attr_key\":\"尺码\",\"attr_value\":\"XL\"}]', 2, 9, NULL, NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (5, 1, 100, 6, 5, '10000226806665', NULL, NULL, '3386289149', '', 'https://mmecimage.cn/p/wx82dd65f284dd6ee3/HEHGX3o_N2LjMf2Een41P9r3AR2d0eTtyi9F9CDLpA', 9900, 9, 'A00121', NULL, 5, NULL, '[{\"attr_key\":\"颜色\",\"attr_value\":\"黑灰\"},{\"attr_key\":\"尺码\",\"attr_value\":\"S\"}]', 2, 10, NULL, NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (6, 1, 100, 6, 5, '10000226806665', NULL, NULL, '3386355827', '', 'https://mmecimage.cn/p/wx82dd65f284dd6ee3/HEHGX3o_N2LjMf2Een41P9r3AR2d0eTtyi9F9CDLpA', 9900, 9, 'A00122', NULL, 5, NULL, '[{\"attr_key\":\"颜色\",\"attr_value\":\"黑灰\"},{\"attr_key\":\"尺码\",\"attr_value\":\"M\"}]', 2, 11, NULL, NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (7, 1, 100, 6, 5, '10000226806665', NULL, NULL, '3386307232', '', 'https://mmecimage.cn/p/wx82dd65f284dd6ee3/HEHGX3o_N2LjMf2Een41P9r3AR2d0eTtyi9F9CDLpA', 9900, 9, 'A00123', NULL, 5, NULL, '[{\"attr_key\":\"颜色\",\"attr_value\":\"黑灰\"},{\"attr_key\":\"尺码\",\"attr_value\":\"L\"}]', 2, 12, NULL, NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (8, 1, 100, 6, 5, '10000226806665', NULL, NULL, '3386283916', '', 'https://mmecimage.cn/p/wx82dd65f284dd6ee3/HEHGX3o_N2LjMf2Een41P9r3AR2d0eTtyi9F9CDLpA', 9900, 9, 'A00124', NULL, 5, NULL, '[{\"attr_key\":\"颜色\",\"attr_value\":\"黑灰\"},{\"attr_key\":\"尺码\",\"attr_value\":\"XL\"}]', 2, 13, NULL, NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (9, 1, 100, 6, 5, '10000226806665', NULL, NULL, '3386440065', '', 'https://mmecimage.cn/p/wx82dd65f284dd6ee3/HIYiX-phXBu7QyEA3kYEXvMR67rApf_led1cIzWXfQ', 9900, 9, 'A00131', NULL, 5, NULL, '[{\"attr_key\":\"颜色\",\"attr_value\":\"浅蓝\"},{\"attr_key\":\"尺码\",\"attr_value\":\"S\"}]', 2, 14, NULL, NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (10, 1, 100, 6, 5, '10000226806665', NULL, NULL, '3386484403', '', 'https://mmecimage.cn/p/wx82dd65f284dd6ee3/HIYiX-phXBu7QyEA3kYEXvMR67rApf_led1cIzWXfQ', 9900, 9, 'A00132', NULL, 5, NULL, '[{\"attr_key\":\"颜色\",\"attr_value\":\"浅蓝\"},{\"attr_key\":\"尺码\",\"attr_value\":\"M\"}]', 2, 15, NULL, NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (11, 1, 100, 6, 5, '10000226806665', NULL, NULL, '3386302555', '', 'https://mmecimage.cn/p/wx82dd65f284dd6ee3/HIYiX-phXBu7QyEA3kYEXvMR67rApf_led1cIzWXfQ', 9900, 9, 'A00133', NULL, 5, NULL, '[{\"attr_key\":\"颜色\",\"attr_value\":\"浅蓝\"},{\"attr_key\":\"尺码\",\"attr_value\":\"L\"}]', 2, 16, NULL, NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (12, 1, 100, 6, 5, '10000226806665', NULL, NULL, '3386484402', '', 'https://mmecimage.cn/p/wx82dd65f284dd6ee3/HIYiX-phXBu7QyEA3kYEXvMR67rApf_led1cIzWXfQ', 9900, 9, 'A00134', NULL, 5, NULL, '[{\"attr_key\":\"颜色\",\"attr_value\":\"浅蓝\"},{\"attr_key\":\"尺码\",\"attr_value\":\"XL\"}]', 2, 17, NULL, NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (13, 1, 100, 6, 5, '10000226806665', NULL, NULL, '3386365666', '', 'https://mmecimage.cn/p/wx82dd65f284dd6ee3/HEyF1uUGZf1uXwm2u-Rb2bViQ8kl7wxwPr8OMyEx6Q', 9900, 9, 'A00141', NULL, 5, NULL, '[{\"attr_key\":\"颜色\",\"attr_value\":\"深蓝\"},{\"attr_key\":\"尺码\",\"attr_value\":\"S\"}]', 2, 18, NULL, NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (14, 1, 100, 6, 5, '10000226806665', NULL, NULL, '3386365667', '', 'https://mmecimage.cn/p/wx82dd65f284dd6ee3/HEyF1uUGZf1uXwm2u-Rb2bViQ8kl7wxwPr8OMyEx6Q', 9900, 9, 'A00142', NULL, 5, NULL, '[{\"attr_key\":\"颜色\",\"attr_value\":\"深蓝\"},{\"attr_key\":\"尺码\",\"attr_value\":\"M\"}]', 2, 19, NULL, NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (15, 1, 100, 6, 5, '10000226806665', NULL, NULL, '3386437870', '', 'https://mmecimage.cn/p/wx82dd65f284dd6ee3/HEyF1uUGZf1uXwm2u-Rb2bViQ8kl7wxwPr8OMyEx6Q', 9900, 9, 'A00143', NULL, 5, NULL, '[{\"attr_key\":\"颜色\",\"attr_value\":\"深蓝\"},{\"attr_key\":\"尺码\",\"attr_value\":\"L\"}]', 2, 20, NULL, NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (16, 1, 100, 6, 5, '10000226806665', NULL, NULL, '3386302556', '', 'https://mmecimage.cn/p/wx82dd65f284dd6ee3/HEyF1uUGZf1uXwm2u-Rb2bViQ8kl7wxwPr8OMyEx6Q', 9900, 9, 'A00144', NULL, 5, NULL, '[{\"attr_key\":\"颜色\",\"attr_value\":\"深蓝\"},{\"attr_key\":\"尺码\",\"attr_value\":\"XL\"}]', 2, 21, NULL, NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (17, 2, 100, 6, 5, '10000227212454', NULL, NULL, '3387757956', '', 'https://mmecimage.cn/p/wx82dd65f284dd6ee3/HBkkngG4j2Utl9HiMhfCsrBNvSN2MJFnzJR9oJH8PQ', 8900, 10, 'A20701', NULL, 5, NULL, '[{\"attr_key\":\"尺码\",\"attr_value\":\"S\"}]', 1, 1, NULL, NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (18, 2, 100, 6, 5, '10000227212454', NULL, NULL, '3387796494', '', 'https://mmecimage.cn/p/wx82dd65f284dd6ee3/HBkkngG4j2Utl9HiMhfCsrBNvSN2MJFnzJR9oJH8PQ', 8900, 10, 'A20702', NULL, 5, NULL, '[{\"attr_key\":\"尺码\",\"attr_value\":\"M\"}]', 1, 2, NULL, NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (19, 2, 100, 6, 5, '10000227212454', NULL, NULL, '3387719364', '', 'https://mmecimage.cn/p/wx82dd65f284dd6ee3/HBkkngG4j2Utl9HiMhfCsrBNvSN2MJFnzJR9oJH8PQ', 8900, 10, 'A20703', NULL, 5, NULL, '[{\"attr_key\":\"尺码\",\"attr_value\":\"L\"}]', 1, 3, NULL, NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (20, 2, 100, 6, 5, '10000227212454', NULL, NULL, '3387885524', '', 'https://mmecimage.cn/p/wx82dd65f284dd6ee3/HBkkngG4j2Utl9HiMhfCsrBNvSN2MJFnzJR9oJH8PQ', 8900, 10, 'A20704', NULL, 5, NULL, '[{\"attr_key\":\"尺码\",\"attr_value\":\"XL\"}]', 1, 4, NULL, NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (21, 2, 100, 6, 5, '10000227212454', NULL, NULL, '3387753301', '', 'https://mmecimage.cn/p/wx82dd65f284dd6ee3/HBkkngG4j2Utl9HiMhfCsrBNvSN2MJFnzJR9oJH8PQ', 8900, 10, 'A20705', NULL, 5, NULL, '[{\"attr_key\":\"尺码\",\"attr_value\":\"2XL\"}]', 1, 5, NULL, NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (22, 3, 100, 15, 3, '750805294208', '吸顶灯中性光卧室吸顶灯led吸顶灯阳台卧室卫生间防水防潮三防', '', '1737906457824', 'XDDA00101', 'https://img.pddpic.com/gaudit-image/2025-05-21/59da3f18489f24524859b4f45b4ecb96.jpeg', 0, 100, 'XDDA00101', '18W-25CM（白边框）', 1, NULL, '[{\"parent_name\":\"款式\",\"parent_id\":1218,\"spec_id\":24411532460,\"spec_name\":\"18W-25CM（白边框）\"}]', 3, 22, '2025-05-21 19:02:51', '2025-05-24 19:32:22');
+INSERT INTO `oms_shop_goods_sku` VALUES (23, 4, 100, 15, 3, '752100283103', '雷士照明LED光源吸顶灯芯灯板改装圆形节能灯珠灯泡光源家用灯盘', '', '1739134129014', '', 'https://img.pddpic.com/gaudit-image/2025-05-24/3567002e99ef6979aebedbf698dd9425.jpeg', 0, 0, '', '12W白光', 1, NULL, '[{\"parent_name\":\"颜色\",\"parent_id\":27205,\"spec_id\":1673454,\"spec_name\":\"12W白光\"}]', 4, 23, '2025-05-24 19:32:23', NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (24, 4, 100, 15, 3, '752100283103', '雷士照明LED光源吸顶灯芯灯板改装圆形节能灯珠灯泡光源家用灯盘', '', '1739134129017', '', 'https://img.pddpic.com/gaudit-image/2025-05-24/3567002e99ef6979aebedbf698dd9425.jpeg', 0, 100, '', '36W白光', 1, NULL, '[{\"parent_name\":\"颜色\",\"parent_id\":27205,\"spec_id\":30789190,\"spec_name\":\"36W白光\"}]', 4, 24, '2025-05-24 19:32:23', NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (25, 4, 100, 15, 3, '752100283103', '雷士照明LED光源吸顶灯芯灯板改装圆形节能灯珠灯泡光源家用灯盘', '', '1739134129015', '', 'https://img.pddpic.com/gaudit-image/2025-05-24/3567002e99ef6979aebedbf698dd9425.jpeg', 0, 99, '', '18W白光', 1, NULL, '[{\"parent_name\":\"颜色\",\"parent_id\":27205,\"spec_id\":4933454,\"spec_name\":\"18W白光\"}]', 4, 25, '2025-05-24 19:32:23', NULL);
+INSERT INTO `oms_shop_goods_sku` VALUES (26, 4, 100, 15, 3, '752100283103', '雷士照明LED光源吸顶灯芯灯板改装圆形节能灯珠灯泡光源家用灯盘', '', '1739134129016', '', 'https://img.pddpic.com/gaudit-image/2025-05-24/3567002e99ef6979aebedbf698dd9425.jpeg', 0, 100, '', '24W白光', 1, NULL, '[{\"parent_name\":\"颜色\",\"parent_id\":27205,\"spec_id\":12376922,\"spec_name\":\"24W白光\"}]', 4, 26, '2025-05-24 19:32:23', NULL);
 
 -- ----------------------------
 -- Table structure for oms_shop_order
@@ -3499,6 +3498,50 @@ INSERT INTO `oms_shop_order_item` VALUES (26, 0, 3, 911, 25, '71750', NULL, NULL
 INSERT INTO `oms_shop_order_item` VALUES (27, 0, 3, 911, 26, '73452', NULL, NULL, 1, 200000, '中医初级推拿班V5.0', 0, 0, NULL, 200000, NULL, 200000, NULL, NULL, 'false', 200000, 'false', NULL, NULL, NULL, 0, 0, '1955149', 1752824274, NULL, NULL, 1, 0);
 INSERT INTO `oms_shop_order_item` VALUES (28, 0, 3, 911, 27, '75119', NULL, NULL, 1, 198000, '奈晚推拿定制就业班', 0, 0, NULL, 198000, NULL, 198000, NULL, NULL, 'false', 198000, 'false', NULL, NULL, NULL, 0, 0, '1955176', 1752825364, NULL, NULL, 1, 0);
 INSERT INTO `oms_shop_order_item` VALUES (29, 0, 3, 911, 28, '', '', 'https://img.pddpic.com/mms-material-img/2023-09-26/9ac03687-dae2-4039-826c-29c1255c54ea.jpeg', 1, 1800, '雷士照明超亮LED节能灯', 0, 0, 'LEDDP00107', 0, '30瓦白光', 0, NULL, NULL, 'false', 0, 'false', NULL, NULL, 0, 2, 13, '1955176', 1752852872, '2025-07-18 23:34:32', NULL, 1, 0);
+
+-- ----------------------------
+-- Table structure for oms_shop_pull_lasttime
+-- ----------------------------
+DROP TABLE IF EXISTS `oms_shop_pull_lasttime`;
+CREATE TABLE `oms_shop_pull_lasttime`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `shop_id` int NULL DEFAULT NULL COMMENT '店铺id',
+  `pull_type` enum('ORDER','REFUND') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '类型（ORDER:订单，REFUND:退款）',
+  `lasttime` datetime NULL DEFAULT NULL COMMENT '最后更新时间',
+  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '租户店铺更新最后时间记录' ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of oms_shop_pull_lasttime
+-- ----------------------------
+INSERT INTO `oms_shop_pull_lasttime` VALUES (1, 1, 'ORDER', '2024-04-09 16:23:00', '2024-03-23 15:56:13', '2024-04-09 16:23:00');
+INSERT INTO `oms_shop_pull_lasttime` VALUES (2, 1, 'REFUND', '2024-04-09 17:43:00', '2024-03-24 13:03:54', '2024-04-09 17:43:00');
+INSERT INTO `oms_shop_pull_lasttime` VALUES (3, 2, 'ORDER', '2024-04-09 19:44:00', '2024-03-10 13:00:07', '2024-04-09 19:44:00');
+INSERT INTO `oms_shop_pull_lasttime` VALUES (4, 2, 'REFUND', '2024-04-10 23:35:56', '2024-03-24 13:50:24', '2024-04-11 11:35:58');
+
+-- ----------------------------
+-- Table structure for oms_shop_pull_logs
+-- ----------------------------
+DROP TABLE IF EXISTS `oms_shop_pull_logs`;
+CREATE TABLE `oms_shop_pull_logs`  (
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键Id',
+  `shop_id` bigint NULL DEFAULT NULL COMMENT '店铺id',
+  `shop_type` int NOT NULL COMMENT '平台id',
+  `merchant_id` bigint NOT NULL COMMENT '商户ID',
+  `pull_type` enum('ORDER','REFUND','GOODS','ORDER_UPDATE') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '类型（ORDER订单，GOODS商品，REFUND退款）',
+  `pull_way` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '拉取方式（主动拉取、定时任务）',
+  `pull_params` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '拉取参数',
+  `pull_result` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '拉取结果',
+  `pull_time` datetime NULL DEFAULT NULL COMMENT '拉取时间',
+  `duration` bigint NULL DEFAULT NULL COMMENT '耗时（毫秒）',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1312 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '店铺更新日志表' ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of oms_shop_pull_logs
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for oms_shop_refund
@@ -5401,28 +5444,6 @@ INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1480, 1301814344134, 42399007657
 INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1481, 1301814344123, 423990076571, 0, 0, 'JKL9098', NULL, '复古蓝 30', 100, 'JKL9098', 'JKL9098', NULL, NULL, NULL, NULL, 1, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
 INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1482, 1301814344121, 423990076571, 0, 0, 'JKL9098', NULL, '复古蓝 28', 100, 'JKL9098', 'JKL9098', NULL, NULL, NULL, NULL, 1, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
 INSERT INTO `oms_tenant_shop_goods_sku` VALUES (1483, 1301814344125, 423990076571, 0, 0, 'JKL9098', NULL, '复古蓝 32', 100, 'JKL9098', 'JKL9098', NULL, NULL, NULL, NULL, 1, 0, 0, '2024-06-23 14:08:26', NULL, NULL, NULL);
-
--- ----------------------------
--- Table structure for oms_tenant_shop_pull_lasttime
--- ----------------------------
-DROP TABLE IF EXISTS `oms_tenant_shop_pull_lasttime`;
-CREATE TABLE `oms_tenant_shop_pull_lasttime`  (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `shop_id` int NULL DEFAULT NULL COMMENT '店铺id',
-  `pull_type` enum('ORDER','REFUND') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '类型（ORDER:订单，REFUND:退款）',
-  `lasttime` datetime NULL DEFAULT NULL COMMENT '最后更新时间',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '租户店铺更新最后时间记录' ROW_FORMAT = DYNAMIC;
-
--- ----------------------------
--- Records of oms_tenant_shop_pull_lasttime
--- ----------------------------
-INSERT INTO `oms_tenant_shop_pull_lasttime` VALUES (1, 1, 'ORDER', '2024-04-09 16:23:00', '2024-03-23 15:56:13', '2024-04-09 16:23:00');
-INSERT INTO `oms_tenant_shop_pull_lasttime` VALUES (2, 1, 'REFUND', '2024-04-09 17:43:00', '2024-03-24 13:03:54', '2024-04-09 17:43:00');
-INSERT INTO `oms_tenant_shop_pull_lasttime` VALUES (3, 2, 'ORDER', '2024-04-09 19:44:00', '2024-03-10 13:00:07', '2024-04-09 19:44:00');
-INSERT INTO `oms_tenant_shop_pull_lasttime` VALUES (4, 2, 'REFUND', '2024-04-10 23:35:56', '2024-03-24 13:50:24', '2024-04-11 11:35:58');
 
 -- ----------------------------
 -- Table structure for oms_wei_order

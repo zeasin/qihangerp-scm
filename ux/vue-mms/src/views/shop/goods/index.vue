@@ -22,6 +22,14 @@
             :key="item.id"
             :label="item.name"
             :value="item.id">
+            <span style="float: left">{{ item.name }}</span>
+            <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 500">微信小店</span>
+            <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 200">京东POP</span>
+            <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 280">京东自营</span>
+            <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 100">淘宝天猫</span>
+            <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 300">拼多多</span>
+            <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 400">抖店</span>
+            <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 999">线下渠道</span>
           </el-option>
         </el-select>
       </el-form-item>
@@ -72,30 +80,33 @@
 
     <el-table v-loading="loading" :data="goodsList" @selection-change="handleSelectionChange">
       <el-table-column label="序号" type="index" />
-      <el-table-column label="网店商品ID" align="center" prop="platformGoodsId" />
+      <el-table-column label="平台商品ID" align="center" prop="platformProductId" width="150"/>
+      <el-table-column label="主图" align="center" prop="goodsImg" width="60">
+        <template slot-scope="scope">
+          <image-preview :src="scope.row.img" :width="50" :height="50"/>
+        </template>
+      </el-table-column>
+
+      <el-table-column label="商品标题" align="left" prop="title" />
+      <el-table-column label="商品编码" align="center" prop="outerProductId" />
       <el-table-column label="店铺" align="center" prop="shopId" >
         <template slot-scope="scope">
           <el-tag size="small">{{ shopList.find(x=>x.id === scope.row.shopId)?shopList.find(x=>x.id === scope.row.shopId).name :'' }}</el-tag>
         </template>
       </el-table-column>
-      <el-table-column label="商品编码" align="center" prop="goodsNum" />
-      <el-table-column label="商品标题" align="center" prop="title" />
-      <el-table-column label="主图" align="center" prop="goodsImg" >
-        <template slot-scope="scope">
-          <el-image style="width: 70px; height: 70px" :src="scope.row.goodsImg"></el-image>
-        </template>
-      </el-table-column>
-      <el-table-column label="累计销量" align="center" prop="totalSales" />
+
+
+<!--      <el-table-column label="累计销量" align="center" prop="totalSales" />-->
 
       <el-table-column label="创建时间" align="center" prop="createTime" width="180">
         <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.createTime) }}</span>
+          <span>{{ parseTime(scope.row.createOn) }}</span>
         </template>
       </el-table-column>
       <el-table-column label="状态" align="center" prop="status" >
         <template slot-scope="scope">
-          <el-tag size="small" v-if="scope.row.status===1">上架中</el-tag>
-          <el-tag size="small" v-if="scope.row.status===2">已下架</el-tag>
+          <el-tag size="small" v-if="scope.row.status==1">已下架</el-tag>
+          <el-tag size="small" v-if="scope.row.status==0">上架中</el-tag>
         </template>
       </el-table-column>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
@@ -126,17 +137,17 @@
     <el-dialog title="SKU列表" :visible.sync="skuOpen" width="960px" append-to-body>
       <el-table v-loading="loading" :data="goodsSkuList" @selection-change="handleSelectionChange">
         <el-table-column label="序号" type="index" />
-        <el-table-column label="网店商品ID" align="center" prop="platformGoodsId" />
-        <el-table-column label="网店SKUID" align="center" prop="skuId" />
-        <el-table-column label="供应链SKUID" align="center" prop="erpGoodsSpecId" />
+        <el-table-column label="平台商品ID" align="center" prop="platformProductId" />
+        <el-table-column label="平台商品skuID" align="center" prop="platformSkuId" />
+        <el-table-column label="供应链商品skuID" align="center" prop="erpGoodsSpecId" />
         <el-table-column label="SKU编码" align="center" prop="skuCode" />
-        <el-table-column label="SKU名称" align="center" prop="goodsSpec" />
-        <el-table-column label="状态" align="center" prop="status" >
-          <template slot-scope="scope">
-            <el-tag size="small" v-if="scope.row.status===1">上架中</el-tag>
-            <el-tag size="small" v-if="scope.row.status===2">已下架</el-tag>
-          </template>
-        </el-table-column>
+        <el-table-column label="SKU名称" align="center" prop="skuName" />
+<!--        <el-table-column label="状态" align="center" prop="status" >-->
+<!--          <template slot-scope="scope">-->
+<!--            <el-tag size="small" v-if="scope.row.status===1">上架中</el-tag>-->
+<!--            <el-tag size="small" v-if="scope.row.status===2">已下架</el-tag>-->
+<!--          </template>-->
+<!--        </el-table-column>-->
         <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
           <template slot-scope="scope">
             <el-button
@@ -480,7 +491,7 @@ export default {
       this.checkedSShopGoodsSku = selection.map(item => item.index)
     },
     handleSkuDetail(row){
-      this.goodsSkuList = row.skuList
+      this.goodsSkuList = row.skus
       this.skuOpen = true;
     },
     handlePull(pull_type) {

@@ -10,11 +10,11 @@ export function listGoods(query) {
 }
 
 // 查询店铺商品列表
-export function pullGoodsList(query) {
+export function pullGoodsList(data) {
   return request({
     url: '/api/store-api/goods/pull_goods',
-    method: 'get',
-    params: query
+    method: 'POST',
+    data: data
   })
 }
 

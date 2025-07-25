@@ -54,9 +54,9 @@ public class GoodsApiController extends BaseController {
         if(!org.springframework.util.StringUtils.hasText(shop.getAppSercet())) {
             return AjaxResult.error("店铺参数配置错误，没有找到AppSercet");
         }
-        if(!org.springframework.util.StringUtils.hasText(shop.getServerUrl())) {
-            return AjaxResult.error("店铺参数配置错误，没有找到ApiRequestUrl");
-        }
+//        if(!org.springframework.util.StringUtils.hasText(shop.getServerUrl())) {
+//            return AjaxResult.error("店铺参数配置错误，没有找到ApiRequestUrl");
+//        }
         Integer userIdentity = SecurityUtils.getLoginUser().getUserIdentity();
         Long merchantId = 0l;
         if(userIdentity == null||userIdentity==0){

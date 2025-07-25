@@ -2,15 +2,15 @@ package cn.qihangerp.mms.controller;
 
 import cn.qihangerp.common.*;
 import cn.qihangerp.common.utils.SecurityUtils;
+import cn.qihangerp.model.goods.domain.ShopGoodsSku;
+import cn.qihangerp.model.goods.service.ShopGoodsSkuService;
 import cn.qihangerp.model.order.bo.OrderQuery;
 import cn.qihangerp.model.order.domain.OmsOrder;
 import cn.qihangerp.model.order.domain.OmsOrderItem;
 import cn.qihangerp.model.shop.domain.OmsMerchantShop;
-import cn.qihangerp.model.shop.domain.OmsTenantShopGoodsSku;
-import cn.qihangerp.model.shop.service.OmsTenantShopGoodsSkuService;
 import cn.qihangerp.model.shop.service.OmsMerchantShopService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,15 +21,14 @@ import java.util.List;
  * @author qihang
  * @date 2023-12-31
  */
+@AllArgsConstructor
 @RestController
 @RequestMapping("/order")
 public class OrderController extends BaseController
 {
-
-    @Autowired
+    private final ShopGoodsSkuService shopGoodsSkuService;
     private OmsMerchantShopService shopService;
-    @Autowired
-    private OmsTenantShopGoodsSkuService goodsSkuService;
+
 
     /**
      * 查询店铺订单列表
@@ -62,7 +61,15 @@ public class OrderController extends BaseController
         if(order.getShopId()==null) return AjaxResult.error("请选择店铺");
         OmsMerchantShop shop = shopService.getById(order.getShopId());
         if(shop==null) return AjaxResult.error("店铺不存在");
-
+        Integer userIdentity = SecurityUtils.getLoginUser().getUserIdentity();
+        Long merchantId = null;
+        if(userIdentity == null||userIdentity==0){
+            merchantId = 0L;
+        }else if(userIdentity==20){
+            merchantId = SecurityUtils.getDeptId();
+        }else{
+            merchantId = -1L;
+        }
         if(order.getItemList() == null || order.getItemList().size() == 0) return AjaxResult.error("请添加订单商品");
         else{
             // 循环查找是否缺少skuId
@@ -71,21 +78,21 @@ public class OrderController extends BaseController
                 if(orderItem.getSkuId()==null || orderItem.getSkuId()<=0) return AjaxResult.error("请选择订单商品规格");
                 orderItem.setPlatformSkuId(orderItem.getSkuId());
                 // 店铺商品表查询商品供应链信息
-                List<OmsTenantShopGoodsSku> shopGoodsSkuList = goodsSkuService.list(new LambdaQueryWrapper<OmsTenantShopGoodsSku>()
-                        .eq(OmsTenantShopGoodsSku::getSkuId, orderItem.getSkuId())
-                        .eq(OmsTenantShopGoodsSku::getShopId, order.getShopId())
-                        .eq(OmsTenantShopGoodsSku::getTenantId, SecurityUtils.getUserId())
+                List<ShopGoodsSku> shopGoodsSkuList = shopGoodsSkuService.list(new LambdaQueryWrapper<ShopGoodsSku>()
+                        .eq(ShopGoodsSku::getPlatformSkuId, orderItem.getSkuId())
+                        .eq(ShopGoodsSku::getShopId, order.getShopId())
+                        .eq(ShopGoodsSku::getMerchantId,merchantId)
                 );
                 if(shopGoodsSkuList == null || shopGoodsSkuList.size()==0) return AjaxResult.error("没有找到店铺商品");
-                if(shopGoodsSkuList.get(0).getErpGoodsId()==null||shopGoodsSkuList.get(0).getErpGoodsId()==0)return AjaxResult.error("店铺商品没有关联供应链商品，无法下单！");
-                if(shopGoodsSkuList.get(0).getErpGoodsSpecId()==null||shopGoodsSkuList.get(0).getErpGoodsSpecId()==0)return AjaxResult.error("店铺商品没有关联供应链商品，无法下单！");
+//                if(shopGoodsSkuList.get(0).getErpGoodsId()==null||shopGoodsSkuList.get(0).getErpGoodsId()==0)return AjaxResult.error("店铺商品没有关联供应链商品，无法下单！");
+//                if(shopGoodsSkuList.get(0).getErpGoodsSkuId()==null||shopGoodsSkuList.get(0).getErpGoodsSkuId()==0)return AjaxResult.error("店铺商品没有关联供应链商品，无法下单！");
                 orderItem.setErpGoodsId(shopGoodsSkuList.get(0).getErpGoodsId());
-                orderItem.setErpGoodsSpecId(shopGoodsSkuList.get(0).getErpGoodsSpecId());
+                orderItem.setErpGoodsSpecId(shopGoodsSkuList.get(0).getErpGoodsSkuId());
             }
         }
 
         order.setShopType(shop.getType());
-        order.setTenantId(SecurityUtils.getUserId());
+        order.setTenantId(merchantId);
 //        if(order.getGoodsAmount()==null)return new AjaxResult(1503,"请填写商品价格！");
         order.setCreateBy(SecurityUtils.getUsername());
 //        int result = orderService.insertOrder(order);
