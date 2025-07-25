@@ -5,16 +5,18 @@
 <mapper namespace="cn.qihangerp.service.shop.mapper.OmsShopPullLasttimeMapper">
 
     <resultMap id="BaseResultMap" type="cn.qihangerp.model.shop.domain.OmsShopPullLasttime">
-            <id property="id" column="id" jdbcType="INTEGER"/>
-            <result property="shopId" column="shop_id" jdbcType="INTEGER"/>
-            <result property="pullType" column="pull_type" jdbcType="OTHER"/>
-            <result property="lasttime" column="lasttime" jdbcType="TIMESTAMP"/>
-            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
-            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <id property="id" column="id" />
+            <result property="shopId" column="shop_id" />
+            <result property="shopType" column="shop_type" />
+            <result property="merchantId" column="merchant_id" />
+            <result property="pullType" column="pull_type" />
+            <result property="lasttime" column="lasttime" />
+            <result property="createTime" column="create_time" />
+            <result property="updateTime" column="update_time" />
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,shop_id,pull_type,
-        lasttime,create_time,update_time
+        id,shop_id,shop_type,merchant_id,pull_type,lasttime,
+        create_time,update_time
     </sql>
 </mapper>

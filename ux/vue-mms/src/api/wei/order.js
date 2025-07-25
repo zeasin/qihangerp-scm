@@ -22,7 +22,7 @@ export function getOrder(id) {
 // 接口拉取订单
 export function pullOrder(data) {
   return request({
-    url: '/wei/order/pull_order',
+    url: '/api/store-api/order/pull_order',
     method: 'post',
     data: data
   })

@@ -330,9 +330,10 @@ import { listShop } from "@/api/shop/shop";
 import {listOrder,getOrder,pushOms,pullOrder,pullOrderDetail} from "@/api/wei/order";
 import {pcaTextArr} from "element-china-area-data";
 import Clipboard from "clipboard";
+import {listShopOrder} from "@/api/shop/order";
 
 export default {
-  name: "OrderWei",
+  name: "OrderWaitShip",
   data() {
     return {
       // 遮罩层
@@ -424,7 +425,7 @@ export default {
         this.queryParams.startTime = null
         this.queryParams.endTime = null
       }
-      listOrder(this.queryParams).then(response => {
+      listShopOrder(this.queryParams).then(response => {
         this.orderList = response.rows;
         this.total = response.total;
         this.loading = false;

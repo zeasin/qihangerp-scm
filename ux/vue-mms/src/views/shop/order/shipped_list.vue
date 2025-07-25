@@ -333,7 +333,7 @@ import Clipboard from "clipboard";
 import {listShopOrder} from "@/api/shop/order";
 
 export default {
-  name: "OrderWei",
+  name: "OrderShippedList",
   data() {
     return {
       // 遮罩层

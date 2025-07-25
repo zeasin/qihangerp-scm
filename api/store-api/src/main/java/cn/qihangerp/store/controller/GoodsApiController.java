@@ -73,11 +73,9 @@ public class GoodsApiController extends BaseController {
         int insert = 0;
         int update = 0;
         int fail = 0;
-         if (shop.getType()==300) {
+         if (shop.getType()==EnumShopType.PDD.getIndex()) {
             // 拼多多
-
             String accessToken = shop.getAccessToken();
-//            String serverUrl = checkResult.getData().getServerUrl();
             String appKey = shop.getAppkey();
             String appSecret = shop.getAppSercet();
 
