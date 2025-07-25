@@ -97,6 +97,58 @@ public class ShopOrderServiceImpl extends ServiceImpl<ShopOrderMapper, ShopOrder
         }
         return PageResult.build(orderPage);
     }
+
+    @Override
+    public PageResult<ShopOrder> queryWaitShipOrderPageList(ShopOrderQueryBo bo, PageQuery pageQuery) {
+        Long startTime = null;
+        Long endTime = null;
+
+        if(org.springframework.util.StringUtils.hasText(bo.getStartTime())){
+            Matcher matcher = DATE_FORMAT.matcher(bo.getStartTime());
+            boolean b = matcher.find();
+            if(b){
+//                bo.setStartTime(bo.getStartTime()+" 00:00:00");
+                startTime = DateUtils.parseDate(bo.getStartTime()+" 00:00:00").getTime() /1000;
+            }
+        }
+        if(org.springframework.util.StringUtils.hasText(bo.getEndTime())){
+            Matcher matcher = DATE_FORMAT.matcher(bo.getEndTime());
+            boolean b = matcher.find();
+            if(b){
+//                bo.setEndTime(bo.getEndTime()+" 23:59:59");
+                endTime = DateUtils.parseDate(bo.getEndTime()+" 23:59:59").getTime() /1000;
+            }
+        }
+        pageQuery.setOrderByColumn("order_time");
+        pageQuery.setIsAsc("desc");
+
+
+        LambdaQueryWrapper<ShopOrder> queryWrapper = new LambdaQueryWrapper<ShopOrder>()
+//                .eq(ShopOrder::getOrderStatus,1)
+                .eq( ShopOrder::getAfterSalesStatus,0)
+                .eq(bo.getShopId()!=null, ShopOrder::getShopId,bo.getShopId())
+                .eq(bo.getShopType()!=null, ShopOrder::getShopType,bo.getShopType())
+                .eq(bo.getMerchantId()!=null, ShopOrder::getMerchantId,bo.getMerchantId())
+                .ge(startTime!=null, ShopOrder::getOrderTime,startTime)
+                .le(endTime!=null, ShopOrder::getOrderTime,endTime)
+                .eq(StringUtils.hasText(bo.getOrderId()), ShopOrder::getOrderId,bo.getOrderId())
+                .eq(ShopOrder::getDeliverMethod,0)
+                ;
+
+        Page<ShopOrder> orderPage = this.baseMapper.selectPage(pageQuery.build(), queryWrapper);
+        if(orderPage.getRecords()!=null){
+            for (var order:orderPage.getRecords()) {
+                order.setItems(itemMapper.selectList(
+                        new LambdaQueryWrapper<ShopOrderItem>()
+                                .eq(ShopOrderItem::getShopOrderId,order.getId()))
+                );
+            }
+        }
+        return PageResult.build(orderPage);
+    }
+
+
+
     @Override
     public ShopOrder queryDetailById(Long orderId) {
         ShopOrder shopOrder = this.baseMapper.selectById(orderId);

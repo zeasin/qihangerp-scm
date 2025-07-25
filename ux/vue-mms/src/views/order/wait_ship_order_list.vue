@@ -1,9 +1,9 @@
 <template>
   <div class="app-container">
     <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
-      <el-form-item label="订单号" prop="orderNum">
+      <el-form-item label="订单号" prop="orderId">
         <el-input
-          v-model="queryParams.orderNum"
+          v-model="queryParams.orderId"
           placeholder="请输入订单号"
           clearable
           @keyup.enter.native="handleQuery"
@@ -17,17 +17,33 @@
             :key="item.id"
             :label="item.name"
             :value="item.id">
+           <span style="float: left">{{ item.name }}</span>
+           <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 500">微信小店</span>
+           <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 200">京东POP</span>
+           <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 280">京东自营</span>
+           <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 100">淘宝天猫</span>
+           <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 300">拼多多</span>
+           <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 400">抖店</span>
+           <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 999">线下渠道</span>
           </el-option>
         </el-select>
       </el-form-item>
-
-      <el-form-item label="状态" prop="orderStatus">
-        <el-select v-model="queryParams.orderStatus" placeholder="请选择状态" clearable @change="handleQuery">
-          <el-option label="待发货" value="1" ></el-option>
-          <el-option label="已发货" value="2"> </el-option>
-          <el-option label="已完成" value="3"></el-option>
-        </el-select>
+      <el-form-item label="下单时间" prop="orderTime">
+        <el-date-picker clearable
+                        v-model="orderTime" value-format="yyyy-MM-dd"
+                        type="daterange"
+                        range-separator="至"
+                        start-placeholder="开始日期"
+                        end-placeholder="结束日期">
+        </el-date-picker>
       </el-form-item>
+<!--      <el-form-item label="状态" prop="orderStatus">-->
+<!--        <el-select v-model="queryParams.orderStatus" placeholder="请选择状态" clearable @change="handleQuery">-->
+<!--          <el-option label="待发货" value="1" ></el-option>-->
+<!--          <el-option label="已发货" value="2"> </el-option>-->
+<!--          <el-option label="已完成" value="3"></el-option>-->
+<!--        </el-select>-->
+<!--      </el-form-item>-->
 
 
 
@@ -56,26 +72,25 @@
           @click="handleAdd"
         >手动创建发货订单</el-button>
       </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="warning"
-          plain
-          icon="el-icon-download"
-          size="mini"
-          @click="handleExport"
-          v-hasPermi="['shop:order:export']"
-        >导出</el-button>
-      </el-col>
+
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 
     <el-table v-loading="loading" :data="orderList" @selection-change="handleSelectionChange">
 <!--      <el-table-column type="selection" width="55" align="center" />-->
 <!--      <el-table-column label="订单ID" align="center" prop="id" />-->
-      <el-table-column label="订单号" align="left" prop="orderNum" >
+      <el-table-column label="订单号" align="left" prop="tid" width="220px">
         <template slot-scope="scope">
-          <div>{{scope.row.orderNum}}</div>
-          <el-tag size="small">{{ shopList.find(x=>x.id === scope.row.shopId)?shopList.find(x=>x.id === scope.row.shopId).name :'' }}</el-tag>
+          <el-button
+            size="mini"
+            type="text"
+            icon="el-icon-view"
+            @click="handleDetail(scope.row)"
+          > {{scope.row.orderId}}</el-button>
+          <i class="el-icon-copy-document tag-copy" :data-clipboard-text="scope.row.orderId" @click="copyActiveCode($event,scope.row.orderId)" ></i>
+          <!--          <el-button type="text" :data-clipboard-text="scope.row.orderSn" size="mini" style="float: left"  @click="copyActiveCode($event,scope.row.orderSn)"  class="tag-copy">复制</el-button>-->
+          <br/>
+          <el-tag type="info">{{ shopList.find(x=>x.id === scope.row.shopId) ? shopList.find(x=>x.id === scope.row.shopId).name : '' }}</el-tag>
         </template>
       </el-table-column>
 <!--      <el-table-column label="店铺" align="center" prop="shopId" >-->
@@ -86,50 +101,54 @@
 
       <el-table-column label="商品" width="350">
           <template slot-scope="scope">
-            <el-row v-for="item in scope.row.itemList" :key="item.id" :gutter="20">
+            <el-row v-for="item in scope.row.items" :key="item.id" :gutter="20">
 
             <div style="float: left;display: flex;align-items: center;" >
-              <el-image  style="width: 70px; height: 70px;" :src="item.goodsImg"></el-image>
+             <span>
+              <image-preview :src="item.img" :width="50" :height="50"/>
+                </span>
               <div style="margin-left:10px">
-              <p>{{item.goodsTitle}} <br />
-                <el-tag size="small" >{{item.skuCode}}</el-tag>
-                {{item.goodsSpec}}&nbsp;
+                <div>{{item.title}} </div>
+                <div><el-tag type="info" size="small">{{item.skuName}}</el-tag>
+                平台ID: {{item.skuId}}
+                </div>
+                <div>
+                <el-tag size="small" v-if="item.skuCode">{{item.skuCode}}</el-tag>
                 <el-tag size="small">x {{item.quantity}}</el-tag>
-                </p>
-                <p v-if="scope.row.refundStatus === 1">
+                  <span v-if="scope.row.refundStatus === 1">
                   <el-button type="text" size="mini" round @click="handleRefund(scope.row,item)">售后</el-button>
-                </p>
+                </span>
+                </div>
+
               </div>
             </div>
             </el-row>
           </template>
       </el-table-column>
-      <el-table-column label="订单备注" align="center" prop="remark" >
+      <el-table-column label="收件人信息" align="left" prop="userName" >
         <template slot-scope="scope">
-          {{scope.row.remark}}
+          <span>{{scope.row.receiverNameMask}}</span><br />
+          <span> {{scope.row.province}} {{scope.row.city}} {{scope.row.county}}
+            </span>
+          <p>
+            {{scope.row.detailInfo}}
+          </p>
         </template>
       </el-table-column>
-      <!-- <el-table-column label="买家留言信息" align="center" prop="buyerMemo" /> -->
-      <!-- <el-table-column label="标签" align="center" prop="tag" /> -->
-
-      <!-- <el-table-column label="售后状态" align="center" prop="refundStatus" /> -->
-      <!-- <el-table-column label="订单状态" align="center" prop="orderStatus" /> -->
-      <!-- <el-table-column label="邮费，单位：元" align="center" prop="postage" /> -->
-      <!-- <el-table-column label="折扣金额(元)" align="center" prop="discountAmount" /> -->
-      <!-- <el-table-column label="商品金额(元)" align="center" prop="goodsAmount" /> -->
-
+      <el-table-column label="备注" align="center" prop="remark" >
+        <template slot-scope="scope">
+          <span v-if="scope.row.buyerMemo">{{scope.row.buyerMemo}}</span>
+          <span v-if="scope.row.sellerMemo">{{scope.row.sellerMemo}}</span>
+          <span v-if="scope.row.remark">{{scope.row.remark}}</span>
+        </template>
+      </el-table-column>
        <el-table-column label="下单时间" align="center" prop="orderTime" >
          <template slot-scope="scope">
            <span>{{ parseTime(scope.row.orderTime) }}</span>
+<!--           <span>{{ scope.row.orderTimeText }}</span>-->
          </template>
        </el-table-column>
-      <el-table-column label="收件信息" align="center" prop="receiverName" >
-        <template slot-scope="scope">
-          {{scope.row.receiverName}}<br />
-          {{scope.row.province}} {{scope.row.city}} {{scope.row.town}}<br/>
-          <el-tag v-if="scope.row.shippingNumber">{{scope.row.shippingNumber}}</el-tag>
-        </template>
-      </el-table-column>
+
       <!-- <el-table-column label="手机号" align="center" prop="receiverPhone" /> -->
       <!-- <el-table-column label="${comment}" align="center" prop="address" /> -->
       <!-- <el-table-column label="${comment}" align="center" prop="town" /> -->
@@ -138,21 +157,21 @@
 <!--      <el-table-column label="发货时间" align="center" prop="shippingTime" />-->
 <!--      <el-table-column label="快递单号" align="center" prop="shippingNumber" />-->
       <!-- <el-table-column label="物流公司" align="center" prop="shippingCompany" /> -->
-      <el-table-column label="状态" align="center" prop="orderStatus" >
-        <template slot-scope="scope">
-          <el-tag v-if="scope.row.orderStatus === 1" style="margin-bottom: 6px;">待发货</el-tag>
-          <el-tag v-if="scope.row.orderStatus === 2" style="margin-bottom: 6px;">已出库</el-tag>
-          <el-tag v-if="scope.row.orderStatus === 3" style="margin-bottom: 6px;">已发货</el-tag>
-          <el-tag v-if="scope.row.orderStatus === 4" style="margin-bottom: 6px;">已完成</el-tag>
-          <el-tag v-if="scope.row.orderStatus === 11" style="margin-bottom: 6px;">已取消</el-tag>
-          <br />
-          <!-- 1：无售后或售后关闭，2：售后处理中，3：退款中，4： 退款成功 -->
-          <el-tag v-if="scope.row.refundStatus === 1">无售后或售后关闭</el-tag>
-          <el-tag v-if="scope.row.refundStatus === 2">售后处理中</el-tag>
-          <el-tag v-if="scope.row.refundStatus === 3">退款中</el-tag>
-          <el-tag v-if="scope.row.refundStatus === 4">退款成功</el-tag>
-        </template>
-      </el-table-column>
+<!--      <el-table-column label="状态" align="center" prop="orderStatus" >-->
+<!--        <template slot-scope="scope">-->
+<!--          <el-tag v-if="scope.row.orderStatus === 1" style="margin-bottom: 6px;">待发货</el-tag>-->
+<!--          <el-tag v-if="scope.row.orderStatus === 2" style="margin-bottom: 6px;">已出库</el-tag>-->
+<!--          <el-tag v-if="scope.row.orderStatus === 3" style="margin-bottom: 6px;">已发货</el-tag>-->
+<!--          <el-tag v-if="scope.row.orderStatus === 4" style="margin-bottom: 6px;">已完成</el-tag>-->
+<!--          <el-tag v-if="scope.row.orderStatus === 11" style="margin-bottom: 6px;">已取消</el-tag>-->
+<!--          <br />-->
+<!--          &lt;!&ndash; 1：无售后或售后关闭，2：售后处理中，3：退款中，4： 退款成功 &ndash;&gt;-->
+<!--          <el-tag v-if="scope.row.refundStatus === 1">无售后或售后关闭</el-tag>-->
+<!--          <el-tag v-if="scope.row.refundStatus === 2">售后处理中</el-tag>-->
+<!--          <el-tag v-if="scope.row.refundStatus === 3">退款中</el-tag>-->
+<!--          <el-tag v-if="scope.row.refundStatus === 4">退款成功</el-tag>-->
+<!--        </template>-->
+<!--      </el-table-column>-->
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
@@ -347,6 +366,7 @@
 <script>
 import { listOrder, getOrder, delOrder, addOrder, updateOrder } from "@/api/order/order";
 import {listShop} from "@/api/shop/shop";
+import Clipboard from "clipboard";
 
 export default {
   name: "Order",
@@ -376,6 +396,7 @@ export default {
       detailTitle:'订单详情',
       detailOpen:false,
       isAudit:false,
+      orderTime:null,
       // 查询参数
       queryParams: {
         pageNum: 1,
@@ -413,8 +434,30 @@ export default {
     amountFormatter(row, column, cellValue, index) {
       return '￥' + cellValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
     },
+    copyActiveCode(event,queryParams) {
+      console.log(queryParams)
+      const clipboard = new Clipboard(".tag-copy")
+      clipboard.on('success', e => {
+        this.$message({ type: 'success', message: '复制成功' })
+        // 释放内存
+        clipboard.destroy()
+      })
+      clipboard.on('error', e => {
+        // 不支持复制
+        this.$message({ type: 'waning', message: '该浏览器不支持自动复制' })
+        // 释放内存
+        clipboard.destroy()
+      })
+    },
     /** 查询店铺订单列表 */
     getList() {
+      if(this.orderTime){
+        this.queryParams.startTime = this.orderTime[0]
+        this.queryParams.endTime = this.orderTime[1]
+      }else {
+        this.queryParams.startTime = null
+        this.queryParams.endTime = null
+      }
       this.loading = true;
       listOrder(this.queryParams).then(response => {
         this.orderList = response.rows;
@@ -442,9 +485,7 @@ export default {
     handleAdd() {
       this.$router.push('/order/create');
     },
-    handlePull(){
-      this.$router.push('/order/shop_order_list');
-    },
+
     reset(){
 
     },

@@ -35,7 +35,7 @@ public class OrderController extends BaseController
 
 
     /**
-     * 查询店铺订单列表
+     * 代发货的list
      */
     @GetMapping("/list")
     public TableDataInfo list(ShopOrderQueryBo query, PageQuery pageQuery)
@@ -51,7 +51,7 @@ public class OrderController extends BaseController
         }
         query.setMerchantId(merchantId);
 //        query.setTenantId(SecurityUtils.getUserId());
-        PageResult<ShopOrder> pageResult = shopOrderService.queryOrderPageList(query,pageQuery);
+        PageResult<ShopOrder> pageResult = shopOrderService.queryWaitShipOrderPageList(query,pageQuery);
         return getDataTable(pageResult);
     }
 

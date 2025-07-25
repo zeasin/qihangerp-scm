@@ -14,6 +14,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface ShopOrderService extends IService<ShopOrder> {
     PageResult<ShopOrder> queryOrderPageList(ShopOrderQueryBo bo, PageQuery pageQuery);
+    PageResult<ShopOrder> queryWaitShipOrderPageList(ShopOrderQueryBo bo, PageQuery pageQuery);
     ShopOrder queryDetailById(Long orderId);
     /**
      * 保存店铺订单
