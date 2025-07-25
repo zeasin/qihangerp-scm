@@ -11,7 +11,7 @@
  Target Server Version : 80036 (8.0.36)
  File Encoding         : 65001
 
- Date: 25/07/2025 17:12:12
+ Date: 25/07/2025 21:34:39
 */
 
 SET NAMES utf8mb4;
@@ -3450,8 +3450,8 @@ CREATE TABLE `oms_shop_order`  (
 -- Records of oms_shop_order
 -- ----------------------------
 INSERT INTO `oms_shop_order` VALUES (1, 101, 27, 300, '250701-108134418063687', 1751372958, 1752313546, 3, 1, 0, 6935, 6935, 0, 6935, 0, 0, 0, 0, '', '', '', '', '', '', NULL, '', '', '', '', '', '', NULL, NULL, 'JT5391874653562', 0, NULL, 0, NULL, '2025-07-25 16:42:36', NULL, 0, 0, '', '3', '已签收', 0, '2025-07-01 20:29:18', '2025-07-12 17:45:46');
-INSERT INTO `oms_shop_order` VALUES (2, 101, 27, 300, '250701-170126262622450', 1751381339, 1751382228, 1, 4, 10, 2084, 2084, 0, 2084, 0, 0, 0, 0, '', '', '', '', '', '', NULL, '', '', '', '', '', '', NULL, NULL, '', 0, NULL, 0, NULL, '2025-07-25 16:42:36', NULL, 0, 0, '', '1', '待发货', 0, '2025-07-01 22:48:59', '2025-07-01 23:03:48');
-INSERT INTO `oms_shop_order` VALUES (3, 101, 27, 300, '250702-297575421511662', 1751428245, 1751936935, 3, 1, 0, 2919, 2423, 0, 2423, 496, 0, 496, 0, '', '', '', '', '', '', NULL, '', '', '', '', '', '', NULL, NULL, 'JT5391874712067', 0, NULL, 0, NULL, '2025-07-25 16:42:37', NULL, 0, 0, '', '3', '已签收', 0, '2025-07-02 11:50:45', '2025-07-08 09:08:55');
+INSERT INTO `oms_shop_order` VALUES (2, 101, 27, 300, '250701-170126262622450', 1751381339, 1751382228, 1, 4, 10, 2084, 2084, 0, 2084, 0, 0, 0, 0, '', '', '', '', '', '', NULL, '', '', '', '', '', '', NULL, NULL, '', 0, NULL, 0, NULL, '2025-07-25 16:42:36', '2025-07-25 19:10:22', 0, 0, '', '1', '待发货', 0, '2025-07-01 22:48:59', '2025-07-01 23:03:48');
+INSERT INTO `oms_shop_order` VALUES (3, 101, 27, 300, '250702-297575421511662', 1751428245, 1751936935, 3, 1, 0, 2919, 2423, 0, 2423, 496, 0, 496, 0, '', '', '', '', '', '', NULL, '', '', '', '', '', '', NULL, NULL, 'JT5391874712067', 0, NULL, 0, NULL, '2025-07-25 16:42:37', '2025-07-25 19:10:12', 0, 0, '', '3', '已签收', 0, '2025-07-02 11:50:45', '2025-07-08 09:08:55');
 
 -- ----------------------------
 -- Table structure for oms_shop_order_item
@@ -3498,8 +3498,8 @@ CREATE TABLE `oms_shop_order_item`  (
 -- Records of oms_shop_order_item
 -- ----------------------------
 INSERT INTO `oms_shop_order_item` VALUES (1, 101, 27, 300, 1, '754380133868', '1742164849119', 'https://img.pddpic.com/mms-material-img/2025-05-27/16a4d092-80a4-4b3b-a117-93955bb630fd.jpeg', 1, 6935, '雷士照明LED光源灯芯正品保障客厅卧室餐厅书房吸顶灯LED灯板替换', 0, 0, NULL, 6935, '48W三色变光-330mm', 6935, 'LEDDX001', 'LEDDX00105', 'false', 6935, 'false', 0, NULL, 0, 0, 0, '250701-108134418063687', 1751372958, '2025-07-25 16:42:36', NULL, 1, 0);
-INSERT INTO `oms_shop_order_item` VALUES (2, 101, 27, 300, 2, '754380133868', '1742164849115', 'https://img.pddpic.com/mms-material-img/2025-05-29/a3e7e689-5c30-495c-b5e0-90e38bd352b5.jpeg.a.jpeg', 1, 2084, '雷士照明LED光源灯芯正品保障客厅卧室餐厅书房吸顶灯LED灯板替换', 0, 0, NULL, 2084, '12W白光-135mm', 2084, 'LEDDX001', 'LEDDX00101', 'false', 2084, 'false', 0, NULL, 0, 0, 0, '250701-170126262622450', 1751381339, '2025-07-25 16:42:36', NULL, 4, 0);
-INSERT INTO `oms_shop_order_item` VALUES (3, 101, 27, 300, 3, '754380133868', '1742164849117', 'https://img.pddpic.com/mms-material-img/2025-05-29/70732144-21a8-423c-90df-553c3ea4fe36.jpeg.a.jpeg', 1, 2919, '雷士照明LED光源灯芯正品保障客厅卧室餐厅书房吸顶灯LED灯板替换', 0, 0, NULL, 2919, '24W白光-215mm', 2919, 'LEDDX001', 'LEDDX00103', 'false', 2919, 'false', 0, NULL, 0, 0, 0, '250702-297575421511662', 1751428245, '2025-07-25 16:42:37', NULL, 1, 0);
+INSERT INTO `oms_shop_order_item` VALUES (2, 101, 27, 300, 2, '754380133868', '1742164849115', 'https://img.pddpic.com/mms-material-img/2025-05-29/a3e7e689-5c30-495c-b5e0-90e38bd352b5.jpeg.a.jpeg', 1, 2084, '雷士照明LED光源灯芯正品保障客厅卧室餐厅书房吸顶灯LED灯板替换', 0, 0, NULL, 2084, '12W白光-135mm', 2084, 'LEDDX001', 'LEDDX00101', 'false', 2084, 'false', 0, NULL, 0, 0, 0, '250701-170126262622450', 1751381339, '2025-07-25 16:42:36', '2025-07-25 19:10:22', 4, 0);
+INSERT INTO `oms_shop_order_item` VALUES (3, 101, 27, 300, 3, '754380133868', '1742164849117', 'https://img.pddpic.com/mms-material-img/2025-05-29/70732144-21a8-423c-90df-553c3ea4fe36.jpeg.a.jpeg', 1, 2919, '雷士照明LED光源灯芯正品保障客厅卧室餐厅书房吸顶灯LED灯板替换', 0, 0, NULL, 2919, '24W白光-215mm', 2919, 'LEDDX001', 'LEDDX00103', 'false', 2919, 'false', 0, NULL, 0, 0, 0, '250702-297575421511662', 1751428245, '2025-07-25 16:42:37', '2025-07-25 19:10:12', 1, 0);
 
 -- ----------------------------
 -- Table structure for oms_shop_pull_lasttime
@@ -3542,7 +3542,7 @@ CREATE TABLE `oms_shop_pull_logs`  (
   `pull_time` datetime NULL DEFAULT NULL COMMENT '拉取时间',
   `duration` bigint NULL DEFAULT NULL COMMENT '耗时（毫秒）',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1315 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '店铺更新日志表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1324 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '店铺更新日志表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of oms_shop_pull_logs
@@ -3550,6 +3550,15 @@ CREATE TABLE `oms_shop_pull_logs`  (
 INSERT INTO `oms_shop_pull_logs` VALUES (1312, 27, 300, 101, 'ORDER', '主动拉取', '{startTime:2025-07-24T16:39:00.210835600,endTime:2025-07-25T16:39:00.210835600}', '{insert:0,update:0,fail:0}', '2025-07-25 16:39:00', 575);
 INSERT INTO `oms_shop_pull_logs` VALUES (1313, 27, 300, 101, 'ORDER', '主动拉取', '{startTime:2025-07-24T16:39:29.167926300,endTime:2025-07-25T16:39:29.167926300}', '{insert:0,update:0,fail:0}', '2025-07-25 16:39:29', 129);
 INSERT INTO `oms_shop_pull_logs` VALUES (1314, 27, 300, 101, 'ORDER', '主动拉取', '{startTime:2025-07-01T15:39,endTime:2025-07-02T15:39}', '{insert:3,update:0,fail:0}', '2025-07-25 16:42:36', 929);
+INSERT INTO `oms_shop_pull_logs` VALUES (1315, 27, 300, 101, 'ORDER', '更新订单详情', '{\"orderIds\":[\"250702-297575421511662\",\"250701-170126262622450\",\"250701-108134418063687\"],\"shopId\":27}', '{insert:0,update:3,fail:0}', '2025-07-25 19:00:17', 1089);
+INSERT INTO `oms_shop_pull_logs` VALUES (1316, 27, 300, 101, 'ORDER', '更新订单详情', '{\"orderIds\":[\"250702-297575421511662\",\"250701-170126262622450\",\"250701-108134418063687\"],\"shopId\":27}', '{insert:0,update:3,fail:0}', '2025-07-25 19:00:25', 490);
+INSERT INTO `oms_shop_pull_logs` VALUES (1317, 27, 300, 101, 'ORDER', '更新订单详情', '{\"orderIds\":[\"250702-297575421511662\",\"250701-170126262622450\",\"250701-108134418063687\"],\"shopId\":27}', '{insert:0,update:3,fail:0}', '2025-07-25 19:01:35', 705);
+INSERT INTO `oms_shop_pull_logs` VALUES (1318, 27, 300, 101, 'ORDER', '主动拉取', '{orderSn:null}', '签名验证失败', '2025-07-25 19:04:07', 191);
+INSERT INTO `oms_shop_pull_logs` VALUES (1319, 27, 300, 101, 'ORDER', '更新订单详情', '{\"orderIds\":[\"250702-297575421511662\",\"250701-170126262622450\",\"250701-108134418063687\"],\"shopId\":27}', '{insert:0,update:3,fail:0}', '2025-07-25 19:07:39', 654);
+INSERT INTO `oms_shop_pull_logs` VALUES (1320, 27, 300, 101, 'ORDER', '主动拉取', '{orderSn:3}', '订单不属于当前店铺或订单不存在', '2025-07-25 19:09:22', 232);
+INSERT INTO `oms_shop_pull_logs` VALUES (1321, 27, 300, 101, 'ORDER', '主动拉取', '{orderSn:3}', '订单不属于当前店铺或订单不存在', '2025-07-25 19:09:35', 93);
+INSERT INTO `oms_shop_pull_logs` VALUES (1322, 27, 300, 101, 'ORDER', '更新订单详情', '{\"orderIds\":[\"250702-297575421511662\"],\"shopId\":27}', '{insert:0,update:1,fail:0}', '2025-07-25 19:10:12', 160);
+INSERT INTO `oms_shop_pull_logs` VALUES (1323, 27, 300, 101, 'ORDER', '更新订单详情', '{\"orderIds\":[\"250701-170126262622450\"],\"shopId\":27}', '{insert:0,update:1,fail:0}', '2025-07-25 19:10:22', 163);
 
 -- ----------------------------
 -- Table structure for oms_shop_refund
@@ -6045,10 +6054,12 @@ INSERT INTO `sys_menu_mms` VALUES (1, '发货管理', 0, 1, '/order', 'Layout', 
 INSERT INTO `sys_menu_mms` VALUES (2, '售后管理', 0, 3, '/afterSale', 'Layout', '', 1, 0, 'M', '0', '0', '', 'monitor', 'admin', '2023-12-27 15:00:27', 'admin', '2024-04-06 14:49:33', '至简官网地址');
 INSERT INTO `sys_menu_mms` VALUES (3, '店铺管理', 0, 0, '/shop', 'Layout', '', 1, 0, 'M', '0', '0', '', 'dict', 'admin', '2023-12-29 13:29:44', 'admin', '2024-03-30 17:43:35', '');
 INSERT INTO `sys_menu_mms` VALUES (4, '商品库', 0, 4, '/goods', 'Layout', '', 1, 0, 'M', '0', '0', '', 'build', 'admin', '2023-12-29 16:53:03', 'admin', '2024-03-30 17:43:57', '');
-INSERT INTO `sys_menu_mms` VALUES (101, '发货订单管理', 1, 0, 'order_list', 'order/index', '', 1, 0, 'C', '0', '0', '', 'monitor', 'admin', '2023-12-27 15:00:27', 'admin', '2024-04-06 11:18:00', '菜单管理菜单');
+INSERT INTO `sys_menu_mms` VALUES (101, '手动发货', 1, 0, 'manual_ship', 'order/manual_ship', '', 1, 0, 'C', '0', '0', '', 'monitor', 'admin', '2023-12-27 15:00:27', 'admin', '2024-04-06 11:18:00', '菜单管理菜单');
 INSERT INTO `sys_menu_mms` VALUES (102, '店铺订单管理', 3, 0, 'shop_order_list', 'shop/order/index', '', 1, 0, 'C', '0', '0', '', 'monitor', 'admin', '2023-12-27 15:00:27', 'admin', '2024-04-06 11:18:00', '菜单管理菜单');
 INSERT INTO `sys_menu_mms` VALUES (103, '手动创建订单', 1, 0, 'create', 'order/create', '', 1, 0, 'C', '1', '0', '', 'monitor', 'admin', '2023-12-27 15:00:27', 'admin', '2024-04-06 11:18:00', '菜单管理菜单');
 INSERT INTO `sys_menu_mms` VALUES (105, '发货物流跟踪', 1, 2, 'ship', 'ship/index', NULL, 1, 0, 'C', '0', '0', '', 'guide', 'admin', '2024-03-30 17:37:42', 'admin', '2024-04-06 14:49:59', '');
+INSERT INTO `sys_menu_mms` VALUES (111, '打单发货', 1, 0, 'print_ship', 'order/print_ship', '', 1, 0, 'C', '0', '0', '', 'monitor', 'admin', '2023-12-27 15:00:27', 'admin', '2024-04-06 11:18:00', '菜单管理菜单');
+INSERT INTO `sys_menu_mms` VALUES (112, '供应商发货', 1, 0, 'vendor_ship', 'order/vendor_ship', '', 1, 0, 'C', '0', '0', '', 'monitor', 'admin', '2023-12-27 15:00:27', 'admin', '2024-04-06 11:18:00', '菜单管理菜单');
 INSERT INTO `sys_menu_mms` VALUES (201, '店铺售后管理', 2, 2, 'shop_refund_list', 'shop/refund/index', '', 1, 0, 'C', '0', '0', '', 'edit', 'admin', '2023-12-27 15:00:27', 'admin', '2024-04-06 15:48:21', '参数设置菜单');
 INSERT INTO `sys_menu_mms` VALUES (204, '售后处理查询', 2, 0, 'processing', 'afterSale/index', NULL, 1, 0, 'C', '0', '0', '', 'documentation', 'admin', '2024-04-06 17:27:03', 'admin', '2024-04-06 17:31:12', '');
 INSERT INTO `sys_menu_mms` VALUES (301, '店铺管理', 3, 99, 'shop_list', 'shop/index', '', 1, 0, 'C', '0', '0', '', 'tree', 'admin', '2023-12-29 09:14:02', 'admin', '2024-03-21 17:01:52', '');
@@ -6289,7 +6300,7 @@ CREATE TABLE `sys_user`  (
 -- Records of sys_user
 -- ----------------------------
 INSERT INTO `sys_user` VALUES (1, 100, 'admin', '启航', '00', '280645618@qq.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2025-07-22 09:05:34', 'admin', '2023-08-07 19:31:37', '', '2025-07-22 09:05:35', '管理员');
-INSERT INTO `sys_user` VALUES (2, 101, 'qihang', 'qihang', '20', 'qihang@qq.com', '15666666666', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2025-07-25 16:37:14', 'admin', '2023-08-07 19:31:37', 'admin', '2025-07-25 16:37:13', '测试员');
+INSERT INTO `sys_user` VALUES (2, 101, 'qihang', 'qihang', '20', 'qihang@qq.com', '15666666666', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2025-07-25 20:31:02', 'admin', '2023-08-07 19:31:37', 'admin', '2025-07-25 20:31:01', '测试员');
 INSERT INTO `sys_user` VALUES (100, 1, 'qihangvms', 'aa', '10', '', '', '1', '', '$2a$10$VD49q2rn1ATpQDZJJrmJjuG52b4EkOTTZ0MPbRRmcqEYLmB5mAMsG', '0', '0', '127.0.0.1', '2025-07-23 11:54:04', 'admin', '2024-04-24 11:06:27', '', '2025-07-23 11:54:05', NULL);
 
 -- ----------------------------
