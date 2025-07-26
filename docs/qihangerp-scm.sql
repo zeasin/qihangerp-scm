@@ -11,7 +11,7 @@
  Target Server Version : 80036 (8.0.36)
  File Encoding         : 65001
 
- Date: 25/07/2025 21:34:39
+ Date: 26/07/2025 10:46:46
 */
 
 SET NAMES utf8mb4;
@@ -2524,13 +2524,13 @@ CREATE TABLE `erp_shop_platform`  (
 -- ----------------------------
 -- Records of erp_shop_platform
 -- ----------------------------
-INSERT INTO `erp_shop_platform` VALUES (100, '淘宝天猫', 'TMALL', '', NULL, 'http://www.qihangerp.cn:88/home', 'http://gw.api.taobao.com/router/rest', '2025-07-24 19:11:02', '2025-07-24 19:10:57', 0, 0);
-INSERT INTO `erp_shop_platform` VALUES (200, '京东POP', 'JD-POP', '', NULL, 'http://www.qihangerp.cn:88/home', 'https://api.jd.com/routerjson', '2025-07-24 19:18:25', '2025-07-24 19:18:29', 0, 0);
+INSERT INTO `erp_shop_platform` VALUES (100, '淘宝天猫', 'TMALL', '', NULL, 'http://www.qihangerp.cn:88/home', 'http://gw.api.taobao.com/router/rest', '2025-07-24 19:11:02', '2025-07-24 19:10:57', 1, 0);
+INSERT INTO `erp_shop_platform` VALUES (200, '京东POP', 'JD-POP', '', NULL, 'http://www.qihangerp.cn:88/home', 'https://api.jd.com/routerjson', '2025-07-24 19:18:25', '2025-07-24 19:18:29', 1, 0);
 INSERT INTO `erp_shop_platform` VALUES (280, '京东自营', 'JD-VC', '', NULL, 'http://www.qihangerp.cn:88/home', 'https://api.jd.com/routerjson', '2025-07-24 19:19:02', '2025-07-24 19:19:05', 1, 0);
 INSERT INTO `erp_shop_platform` VALUES (300, '拼多多', 'PDD', '', NULL, 'http://www.qihangerp.cn:88/home', 'https://gw-api.pinduoduo.com/api/router', '2025-07-24 19:19:22', '2025-07-24 19:19:26', 0, 0);
-INSERT INTO `erp_shop_platform` VALUES (400, '抖店', 'DOUDIAN', '7467085634558019081', '4a38cc73-5918-46ea-bb91-657aea0bcde2', 'http://www.qihangerp.cn:88/home', 'https://openapi-fxg.jinritemai.com/', '2025-07-24 19:19:47', '2025-07-24 19:19:51', 0, 0);
-INSERT INTO `erp_shop_platform` VALUES (500, '微信小店', 'WEISHOP', '', NULL, 'http://www.qihangerp.cn:88/home', 'https://api.weixin.qq.com', '2025-07-24 19:20:08', '2025-07-24 19:20:13', 0, 0);
-INSERT INTO `erp_shop_platform` VALUES (999, '其他渠道', 'OFFLINE', ' ', NULL, 'http://www.qihangerp.cn:88/home', NULL, '2025-07-24 19:21:57', '2025-07-24 19:22:00', 0, 0);
+INSERT INTO `erp_shop_platform` VALUES (400, '抖店', 'DOUDIAN', '7467085634558019081', '4a38cc73-5918-46ea-bb91-657aea0bcde2', 'http://www.qihangerp.cn:88/home', 'https://openapi-fxg.jinritemai.com/', '2025-07-24 19:19:47', '2025-07-24 19:19:51', 1, 0);
+INSERT INTO `erp_shop_platform` VALUES (500, '微信小店', 'WEISHOP', '', NULL, 'http://www.qihangerp.cn:88/home', 'https://api.weixin.qq.com', '2025-07-24 19:20:08', '2025-07-24 19:20:13', 1, 0);
+INSERT INTO `erp_shop_platform` VALUES (999, '其他渠道', 'OFFLINE', ' ', NULL, 'http://www.qihangerp.cn:88/home', NULL, '2025-07-24 19:21:57', '2025-07-24 19:22:00', 1, 0);
 
 -- ----------------------------
 -- Table structure for oms_jd_after_sale
@@ -6300,7 +6300,7 @@ CREATE TABLE `sys_user`  (
 -- Records of sys_user
 -- ----------------------------
 INSERT INTO `sys_user` VALUES (1, 100, 'admin', '启航', '00', '280645618@qq.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2025-07-22 09:05:34', 'admin', '2023-08-07 19:31:37', '', '2025-07-22 09:05:35', '管理员');
-INSERT INTO `sys_user` VALUES (2, 101, 'qihang', 'qihang', '20', 'qihang@qq.com', '15666666666', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2025-07-25 20:31:02', 'admin', '2023-08-07 19:31:37', 'admin', '2025-07-25 20:31:01', '测试员');
+INSERT INTO `sys_user` VALUES (2, 101, 'qihang', 'qihang', '20', 'qihang@qq.com', '15666666666', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2025-07-26 10:45:32', 'admin', '2023-08-07 19:31:37', 'admin', '2025-07-26 10:45:31', '测试员');
 INSERT INTO `sys_user` VALUES (100, 1, 'qihangvms', 'aa', '10', '', '', '1', '', '$2a$10$VD49q2rn1ATpQDZJJrmJjuG52b4EkOTTZ0MPbRRmcqEYLmB5mAMsG', '0', '0', '127.0.0.1', '2025-07-23 11:54:04', 'admin', '2024-04-24 11:06:27', '', '2025-07-23 11:54:05', NULL);
 
 -- ----------------------------

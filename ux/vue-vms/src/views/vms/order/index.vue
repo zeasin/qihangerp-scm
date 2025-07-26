@@ -52,6 +52,15 @@
           @click="handleUpdateSendStatus"
         >更新发货状态</el-button>
       </el-col>
+      <el-col :span="1.5">
+        <el-button
+          type="primary"
+          plain
+          icon="el-icon-printer"
+          size="mini"
+          @click="openWechatEInvoice"
+        >微信小店电子面单</el-button>
+      </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 
@@ -303,6 +312,16 @@
 <!--        </el-tab-pane>-->
       </el-tabs>
     </el-dialog>
+
+    <!-- 微信小店电子面单弹窗 -->
+    <el-dialog
+      title="微信小店电子面单"
+      :visible.sync="wechatEInvoiceVisible"
+      width="80%"
+      append-to-body
+    >
+      <wechat-e-invoice @close="wechatEInvoiceVisible = false" />
+    </el-dialog>
   </div>
 </template>
 
@@ -314,9 +333,13 @@
 
 import {listOrder, getOrder, updateSendStatus} from "@/api/vms/order";
 import {listPlatform} from "@/api/vms/shop";
+import WechatEInvoice from './wechatEInvoice.vue';
 
 export default {
   name: "Order",
+  components: {
+    WechatEInvoice
+  },
   data() {
     return {
       // 遮罩层
@@ -360,8 +383,8 @@ export default {
       form: {},
       // 表单校验
       rules: {
-
-      }
+      },
+      wechatEInvoiceVisible: false
     };
   },
   created() {
@@ -462,6 +485,9 @@ export default {
         this.$modal.msgSuccess("更新成功");
         this.getList()
       });
+    },
+    openWechatEInvoice() {
+      this.wechatEInvoiceVisible = true;
     }
   }
 };
