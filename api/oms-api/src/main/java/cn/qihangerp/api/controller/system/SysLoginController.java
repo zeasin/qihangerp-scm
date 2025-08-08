@@ -1,5 +1,6 @@
 package cn.qihangerp.api.controller.system;
 
+import cn.qihangerp.api.resp.AuthLoginRespVO;
 import cn.qihangerp.api.service.SysPermissionService;
 import cn.qihangerp.common.AjaxResult;
 import cn.qihangerp.common.ResultVo;
@@ -26,6 +27,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 
@@ -78,11 +80,20 @@ public class SysLoginController
 
             try {
                 AjaxResult ajax = AjaxResult.success();
+                AuthLoginRespVO respVO = new AuthLoginRespVO();
+
                 // 生成令牌
                 String token = loginService.login(loginBody.getUsername(), loginBody.getPassword(), loginBody.getCode(),
                         loginBody.getUuid());
                 ajax.put(Constants.TOKEN, token);
+
+
                 redisCache.deleteObject(loginBody.getUsername());
+                respVO.setAccessToken(token);
+                respVO.setUserId(sysUser.getUserId());
+                respVO.setRefreshToken("");
+                respVO.setExpiresTime(LocalDateTime.now().plusDays(3));
+//                return AjaxResult.success(respVO);
                 return ajax;
             } catch (cn.qihangerp.security.UserPasswordNotMatchException s) {
                 return AjaxResult.error(1500, "密码不正确");

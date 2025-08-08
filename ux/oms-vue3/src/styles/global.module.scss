@@ -1,0 +1,7 @@
+//@import './variables.scss';
+@use "@/styles/variables.scss" as *;  // 使用 @use
+// 导出变量
+:export {
+  namespace: $namespace;
+  elNamespace: $elNamespace;
+}
