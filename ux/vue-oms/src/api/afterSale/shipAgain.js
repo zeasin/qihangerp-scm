@@ -3,7 +3,7 @@ import request from '@/utils/request'
 // 查询列表
 export function shipAgainList(query) {
   return request({
-    url: '/scm-oms-api/afterSale/ship_again_list',
+    url: '/erp-api/afterSale/ship_again_list',
     method: 'get',
     params: query
   })

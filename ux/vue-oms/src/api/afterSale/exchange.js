@@ -3,7 +3,7 @@ import request from '@/utils/request'
 // 查询列表
 export function list(query) {
   return request({
-    url: '/scm-oms-api/afterSale/exchange_list',
+    url: '/erp-api/afterSale/exchange_list',
     method: 'get',
     params: query
   })

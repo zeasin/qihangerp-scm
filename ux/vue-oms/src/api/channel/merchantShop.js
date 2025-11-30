@@ -3,7 +3,7 @@ import request from '@/utils/request'
 // 查询店铺列表
 export function listShop(query) {
   return request({
-    url: '/scm-oms-api/shop/list',
+    url: '/erp-api/shop/list',
     method: 'get',
     params: query
   })
@@ -11,7 +11,7 @@ export function listShop(query) {
 
 export function listShopPage(query) {
   return request({
-    url: '/scm-oms-api/shop/pageList',
+    url: '/erp-api/shop/pageList',
     method: 'get',
     params: query
   })
@@ -19,14 +19,14 @@ export function listShopPage(query) {
 // 获取店铺拉取时间
 export function getShopPullTime(id) {
   return request({
-    url: '/scm-oms-api/shop/getPullTime/' + id,
+    url: '/erp-api/shop/getPullTime/' + id,
     method: 'get'
   })
 }
 // 保存店铺拉取时间
 export function saveShopPullTime(data) {
   return request({
-    url: '/scm-oms-api/shop/saveShopPullTime',
+    url: '/erp-api/shop/saveShopPullTime',
     method: 'post',
     data: data
   })
@@ -35,7 +35,7 @@ export function saveShopPullTime(data) {
 // 查询店铺详细
 export function getShop(id) {
   return request({
-    url: '/scm-oms-api/shop/shop/' + id,
+    url: '/erp-api/shop/shop/' + id,
     method: 'get'
   })
 }
@@ -43,7 +43,7 @@ export function getShop(id) {
 // 新增店铺
 export function addShop(data) {
   return request({
-    url: '/scm-oms-api/shop/shop',
+    url: '/erp-api/shop/shop',
     method: 'post',
     data: data
   })
@@ -52,7 +52,7 @@ export function addShop(data) {
 // 修改店铺
 export function updateShop(data) {
   return request({
-    url: '/scm-oms-api/shop/shop',
+    url: '/erp-api/shop/shop',
     method: 'put',
     data: data
   })
@@ -61,7 +61,7 @@ export function updateShop(data) {
 // 删除店铺
 export function delShop(id) {
   return request({
-    url: '/scm-oms-api/shop/shop/' + id,
+    url: '/erp-api/shop/shop/' + id,
     method: 'delete'
   })
 }
@@ -70,7 +70,7 @@ export function delShop(id) {
 export function updateShopManage(data) {
 
   return request({
-    url: '/scm-oms-api/shop/shop/updateShopManage',
+    url: '/erp-api/shop/shop/updateShopManage',
     method: 'put',
     data: data
   })
@@ -78,7 +78,7 @@ export function updateShopManage(data) {
 // 查询店铺平台列表
 export function listPlatform(query) {
   return request({
-    url: '/scm-oms-api/shop/platformList',
+    url: '/erp-api/shop/platformList',
     method: 'get',
     params: query
   })
@@ -87,7 +87,7 @@ export function listPlatform(query) {
 // 查询店铺详细
 export function getPlatform(id) {
   return request({
-    url: '/scm-oms-api/shop/platform/' + id,
+    url: '/erp-api/shop/platform/' + id,
     method: 'get'
   })
 }
@@ -95,7 +95,7 @@ export function getPlatform(id) {
 // 修改店铺
 export function updatePlatform(data) {
   return request({
-    url: '/scm-oms-api/shop/platform',
+    url: '/erp-api/shop/platform',
     method: 'put',
     data: data
   })
@@ -108,7 +108,7 @@ export function changePlatformStatus(id, status) {
     status
   }
   return request({
-    url: '/scm-oms-api/shop/platform/changeStatus',
+    url: '/erp-api/shop/platform/changeStatus',
     method: 'put',
     data: data
   })
@@ -117,7 +117,7 @@ export function changePlatformStatus(id, status) {
 // 新增店铺
 export function addPlatform(data) {
   return request({
-    url: '/scm-oms-api/shop/platform',
+    url: '/erp-api/shop/platform',
     method: 'post',
     data: data
   })
@@ -126,7 +126,7 @@ export function addPlatform(data) {
 
 export function listShopPullLogs(query) {
   return request({
-    url: '/scm-oms-api/shop/pull_logs_list',
+    url: '/erp-api/shop/pull_logs_list',
     method: 'get',
     params: query
   })

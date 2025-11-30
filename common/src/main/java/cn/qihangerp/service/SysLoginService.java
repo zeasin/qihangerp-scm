@@ -1,6 +1,7 @@
 package cn.qihangerp.service;
 
 import cn.qihangerp.common.constant.UserConstants;
+import cn.qihangerp.common.exception.ServiceException;
 import cn.qihangerp.common.exception.UserNotExistsException;
 import cn.qihangerp.common.redis.RedisCache;
 import cn.qihangerp.common.utils.DateUtils;
@@ -76,7 +77,7 @@ public class SysLoginService
             else
             {
 //                AsyncManager.me().execute(AsyncFactory.recordLogininfor(username, Constants.LOGIN_FAIL, e.getMessage()));
-//                throw new ServiceException(e.getMessage());
+                throw new ServiceException(e.getMessage());
             }
         }
         finally

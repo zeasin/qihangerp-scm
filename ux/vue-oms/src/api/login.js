@@ -9,7 +9,7 @@ export function login(username, password, code, uuid) {
     uuid
   }
   return request({
-    url: '/scm-oms-api/login',
+    url: '/erp-api/login',
     headers: {
       isToken: false
     },
@@ -33,7 +33,7 @@ export function register(data) {
 // 获取用户详细信息
 export function getInfo() {
   return request({
-    url: '/scm-oms-api/getInfo',
+    url: '/erp-api/getInfo',
     method: 'get'
   })
 }
@@ -41,7 +41,7 @@ export function getInfo() {
 // 退出方法
 export function logout() {
   return request({
-    url: '/scm-oms-api/logout',
+    url: '/erp-api/logout',
     method: 'post'
   })
 }
@@ -49,7 +49,7 @@ export function logout() {
 // 获取验证码
 export function getCodeImg() {
   return request({
-    url: '/scm-oms-api/captchaImage',
+    url: '/erp-api/captchaImage',
     headers: {
       isToken: false
     },

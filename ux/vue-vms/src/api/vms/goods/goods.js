@@ -31,7 +31,7 @@ export function searchSku(query) {
 // 新增商品管理
 export function addGoods(data) {
   return request({
-    url: '/scm-oms-api/goods/goods',
+    url: '/erp-api/goods/goods',
     method: 'post',
     data: data
   })
@@ -40,7 +40,7 @@ export function addGoods(data) {
 // 修改商品管理
 export function updateGoods(data) {
   return request({
-    url: '/scm-oms-api/goods/goods',
+    url: '/erp-api/goods/goods',
     method: 'put',
     data: data
   })
@@ -49,7 +49,7 @@ export function updateGoods(data) {
 // 删除商品管理
 export function delGoods(id) {
   return request({
-    url: '/scm-oms-api/goods/goods/' + id,
+    url: '/erp-api/goods/goods/' + id,
     method: 'delete'
   })
 }

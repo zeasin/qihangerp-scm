@@ -3,7 +3,7 @@ import request from '@/utils/request'
 // 获取路由
 export const getRouters = () => {
   return request({
-    url: '/scm-oms-api/getRouters',
+    url: '/erp-api/getRouters',
     method: 'get'
   })
 }
