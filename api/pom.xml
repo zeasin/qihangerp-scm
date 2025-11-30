@@ -21,7 +21,7 @@
     </properties>
     <modules>
         <module>gateway</module>
-        <module>oms-api</module>
+        <module>scm-api</module>
         <module>mms-api</module>
         <module>vms-api</module>
         <module>store-api</module>

@@ -3,7 +3,7 @@ import request from '@/utils/request'
 // 查询商品分类列表
 export function listCategory(query) {
   return request({
-    url: '/erp-api/goods/category/list',
+    url: '/scm-api/goods/category/list',
     method: 'get',
     params: query
   })
@@ -12,7 +12,7 @@ export function listCategory(query) {
 // 查询商品分类详细
 export function getCategory(id) {
   return request({
-    url: '/erp-api/goods/category/' + id,
+    url: '/scm-api/goods/category/' + id,
     method: 'get'
   })
 }
@@ -20,7 +20,7 @@ export function getCategory(id) {
 // 新增商品分类
 export function addCategory(data) {
   return request({
-    url: '/erp-api/goods/category',
+    url: '/scm-api/goods/category',
     method: 'post',
     data: data
   })
@@ -29,7 +29,7 @@ export function addCategory(data) {
 // 修改商品分类
 export function updateCategory(data) {
   return request({
-    url: '/erp-api/goods/category',
+    url: '/scm-api/goods/category',
     method: 'put',
     data: data
   })
@@ -38,7 +38,7 @@ export function updateCategory(data) {
 // 删除商品分类
 export function delCategory(id) {
   return request({
-    url: '/erp-api/goods/category/' + id,
+    url: '/scm-api/goods/category/' + id,
     method: 'delete'
   })
 }

@@ -3,7 +3,7 @@ import request from '@/utils/request'
 // 查询参数列表
 export function listConfig(query) {
   return request({
-    url: '/erp-api/system/config/list',
+    url: '/scm-api/system/config/list',
     method: 'get',
     params: query
   })
@@ -12,7 +12,7 @@ export function listConfig(query) {
 // 查询参数详细
 export function getConfig(configId) {
   return request({
-    url: '/erp-api/system/config/' + configId,
+    url: '/scm-api/system/config/' + configId,
     method: 'get'
   })
 }
@@ -20,7 +20,7 @@ export function getConfig(configId) {
 // 根据参数键名查询参数值
 export function getConfigKey(configKey) {
   return request({
-    url: '/erp-api/system/config/configKey/' + configKey,
+    url: '/scm-api/system/config/configKey/' + configKey,
     method: 'get'
   })
 }
@@ -28,7 +28,7 @@ export function getConfigKey(configKey) {
 // 新增参数配置
 export function addConfig(data) {
   return request({
-    url: '/erp-api/system/config',
+    url: '/scm-api/system/config',
     method: 'post',
     data: data
   })
@@ -37,7 +37,7 @@ export function addConfig(data) {
 // 修改参数配置
 export function updateConfig(data) {
   return request({
-    url: '/erp-api/system/config',
+    url: '/scm-api/system/config',
     method: 'put',
     data: data
   })
@@ -46,7 +46,7 @@ export function updateConfig(data) {
 // 删除参数配置
 export function delConfig(configId) {
   return request({
-    url: '/erp-api/system/config/' + configId,
+    url: '/scm-api/system/config/' + configId,
     method: 'delete'
   })
 }
@@ -54,7 +54,7 @@ export function delConfig(configId) {
 // 刷新参数缓存
 export function refreshCache() {
   return request({
-    url: '/erp-api/system/config/refreshCache',
+    url: '/scm-api/system/config/refreshCache',
     method: 'delete'
   })
 }

@@ -4,7 +4,7 @@ import request from '@/utils/request'
 // 查询店铺平台列表
 export function listPlatform(query) {
   return request({
-    url: '/erp-api/shop/platformList',
+    url: '/scm-api/shop/platformList',
     method: 'get',
     params: query
   })
@@ -13,7 +13,7 @@ export function listPlatform(query) {
 // 查询店铺列表
 export function listShop(query) {
   return request({
-    url: '/erp-api/shop/list',
+    url: '/scm-api/shop/list',
     method: 'get',
     params: query
   })

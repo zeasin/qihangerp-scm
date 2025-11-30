@@ -3,7 +3,7 @@ import request from '@/utils/request'
 // 查询退换货列表
 export function listReturned(query) {
   return request({
-    url: '/erp-api/afterSale/returned_list',
+    url: '/scm-api/afterSale/returned_list',
     method: 'get',
     params: query
   })
@@ -12,7 +12,7 @@ export function listReturned(query) {
 // 查询退换货详细
 export function getAfterSale(id) {
   return request({
-    url: '/erp-api/afterSale/detail/' + id,
+    url: '/scm-api/afterSale/detail/' + id,
     method: 'get'
   })
 }

@@ -30,10 +30,10 @@ spring:
         locator:
           enabled: true
       routes:
-        - id: erp_api_route
-          uri: lb://erp-api
+        - id: scm_api_route
+          uri: lb://scm-api
           predicates:
-            - Path=/erp-api/**
+            - Path=/scm-api/**
           filters:
             - StripPrefix=1
 
