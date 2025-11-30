@@ -34,7 +34,7 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            待售后
+            供应商
           </div>
           <count-to :start-val="0" :end-val="36" :duration="3600" class="card-panel-num" />
         </div>
@@ -47,7 +47,7 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            分销终端
+            商户
           </div>
           <count-to :start-val="0" :end-val="102" :duration="2600" class="card-panel-num" />
         </div>

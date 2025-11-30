@@ -130,16 +130,25 @@ A[供应商发布商品] -->B(设置商户价格)
 + 启动`api`下所有微服务项目
 
 
-### 3.3、启动前端 `vue-oms`、`vue-mms`、`vue-vms`
+### 3.3、启动前端 `vue-scm`、`vue-mms`、`vue-vms`
 + `npm install`
 + `npm run dev`
 + 打包`npm run build:prod`
 + 访问web
-  + 访问地址：`http://localhost`
+##### 供应链端后台
+  + `vue-scm`
   + 登录名：`admin`
   + 登录密码：`admin123`
 
+##### 商户后台
++ `vue-mms`
++ 登录名：`qihang`
++ 登录密码：`admin123`
 
+##### 供应商商后台
++ `vue-vms`
++ 登录名：`qihangvms`
++ 登录密码：`admin123`
 
 
 ## 四、支持作者
