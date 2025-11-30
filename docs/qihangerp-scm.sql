@@ -1,17 +1,17 @@
 /*
  Navicat Premium Dump SQL
 
- Source Server         : rm-wz95h4f7996784subvo.mysql.rds.aliyuncs.com
+ Source Server         : localhost
  Source Server Type    : MySQL
- Source Server Version : 80036 (8.0.36)
- Source Host           : rm-wz95h4f7996784subvo.mysql.rds.aliyuncs.com:3306
+ Source Server Version : 80043 (8.0.43)
+ Source Host           : localhost:3306
  Source Schema         : qihangerp-scm
 
  Target Server Type    : MySQL
- Target Server Version : 80036 (8.0.36)
+ Target Server Version : 80043 (8.0.43)
  File Encoding         : 65001
 
- Date: 26/07/2025 10:46:46
+ Date: 30/11/2025 21:35:28
 */
 
 SET NAMES utf8mb4;
@@ -2524,13 +2524,14 @@ CREATE TABLE `erp_shop_platform`  (
 -- ----------------------------
 -- Records of erp_shop_platform
 -- ----------------------------
-INSERT INTO `erp_shop_platform` VALUES (100, '淘宝天猫', 'TMALL', '', NULL, 'http://www.qihangerp.cn:88/home', 'http://gw.api.taobao.com/router/rest', '2025-07-24 19:11:02', '2025-07-24 19:10:57', 1, 0);
-INSERT INTO `erp_shop_platform` VALUES (200, '京东POP', 'JD-POP', '', NULL, 'http://www.qihangerp.cn:88/home', 'https://api.jd.com/routerjson', '2025-07-24 19:18:25', '2025-07-24 19:18:29', 1, 0);
-INSERT INTO `erp_shop_platform` VALUES (280, '京东自营', 'JD-VC', '', NULL, 'http://www.qihangerp.cn:88/home', 'https://api.jd.com/routerjson', '2025-07-24 19:19:02', '2025-07-24 19:19:05', 1, 0);
+INSERT INTO `erp_shop_platform` VALUES (100, '淘宝天猫', 'TMALL', '', NULL, 'http://www.qihangerp.cn:88/home', 'http://gw.api.taobao.com/router/rest', '2025-07-24 19:11:02', '2025-07-24 19:10:57', 0, 0);
+INSERT INTO `erp_shop_platform` VALUES (200, '京东POP', 'JD-POP', '', NULL, 'http://www.qihangerp.cn:88/home', 'https://api.jd.com/routerjson', '2025-07-24 19:18:25', '2025-07-24 19:18:29', 0, 0);
 INSERT INTO `erp_shop_platform` VALUES (300, '拼多多', 'PDD', '', NULL, 'http://www.qihangerp.cn:88/home', 'https://gw-api.pinduoduo.com/api/router', '2025-07-24 19:19:22', '2025-07-24 19:19:26', 0, 0);
-INSERT INTO `erp_shop_platform` VALUES (400, '抖店', 'DOUDIAN', '7467085634558019081', '4a38cc73-5918-46ea-bb91-657aea0bcde2', 'http://www.qihangerp.cn:88/home', 'https://openapi-fxg.jinritemai.com/', '2025-07-24 19:19:47', '2025-07-24 19:19:51', 1, 0);
-INSERT INTO `erp_shop_platform` VALUES (500, '微信小店', 'WEISHOP', '', NULL, 'http://www.qihangerp.cn:88/home', 'https://api.weixin.qq.com', '2025-07-24 19:20:08', '2025-07-24 19:20:13', 1, 0);
-INSERT INTO `erp_shop_platform` VALUES (999, '其他渠道', 'OFFLINE', ' ', NULL, 'http://www.qihangerp.cn:88/home', NULL, '2025-07-24 19:21:57', '2025-07-24 19:22:00', 1, 0);
+INSERT INTO `erp_shop_platform` VALUES (400, '抖店', 'DOUDIAN', '7467085634558019081', '4a38cc73-5918-46ea-bb91-657aea0bcde2', 'http://www.qihangerp.cn:88/home', 'https://openapi-fxg.jinritemai.com/', '2025-07-24 19:19:47', '2025-07-24 19:19:51', 0, 0);
+INSERT INTO `erp_shop_platform` VALUES (500, '微信小店', 'WEISHOP', '', NULL, 'http://www.qihangerp.cn:88/home', 'https://api.weixin.qq.com', '2025-07-24 19:20:08', '2025-07-24 19:20:13', 0, 0);
+INSERT INTO `erp_shop_platform` VALUES (600, '快手', 'KS', '', NULL, 'http://www.qihangerp.cn:88/home', 'https://api.jd.com/routerjson', '2025-07-24 19:19:02', '2025-07-24 19:19:05', 0, 0);
+INSERT INTO `erp_shop_platform` VALUES (700, '小红书', 'XHS', ' ', ' ', ' ', NULL, '2025-11-30 21:32:22', '2025-11-30 21:32:27', 0, 0);
+INSERT INTO `erp_shop_platform` VALUES (999, '其他渠道', 'OFFLINE', ' ', NULL, 'http://www.qihangerp.cn:88/home', NULL, '2025-07-24 19:21:57', '2025-07-24 19:22:00', 0, 0);
 
 -- ----------------------------
 -- Table structure for oms_jd_after_sale
@@ -2816,19 +2817,19 @@ CREATE TABLE `oms_merchant_shop`  (
 -- ----------------------------
 -- Records of oms_merchant_shop
 -- ----------------------------
-INSERT INTO `oms_merchant_shop` VALUES (1, '其他渠道', NULL, NULL, 99, NULL, 0, 0, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL);
-INSERT INTO `oms_merchant_shop` VALUES (2, '视频号店铺-测试', '拼多多-梦小妮', '煜梦服饰', 2, NULL, 0, 0, 0, 'pdd10006159121', 100061591, '', 'd332', '332ss', '80_iOXcFHBFAb3NX2ieFAuXu5mKxvqar8aGhk9ea23Ivo7P5nhuFLYtYeZiJttJYANjCv_dY7yLO5Ft9-pcyxApcdnNbth0j2zhJZXR8t3a6VD8jOCDv2Xljvh2ujUNIDiADAHCX', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL);
-INSERT INTO `oms_merchant_shop` VALUES (3, '测试京东', '拼多多-梦小妮', '煜梦服饰', 3, NULL, 0, 0, 0, 'pdd10006159121', 100061591, '', NULL, NULL, '87f8044d2a5f45a489aa3a952785b0d35e61788a', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL);
-INSERT INTO `oms_merchant_shop` VALUES (5, '梦小妮潮流女装', '拼多多-梦小妮', '煜梦服饰', 5, NULL, 0, 0, 0, 'pdd10006159121', 100061591, '', NULL, NULL, '87f8044d2a5f45a489aa3a952785b0d35e61788a', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL);
-INSERT INTO `oms_merchant_shop` VALUES (6, '梦小妮牛仔裤', '淘宝-梦小妮', '煜梦服饰', 4, '', 0, 0, 0, '', 2200787809358, '0', '31014100', '7b0769269b0c0ca88949791c14eb3a5c', '610140071d1070a37cecea89f1c1f3d6e5d19bf4b58dd942200787809358', NULL, NULL, NULL, NULL, 'http://gw.api.taobao.com/router/rest', NULL, 0, NULL, NULL, NULL, NULL);
-INSERT INTO `oms_merchant_shop` VALUES (13, '梦小妮牛仔裤-快手', '快手小店', '华衣云商', 8, NULL, 1, 0, 0, NULL, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL);
-INSERT INTO `oms_merchant_shop` VALUES (21, '珍姐姐de衣柜的店', '启航家常菜的店-小红书', '启航', 7, 'https://ark.xiaohongshu.com/ark/open_api/v3/common_controller', 0, 0, 0, NULL, 21, '6255224c3801e1000190d3d0', '621919dd99484598a69c', '1747d77da2ce58b97483932041c5503e', 'token-0f3f8a5fc5aa465aa29a66d27c6cf170-dad68769d83e4e1a9f52a950a680b9f2', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL);
-INSERT INTO `oms_merchant_shop` VALUES (22, '梦小妮牛仔裤', '抖音-梦小妮', '华衣云商', 6, 'http://openapi.jinritemai.com', 0, 0, 0, NULL, 4463798, '0', '7249607407477720636', '36a12497-fb9d-4b54-8cd1-fd1617346687', '', NULL, NULL, NULL, NULL, '2', NULL, 0, NULL, NULL, NULL, NULL);
-INSERT INTO `oms_merchant_shop` VALUES (23, '孟小妮牛仔裤专营店', 'add', NULL, 3, NULL, 0, 0, 0, NULL, 12, '12', 'aaaa', 'aaaaa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2024-06-23 11:55:35', NULL, '2024-06-23 15:46:51', NULL);
-INSERT INTO `oms_merchant_shop` VALUES (24, 'BBB', 'BB', NULL, 2, NULL, 0, 0, 0, NULL, 12580, '12580', 'AA22', '6555', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2024-06-23 13:52:46', NULL, NULL, NULL);
-INSERT INTO `oms_merchant_shop` VALUES (25, 'aabvb', '1a', NULL, 5, NULL, 1, 0, 0, NULL, 22, '22', 'avc', 'a', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 101, '2025-07-20 14:19:57', NULL, '2025-07-20 14:20:21', NULL);
+INSERT INTO `oms_merchant_shop` VALUES (1, '其他渠道', NULL, NULL, 999, NULL, 0, 0, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_merchant_shop` VALUES (2, '视频号店铺-测试', '-梦小妮', '煜梦服饰', 500, NULL, 0, 0, 0, 'pdd10006159121', 100061591, '', 'd332', '332ss', '80_iOXcFHBFAb3NX2ieFAuXu5mKxvqar8aGhk9ea23Ivo7P5nhuFLYtYeZiJttJYANjCv_dY7yLO5Ft9-pcyxApcdnNbth0j2zhJZXR8t3a6VD8jOCDv2Xljvh2ujUNIDiADAHCX', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_merchant_shop` VALUES (3, '测试京东', '拼多多-梦小妮', '煜梦服饰', 200, NULL, 0, 0, 0, 'pdd10006159121', 100061591, '', NULL, NULL, '87f8044d2a5f45a489aa3a952785b0d35e61788a', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_merchant_shop` VALUES (5, '梦小妮潮流女装', '拼多多-梦小妮', '煜梦服饰', 300, NULL, 0, 0, 0, 'pdd10006159121', 100061591, '', NULL, NULL, '87f8044d2a5f45a489aa3a952785b0d35e61788a', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_merchant_shop` VALUES (6, '梦小妮牛仔裤', '淘宝-梦小妮', '煜梦服饰', 100, '', 0, 0, 0, '', 2200787809358, '0', '31014100', '7b0769269b0c0ca88949791c14eb3a5c', '610140071d1070a37cecea89f1c1f3d6e5d19bf4b58dd942200787809358', NULL, NULL, NULL, NULL, 'http://gw.api.taobao.com/router/rest', NULL, 0, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_merchant_shop` VALUES (13, '梦小妮牛仔裤-快手', '快手小店', '华衣云商', 600, NULL, 1, 0, 0, NULL, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_merchant_shop` VALUES (21, '珍姐姐de衣柜的店', '启航家常菜的店-小红书', '启航', 700, 'https://ark.xiaohongshu.com/ark/open_api/v3/common_controller', 0, 0, 0, NULL, 21, '6255224c3801e1000190d3d0', '621919dd99484598a69c', '1747d77da2ce58b97483932041c5503e', 'token-0f3f8a5fc5aa465aa29a66d27c6cf170-dad68769d83e4e1a9f52a950a680b9f2', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_merchant_shop` VALUES (22, '梦小妮牛仔裤', '抖音-梦小妮', '华衣云商', 400, 'http://openapi.jinritemai.com', 0, 0, 0, NULL, 4463798, '0', '7249607407477720636', '36a12497-fb9d-4b54-8cd1-fd1617346687', '', NULL, NULL, NULL, NULL, '2', NULL, 0, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_merchant_shop` VALUES (23, '孟小妮牛仔裤专营店', 'add', NULL, 300, NULL, 0, 0, 0, NULL, 12, '12', 'aaaa', 'aaaaa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2024-06-23 11:55:35', NULL, '2024-06-23 15:46:51', NULL);
+INSERT INTO `oms_merchant_shop` VALUES (24, 'BBB', 'BB', NULL, 100, NULL, 0, 0, 0, NULL, 12580, '12580', 'AA22', '6555', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2024-06-23 13:52:46', NULL, NULL, NULL);
+INSERT INTO `oms_merchant_shop` VALUES (25, 'aabvb', '1a', NULL, 500, NULL, 1, 0, 0, NULL, 22, '22', 'avc', 'a', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 101, '2025-07-20 14:19:57', NULL, '2025-11-30 21:27:49', 'admin');
 INSERT INTO `oms_merchant_shop` VALUES (26, 'AAAAA', 'aaa', NULL, 500, NULL, 0, 0, 0, NULL, 0, '12', '12', '12', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 101, '2025-07-20 14:44:11', NULL, NULL, NULL);
-INSERT INTO `oms_merchant_shop` VALUES (27, '爱顾家的小店', NULL, NULL, 300, NULL, 0, 0, 0, NULL, 745839216, '745839216', 'dc953bcf16d24b27abf3e64a59e1ecd1', '89c639b1ceaf8e5260acc73b2bdbb5c529cf23a4', '8f5b168634044416878813e48192242f63ba3b85', NULL, NULL, '1e71b8c282f64187b8792d8ce06b911e6e3c1223', NULL, NULL, 'http://qihangerp.cn', 101, '2025-07-24 20:07:18', NULL, NULL, NULL);
+INSERT INTO `oms_merchant_shop` VALUES (27, '爱顾家的小店', NULL, NULL, 300, NULL, 1, 0, 0, NULL, 745839216, '745839216', 'dc953bcf16d24b27abf3e64a59e1ecd1', '89c639b1ceaf8e5260acc73b2bdbb5c529cf23a4', '8f5b168634044416878813e48192242f63ba3b85', NULL, NULL, '1e71b8c282f64187b8792d8ce06b911e6e3c1223', NULL, NULL, 'http://qihangerp.cn', 101, '2025-07-24 20:07:18', NULL, '2025-11-30 21:28:12', 'admin');
 
 -- ----------------------------
 -- Table structure for oms_order
@@ -2966,7 +2967,7 @@ CREATE TABLE `oms_order_stocking`  (
   `shop_no` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '京东云仓店铺编码',
   `platform_no` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '订单来源平台编码',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '供应商发货订单' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '供应商发货订单' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of oms_order_stocking
@@ -3010,7 +3011,7 @@ CREATE TABLE `oms_order_stocking_item`  (
   `warehouse_id` bigint NOT NULL DEFAULT 0 COMMENT '发货仓库ID(自有仓库或外部云仓id)',
   `warehouse_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '发货仓库名',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of oms_order_stocking_item
@@ -3054,236 +3055,6 @@ INSERT INTO `oms_shop_goods` VALUES (1, 6, 5, 100, '10000226806665', '', '夏季
 INSERT INTO `oms_shop_goods` VALUES (2, 6, 5, 100, '10000227212454', '', '牛仔短裤女a字裤紧身夏高腰显瘦ins辣妹风外穿包臀直筒弹力热裤子', '', '[\"https://mmecimage.cn/p/wx82dd65f284dd6ee3/HBkkngG4j2Utl9HiMhfCsrBNvSN2MJFnzJR9oJH8PQ\",\"https://mmecimage.cn/p/wx82dd65f284dd6ee3/HHigSEPtjoyz1dqKoPmZTGse3T6kL5CDMIQ_C6Wtzg\",\"https://mmecimage.cn/p/wx82dd65f284dd6ee3/HIvoI5H9sxwoJJMB8lUgK44UdPXiHYhWwVoQcITAi0E\",\"https://mmecimage.cn/p/wx82dd65f284dd6ee3/HFQneFzkUSPeC5u31OKHhWkOjgz4duZhZpcsGe-Eew0\"]', 'https://mmecimage.cn/p/wx82dd65f284dd6ee3/HBkkngG4j2Utl9HiMhfCsrBNvSN2MJFnzJR9oJH8PQ', '{\"imgs\":[\"https://mmecimage.cn/p/wx82dd65f284dd6ee3/HITwxBQVQwnGwxiOqP3KqPwycbD2CUZeSypH6DmoMQ\",\"https://mmecimage.cn/p/wx82dd65f284dd6ee3/HJesY68fe9LErU9n9YXfLsvX1QoYhvQm9hs63YIek8U\",\"https://mmecimage.cn/p/wx82dd65f284dd6ee3/HPDGEUtxgMrb2yRCWhTutKLTmH2nf8OkwPBq5C8Yvw\",\"https://mmecimage.cn/p/wx82dd65f284dd6ee3/HJgzSAqt7Z7doY5ENdGAkRTeduCDQ3Fy34l_2KCJvw\",\"https://mmecimage.cn/p/wx82dd65f284dd6ee3/HB99itoZbJc6PdhSYweD2IWQ-kMqi4uD5bsYuKNlxA\",\"https://mmecimage.cn/p/wx82dd65f284dd6ee3/HMUUVdfsP6E4cyzQoMiQ7VtsHR9smh32bnZL9H9GoQ\",\"https://mmecimage.cn/p/wx82dd65f284dd6ee3/HAZMYUfLuASSuayVBrbKV-mU99JIRXQc5mVjD88WlQ\",\"https://mmecimage.cn/p/wx82dd65f284dd6ee3/HFVjKQnJ_KOSBnEw31d4mPxLXcazBE_vGsiwQ9vHjg\",\"https://mmecimage.cn/p/wx82dd65f284dd6ee3/HEjH9P2eKWMAZloOz0oGKTWr_NoH0OgzqvssM8CTXQ\",\"https://mmecimage.cn/p/wx82dd65f284dd6ee3/HLhq8Fi3U8DpTgilWVCJ4DGRa1i9B_EgVvU_gFGJqg\"],\"desc\":\"\"}', '[{\"attr_key\":\"面料材质成分含量（%）\",\"attr_value\":\"50 %\"},{\"attr_key\":\"面料材质\",\"attr_value\":\"醋酯纤维\"}]', 5, 8900, NULL, '', NULL, 0, 1, 0, NULL, NULL, 1);
 INSERT INTO `oms_shop_goods` VALUES (3, 15, 3, 100, '750805294208', '', '吸顶灯中性光卧室吸顶灯led吸顶灯阳台卧室卫生间防水防潮三防', '', '', 'https://img.pddpic.com/gaudit-image/2025-05-21/59da3f18489f24524859b4f45b4ecb96.jpeg', '', '', 1, 0, NULL, '', NULL, 1747807113, 3, 0, NULL, '2025-05-24 19:32:22', 1);
 INSERT INTO `oms_shop_goods` VALUES (4, 15, 3, 100, '752100283103', '', '雷士照明LED光源吸顶灯芯灯板改装圆形节能灯珠灯泡光源家用灯盘', '', '', 'https://img.pddpic.com/gaudit-image/2025-05-24/3567002e99ef6979aebedbf698dd9425.jpeg', '', '', 1, 0, NULL, '', NULL, 1748051158, 4, 0, NULL, '2025-05-24 19:32:23', 1);
-INSERT INTO `oms_shop_goods` VALUES (5, 3, 911, 0, '35062', NULL, '测试', NULL, NULL, NULL, NULL, NULL, 1, 10, 10, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:20', '2025-07-18 11:07:45', 1);
-INSERT INTO `oms_shop_goods` VALUES (6, 3, 911, 0, '35067', NULL, '家庭健康宝典', NULL, NULL, NULL, NULL, NULL, 1, 198000, 198000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:20', '2025-07-18 11:07:45', 1);
-INSERT INTO `oms_shop_goods` VALUES (7, 3, 911, 0, '35068', NULL, '家庭健康宝典-知识店铺商品', NULL, NULL, NULL, NULL, NULL, 1, 198000, 198000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:20', '2025-07-18 11:07:45', 1);
-INSERT INTO `oms_shop_goods` VALUES (8, 3, 911, 0, '35069', NULL, '正价课测试', NULL, NULL, NULL, NULL, NULL, 1, 100, 100, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:20', '2025-07-18 11:07:45', 1);
-INSERT INTO `oms_shop_goods` VALUES (9, 3, 911, 0, '35133', NULL, '健康管理实战高阶课', NULL, NULL, NULL, NULL, NULL, 1, 798000, 1980000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:20', '2025-07-18 11:07:45', 1);
-INSERT INTO `oms_shop_goods` VALUES (10, 3, 911, 0, '35134', NULL, '测试教务商品', NULL, NULL, NULL, NULL, NULL, 1, 10, 10, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:20', '2025-07-18 11:07:45', 1);
-INSERT INTO `oms_shop_goods` VALUES (11, 3, 911, 0, '35703', NULL, '家庭健康7+7', NULL, NULL, NULL, NULL, NULL, 1, 398000, 798000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:20', '2025-07-18 11:07:45', 1);
-INSERT INTO `oms_shop_goods` VALUES (12, 3, 911, 0, '70062', NULL, '家庭健康宝典的副本', NULL, NULL, NULL, NULL, NULL, 1, 198000, 198000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:21', '2025-07-18 11:07:45', 1);
-INSERT INTO `oms_shop_goods` VALUES (13, 3, 911, 0, '70063', NULL, '家庭健康宝典-知识店铺商品的副本', NULL, NULL, NULL, NULL, NULL, 1, 198000, 198000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:21', '2025-07-18 11:07:45', 1);
-INSERT INTO `oms_shop_goods` VALUES (14, 3, 911, 0, '71274', NULL, '奈晚推拿区域锁单专用（test）', NULL, NULL, NULL, NULL, NULL, 1, 298000, 1980000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:21', '2025-07-18 11:07:45', 1);
-INSERT INTO `oms_shop_goods` VALUES (15, 3, 911, 0, '71654', NULL, '中医推拿师证书', NULL, NULL, NULL, NULL, NULL, 1, 100000, 200000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:21', '2025-07-18 11:07:45', 1);
-INSERT INTO `oms_shop_goods` VALUES (16, 3, 911, 0, '71712', NULL, '中医三伏膏药技术班', NULL, NULL, NULL, NULL, NULL, 1, 160000, 380000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:21', '2025-07-18 11:07:45', 1);
-INSERT INTO `oms_shop_goods` VALUES (17, 3, 911, 0, '71713', NULL, '中医经穴综合运用系统全科班', NULL, NULL, NULL, NULL, NULL, 1, 488000, 1280000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:21', '2025-07-18 11:07:45', 1);
-INSERT INTO `oms_shop_goods` VALUES (18, 3, 911, 0, '71714', NULL, '中医推拿正骨系统培训班', NULL, NULL, NULL, NULL, NULL, 1, 488000, 1280000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:21', '2025-07-18 11:07:45', 1);
-INSERT INTO `oms_shop_goods` VALUES (19, 3, 911, 0, '71715', NULL, '壮医特色疗法挑羊毛疔实用技术班', NULL, NULL, NULL, NULL, NULL, 1, 280000, 680000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:21', '2025-07-18 11:07:45', 1);
-INSERT INTO `oms_shop_goods` VALUES (20, 3, 911, 0, '71716', NULL, '中医古法艾灸特色疗法班', NULL, NULL, NULL, NULL, NULL, 1, 198000, 380000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:21', '2025-07-18 11:07:45', 1);
-INSERT INTO `oms_shop_goods` VALUES (21, 3, 911, 0, '71717', NULL, '中医理疗综合技术一站式就业创业班', NULL, NULL, NULL, NULL, NULL, 1, 980000, 1680000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:21', '2025-07-18 11:07:45', 1);
-INSERT INTO `oms_shop_goods` VALUES (22, 3, 911, 0, '71718', NULL, '中医小儿推拿技术系统实用班', NULL, NULL, NULL, NULL, NULL, 1, 228000, 480000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:21', '2025-07-18 11:07:45', 1);
-INSERT INTO `oms_shop_goods` VALUES (23, 3, 911, 0, '71719', NULL, '中医疼痛膏药技术班', NULL, NULL, NULL, NULL, NULL, 1, 0, 380000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:21', '2025-07-18 11:07:45', 1);
-INSERT INTO `oms_shop_goods` VALUES (24, 3, 911, 0, '71720', NULL, '产后康复骨盆闭合修复技术班', NULL, NULL, NULL, NULL, NULL, 1, 200000, 680000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:21', '2025-07-18 11:07:45', 1);
-INSERT INTO `oms_shop_goods` VALUES (25, 3, 911, 0, '71721', NULL, '分筋复骨术高级运用班', NULL, NULL, NULL, NULL, NULL, 1, 488000, 1280000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:21', '2025-07-18 11:07:45', 1);
-INSERT INTO `oms_shop_goods` VALUES (26, 3, 911, 0, '71722', NULL, '中医诊断技术实用班（2天）', NULL, NULL, NULL, NULL, NULL, 1, 0, 280000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:21', '2025-07-18 11:07:45', 1);
-INSERT INTO `oms_shop_goods` VALUES (27, 3, 911, 0, '71723', NULL, '确有专长协议保障班培训服务（3天）', NULL, NULL, NULL, NULL, NULL, 1, 380000, 680000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:21', '2025-07-18 11:07:45', 1);
-INSERT INTO `oms_shop_goods` VALUES (28, 3, 911, 0, '71724', NULL, '产后内脏筋膜康复技术', NULL, NULL, NULL, NULL, NULL, 1, 380000, 680000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:22', '2025-07-18 11:07:45', 1);
-INSERT INTO `oms_shop_goods` VALUES (29, 3, 911, 0, '71725', NULL, '中医辩证催乳技术', NULL, NULL, NULL, NULL, NULL, 1, 0, 280000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:22', '2025-07-18 11:07:45', 1);
-INSERT INTO `oms_shop_goods` VALUES (30, 3, 911, 0, '71726', NULL, '凹凸生殖激活技术', NULL, NULL, NULL, NULL, NULL, 1, 0, 280000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:22', '2025-07-18 11:07:45', 1);
-INSERT INTO `oms_shop_goods` VALUES (31, 3, 911, 0, '71727', NULL, '中医富贵包调理技术班', NULL, NULL, NULL, NULL, NULL, 1, 0, 280000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:22', '2025-07-18 11:07:45', 1);
-INSERT INTO `oms_shop_goods` VALUES (32, 3, 911, 0, '71728', NULL, '确有专长协议保障班培训服务（8天）', NULL, NULL, NULL, NULL, NULL, 1, 1280000, 1680000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:22', '2025-07-18 11:07:45', 1);
-INSERT INTO `oms_shop_goods` VALUES (33, 3, 911, 0, '71729', NULL, '推拿就业班（7天）', NULL, NULL, NULL, NULL, NULL, 1, 158800, 180000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:22', '2025-07-18 11:07:45', 1);
-INSERT INTO `oms_shop_goods` VALUES (34, 3, 911, 0, '71730', NULL, '推拿理疗班', NULL, NULL, NULL, NULL, NULL, 1, 328800, 400000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:22', '2025-07-18 11:07:45', 1);
-INSERT INTO `oms_shop_goods` VALUES (35, 3, 911, 0, '71731', NULL, '推拿整脊班', NULL, NULL, NULL, NULL, NULL, 1, 468800, 538000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:22', '2025-07-18 11:07:45', 1);
-INSERT INTO `oms_shop_goods` VALUES (36, 3, 911, 0, '71732', NULL, '推拿针刺班', NULL, NULL, NULL, NULL, NULL, 1, 468800, 538000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:22', '2025-07-18 11:07:45', 1);
-INSERT INTO `oms_shop_goods` VALUES (37, 3, 911, 0, '71734', NULL, '广州中医药大学（成人学历提升服务费）', NULL, NULL, NULL, NULL, NULL, 1, 98000, 298000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:22', '2025-07-18 11:07:45', 1);
-INSERT INTO `oms_shop_goods` VALUES (38, 3, 911, 0, '71735', NULL, '广州医科大学（成人学历提升服务费）', NULL, NULL, NULL, NULL, NULL, 1, 98000, 298000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:22', '2025-07-18 11:07:45', 1);
-INSERT INTO `oms_shop_goods` VALUES (39, 3, 911, 0, '71736', NULL, '跟诊;跟诊临床实习1年(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 1580000, 5980000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:22', '2025-07-18 11:07:45', 1);
-INSERT INTO `oms_shop_goods` VALUES (40, 3, 911, 0, '71737', NULL, '师承;精英师承班(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 5980000, 11800000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:22', '2025-07-18 11:07:45', 1);
-INSERT INTO `oms_shop_goods` VALUES (41, 3, 911, 0, '71738', NULL, '师承;培英师承班(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 3980000, 13800000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:22', '2025-07-18 11:07:45', 1);
-INSERT INTO `oms_shop_goods` VALUES (42, 3, 911, 0, '71739', NULL, '师承;领英师承班(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 10000000, 19800000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:22', '2025-07-18 11:07:45', 1);
-INSERT INTO `oms_shop_goods` VALUES (43, 3, 911, 0, '71740', NULL, '确有专长;传统确有专长（单报名服务）', NULL, NULL, NULL, NULL, NULL, 1, 1500000, 2980000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:22', '2025-07-18 11:07:45', 1);
-INSERT INTO `oms_shop_goods` VALUES (44, 3, 911, 0, '71741', NULL, '确有专长;确有专长专长医师（报名服务费）', NULL, NULL, NULL, NULL, NULL, 1, 1980000, 3980000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:22', '2025-07-18 11:07:45', 1);
-INSERT INTO `oms_shop_goods` VALUES (45, 3, 911, 0, '71742', NULL, '挂靠;助理医师注册备案考执业周期5年(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 1080000, 1980000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:22', '2025-07-18 11:07:45', 1);
-INSERT INTO `oms_shop_goods` VALUES (46, 3, 911, 0, '71743', NULL, '挂靠;助理医师注册备案考执业周期1年(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 500000, 1280000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:23', '2025-07-18 11:07:45', 1);
-INSERT INTO `oms_shop_goods` VALUES (47, 3, 911, 0, '71744', NULL, '确有专长;传统确有专长（协议保障班）', NULL, NULL, NULL, NULL, NULL, 1, 2980000, 3980000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:23', '2025-07-18 11:07:45', 1);
-INSERT INTO `oms_shop_goods` VALUES (48, 3, 911, 0, '71745', NULL, '中科院中医药合作中心;小儿推拿技术(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 250000, 380000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:23', '2025-07-18 11:07:45', 1);
-INSERT INTO `oms_shop_goods` VALUES (49, 3, 911, 0, '71746', NULL, '中科院培训中心;中医针灸(中级)(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 250000, 380000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:23', '2025-07-18 11:07:45', 1);
-INSERT INTO `oms_shop_goods` VALUES (50, 3, 911, 0, '71747', NULL, '中医药研究促进会;中医康复理疗师(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 0, 280000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:23', '2025-07-18 11:07:45', 1);
-INSERT INTO `oms_shop_goods` VALUES (51, 3, 911, 0, '71748', NULL, '中科院培训中心;中医康复理疗;高级(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 200000, 380000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:23', '2025-07-18 11:07:45', 1);
-INSERT INTO `oms_shop_goods` VALUES (52, 3, 911, 0, '71749', NULL, '人社部能建中心;中医健康管理技术(小儿推拿)', NULL, NULL, NULL, NULL, NULL, 1, 238000, 380000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:23', '2025-07-18 11:07:45', 1);
-INSERT INTO `oms_shop_goods` VALUES (53, 3, 911, 0, '71750', NULL, '中科院中医药合作中心;中医针灸技术(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 190000, 380000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:23', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (54, 3, 911, 0, '71751', NULL, '人社部能建中心;中医健康管理技术(康复理疗)', NULL, NULL, NULL, NULL, NULL, 1, 238000, 380000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:23', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (55, 3, 911, 0, '71752', NULL, '人社部能建中心;中医健康管理技术(保健调理)', NULL, NULL, NULL, NULL, NULL, 1, 238000, 380000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:23', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (56, 3, 911, 0, '71753', NULL, '中医药研究促进会;产后康复师(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 100000, 280000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:23', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (57, 3, 911, 0, '71754', NULL, '世针针灸交流中心;中医针灸;高级(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 250000, 350000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:23', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (58, 3, 911, 0, '71755', NULL, '国家卫健委人才中心;医疗护理员(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 250000, 480000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:23', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (59, 3, 911, 0, '71756', NULL, '国家卫健委人才中心;生殖健康调理(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 250000, 480000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:23', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (60, 3, 911, 0, '71757', NULL, '中医药研究促进会;小儿推拿保健师(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 100000, 280000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:23', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (61, 3, 911, 0, '71758', NULL, '中医药研究促进会;中医催乳师(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 100000, 280000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:23', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (62, 3, 911, 0, '71759', NULL, '世界中医药学会联合会;推拿按摩(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 250000, 350000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:23', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (63, 3, 911, 0, '71760', NULL, '中医药研究促进会;中医贴敷师(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 100000, 280000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:23', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (64, 3, 911, 0, '71761', NULL, '中科院中医药合作中心;康复理疗技术(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 250000, 380000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:23', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (65, 3, 911, 0, '71762', NULL, '中科院培训中心;中医适宜技术;高级(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 250000, 380000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:24', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (66, 3, 911, 0, '71763', NULL, '国家卫健委人才中心;心理健康指导(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 250000, 480000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:24', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (67, 3, 911, 0, '71764', NULL, '人社部专项能力;康复理疗(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 238000, 380000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:24', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (68, 3, 911, 0, '71765', NULL, '重庆卫健委鉴定;中医预防保健调理师(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 250000, 380000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:24', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (69, 3, 911, 0, '71766', NULL, '国家卫健委人才中心;中药药剂(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 250000, 480000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:24', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (70, 3, 911, 0, '71767', NULL, '重庆卫健委鉴定;中医食疗调理师(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 250000, 380000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:24', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (71, 3, 911, 0, '71768', NULL, '世界中医药学会联合会;中医催乳(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 250000, 350000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:24', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (72, 3, 911, 0, '71769', NULL, '国家卫健委人才中心;西药药剂(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 250000, 480000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:24', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (73, 3, 911, 0, '71770', NULL, '人社部能建中心;中医健康管理技术(运动康复)', NULL, NULL, NULL, NULL, NULL, 1, 238000, 380000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:24', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (74, 3, 911, 0, '71771', NULL, '人社部能建中心;保健调理技术;高级', NULL, NULL, NULL, NULL, NULL, 1, 238000, 380000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:24', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (75, 3, 911, 0, '71772', NULL, '人社部能建中心;中医健康管理技术', NULL, NULL, NULL, NULL, NULL, 1, 238000, 380000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:24', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (76, 3, 911, 0, '71773', NULL, '人社部能建中心;中医健康管理技术(经络调理)', NULL, NULL, NULL, NULL, NULL, 1, 238000, 380000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:24', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (77, 3, 911, 0, '71774', NULL, '人社部能建中心;中医健康管理技术(特色疗法)', NULL, NULL, NULL, NULL, NULL, 1, 238000, 380000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:24', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (78, 3, 911, 0, '71775', NULL, '人社部能建中心;心理卫生建设', NULL, NULL, NULL, NULL, NULL, 1, 238000, 380000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:24', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (79, 3, 911, 0, '71776', NULL, '人社部能建中心;医疗陪诊顾问', NULL, NULL, NULL, NULL, NULL, 1, 238000, 380000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:24', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (80, 3, 911, 0, '71777', NULL, '人社部能建中心;中医艾灸疗法', NULL, NULL, NULL, NULL, NULL, 1, 238000, 380000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:24', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (81, 3, 911, 0, '71778', NULL, '重庆卫健委鉴定;中医健康管理师(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 250000, 380000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:24', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (82, 3, 911, 0, '71779', NULL, '重庆卫健委鉴定;心理咨询师(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 250000, 380000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:24', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (83, 3, 911, 0, '71780', NULL, '重庆卫健委鉴定;亚健康调理师(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 250000, 380000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:24', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (84, 3, 911, 0, '71781', NULL, '重庆卫健委鉴定;皮肤健康管理师(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 250000, 380000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:25', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (85, 3, 911, 0, '71782', NULL, '中科院中医药合作中心;经络调理技术(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 250000, 380000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:25', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (86, 3, 911, 0, '71783', NULL, '中科院中医药合作中心;正骨推拿技术(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 250000, 380000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:25', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (87, 3, 911, 0, '71784', NULL, '中科院中医药合作中心;脊椎保健技术(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 250000, 380000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:25', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (88, 3, 911, 0, '71785', NULL, '中科院中医药合作中心;母婴保健技术(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 250000, 380000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:25', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (89, 3, 911, 0, '71786', NULL, '中科院中医药合作中心;中医美容技术 (服务费)', NULL, NULL, NULL, NULL, NULL, 1, 250000, 380000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:25', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (90, 3, 911, 0, '71787', NULL, '中科院中医药合作中心;视力保健技术(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 250000, 380000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:25', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (91, 3, 911, 0, '71788', NULL, '中科院中医药合作中心;中医贴敷技术(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 250000, 380000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:25', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (92, 3, 911, 0, '71789', NULL, '中科院中医药合作中心;预防保健技术(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 250000, 380000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:25', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (93, 3, 911, 0, '71790', NULL, '中科院中医药合作中心;灸疗保健技术 (服务费)', NULL, NULL, NULL, NULL, NULL, 1, 250000, 380000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:25', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (94, 3, 911, 0, '71791', NULL, '中科院中医药合作中心;健康管理技术(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 250000, 380000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:25', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (95, 3, 911, 0, '71792', NULL, '中医药研究促进会;中医健康管理师(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 100000, 280000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:25', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (96, 3, 911, 0, '71793', NULL, '中医药研究促进会;中医特色调理师(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 100000, 280000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:25', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (97, 3, 911, 0, '71794', NULL, '中医药研究促进会;保健调理师(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 100000, 280000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:25', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (98, 3, 911, 0, '71795', NULL, '中医药研究促进会;中医灸疗师(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 100000, 280000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:25', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (99, 3, 911, 0, '71796', NULL, '中医药研究促进会;生殖健康管理师(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 100000, 280000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:25', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (100, 3, 911, 0, '71797', NULL, '世界中医药学会联合会;中医正骨(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 250000, 350000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:25', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (101, 3, 911, 0, '71798', NULL, '世界中医药学会联合会;中医康复理疗(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 250000, 350000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:25', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (102, 3, 911, 0, '71799', NULL, '世界中医药学会联合会;中医产后修复(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 250000, 350000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:25', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (103, 3, 911, 0, '71800', NULL, '世界中医药学会联合会;中医反射疗法(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 250000, 350000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:26', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (104, 3, 911, 0, '71801', NULL, '世界中医药学会联合会;中医膳食养生(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 250000, 350000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:26', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (105, 3, 911, 0, '71802', NULL, '世界中医药学会联合会;中医太极养生(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 250000, 350000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:26', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (106, 3, 911, 0, '71803', NULL, '世界中医药学会联合会;芳香疗法(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 250000, 350000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:26', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (107, 3, 911, 0, '71804', NULL, '世界中医药学会联合会;中医心理咨询(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 250000, 350000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:26', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (108, 3, 911, 0, '71805', NULL, '世针针灸交流中心;中医保健调理;高级(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 250000, 350000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:26', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (109, 3, 911, 0, '71806', NULL, '世针针灸交流中心;中医康复理疗;高级(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 250000, 350000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:26', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (110, 3, 911, 0, '71807', NULL, '世针针灸交流中心;中医小儿推拿;高级(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 250000, 350000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:26', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (111, 3, 911, 0, '71808', NULL, '世针针灸交流中心;中医推拿按摩;高级(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 250000, 350000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:26', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (112, 3, 911, 0, '71809', NULL, '世针针灸交流中心;中医特色疗法;高级(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 250000, 350000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:26', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (113, 3, 911, 0, '71810', NULL, '世针针灸交流中心;中医脊柱保健;高级(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 250000, 350000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:26', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (114, 3, 911, 0, '71811', NULL, '世针针灸交流中心;中医刮痧;高级(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 250000, 350000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:26', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (115, 3, 911, 0, '71812', NULL, '世针针灸交流中心;中医灸疗;高级(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 250000, 350000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:26', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (116, 3, 911, 0, '71813', NULL, '世针针灸交流中心;中医头疗;高级(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 250000, 350000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:26', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (117, 3, 911, 0, '71814', NULL, '世针针灸交流中心;中医产后康复;高级(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 250000, 350000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:26', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (118, 3, 911, 0, '71815', NULL, '世针针灸交流中心;中医母婴护理;高级(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 250000, 350000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:26', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (119, 3, 911, 0, '71816', NULL, '世针针灸交流中心;中医催乳;高级(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 250000, 350000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:26', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (120, 3, 911, 0, '71840', NULL, '岭南医宗长寿秘法', NULL, NULL, NULL, NULL, NULL, 1, 188000, 188000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:26', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (121, 3, 911, 0, '71841', NULL, '王氏五行方阵中医', NULL, NULL, NULL, NULL, NULL, 1, 198000, 598000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:26', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (122, 3, 911, 0, '71842', NULL, '一气解伤寒', NULL, NULL, NULL, NULL, NULL, 1, 398000, 398000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:27', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (123, 3, 911, 0, '72068', NULL, '王氏五行方阵中医（团购）', NULL, NULL, NULL, NULL, NULL, 1, 258000, 2580000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:27', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (124, 3, 911, 0, '72079', NULL, '颈椎乾坤手', NULL, NULL, NULL, NULL, NULL, 1, 19900, 19900, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:27', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (125, 3, 911, 0, '72092', NULL, '固本经络课', NULL, NULL, NULL, NULL, NULL, 1, 69900, 69900, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:27', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (126, 3, 911, 0, '72098', NULL, '鼻炎调理班', NULL, NULL, NULL, NULL, NULL, 1, 58000, 58000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:27', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (127, 3, 911, 0, '72099', NULL, '教材书本', NULL, NULL, NULL, NULL, NULL, 1, 0, 50000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:27', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (128, 3, 911, 0, '72100', NULL, '其他服务费', NULL, NULL, NULL, NULL, NULL, 1, 9900, 9900, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:27', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (129, 3, 911, 0, '72101', NULL, '住宿费', NULL, NULL, NULL, NULL, NULL, 1, 0, 200000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:27', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (130, 3, 911, 0, '72102', NULL, '实习保证金', NULL, NULL, NULL, NULL, NULL, 1, 100000, 100000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:27', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (131, 3, 911, 0, '72149', NULL, '创业理疗全科班', NULL, NULL, NULL, NULL, NULL, 1, 868800, 1080000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:27', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (132, 3, 911, 0, '72150', NULL, '内脏腑点穴调理技术班', NULL, NULL, NULL, NULL, NULL, 1, 5000, 188000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:27', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (133, 3, 911, 0, '72151', NULL, '痛风调理班', NULL, NULL, NULL, NULL, NULL, 1, 0, 188000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:27', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (134, 3, 911, 0, '72153', NULL, '卫健委~健康管理师证', NULL, NULL, NULL, NULL, NULL, 1, 50000, 268000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:27', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (135, 3, 911, 0, '72154', NULL, '中医推拿理疗班（7天）', NULL, NULL, NULL, NULL, NULL, 1, 5000, 980000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:27', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (136, 3, 911, 0, '72155', NULL, '重庆卫健委鉴定;中医康复理疗师(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 50000, 380000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:27', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (137, 3, 911, 0, '72156', NULL, '中科院培训中心;中医正骨推拿技术', NULL, NULL, NULL, NULL, NULL, 1, 380000, 380000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:27', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (138, 3, 911, 0, '72157', NULL, '【重庆卫健委鉴定】AI健康管理师', NULL, NULL, NULL, NULL, NULL, 1, 250000, 250000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:27', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (139, 3, 911, 0, '72159', NULL, '【人社部能建中心】互联网营销', NULL, NULL, NULL, NULL, NULL, 1, 100000, 280000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:27', '2025-07-18 11:07:46', 1);
-INSERT INTO `oms_shop_goods` VALUES (140, 3, 911, 0, '72194', NULL, '全科理疗创业班', NULL, NULL, NULL, NULL, NULL, 1, 570000, 1096000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:27', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (141, 3, 911, 0, '72195', NULL, '【人社部专项能力】康复理疗(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 200000, 380000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:28', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (142, 3, 911, 0, '72196', NULL, '【人社部能建中心】中医健康管理技术( 小儿推拿)', NULL, NULL, NULL, NULL, NULL, 1, 238000, 380000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:28', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (143, 3, 911, 0, '72198', NULL, '推拿刺灸班', NULL, NULL, NULL, NULL, NULL, 1, 5000, 538000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:28', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (144, 3, 911, 0, '72324', NULL, '推拿就业特训营(券后价)', NULL, NULL, NULL, NULL, NULL, 1, 98000, 98000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:28', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (145, 3, 911, 0, '72325', NULL, '艾灸保健小课', NULL, NULL, NULL, NULL, NULL, 1, 9900, 9900, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:28', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (146, 3, 911, 0, '72326', NULL, '中医养生基础课', NULL, NULL, NULL, NULL, NULL, 1, 9900, 9900, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:28', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (147, 3, 911, 0, '72327', NULL, '经络养生课', NULL, NULL, NULL, NULL, NULL, 1, 9900, 9900, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:28', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (148, 3, 911, 0, '72360', NULL, '中医康复理疗一站式就业班', NULL, NULL, NULL, NULL, NULL, 1, 896000, 1280000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:28', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (149, 3, 911, 0, '72559', NULL, '住宿费40/天', NULL, NULL, NULL, NULL, NULL, 1, 4000, 4000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:28', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (150, 3, 911, 0, '72597', NULL, '【两天一夜+到店礼+就业无忧】理疗师0基础就业特训营体验课程', NULL, NULL, NULL, NULL, NULL, 1, 990, 990, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:28', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (151, 3, 911, 0, '72598', NULL, '【两天一夜】经络养生课', NULL, NULL, NULL, NULL, NULL, 1, 9900, 9900, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:28', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (152, 3, 911, 0, '72599', NULL, '【两天一夜】中医零基础SPA', NULL, NULL, NULL, NULL, NULL, 1, 9900, 9900, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:28', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (153, 3, 911, 0, '72600', NULL, '【两天一夜】艾灸保健精品班', NULL, NULL, NULL, NULL, NULL, 1, 9900, 9900, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:28', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (154, 3, 911, 0, '72601', NULL, '【两天一夜】中医基础特训营', NULL, NULL, NULL, NULL, NULL, 1, 9900, 9900, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:28', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (155, 3, 911, 0, '72602', NULL, '【两天一夜】养老护理技术课', NULL, NULL, NULL, NULL, NULL, 1, 9900, 9900, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:28', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (156, 3, 911, 0, '72603', NULL, '【三天特训】理疗技术课', NULL, NULL, NULL, NULL, NULL, 1, 39900, 39900, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:28', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (157, 3, 911, 0, '72604', NULL, '【三天特训】艾灸养生课', NULL, NULL, NULL, NULL, NULL, 1, 39900, 39900, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:28', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (158, 3, 911, 0, '72605', NULL, '【三天特训】理疗师就业特训营', NULL, NULL, NULL, NULL, NULL, 1, 39900, 39900, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:28', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (159, 3, 911, 0, '72606', NULL, '【三天特训】精油SPA技术课', NULL, NULL, NULL, NULL, NULL, 1, 39900, 39900, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:28', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (160, 3, 911, 0, '72607', NULL, '【一对一规划】中医理疗精品班咨询', NULL, NULL, NULL, NULL, NULL, 1, 9900, 9900, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:29', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (161, 3, 911, 0, '72608', NULL, '【一对一规划】中医针法精品班咨询', NULL, NULL, NULL, NULL, NULL, 1, 9900, 9900, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:29', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (162, 3, 911, 0, '72609', NULL, '【一对一规划】经络推拿班咨询', NULL, NULL, NULL, NULL, NULL, 1, 9900, 9900, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:29', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (163, 3, 911, 0, '72610', NULL, '【一对一规划】芳香SPA精品班咨询', NULL, NULL, NULL, NULL, NULL, 1, 9900, 9900, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:29', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (164, 3, 911, 0, '72611', NULL, '【就业无忧】针法技术训练营（线上）', NULL, NULL, NULL, NULL, NULL, 1, 68000, 68000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:29', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (165, 3, 911, 0, '72612', NULL, '【就业无忧】推拿就业班', NULL, NULL, NULL, NULL, NULL, 1, 98000, 98000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:29', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (166, 3, 911, 0, '72613', NULL, '【考证直通车】2025推拿按摩师考证咨询', NULL, NULL, NULL, NULL, NULL, 1, 2990, 2990, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:29', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (167, 3, 911, 0, '72614', NULL, '【考证直通车】2025中医特色调理师考证咨询', NULL, NULL, NULL, NULL, NULL, 1, 2990, 2990, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:29', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (168, 3, 911, 0, '72615', NULL, '【考证直通车】2025康复理疗师考证咨询', NULL, NULL, NULL, NULL, NULL, 1, 2990, 2990, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:29', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (169, 3, 911, 0, '72616', NULL, '【考证直通车】2025心理咨询师考证咨询', NULL, NULL, NULL, NULL, NULL, 1, 2990, 2990, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:29', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (170, 3, 911, 0, '72617', NULL, '【考证直通车】2025营养师考证咨询', NULL, NULL, NULL, NULL, NULL, 1, 2990, 2990, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:29', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (171, 3, 911, 0, '72618', NULL, '【考证直通车】2025健康管理师考证咨询', NULL, NULL, NULL, NULL, NULL, 1, 2990, 2990, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:29', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (172, 3, 911, 0, '72619', NULL, '【考证直通车】2025疗愈师考证咨询', NULL, NULL, NULL, NULL, NULL, 1, 2990, 2990, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:29', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (173, 3, 911, 0, '72620', NULL, '【三甲师资】中医师承学习', NULL, NULL, NULL, NULL, NULL, 1, 2990, 2990, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:29', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (174, 3, 911, 0, '72621', NULL, '中医康复理疗师证书咨询', NULL, NULL, NULL, NULL, NULL, 1, 100, 100, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:29', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (175, 3, 911, 0, '72622', NULL, '（师夫子）中医理疗王牌就业班', NULL, NULL, NULL, NULL, NULL, 1, 358000, 498000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:29', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (176, 3, 911, 0, '72623', NULL, '（师夫子）中医技术实战研修班', NULL, NULL, NULL, NULL, NULL, 1, 598000, 698000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:29', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (177, 3, 911, 0, '72624', NULL, '理疗师0基础就业特训营体验课程', NULL, NULL, NULL, NULL, NULL, 1, 990, 2990, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:29', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (178, 3, 911, 0, '72627', NULL, '【浙江卫健委】中医康复理疗师', NULL, NULL, NULL, NULL, NULL, 1, 200000, 280000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:29', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (179, 3, 911, 0, '72628', NULL, '【浙江卫健委】中医健康管理师', NULL, NULL, NULL, NULL, NULL, 1, 200000, 280000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:30', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (180, 3, 911, 0, '72629', NULL, '【浙江卫健委】生殖健康咨询', NULL, NULL, NULL, NULL, NULL, 1, 200000, 280000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:30', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (181, 3, 911, 0, '72630', NULL, '【浙江卫健委】中医预防保健调理技术', NULL, NULL, NULL, NULL, NULL, 1, 200000, 280000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:30', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (182, 3, 911, 0, '72821', NULL, '高级美容护肤品调配师', NULL, NULL, NULL, NULL, NULL, 1, 440000, 440000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:30', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (183, 3, 911, 0, '72851', NULL, '凹凸生殖激活技术一对一教学', NULL, NULL, NULL, NULL, NULL, 1, 960000, 1580000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:30', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (184, 3, 911, 0, '73127', NULL, '全国工商联', NULL, NULL, NULL, NULL, NULL, 1, 100000, 150000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:30', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (185, 3, 911, 0, '73133', NULL, '改错证书费用', NULL, NULL, NULL, NULL, NULL, 1, 20000, 150000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:30', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (186, 3, 911, 0, '73239', NULL, '扶阳艾灸15天速成班', NULL, NULL, NULL, NULL, NULL, 1, 69800, 69800, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:30', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (187, 3, 911, 0, '73251', NULL, '中医疼痛治疗班', NULL, NULL, NULL, NULL, NULL, 1, 280000, 498000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:30', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (188, 3, 911, 0, '73350', NULL, '【浙江卫健委】中医全科理疗师', NULL, NULL, NULL, NULL, NULL, 1, 200000, 280000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:30', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (189, 3, 911, 0, '73351', NULL, '【浙江卫健委】心理倾听师', NULL, NULL, NULL, NULL, NULL, 1, 200000, 280000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:30', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (190, 3, 911, 0, '73352', NULL, '【浙江卫健委】疗愈师', NULL, NULL, NULL, NULL, NULL, 1, 200000, 280000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:30', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (191, 3, 911, 0, '73353', NULL, '【浙江卫健委】体重管理师', NULL, NULL, NULL, NULL, NULL, 1, 200000, 280000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:30', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (192, 3, 911, 0, '73354', NULL, '【浙江卫健委】陪诊师', NULL, NULL, NULL, NULL, NULL, 1, 200000, 280000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:30', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (193, 3, 911, 0, '73355', NULL, '【浙江卫健委】功能医学健康管理师', NULL, NULL, NULL, NULL, NULL, 1, 200000, 280000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:30', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (194, 3, 911, 0, '73356', NULL, '【浙江卫健委】心理健康指导师', NULL, NULL, NULL, NULL, NULL, 1, 200000, 280000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:30', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (195, 3, 911, 0, '73357', NULL, '【浙江卫健委】健康管理顾问', NULL, NULL, NULL, NULL, NULL, 1, 200000, 280000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:30', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (196, 3, 911, 0, '73358', NULL, '【浙江卫健委】营养指导顾问', NULL, NULL, NULL, NULL, NULL, 1, 200000, 280000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:30', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (197, 3, 911, 0, '73436', NULL, '国家卫健委人才中心;医疗护理员(服务费)合作团报', NULL, NULL, NULL, NULL, NULL, 1, 250000, 3000000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:30', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (198, 3, 911, 0, '73450', NULL, '中医理疗王牌实战班V5.0', NULL, NULL, NULL, NULL, NULL, 1, 29900, 698000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:31', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (199, 3, 911, 0, '73451', NULL, '中医高级推拿班V5.0', NULL, NULL, NULL, NULL, NULL, 1, 230000, 398000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:31', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (200, 3, 911, 0, '73452', NULL, '中医初级推拿班V5.0', NULL, NULL, NULL, NULL, NULL, 1, 100000, 200000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:31', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (201, 3, 911, 0, '73453', NULL, '中医特色理疗技术班V5.0', NULL, NULL, NULL, NULL, NULL, 1, 100000, 298000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:31', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (202, 3, 911, 0, '73454', NULL, '中医针灸技术应用班V5.0', NULL, NULL, NULL, NULL, NULL, 1, 100000, 498000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:31', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (203, 3, 911, 0, '73455', NULL, '中医推拿正骨技术班V5.0', NULL, NULL, NULL, NULL, NULL, 1, 100000, 498000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:31', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (204, 3, 911, 0, '73456', NULL, '中医特色手法全科班V5.0（理疗+正骨）', NULL, NULL, NULL, NULL, NULL, 1, 100000, 1000000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:31', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (205, 3, 911, 0, '73457', NULL, '中医特色调理全科班V5.0（理疗+针灸）', NULL, NULL, NULL, NULL, NULL, 1, 100000, 980000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:31', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (206, 3, 911, 0, '73458', NULL, '中医临床全科班V5.0（理疗+针灸+正骨）', NULL, NULL, NULL, NULL, NULL, 1, 100000, 1350000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:31', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (207, 3, 911, 0, '73513', NULL, '气化脉诊精讲班', NULL, NULL, NULL, NULL, NULL, 1, 298000, 398000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:31', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (208, 3, 911, 0, '73557', NULL, '证书代考费', NULL, NULL, NULL, NULL, NULL, 1, 0, 50000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:31', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (209, 3, 911, 0, '73559', NULL, '【国家卫健委】国家健康管理师', NULL, NULL, NULL, NULL, NULL, 1, 200000, 350000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:31', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (210, 3, 911, 0, '73561', NULL, '埋线减肥系统班', NULL, NULL, NULL, NULL, NULL, 1, 20000, 480000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:31', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (211, 3, 911, 0, '73579', NULL, '王氏一针调气百病消', NULL, NULL, NULL, NULL, NULL, 1, 0, 698000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:31', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (212, 3, 911, 0, '73581', NULL, '全国工商联 — 产后恢复师', NULL, NULL, NULL, NULL, NULL, 1, 0, 198000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:31', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (213, 3, 911, 0, '73583', NULL, '健脾去湿组合', NULL, NULL, NULL, NULL, NULL, 1, 0, 15800, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:31', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (214, 3, 911, 0, '73584', NULL, '安神助眠组合', NULL, NULL, NULL, NULL, NULL, 1, 0, 12800, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:31', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (215, 3, 911, 0, '75119', NULL, '奈晚推拿定制就业班', NULL, NULL, NULL, NULL, NULL, 1, 0, 198000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:31', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (216, 3, 911, 0, '75129', NULL, '王氏一针调气百病消-班主任', NULL, NULL, NULL, NULL, NULL, 1, 0, 598000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:31', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (217, 3, 911, 0, '75139', NULL, '全国工商联 — 中医康复理疗师证书', NULL, NULL, NULL, NULL, NULL, 1, 100000, 198000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:32', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (218, 3, 911, 0, '75469', NULL, '全国工商联 — 健康管理师', NULL, NULL, NULL, NULL, NULL, 1, 100000, 198000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:32', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (219, 3, 911, 0, '75495', NULL, '一条根膏药贴（3袋精油贴）', NULL, NULL, NULL, NULL, NULL, 1, 0, 21800, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:32', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (220, 3, 911, 0, '75496', NULL, '蕲艾叶饼', NULL, NULL, NULL, NULL, NULL, 1, 0, 6900, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:32', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (221, 3, 911, 0, '75497', NULL, '眠心茶', NULL, NULL, NULL, NULL, NULL, 1, 0, 8900, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:32', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (222, 3, 911, 0, '75501', NULL, '经穴运用', NULL, NULL, NULL, NULL, NULL, 1, 0, 680000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:32', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (223, 3, 911, 0, '75502', NULL, '良年99元2天1夜课程', NULL, NULL, NULL, NULL, NULL, 1, 100, 9900, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:32', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (224, 3, 911, 0, '75503', NULL, '良年99元年会员', NULL, NULL, NULL, NULL, NULL, 1, 100, 9900, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:32', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (225, 3, 911, 0, '75515', NULL, '岐黄妙法-五艺贯通', NULL, NULL, NULL, NULL, NULL, 1, 188000, 198000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:32', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (226, 3, 911, 0, '75525', NULL, '脏腑调理班', NULL, NULL, NULL, NULL, NULL, 1, 0, 39900, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:32', '2025-07-18 11:07:47', 1);
-INSERT INTO `oms_shop_goods` VALUES (227, 3, 911, 0, '75546', NULL, '中医微针美雕班', NULL, NULL, NULL, NULL, NULL, 1, 198000, 398000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:32', '2025-07-18 11:07:48', 1);
-INSERT INTO `oms_shop_goods` VALUES (228, 3, 911, 0, '75547', NULL, '世针针灸交流中心;中医正骨证书(服务费)', NULL, NULL, NULL, NULL, NULL, 1, 200000, 280000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:32', '2025-07-18 11:07:48', 1);
-INSERT INTO `oms_shop_goods` VALUES (229, 3, 911, 0, '75549', NULL, '中医针灸技术班（5天）', NULL, NULL, NULL, NULL, NULL, 1, 0, 200000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:32', '2025-07-18 11:07:48', 1);
-INSERT INTO `oms_shop_goods` VALUES (230, 3, 911, 0, '75735', NULL, '古法九龙回阳功', NULL, NULL, NULL, NULL, NULL, 1, 188000, 258000, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:32', '2025-07-18 11:07:48', 1);
-INSERT INTO `oms_shop_goods` VALUES (231, 3, 911, 0, '75998', NULL, '三伏贴（加强版本120贴）', NULL, NULL, NULL, NULL, NULL, 1, 59900, 59900, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:32', '2025-07-18 11:07:48', 1);
-INSERT INTO `oms_shop_goods` VALUES (232, 3, 911, 0, '75999', NULL, '三伏贴（基础版本30贴）', NULL, NULL, NULL, NULL, NULL, 1, 17900, 17900, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:32', '2025-07-18 11:07:48', 1);
-INSERT INTO `oms_shop_goods` VALUES (233, 3, 911, 0, '76002', NULL, '良年111', NULL, NULL, NULL, NULL, NULL, 1, 19900, 19900, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:32', '2025-07-18 11:07:48', 1);
-INSERT INTO `oms_shop_goods` VALUES (234, 3, 911, 0, '76028', NULL, '良年测试', NULL, NULL, NULL, NULL, NULL, 1, 19900, 19900, NULL, NULL, NULL, 0, 0, '2025-07-18 10:32:32', '2025-07-18 11:07:48', 1);
 INSERT INTO `oms_shop_goods` VALUES (235, 27, 300, 101, '753794079556', 'LEDDP001', '雷士照明超亮LED节能灯E27大功率强光均匀三色可选一级能效护眼', '', '', 'https://img.pddpic.com/gaudit-image/2025-05-28/048a06e3b11fe5e8ce5ab00e1828d77f.jpeg', '', '', 0, 0, NULL, 'LEDDP001', 1748374876, 1748374876, 0, 23, '2025-07-25 09:13:14', NULL, 0);
 INSERT INTO `oms_shop_goods` VALUES (236, 27, 300, 101, '754380133868', 'LEDDX001', '雷士照明LED光源灯芯正品保障客厅卧室餐厅书房吸顶灯LED灯板替换', '', '', 'https://img.pddpic.com/gaudit-image/2025-05-29/1a92b78dc9240b794790f686d5186398.jpeg', '', '', 0, 0, NULL, 'LEDDX001', 1748497225, 1748497225, 0, 45, '2025-07-25 09:13:14', NULL, 0);
 INSERT INTO `oms_shop_goods` VALUES (237, 27, 300, 101, '755310184807', '448700666150_1748700757', '艾瑞泽工具箱三层折叠多层多功能收纳箱汽车用家用电工五金收纳箱', '', '', 'https://img.pddpic.com/gaudit-image/2025-05-31/8378221ca34955ad167b22c921234f14.jpeg', '', '', 0, 0, NULL, '448700666150_1748700757', 1748700771, 1748700771, 0, 3651, '2025-07-25 09:13:14', NULL, 0);
@@ -6156,7 +5927,7 @@ CREATE TABLE `sys_oper_log`  (
 -- ----------------------------
 -- Records of sys_oper_log
 -- ----------------------------
-INSERT INTO `sys_oper_log` VALUES (415, '店铺订单', 5, 'cn.qihangerp.scm.controller.ErpOrderController.export()', 'POST', 1, 'admin', NULL, '/api/order/export', '127.0.0.1', '内网IP', '{\"pageSize\":\"10\",\"pageNum\":\"1\"}', NULL, 0, NULL, '2024-05-08 14:50:58', 2385);
+INSERT INTO `sys_oper_log` VALUES (415, '店铺订单', 5, 'cn.qihangerp.api.controller.ErpOrderController.export()', 'POST', 1, 'admin', NULL, '/api/order/export', '127.0.0.1', '内网IP', '{\"pageSize\":\"10\",\"pageNum\":\"1\"}', NULL, 0, NULL, '2024-05-08 14:50:58', 2385);
 
 -- ----------------------------
 -- Table structure for sys_oss
@@ -6299,7 +6070,7 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES (1, 100, 'admin', '启航', '00', '280645618@qq.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2025-07-22 09:05:34', 'admin', '2023-08-07 19:31:37', '', '2025-07-22 09:05:35', '管理员');
+INSERT INTO `sys_user` VALUES (1, 100, 'admin', '启航', '00', '280645618@qq.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2025-11-30 21:19:30', 'admin', '2023-08-07 19:31:37', '', '2025-11-30 13:19:29', '管理员');
 INSERT INTO `sys_user` VALUES (2, 101, 'qihang', 'qihang', '20', 'qihang@qq.com', '15666666666', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2025-07-26 10:45:32', 'admin', '2023-08-07 19:31:37', 'admin', '2025-07-26 10:45:31', '测试员');
 INSERT INTO `sys_user` VALUES (100, 1, 'qihangvms', 'aa', '10', '', '', '1', '', '$2a$10$VD49q2rn1ATpQDZJJrmJjuG52b4EkOTTZ0MPbRRmcqEYLmB5mAMsG', '0', '0', '127.0.0.1', '2025-07-23 11:54:04', 'admin', '2024-04-24 11:06:27', '', '2025-07-23 11:54:05', NULL);
 

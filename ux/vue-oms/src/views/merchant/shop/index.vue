@@ -10,7 +10,7 @@
         />
       </el-form-item>
       <el-form-item label="商户" prop="merchantId">
-        <el-select v-model="queryParams.merchantId" clearable placeholder="请选择商户">
+        <el-select v-model="queryParams.merchantId" clearable placeholder="请选择商户" @change="handleQuery">
           <el-option
             v-for="item in merchantList"
             :key="item.id"
@@ -89,17 +89,17 @@
       <el-table-column label="店铺名" align="left" prop="name" />
       <el-table-column label="平台" align="center" prop="type" >
         <template slot-scope="scope">
-          <el-tag >{{typeList.find(x=>x.id === scope.row.type)?typeList.find(x=>x.id === scope.row.type).name:''}}</el-tag>
+          <el-tag >{{typeList.find(x=>x.id == scope.row.type)?typeList.find(x=>x.id == scope.row.type).name:''}}</el-tag>
         </template>
       </el-table-column>
-      <el-table-column label="国家/地区" align="center" prop="regionId" >
-        <template slot-scope="scope">
-          <el-tag >{{regionList.find(x=>x.id === scope.row.regionId)?regionList.find(x=>x.id === scope.row.regionId).name:''}}</el-tag>
-        </template>
-      </el-table-column>
+<!--      <el-table-column label="国家/地区" align="center" prop="regionId" >-->
+<!--        <template slot-scope="scope">-->
+<!--          <el-tag >{{regionList.find(x=>x.id === scope.row.regionId)?regionList.find(x=>x.id === scope.row.regionId).name:''}}</el-tag>-->
+<!--        </template>-->
+<!--      </el-table-column>-->
       <el-table-column label="商户" align="center" prop="merchantId" >
         <template slot-scope="scope">
-          <el-tag  v-if="scope.row.merchantId>0">{{merchantList.find(x=>x.id === scope.row.regionId)?merchantList.find(x=>x.id === scope.row.regionId).name:''}}</el-tag>
+          <el-tag  v-if="scope.row.merchantId>0">{{merchantList.find(x=>x.id == scope.row.merchantId)?merchantList.find(x=>x.id == scope.row.merchantId).nickName:''}}</el-tag>
           <el-tag  v-else>自营</el-tag>
         </template>
       </el-table-column>
@@ -214,7 +214,7 @@
             <el-option
               v-for="item in merchantList"
               :key="item.id"
-              :label="item.name"
+              :label="item.nickName"
               :value="item.id">
             </el-option>
           </el-select>
@@ -440,7 +440,7 @@ export default {
       listMerchant({pageNum: 1, pageSize: 100}).then(resp => {
         this.merchantList = resp.rows
         if (this.merchantList && this.merchantList.length > 0) {
-          this.queryParams.merchantId = this.merchantList[0].id+''
+          this.queryParams.merchantId = this.merchantList[0].id
           this.form.merchantId = this.merchantList[0].id+''
         }
         this.getList()
