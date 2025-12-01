@@ -11,7 +11,7 @@
  Target Server Version : 80043 (8.0.43)
  File Encoding         : 65001
 
- Date: 30/11/2025 21:35:28
+ Date: 01/12/2025 08:51:10
 */
 
 SET NAMES utf8mb4;
@@ -6070,9 +6070,9 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES (1, 100, 'admin', '启航', '00', '280645618@qq.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2025-11-30 21:19:30', 'admin', '2023-08-07 19:31:37', '', '2025-11-30 13:19:29', '管理员');
-INSERT INTO `sys_user` VALUES (2, 101, 'qihang', 'qihang', '20', 'qihang@qq.com', '15666666666', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2025-07-26 10:45:32', 'admin', '2023-08-07 19:31:37', 'admin', '2025-07-26 10:45:31', '测试员');
-INSERT INTO `sys_user` VALUES (100, 1, 'qihangvms', 'aa', '10', '', '', '1', '', '$2a$10$VD49q2rn1ATpQDZJJrmJjuG52b4EkOTTZ0MPbRRmcqEYLmB5mAMsG', '0', '0', '127.0.0.1', '2025-07-23 11:54:04', 'admin', '2024-04-24 11:06:27', '', '2025-07-23 11:54:05', NULL);
+INSERT INTO `sys_user` VALUES (1, 100, 'admin', '启航', '00', '280645618@qq.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2025-11-30 21:48:45', 'admin', '2023-08-07 19:31:37', '', '2025-11-30 13:48:45', '管理员');
+INSERT INTO `sys_user` VALUES (2, 101, 'qihang', 'qihang', '20', 'qihang@qq.com', '15666666666', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2025-11-30 21:44:25', 'admin', '2023-08-07 19:31:37', 'admin', '2025-11-30 13:44:25', '测试员');
+INSERT INTO `sys_user` VALUES (100, 1, 'qihangvms', 'aa', '10', '', '', '1', '', '$2a$10$VD49q2rn1ATpQDZJJrmJjuG52b4EkOTTZ0MPbRRmcqEYLmB5mAMsG', '0', '0', '127.0.0.1', '2025-11-30 21:50:20', 'admin', '2024-04-24 11:06:27', '', '2025-11-30 13:50:19', NULL);
 
 -- ----------------------------
 -- Table structure for sys_user_post

@@ -169,7 +169,7 @@ A[供应商发布商品] -->B(设置商户价格)
 
 一起交流，请关注作者微信公众号：qihangerpcn
 
-<img src="docs/qihangerp168.jpg" width="300px" />
+<img src="docs/qihangerpcn.jpg" width="300px" />
 
 
 💖 欢迎一起交流！

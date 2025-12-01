@@ -2,7 +2,7 @@ server:
   port: 8089
 spring:
   application:
-    name: scm-gateway
+    name: gateway
 #  security:
 #    user:
 #      name: admin
