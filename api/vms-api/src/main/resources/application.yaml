@@ -1,7 +1,10 @@
 # Nacos Config 配置
 spring:
   application:
-    name: scm-vms-api
+    name: vms-api
+  messages:
+    # 国际化资源文件路径
+    basename: i18n/messages
   cloud:
     nacos:
       config:

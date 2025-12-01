@@ -3,7 +3,7 @@ import request from '@/utils/request'
 // 查询商品管理列表
 export function listGoods(query) {
   return request({
-    url: '/scm-vms-api/goods/list',
+    url: '/vms-api/goods/list',
     method: 'get',
     params: query
   })

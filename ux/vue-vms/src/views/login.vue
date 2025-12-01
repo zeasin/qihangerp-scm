@@ -119,7 +119,7 @@ export default {
         code: "",
         uuid: ""
       },
-      title:'VMS供应商系统',
+      title:'电商供应链系统-供应商端',
       loginRules: {
         username: [
           { required: true, trigger: "blur", message: "请输入您的账号" }

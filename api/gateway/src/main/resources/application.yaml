@@ -45,9 +45,9 @@ spring:
             - StripPrefix=1
 
         - id: vms_api_route
-          uri: lb://scm-vms-api
+          uri: lb://vms-api
           predicates:
-            - Path=/scm-vms-api/**
+            - Path=/vms-api/**
           filters:
             - StripPrefix=1
 

@@ -9,7 +9,7 @@ export function login(username, password, code, uuid) {
     uuid
   }
   return request({
-    url: '/scm-vms-api/login',
+    url: '/vms-api/login',
     headers: {
       isToken: false
     },
@@ -23,7 +23,7 @@ export function login(username, password, code, uuid) {
 // 获取用户详细信息
 export function getInfo() {
   return request({
-    url: '/scm-vms-api/getInfo',
+    url: '/vms-api/getInfo',
     method: 'get'
   })
 }
@@ -31,7 +31,7 @@ export function getInfo() {
 // 退出方法
 export function logout() {
   return request({
-    url: '/scm-vms-api/logout',
+    url: '/vms-api/logout',
     method: 'post'
   })
 }

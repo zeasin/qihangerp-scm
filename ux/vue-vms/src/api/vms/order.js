@@ -3,7 +3,7 @@ import request from '@/utils/request'
 // 查询店铺订单列表
 export function listOrder(query) {
   return request({
-    url: '/scm-vms-api/ship/order/list',
+    url: '/vms-api/ship/order/list',
     method: 'get',
     params: query
   })
@@ -13,7 +13,7 @@ export function listOrder(query) {
 // 查询店铺订单详细
 export function getOrder(id) {
   return request({
-    url: '/scm-vms-api/ship/order/' + id,
+    url: '/vms-api/ship/order/' + id,
     method: 'get'
   })
 }
@@ -21,7 +21,7 @@ export function getOrder(id) {
 // 订单明细list
 export function listOrderItem(query) {
   return request({
-    url: '/scm-vms-api/ship/order/item_list',
+    url: '/vms-api/ship/order/item_list',
     method: 'get',
     params: query
   })
@@ -30,7 +30,7 @@ export function listOrderItem(query) {
 
 export function updateSendStatus(ids) {
   return request({
-    url: '/scm-vms-api/ship/order/updateSendStatus',
+    url: '/vms-api/ship/order/updateSendStatus',
     method: 'post',
     data:ids
   })
