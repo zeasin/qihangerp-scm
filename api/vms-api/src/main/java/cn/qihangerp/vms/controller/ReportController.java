@@ -25,12 +25,14 @@ public class ReportController extends BaseController {
             return AjaxResult.error("登录用户不是供应商");
         }
 
-        Map<String,Long> result = new HashMap<>();
+        Map<String,Integer> result = new HashMap<>();
         Long vendorId = SecurityUtils.getLoginUser().getDeptId();
 
-        result.put("waitSend",0L);
+        result.put("goodsOnSale",13);
+        result.put("goodsUnSale",0);
+        result.put("orderWaitSend",2);
 
-        result.put("hasSend",0L);
+        result.put("orderTotal",1232);
 
 
         return AjaxResult.success(result);

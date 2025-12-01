@@ -121,7 +121,11 @@
 <!--            <systemPath>${project.basedir}/libs/open-sdk-1.4.30.jar</systemPath>-->
 <!--        </dependency>-->
 
-
+        <dependency>
+            <groupId>io.minio</groupId>
+            <artifactId>minio</artifactId>
+            <version>8.5.7</version>
+        </dependency>
 
         <dependency>
             <groupId>cn.qihangerp.service</groupId>

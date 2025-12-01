@@ -105,9 +105,10 @@ export default {
         ]
       },
       report:{
-        waitSend:50,
-        hasSend:5989,
-
+        orderWaitSend:0,
+        orderTotal:0,
+        goodsOnSale:0,
+        goodsUnSale:0
       }
     }
   },

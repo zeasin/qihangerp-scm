@@ -59,3 +59,11 @@ mybatis-plus:
   type-aliases-package: cn.qihangerp.api.domain;com.qihangerp.api.common.security;cn.qihangerp.model.goods.domain;
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 开启sql日志
+
+minio:
+  endpoint: http://172.27.108.183:9000
+  accessKey: OY0qEAXILamNbn1sLrUZ
+  secretKey: 1oxGnuts8DC9LwZI1j87auJAZb92cPuZd1NbfUAL
+  secure: false
+  bucketName: zpmalloss
+  viewHost: http://8.138.99.5:88

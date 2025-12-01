@@ -9,7 +9,7 @@
           <div class="card-panel-text">
             已上架商品
           </div>
-          <count-to :start-val="0" :end-val="chartData.salesVolume" :duration="3200" class="card-panel-num" />
+          <count-to :start-val="0" :end-val="chartData.goodsOnSale" :duration="3200" class="card-panel-num" />
         </div>
       </div>
     </el-col>
@@ -22,7 +22,7 @@
           <div class="card-panel-text">
             待上架商品
           </div>
-          <count-to :start-val="0" :end-val="chartData.salesVolume" :duration="3200" class="card-panel-num" />
+          <count-to :start-val="0" :end-val="chartData.goodsUnSale" :duration="3200" class="card-panel-num" />
         </div>
       </div>
     </el-col>
@@ -35,7 +35,7 @@
           <div class="card-panel-text">
             待发货订单
           </div>
-          <count-to :start-val="0" :end-val="chartData.waitSend" :duration="3600" class="card-panel-num" />
+          <count-to :start-val="0" :end-val="chartData.orderWaitSend" :duration="3600" class="card-panel-num" />
         </div>
       </div>
     </el-col>
@@ -46,9 +46,9 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            已发货订单
+            累计订单
           </div>
-          <count-to :start-val="0" :end-val="chartData.hasSend" :duration="3000" class="card-panel-num" />
+          <count-to :start-val="0" :end-val="chartData.orderTotal" :duration="3000" class="card-panel-num" />
         </div>
       </div>
     </el-col>
