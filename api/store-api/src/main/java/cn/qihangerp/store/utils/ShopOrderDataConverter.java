@@ -103,7 +103,7 @@ public class ShopOrderDataConverter {
                 orderItem.setSkuId(item.getSkuId()+"");
                 orderItem.setQuantity(item.getGoodsCount());
                 orderItem.setImg(item.getGoodsImg());
-                orderItem.setTitle(item.getGoods_name());
+                orderItem.setTitle(item.getGoodsName());
                 orderItem.setSalePrice(BigDecimal.valueOf(item.getGoodsPrice()).multiply(BigDecimal.valueOf(100)).intValue());
                 orderItem.setMarketPrice(orderItem.getSalePrice());
                 orderItem.setRealPrice(orderItem.getSalePrice());

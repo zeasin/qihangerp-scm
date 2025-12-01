@@ -18,7 +18,7 @@ import cn.qihangerp.open.pdd.PddGoodsApiHelper;
 import cn.qihangerp.open.pdd.model.GoodsResultVo;
 import cn.qihangerp.open.wei.WeiGoodsApiService;
 import cn.qihangerp.open.wei.model.Product;
-import cn.qihangerp.sdk.pdd.PullRequest;
+import cn.qihangerp.store.request.PullRequest;
 import com.alibaba.fastjson2.JSONObject;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -129,7 +129,7 @@ public class GoodsApiController extends BaseController {
                     goodsSku.setImg(goods.getImg());
                     goodsSku.setSkuCode(sku.getOuterId());
                     outerGoodsId = sku.getOuterGoodsId();
-                    goodsSku.setSkuAttrs(sku.getSpec_details());
+                    goodsSku.setSkuAttrs(sku.getSpec());
                     goodsSku.setPrice(0);
                     goodsSku.setSkuName(sku.getSpec());
                     goodsSku.setStockNum(sku.getSkuQuantity());
