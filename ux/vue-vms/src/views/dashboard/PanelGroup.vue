@@ -1,19 +1,32 @@
 <template>
   <el-row :gutter="40" class="panel-group">
-<!--    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">-->
-<!--      <div class="card-panel" @click="handleSetLineChartData('purchases')">-->
-<!--        <div class="card-panel-icon-wrapper icon-money">-->
-<!--          <svg-icon icon-class="money" class-name="card-panel-icon" />-->
-<!--        </div>-->
-<!--        <div class="card-panel-description">-->
-<!--          <div class="card-panel-text">-->
-<!--            今日销售额-->
-<!--          </div>-->
-<!--          <count-to :start-val="0" :end-val="chartData.salesVolume" :duration="3200" class="card-panel-num" />-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </el-col>-->
-    <el-col :xs="12" :sm="12" :lg="12" class="card-panel-col">
+    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
+      <div class="card-panel" @click="handleSetLineChartData('purchases')">
+        <div class="card-panel-icon-wrapper icon-money">
+          <svg-icon icon-class="star" class-name="card-panel-icon" />
+        </div>
+        <div class="card-panel-description">
+          <div class="card-panel-text">
+            已上架商品
+          </div>
+          <count-to :start-val="0" :end-val="chartData.salesVolume" :duration="3200" class="card-panel-num" />
+        </div>
+      </div>
+    </el-col>
+    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
+      <div class="card-panel" @click="handleSetLineChartData('purchases')">
+        <div class="card-panel-icon-wrapper icon-money">
+          <svg-icon icon-class="time" class-name="card-panel-icon" />
+        </div>
+        <div class="card-panel-description">
+          <div class="card-panel-text">
+            待上架商品
+          </div>
+          <count-to :start-val="0" :end-val="chartData.salesVolume" :duration="3200" class="card-panel-num" />
+        </div>
+      </div>
+    </el-col>
+    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
       <div class="card-panel" @click="handleSetLineChartData('shoppings')">
         <div class="card-panel-icon-wrapper icon-shopping">
           <svg-icon icon-class="shopping" class-name="card-panel-icon" />
@@ -26,7 +39,7 @@
         </div>
       </div>
     </el-col>
-    <el-col :xs="12" :sm="12" :lg="12" class="card-panel-col">
+    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
       <div class="card-panel" @click="handleSetLineChartData('messages')">
         <div class="card-panel-icon-wrapper icon-message">
           <svg-icon icon-class="stock" class-name="card-panel-icon" />
